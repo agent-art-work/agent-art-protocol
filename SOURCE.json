@@ -1,0 +1,9 @@
+{
+  "migration_date": "2026-10-17",
+  "source_repository": "https://github.com/inshell-art/WILL",
+  "source_commit": "ab7c375bdacede7cbd1f72ea74d18c53c43f10b0",
+  "source_path": "docs/agent-app/ARCHITECTURE.md",
+  "source_sha256": "0de90210d9ee4ca1e1b4c92f2b9f29c3a8491c6608aefb20bb430520ecc37f46",
+  "source_status": "candidate architecture; not implementation or qualification evidence",
+  "adaptation": "Extracted reusable sections 1, 2.1-2.2, 6.0-6.2 and 14.1; updated ownership and cross-references; retained complete historical synthesis in WILL."
+}
