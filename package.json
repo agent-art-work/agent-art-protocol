@@ -1,0 +1,13 @@
+{
+  "name": "agent-art-protocol-local-mvp",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node mvp/dev.mjs",
+    "test": "node --test mvp/test/*.test.mjs mvp/agent/test.mjs",
+    "mvp:agent": "node mvp/agent/launch.mjs",
+    "mvp:verify": "node mvp/verify.mjs"
+  }
+}

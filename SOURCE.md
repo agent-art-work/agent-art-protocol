@@ -48,3 +48,94 @@ The Lab sources above were fetched on 2026-10-17 through their complete JSON dow
 No reuse license has been selected. Research references identify their sources;
 they do not grant rights to third-party texts, artwork or private records.
 No raw private transcripts, credentials or artwork are imported here.
+
+## v0.1 draft continuation, 2026-10-17
+
+The operator requested a [v0.1 scope](spec/0.1/SCOPE.md),
+[contract draft](spec/0.1/CONTRACT.md) and two example histories. They develop
+the candidate architecture locally without modifying the pinned WILL source
+or its digest. THOUGHT's added trace and the invented OPEN FIELD graphic work
+are hypothetical design examples, not new observations, published artist rules
+or live-client evidence. Exact wire encoding and implementation choices remain
+open. No implementation, trial, release or new verification of external sources
+was performed for this documentation revision.
+
+## Scope clarification, 2026-10-18
+
+The operator selected curator-Agent bridges, participation evidence and
+verification as the protocol's scope. Artists build their website/app,
+conditions and renderer, integrating reusable shared bridges and verification
+with artwork-specific claims/checks. Minting admission, including accepting
+unattested works or requiring evidence, remains with a consuming contract.
+
+The architecture, v0.1 drafts and hypothetical examples were revised to separate
+participation acceptance, claim-scoped verification, artifact/presentation checks
+and external publication. Operator receipts retain their limited meaning;
+execution-origin and consequence claims need their own bound material and
+qualified procedures. No stronger origin mechanism, universal mint-approval
+rule, paid-Agent eligibility condition or chain was selected by this revision.
+
+The preserved WILL source, its digest and the dated research reports remain
+unchanged. This is a local documentation revision, not implementation, client
+qualification, live evidence, contract migration, publication or deployment.
+
+## Comprehensive design review, 2026-10-18
+
+The operator requested another deep review before implementation. The new
+[participation and evidence design review](research/2026-10-18-participation-evidence-design-review.md)
+applies the selected scope to bridge qualification, exact authority/content
+bindings, acceptance and media retention, execution evidence, consequence,
+portable assessments, privacy and failure recovery. It includes THOUGHT and
+the hypothetical OPEN FIELD as designed traces, not observed encounters.
+
+Primary documentation was reviewed on 2026-10-18 and is linked beside the
+relevant findings. These sources include MCP revision 2026-07-28, current A2A
+and Claude Code documentation, RFCs, SVG 2, and the documented evidence formats
+and execution-proof mechanisms. Mutable documentation describes capabilities
+and limits as reviewed; it is not an observation of an installed client or a
+verified provider integration. No provider invocation or live Agent trial was
+performed. Parallel bridge, evidence and semantics reviews informed the report.
+
+The report identifies remaining origin and native-client recovery gaps and
+proposes narrower contract semantics. It does not adopt those proposals into
+the architecture or v0.1 contract, rewrite the earlier dated research, or
+establish implementation readiness. The preserved WILL source and its digest
+remain unchanged. This work is local documentation, not publication.
+
+## Local MVP continuation, 2026-10-18
+
+After reviewing the proposed execution claim, the operator requested a working
+MVP and walkthrough. The [local participation study](mvp/README.md) implements
+a THOUGHT-inspired text profile, a loopback participation service, a fresh
+Claude Code session through local stdio MCP, durable submissions and limited
+export checking. This is new prototype work, separate from production THOUGHT
+and from the proposed remote HTTP/OAuth reference path.
+
+The [qualification record](mvp/QUALIFICATION.md) separates synthetic integration
+tests, browser observations and any actual client encounter. Local receipts and
+runtime declarations retain their original trust limits. This work supplies
+no independently grounded execution proof or protocol conformance certificate,
+and does not select a mint policy, license or deployment. Earlier research and
+the preserved WILL source remain unchanged.
+
+## Discussion record and project walkthroughs, 2026-10-19
+
+The operator asked to record both settled and still-discussed ideas before
+walking through projects to understand protocol usage. The new
+[discussion record](DISCUSSION.md) separates working agreements, proposals,
+open questions, experiments and bounded findings. In particular, the proposed
+execution threshold remains unresolved, and requesting an MVP did not ratify
+the generic contract. This record adds no implementation requirement.
+
+The [project walkthrough guide](examples/PROJECT-WALKTHROUGHS.md) preserves the
+preceding read-only comparison of existing THOUGHT and signatures.gallery's
+preview. That comparison inspected served pages/scripts, public discovery and
+pinned source, with the source and deployment limits recorded beside the
+findings. It did not complete a new UI/Agent encounter or examine minting.
+The existing THOUGHT application, hypothetical protocol trace and local MVP
+remain separate. The invented OPEN FIELD remains a paper example.
+
+Recording these findings performs no new runtime trial, artwork migration,
+publication or deployment. Project encounters can revise the candidate
+design; the preserved WILL source, its digest and dated research reports
+remain unchanged.

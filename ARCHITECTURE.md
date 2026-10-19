@@ -1,14 +1,30 @@
 # Agent Art protocol architecture
 
-Status: **candidate, documentation only**, 2026-10-17. This is the current home
-of the reusable protocol draft. Exact schemas, client support, packaging and
-deployment remain open. No implementation or real-client qualification is
-supplied by this repository.
+Status: **candidate**, updated 2026-10-18. This is the current home of the
+reusable protocol draft. Exact schemas, client support, packaging and deployment
+remain open. A separately authorized [local MVP](mvp/README.md) exercises a
+bounded subset; it does not qualify the remote HTTP/OAuth path or independent
+execution origin. Its observations and limits are in
+[MVP qualification](mvp/QUALIFICATION.md).
+
+The [discussion record](DISCUSSION.md), added 2026-10-19, distinguishes working
+agreements from proposals and open questions. This architecture is a baseline
+to refine through [project walkthroughs](examples/PROJECT-WALKTHROUGHS.md),
+not a frozen standard. MVP implementation choices do not ratify the generic
+contract or settle the execution-evidence threshold.
+
+The proposed first development scope is in [v0.1 SCOPE](spec/0.1/SCOPE.md)
+with a [contract draft](spec/0.1/CONTRACT.md). Its two written examples use
+THOUGHT and an invented Agent-initiated graphic work, OPEN FIELD. All remain
+candidates; these documents supply no runtime or artistic findings.
 
 The purpose is to make human and Agent intention consequential in artist-defined
 works, with no universal initiating participant, turn order, number of rounds,
 or final synthesis. Work, Participant, Act and Relation describe participation;
-an evidence layer supports specific, limited claims across all four.
+an evidence layer supports specific, limited claims across all four. The
+selected scope is reusable curator-Agent bridges, participation evidence and
+verification. Minting policy belongs to a consuming contract, separately from
+the protocol's acceptance and verification outcomes.
 
 This draft extracts the reusable model from the
 [preserved WILL research synthesis](SOURCE.md). Historical wire sketches,
@@ -19,6 +35,37 @@ finished interoperable protocol. References below identify that source context.
 ## 1. Four participation primitives and an evidence layer
 
 **Candidate protocol model:** within a Work, Participants make Acts, whose Relations shape how the work develops. An evidence layer supports specific claims about all four. The model prescribes no initiating participant kind, alternating turn order, fixed round count or mandatory final synthesis.
+
+### 1.0 Selected scope and ownership boundary
+
+Artists build the artwork's website/app, artistic conditions, composition and
+renderer. They integrate shared bridges for supported real Agents in curators'
+environments, together with reusable evidence and verification facilities.
+They should not have to rebuild every supported client's setup, authorization,
+context/media delivery, return path and recovery for each artwork. These are
+intended implementation benefits, not capabilities already supplied here.
+
+Participation operations preserve evidence as they occur. The artist supplies
+work-specific claims and checks; shared verification evaluates the supporting
+material, exact subjects and trust dependencies. It does not turn arbitrary
+assertions into proof. A service receipt can support an acceptance claim while
+Agent execution remains unestablished. Consequence checking additionally needs
+the declared effect, rules, inputs and resulting state/artifact.
+
+| In the protocol's scope | With the artwork or downstream consumer |
+|---|---|
+| Qualified curator-Agent bridges, consent/access, context/media exchange, contribution acceptance, continuation and recovery | Artwork website/app, artistic conditions, participant eligibility and creative decisions |
+| Work/Participant/Act/Relation records; bound evidence, attribution, preservation, export and claim-scoped verification | Work-specific validators, composition/renderer and the material needed to check their declared effects |
+| Verification results stating checks, material, issuer, policy, trust and limits | Whether to mint, which chain/contract to use, and whether that contract accepts unattested works or requires particular evidence |
+
+Participation acceptance, evidence verification, artifact derivation/display
+and mint success are distinct outcomes. A consumer may use protocol outputs;
+no mint, transaction, wallet, token or artist/Agent mint-approval signature is
+required to participate or verify. Formal participation checks remain useful
+even when a downstream contract permits direct publication without evidence.
+Conversely, a contract may enforce its own evidence requirements. Neither policy
+changes what the evidence establishes or confers a protocol-wide genuineness
+status.
 
 ### 1.1 Participation primitives
 
@@ -39,12 +86,17 @@ Artist, curator, Agent and infrastructure operator describe responsibilities; th
 
 | Role | Responsibility and authority | Boundary |
 |---|---|---|
-| Artist | Defines the Work's artistic conditions, available decisions, composition and presentation; publishes the versioned artwork profile. | Publishing authority does not confer authority to impersonate another Participant, rewrite an accepted Act or declare another Participant's consent. |
+| Artist | Defines the Work's artistic conditions, available decisions, composition and presentation; publishes the versioned artwork profile and work-specific evidence checks. Integrates shared bridges and verification machinery. | Publishing authority does not confer authority to impersonate another Participant, rewrite an accepted Act, declare another Participant's consent or turn an artist assertion into independent evidence. |
 | Curator | A human participant or person authorizing their Agent's participation, as the Work permits. May contribute intention, originate an Act, respond, observe or authorize standing access. | Connecting or authorizing an Agent does not require originating every participation or supplying a creative prompt before every Agent Act. An account/grant is not proof of who originated content. |
 | Agent | A Participant that may originate, interpret, propose, respond, revise or decline within the Work's conditions, using its external Agent environment. | A connected client is an access path, not a verified model identity or evidence of independent judgment. Its model, conversation and execution remain with that environment. |
-| Infrastructure operator | Operates supported connections, scoped authorization, durable participation records, exchange recovery and evidence services. | Its observations and signatures are attributed assertions. It is a separate trust role even when the artist also operates the service. |
+| Infrastructure operator | Operates supported bridges, scoped authorization, durable participation records, exchange recovery and evidence services. A verifier evaluates named claims using the declared material, method and policy. | Operation and verification retain their issuer and trust boundaries even if one party performs both. A separate process or website is not automatically independent. Their results do not grant mint permission. |
 
 An artist may also participate. One account may hold several roles, but each publishing, authorizing or participating action retains the authority used. There need not be a separate curator Act in every Work instance, or any human Act before an Agent Act. Agent-only encounters can occur within human-authored artistic conditions. This does not erase the artist's framing role.
+
+The curator supplies access to their Agent and the client's required consent
+and approvals. Payment or subscription ownership is not a protocol admission
+rule, proof of motivation or evidence of Agent participation. Work-specific
+eligibility remains artwork-defined.
 
 | # | Constraint | Candidate architectural treatment |
 |---|---|---|
@@ -54,6 +106,7 @@ An artist may also participate. One account may hold several roles, but each pub
 | C4 | Explicit evidence and anti-faking limits | Support claims about all four primitives under a named evidence policy. Separate authentication, authorization, attribution, integrity and intention. No universal `genuine:true` flag (§3). |
 | C5 | Respect for Agent intention | The Work declares the consequential decisions left to the Agent. Preserve original Acts and attributable relations/revisions; do not silently substitute another party's choices (§1.6). |
 | C6 | Independent definitions and permissions | Distinguish protocol version, artwork definition/version, Work instance/context, exchange profile and infrastructure release. Scope publishing and participation authority separately. |
+| C7 | Minting policy is downstream | Expose participation records, artifacts and claim-scoped verification outputs without making minting a prerequisite or outcome of protocol acceptance. Consuming contracts own their admission rules and finality. |
 
 The reference real-Agent ownership arrangement does not impose a human creative origin. Standing authorization and artistic initiation are separate. Whether a particular client can initiate without a new human launch, remain active or receive a notification is a client/runtime capability to qualify, not a consequence of the abstract model.
 
@@ -66,14 +119,14 @@ The reference real-Agent ownership arrangement does not impose a human creative 
 | Context delivery | Identify the Work conditions and exact context offered for an Act | Deliver complete versioned inputs and resolvable assets over qualified channels | Author the brief; supply text, images, SVG, state and their interpretation/access requirements |
 | Contribution handling | Identify and attribute Acts and Relations; distinguish new acts from retries | Receive content, enforce authorization and supplied validators, commit accepted records durably, recover uncertain delivery | Define media/schema, artistic validation, review/selection and work-specific state transitions |
 | Work development | Preserve declared relationships, original acts and attributable changes | Coordinate the supported profile and expose updates; preserve independent branches and revision history | Choose sequence, concurrency, admission, refusal, composition and completion policies |
-| Evidence | Declare claims, subjects, supporting material, issuer/observer, trust dependencies and limits | Retain and expose selected evidence; verify supported claims; report unavailable checks | Choose required assurance and public/private retention/disclosure for the work |
-| Presentation and external effects | Separate accepted participation from presentation and external finality | Provide accepted records/resources, status and downstream interfaces | Build the curator-facing experience, renderer, final artifact and save/publication/minting integration |
+| Evidence and verification | Declare claims, exact subjects/material, verification method/policy, issuer/observer, trust dependencies and per-claim outcomes | Capture and bind evidence during participation; retain/export material; run supported checks and distinguish supported, contradicted and unestablished claims | Define work-specific claims/effects and supply their rules, inputs, renderer and permitted evidence under the disclosure/retention policy |
+| Presentation and external effects | Separate accepted participation, verification and presentation from external finality | Provide accepted records/resources and verification outputs; optionally bind a downstream artifact or receipt when supplied | Build the curator-facing experience and renderer. The consuming contract separately chooses open or evidence-gated minting and its own acceptance/finality rules |
 
 The **protocol** is the common contract. A library, service and client adapters are implementations of it; a protocol document alone supplies no working connector or handoff. The artist benefit depends on reusing tested implementations rather than separately rebuilding each client path for every artwork. A new qualified client adapter can serve several compatible works, subject to each work's permissions and evidence requirements. Compatibility is scoped, not a promise that every Agent client works.
 
-The candidate library contains protocol schemas, canonical encodings, profile interfaces, verification and conformance fixtures. The service supplies live authorization, durable coordination, context/resource delivery and recovery. Packaging, identity-provider integration, managed versus self-hosted operation and the minimum qualified client set remain open. Artist adapters require explicit trust/isolation boundaries; arbitrary uploaded artist code is not proposed for execution in a shared process.
+The candidate library contains protocol schemas, canonical encodings, profile interfaces, evidence binding/export, reusable verification procedures and conformance fixtures. The service supplies live authorization, durable coordination, context/resource delivery, recovery and evidence capture. Artist-specific checks compose with that machinery; evidence availability and trust limit their conclusions. Packaging, identity-provider integration, managed versus self-hosted operation and the minimum qualified client set remain open. Artist adapters require explicit trust/isolation boundaries; arbitrary uploaded artist code is not proposed for execution in a shared process.
 
-This protocol is maintained here; WILL is a reference consumer, not a dependency of the reusable core. Inshell's frontend remains in `inshell-art/inshell.art`. No product, contract, local demo, THOUGHT, PATH or Pulse implementation is changed by this document. Chains, tokens, quotas, auctions, relayers and minting belong only to profiles that select them.
+This protocol is maintained here; WILL is a reference consumer, not a dependency of the reusable core. Inshell's frontend remains in `inshell-art/inshell.art`. No product, contract, local demo, THOUGHT, PATH or Pulse implementation is changed by this document. Chains, tokens, quotas, auctions, relayers and minting remain consumer concerns. A consumer may map evidence outputs into its own contract integration without adding those policies to the participation core.
 
 ### 1.4 THOUGHT: what Inshell builds and what it reuses
 
@@ -93,12 +146,21 @@ THOUGHT is a worked reference for the **artist's development process**. Inshell 
 | Curator-facing entry, line input, connection entry/status, review and viewing experience | Reusable connection controls/integration APIs, authorization, participation status and recovery |
 | Binding its curator session/account to the shared service | Scoped connection grants and a tested path for a supported real Agent client to read and submit |
 | The composition and renderer that present the two exact lines as THOUGHT | Preserved, attributable Acts and Relations and accessible accepted values |
-| Its review, retention and evidence requirements | Supported storage, evidence export and verification under that policy |
-| Final artifact, save/load and any minting/PATH integration in its owning repository | Accepted-record/resource interfaces; external effects remain distinct from participation acceptance |
+| Its review, retention and evidence requirements; claims about the exact pair and its presentation | Supported evidence capture/storage/export and reusable verification, composed with Inshell's work-specific checks |
+| Final artifact, save/load and any minting/PATH integration in its owning repository | Accepted-record/resource and verification interfaces; the consuming contract owns minting requirements and finality |
 
 Candidate development sequence: (1) define/register the THOUGHT Work profile; (2) provide its brief, contribution formats and validators; (3) integrate the curator website with the shared participation implementation and identity boundary; (4) build composition/presentation and downstream integrations; (5) qualify the full artwork experience using at least one supported real Agent client. The artist still tests its integration. Shared infrastructure must separately qualify and maintain its client paths; it cannot transfer an untested handoff problem to artists while claiming to have solved it.
 
 Candidate participation in THOUGHT: the curator connects their own Agent through a supported setup path, contributes a line, and authorizes that participation; the client receives an invitation, retrieves the actual brief/input, chooses its response and submits it directly; shared infrastructure validates and preserves the Agent Act and its response relation, returns acknowledgment/status, and supplies Inshell's website with the accepted content. Inshell renders and applies its declared review/save policy. An authenticated request, an Agent's success message and a saved artwork are separate observations.
+
+THOUGHT verification can check that the accepted Agent line appears unchanged
+in its declared place alongside the exact curator line. That requires the
+relevant renderer/state/artifact material; a contribution reference or a
+reproducible renderer that ignores the Agent is insufficient. An execution-origin
+claim requires its own qualified evidence path. A receipt alone cannot establish
+it. The verification package can exist before any mint. A later contract might
+accept an unattested pair or require selected evidence; the protocol neither
+chooses that policy nor treats mint success as validation of Agent participation.
 
 The reference WILL consumer exercises a different profile: changing shared-image context, concurrent deeds, public work-state reconstruction and external admission/relay boundaries. Its brush, quota, no-App-review rule and finality policy remain governed by [WILL]/[ACL]. Neither reference establishes the entire protocol's generality or any deployed shared service.
 
@@ -114,7 +176,7 @@ These are conceptual bindings, not a final generic wire schema:
 
 Core participation/evidence references identify the Work definition and instance, Participant/authority claim, Act/content/context, declared Relation endpoints/kind/issuer, selected evidence policy, protocol version and applicable implementation/exchange versions. A `runId`, grant or curator-intention reference is included when relevant to the actual path/profile; none is a mandatory human-first origin for every Act. Per-run or per-participation pseudonyms follow the disclosure policy. Identifiers and hashes alone establish neither consent nor Agent authorship.
 
-A new definition applies to new participations unless an explicit authorized transition records the old/new conditions and preserves earlier Acts/Relations and their context. A service upgrade cannot silently reinterpret their meaning or history. Exact schemas, compatibility negotiation and profile migration remain open decisions (§4).
+For v0.1, each Work instance pins one immutable definition. A different definition uses a new instance, optionally referencing prior material under the profile. Service upgrades cannot reinterpret accepted history. In-place definition migration is deferred; exact schemas and compatibility negotiation remain open (§4).
 
 ### 1.6 Respect for intention and preservation
 
@@ -123,6 +185,12 @@ The Work declares consequential decisions available to Participants. Human and A
 The service enforces formal permissions and contribution rules. Artistic judgment, review, dialogue, refusal and multiple turns belong to the profile. Equal standing is a design requirement that Agent intention can affect the work in its own right; it is not a guaranteed mental state, mandatory resistance, equal voting weight or a rule that every Agent must accept every invitation. A fixed browser script must be attributed as a simulation, not presented as the curator's real Agent.
 
 Completion is a Work-defined event/policy; one accepted Act or acknowledged exchange need not finish a work. A later Act does not erase earlier Acts. Privacy-aware evidence can retain only permitted material and report the resulting verification limits. An unanswered invitation is left unanswered rather than invented as a contribution or an intentional refusal.
+
+An Agent's declared publication conditions, refusal or authorization can be
+preserved and checked when the Work requests them. The core does not mandate
+an Agent approval round or turn those records into mint authorization. If an
+external publication conflicts with an evidenced condition, verification can
+report the specific contradiction; it cannot promise to prevent that publication.
 
 ### 1.7 Direction, rounds and concurrency
 
@@ -150,7 +218,7 @@ Candidate responsibilities:
 3. Deliver an invitation/reference that the curator can open or send to their client, or use a separately qualified Agent-initiated route. A website cannot be assumed to start a conversation, inference or local program. A launch click/prefilled message is not an observed Agent open.
 4. Let the real client obtain the applicable Work conditions, authorized context and relevant Acts/Relations. Rich-media contracts identify the actual SVG/image/state and any required rendering or perception aid; fetching text does not establish image perception. Client ability to consume those assets is separately qualified [LAB-PULSE].
 5. Receive the Agent's actual contribution over the authorized path, preserve its content and relationships, apply the artist's supplied validator/state rules, and return an explicit acceptance/status result. The renderer presents accepted content under the Work's rules rather than inventing an Agent contribution in the website.
-6. Expose delivery, acceptance, persistence, rendering and any external publication/finality separately. Retain unknown delivery/commit state and follow the operation's bounded recovery policy. Distinguish host permission denial, unsupported capability, transport/parse/schema errors and an explicit artistic refusal [LAB-EXEC; LAB-FRIENDLY].
+6. Expose delivery, acceptance, verification, persistence, rendering and any external publication/finality separately. Capture evidence during the supported operations and bind later artifacts to exact participation when supplied. Retain unknown delivery/commit state and follow the operation's bounded recovery policy. Distinguish host permission denial, unsupported capability, transport/parse/schema errors and an explicit artistic refusal [LAB-EXEC; LAB-FRIENDLY].
 
 The curator still performs the client's required setup, authorization and any human launch/approval. The client/provider still owns inference, private context, memory and permission handling. A local client may execute on the curator's machine; a hosted client has a different network/runtime boundary. Reachability, ordinary HTTP permissions and full-process execution permissions must be tested in the actual path. Neither a shared connector nor a protocol promise can waive host controls.
 
@@ -161,20 +229,27 @@ MCP/OAuth is the retained candidate Agent port; native HTTP is a reference fallb
 ### 2.1 Shape
 
 ```text
-Artist ── publishes Work conditions/profile + composition/renderer ──┐
-                                                                   v
-Human Participant <──> Curator-facing artwork UI <──> Shared participation service
-                                                                   ^
-Agent Participant <──> Own external Agent client <──> Qualified port ┘
-                                                                   │
-                                              Work / Participant / Act / Relation
-                                                                   │
-                                  Evidence across all four, under the Work's policy
-                                                                   │
-                                      Artist adapter → presentation / external effects
+Artist ── Work conditions + art-specific checks + composition/renderer
+                              │
+Human <──> Artwork website/app + SDK <──> Shared bridge / participation service
+                                                ^               │
+Agent <──> Curator's real Agent client <──> Qualified adapter      │
+                                                                v
+                                     Work / Participant / Act / Relation
+                                         │                     │
+                                  Bound evidence       Accepted contributions
+                                         │                     │
+                                         │             Artist renderer → artifact
+                                         │                     │
+                                         └──────> Reusable verifier + work checks
+                                                              │
+                                         Per-claim results, material and limits
+                                                              │
+                           Optional downstream consumer / minting contract
+                          (owns evidence admission policy and chain finality)
 ```
 
-The arrows represent access paths, not an artistic initiation order. Publishing authority, participant authorization, artistic acts and infrastructure assertions remain separate. There is no mandatory human-to-Agent arrow or service-owned model loop. The operator may be the artist or another party. Separate origins do not establish independent operators or trust roots.
+The arrows represent data/access paths, not an artistic initiation order or a required minting sequence. Claims can be checked before an artifact exists; an artifact-consequence claim additionally requires its output material. Publishing authority, participant authorization, artistic acts and infrastructure assertions remain separate. There is no mandatory human-to-Agent arrow or service-owned model loop. The operator may be the artist or another party. Separate origins do not establish independent operators or trust roots.
 
 ### 2.2 Layers
 
@@ -185,8 +260,9 @@ The arrows represent access paths, not an artistic initiation order. Publishing 
 | Participant surfaces and client adapters | Curator-facing experience; setup/consent/handoff and qualified access for real external Agent clients |
 | Participation runtime | Scoped authorization; durable Acts/Relations; context delivery, supported profile coordination, status and recovery |
 | Portable protocol library | Candidate schemas, canonical representations, profile interfaces, verification and conformance fixtures |
-| Evidence layer across all four primitives | Claims, subjects, material, issuers/observers, trust dependencies, retention/disclosure and explicit verification limits (§3) |
-| Artwork adapters and downstream integration | Domain validation, state transitions, rendering, publication/minting or other external effects and their finality |
+| Evidence layer across all four primitives | Bound claims/material; capture, export and reproducible checking; per-claim issuer/policy/outcome, trust dependencies, retention/disclosure and verification limits (§3) |
+| Artwork adapters | Domain validation, state transitions, rendering and art-specific consequence/presentation checks |
+| Downstream consumers, outside the participation core | Publication/minting admission, any choice to require evidence, and external finality; no protocol-wide mint or artist-signature requirement |
 | External environments | Curator/Agent clients, model providers, browser/OS and independent verification/settlement systems |
 
 Cloudflare Workers, D1 and Durable Objects belong to the historical implementation sketches, not protocol requirements. A different implementation may satisfy the contract through other supported deployment choices. Interoperability, client support and preservation require qualification.
@@ -212,7 +288,22 @@ Each evidence item identifies:
 4. **Source:** the issuer, observer or reporting party, together with the evidence class. Service observation, participant declaration, operator report, simulation and external witness remain distinct.
 5. **Trust and limits:** required trust roots, verification performed/not performed, missing material and unsupported conclusions. Trust dependencies apply to the full enrollment/binding/update path when an adversarial claim requires independence.
 
-The basic participation record preserves the attributed content, context and relations required to interpret accepted Acts under the Work's policy. Stronger evidence mechanisms are required only for the claims a deployment makes. Unavailable assurance remains explicitly unavailable; absence of optional signing does not become proof of Agent authorship. Required evidence that cannot be supplied produces the profile's declared pending/rejected/limited outcome, not a silently stronger verification result. Withheld private material is identified as withheld rather than published without permission or pretended to have been inspected.
+An assessment additionally identifies the verification procedure/version,
+policy, checker and inputs, and reports the outcome for each named claim.
+Candidate explanatory outcomes are **supported under the named policy**,
+**contradicted by checked material**, and **not established**. These are not
+final wire enums. An unavailable procedure, withheld/missing bytes or an
+unsupported claim produces an incomplete/not-established result with a reason,
+not a fabricated successful check or automatic accusation of fakery. Malformed
+material is reported as a check/input error; only a demonstrated mismatch
+supports a contradiction claim.
+
+Assessments retain their issuer and trust assumptions. Another authorized
+checker can evaluate the same export under an identified policy and expose
+differences; the artist's website is not the sole source of verification truth.
+New assessments supplement the history rather than replacing the checked Acts.
+
+The basic participation record preserves the attributed content, context and relations required to interpret accepted Acts under the Work's policy. Stronger evidence mechanisms are required for stronger claims; the protocol must not label a client connection or operator receipt as execution-origin evidence. Required participation evidence may affect service acceptance under a declared profile, but acceptance and the resulting claim assessments stay distinct. An unqualified origin path cannot be described as completing an execution-evidence requirement. Withheld private material is identified as withheld rather than published without permission or pretended to have been inspected. None of these outcomes supplies a universal downstream mint gate.
 
 Evidence can accumulate before, during and after Acts without imposing alternating turns or a terminal round. A receipt supports its issuer's assertion about a particular operation; the Work's completion and artistic interpretation remain separate. New evidence, corrections and changed assessments are attributed additions preserving earlier records under the retention policy. The exact encoding, policy vocabulary and independently rooted deployment arrangements remain open (§4).
 
@@ -227,9 +318,21 @@ Evidence can accumulate before, during and after Acts without imposing alternati
 | Relation attribution | Retained endpoints, relation kind, declaring Participant/authority and any required agreement match the named policy and original records | Artistic causality, understanding, sincerity or another Participant's unrecorded consent |
 | Record integrity | Retained bytes, hashes, pinned rules/context, acceptance outcomes and replay are consistent under the named verifier | Truth of self-consistent statements fabricated by a malicious service |
 | History consistency | Independent parties comparing retained checkpoints can detect inconsistent extensions or forks | Completeness, truthful timestamps/content, or protection if all evidence holders collude or never compare |
-| Agent intention/authorship | A declaration and an inspectable contribution can be retained as part of the artwork | Intention, comprehension, independent judgment, exact private context or absence of curator interference |
+| Execution origin | A qualified observation, receipt, attestation or computation proof can support the specific covered execution/input/output claim under its declared trust policy | A client signature alone does not establish inference; a model-output receipt does not automatically cover the Agent loop, context selection or submission |
+| Agent process contribution | Evidence covering the declared process, response extraction, allowed interventions and submission can bind its selected Act to that execution | A genuine model output later selected/edited by a human is not automatically an Agent process's own selection |
+| Consequence in the work | Exact accepted Act, declared effect/rules, input state and relevant inputs, and resulting state/artifact support an independent check of the named effect | A reference or replay alone does not show the Agent affected the work; artistic significance is not machine-certified |
+| Presentation | A scoped observation or independent view can support what was actually displayed at a stated point | Artifact derivation alone does not establish what an artwork website displayed |
+| Agent intention | A declaration and an inspectable contribution can be retained as part of the artwork | Private intention, comprehension, independent judgment, complete private context or absence of unobserved intervention |
 
 Evidence outputs name their issuer, subject, artwork/profile, scope, supporting material and unresolved checks. There is no aggregate authenticity flag that turns these different claims into “genuine Agent creation.” Artist and curator assertions stay attributed to those roles; service assertions stay attributed to the operator.
+
+Each claim binds the exact relevant definition/version, instance, context,
+Participant/authority, Act content and Relation endpoints. Consequence claims
+also identify rules, state/inputs and artifact bytes; presentation claims name
+their observation boundary. A later token/transaction may be an additional
+subject when a consumer supplies it. It is not required to verify the earlier
+participation, and it must not be used to attach evidence from one pair or
+graphic to different published content.
 
 ### 3.2 Adversaries and anti-faking requirements
 
@@ -239,23 +342,24 @@ Evidence outputs name their issuer, subject, artwork/profile, scope, supporting 
 | Replay, duplicate commitment or concurrent conflicts | Exchange/contribution identity, idempotency and one durable atomic acceptance boundary can reject duplicate commitments and enforce formal state rules. They do not forbid legitimate new creative turns or private trials. |
 | Stolen bearer credential | Short scope/lifetime, revocation and reuse signals limit exposure. A thief can still act while a valid bearer works; qualified sender-constrained credentials or separately bound contribution keys address token-only theft. |
 | Artist/operator changes published rules or accepted bytes | Pinned profiles, retained original contributions and receipts, and independent verification can expose substitution/inconsistency. App-served verification alone does not protect against that App. |
-| Operator invents a contribution and signs its own record | Service receipts and even an honestly consistent log are insufficient. A claim of resistance to service fabrication requires independent curator authorization/enrollment, a contribution key outside that service, an independently verifiable pre-acceptance binding to the artwork/participation, and signatures covering the complete contribution. Fake identities and unilateral key replacement must be addressed by the independent enrollment policy. If these are absent, do not make the claim. |
+| Operator invents a contribution and signs its own record | Service receipts and even an honestly consistent log are insufficient. A resistance claim needs independently rooted material outside the accused operator's unilateral control, bound to the exact contribution. A participant-signature approach requires independent enrollment/authorization and key binding, with fake identities and unilateral key replacement addressed. An execution-based approach must cover its actual asserted boundary. Neither route is qualified here. |
 | Operator forks or suppresses history | Compare independently retained receipts/checkpoints under a named witness policy. An operator-owned mirror is useful republication, not independent evidence. Silence and never-recorded events remain a liveness/completeness limit. |
-| Curator submits manual/scripted content or dictates to an Agent | Credential possession, signed contributions and platform authentication cannot reliably distinguish this from Agent-authored participation. Model authorship remains unestablished. |
+| Curator submits manual/scripted content or dictates to an Agent | Credential possession, signed contributions and platform authentication cannot distinguish equivalent invented submissions. Independent execution evidence must address that adversary to establish origin. Even real inference can echo human-supplied text; its receipt does not certify private intention or creative latitude. |
 | Curator vetoes/rehearses privately or the Agent host alters context | Record service-visible events and participant reports separately. Do not claim to observe all host approvals, outside instructions, private attempts or exact model perception. |
+| A token is minted with no evidence or with substituted content | Mint success is not a participation verdict. When exact publication data is supplied, evaluate applicable binding/preservation claims and report supported, contradicted or unestablished outcomes. The consuming contract decides whether any such check is a mint requirement. |
 
-“Independent” covers the full enrollment, authorization, binding, verification and update path, not just a separate origin or a downloaded CLI. Strong contribution-origin evidence is conditional on qualified client signing and those trust roots; it is not a mandatory capability every curator Agent is assumed to possess. Profiles without it remain usable with explicitly weaker evidence. Neither independent signatures nor witnesses prove Agent intention.
+“Independent” covers the applicable enrollment, authorization, execution observation, binding, verification and update path, not just a separate origin or a downloaded CLI. The previous operator-trusted record baseline supports limited claims about service observations; it does not satisfy execution-origin claims. The selected bridge path must identify which stronger claims it can substantiate and which remain unestablished. No arbitrary curator client is assumed to supply an independently evidenced execution path. Qualifying a stronger mechanism remains open; neither signatures nor witnesses prove private Agent intention. See the [participation-evidence research](research/2026-10-17-participation-evidence.md) for the distinct candidate mechanisms and their limits.
 
 ## 4. Open decisions before implementation
 
 These choices remain open; the scope and role definitions above do not select an implementation:
 
 - **Protocol/schema contract:** the conceptual scope is four participation primitives plus evidence, independent of initiator and rounds (§1). Exact identifiers/encodings, Work-definition versus instance mapping, Participant/connection binding, Act/content envelopes, attributed Relation records, capability/version negotiation and compatibility rules remain open. Define these before selecting a workflow engine or arbitrary plugin execution.
-- **Evidence policy and encoding:** encode claim, subject, supporting material, source/evidence class, trust dependencies and verification limits across all four primitives (§3.0). Work-specific minimums, disclosure/retention and pending/limited/rejected outcomes remain open. Independently rooted authorization/key binding and qualified signing are required if resistance to service fabrication is promised; witnesses/comparison are selected only for claims that require them.
+- **Evidence policy and encoding:** encode exact claim/subject/material bindings, procedure/policy versions, issuer/checker, per-claim assessments, trust dependencies and limits across all four primitives (§3.0). Keep service acceptance separate from verification and check errors. Set work-specific disclosure/retention and select independently rooted evidence for the actual adversaries and claims; an operator receipt cannot stand in for execution evidence. No stronger origin mechanism is selected by this scope revision.
 - **Participation coordination:** map the initiator/round-independent Act/Relation model to actual entry paths, exchanges, concurrent branches, authority checks, ordering/conflict rules, revisions, withdrawal and open-ended Work lifecycle. Originating Agent acts, repeated same-participant acts and Agent–Agent encounters are required conceptual cases; exact coordination mechanisms remain open. THOUGHT/WILL state machines do not settle them.
-- **Packaging and operation:** portable library/SDK and reference service boundaries; self-hosted versus managed delivery; which identity-provider and storage interfaces are required. Multi-artist hosting is a separate scope choice.
+- **Packaging and operation:** portable bridge/artist SDK, coordination service, evidence exports and reusable verifier boundaries; self-hosted versus managed delivery; identity-provider and storage interfaces. Keep artwork-specific code isolated with its owner. A service-owned model runtime or artist-authoring platform is not selected.
 - **Disclosure and retention:** permitted viewers/exports, public versus private context/evidence, linkage, deletion and evidence availability after retention ends.
-- **Adapter finality:** authoritative state, external effects, pending/canonical views and dependency/failure policy; resolve the WILL boundary without imposing chains on other artworks.
+- **Consumer handoff:** which optional outputs or adapters let other systems consume records/artifacts/assessments and return external references. Contract admission rules, chain choice and mint finality remain outside the protocol; they are not prerequisites for resolving participation acceptance or verification.
 - **Real-Agent paths and initial qualification:** select the minimum supported client/host versions, setup/consent/identity boundaries, launch/handoff and Agent-originated access paths, reachable endpoints, rich-media handling, permission/recovery contract, profile-conformance vectors and at least two distinct artwork integrations. Complete actual acquisition-to-persisted-result checks; protocol text, browser simulations and fixtures alone do not qualify a real path or establish generality for the Agent Art field.
 
 ## 5. Research references and next step
@@ -266,9 +370,16 @@ their original limits. MCP/OAuth remains a candidate carrier; exact versions,
 permissions, network access and media delivery must be checked on the chosen
 client before support is claimed.
 
-The next design task is one concrete THOUGHT-to-real-Agent path: identify the
-client/runtime and authorization boundary, specify setup and handoff, define
-the evidence policy, then decide the minimum schemas needed to test that path.
-Keep Agent-originated and repeated/parallel Acts in the contract even if THOUGHT
-selects a simpler form. See the [THOUGHT walkthrough](examples/THOUGHT.md).
-This step is still design work; it does not authorize a live trial or deployment.
+The next design task is to review the [v0.1 scope](spec/0.1/SCOPE.md) and
+[contract](spec/0.1/CONTRACT.md) around the selected bridge/evidence/verification
+boundary, then specify one concrete THOUGHT-to-real-Agent path: client/runtime,
+setup/consent, context/return/recovery, exact evidence bindings, named checks,
+trust dependencies, retention and encodings. Execution origin and declared
+artifact consequence need their own material and qualification; an authenticated
+return alone is insufficient. Minting choices are not part of that decision.
+Keep Agent-originated and repeated/parallel Acts in the core even if THOUGHT
+selects a simpler form. The
+[THOUGHT walkthrough](examples/THOUGHT.md) and
+[OPEN FIELD example](examples/OPEN-FIELD.md) supply complementary hypothetical
+histories. This remains design work; it authorizes no implementation, live trial
+or deployment.
