@@ -43,7 +43,7 @@ const ownerMarker = '.aap-thought-local-sdk.json';
 const owner = 'agent-art-protocol-thought-preview';
 const tarballSha256 = createHash('sha256').update(fs.readFileSync(sdk.tarball)).digest('hex');
 const installed = JSON.parse(fs.readFileSync(path.join(sdk.packageDir, 'package.json'), 'utf8'));
-if (installed.name !== '@agent-art/protocol' || installed.version !== '0.1.0-alpha.0') throw new Error('The prepared SDK package identity does not match this preview.');
+if (installed.name !== '@agent-art/protocol' || installed.version !== sdk.version) throw new Error('The prepared SDK package identity does not match this preview.');
 let currentMarker;
 if (fs.existsSync(localPackage)) {
   const stat = fs.lstatSync(localPackage);

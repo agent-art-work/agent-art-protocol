@@ -1,0 +1,3 @@
+# Git binary patches require a terminating blank line. Check resulting source
+# whitespace in each consumer; keep that serialization delimiter intact here.
+pilot/reading-consumers/*.patch whitespace=-blank-at-eof

@@ -1,226 +1,170 @@
-# Private draft SDK
+# Reading SDK 0.1.0
 
-`@agent-art/protocol@0.1.0-alpha.0` packages the experimental core already used
-by the Lab reading and THOUGHT participation studies. It is a private draft
-SDK distributed as a local tarball, not a registry publication, stable wire
-standard or conformance certification. It has no runtime dependencies. Modules
-run in browsers with Web Crypto or Node.js 22.
+`@agent-art/protocol@0.1.0` supplies a framework-neutral **Ask your Agent**
+interface, browser handoff controller and optional bounded receipts. The
+package is private. This is the reading release of one evolving Agent Art
+protocol; artwork participation remains experimental work for a later release.
+It does not operate a model or collect a visitor's questions and answers.
 
-The two infrastructure responsibilities are connection and bounded evidence.
-Work, Participant, Act and Relation describe what those operations concern.
-Using the connection capability does not require an Agent Act or qualify a
-reading interaction as Agent Art.
+## Install
 
-## Pack and install
-
-From this repository's root:
+From the protocol repository, run `npm run sdk:pack`. Copy the resulting
+`.local/sdk/agent-art-protocol-0.1.0.tgz` into the consuming application's
+`vendor/` folder, then install its relative file dependency:
 
 ```sh
-npm run sdk:pack
+npm install ./vendor/agent-art-protocol-0.1.0.tgz --ignore-scripts
 ```
 
-The intended artifact is
-`.local/sdk/agent-art-protocol-0.1.0-alpha.0.tgz`. Install that file in a consumer;
-for neighboring checkouts, for example:
+Use the application's existing package manager and commit its dependency lock.
+The archive has no runtime dependencies or lifecycle scripts. No registry
+publication, new npm account or reuse license is selected by this release.
 
-```sh
-npm install ../agent-art-protocol/.local/sdk/agent-art-protocol-0.1.0-alpha.0.tgz
-```
+## Mount the interface
 
-Adjust the relative path for the consumer's location. No registry publication
-or npm-account setup is required. Browser projects use the ESM package through
-their existing build/import setup; a bare package import is not itself a
-browser URL. The Lab preview and artwork adapters remain separate consumers.
-
-Run the package checks from this repository's root with:
-
-```sh
-npm run test:sdk
-```
-
-Packing and installation checks are a separate qualification step from the
-earlier source-module and artwork tests. Their actual results belong in
-[the qualification record](https://github.com/agent-art-work/agent-art-protocol/blob/codex/protocol-lab-thought/pilot/PROTOCOL-QUALIFICATION.md). Neither a
-tarball nor its package version upgrades Agent-origin evidence. Package
-version `0.1.0-alpha.0` is separate from the experimental record schema.
-
-This SDK supplies record factories, integrity/verification and prepared client
-URLs. It does not supply a turnkey callback service, identity enrollment,
-OAuth, access-grant lifecycle, durable storage, retry coordination, hosted
-inference or independent execution attestation. Consumers retain those
-responsibilities where needed, together with their artistic/source policies.
-The preview's chooser UI and macOS open helper remain demonstration consumers;
-they are not services bundled into the SDK.
-
-## API
-
-`index.mjs` exports synchronous `defineWork`, `participant`, `act`, `relation`
-and `createRecord` factories; asynchronous `seal` and `verify`; and the pure
-`buildClientHandoff` route builder. `sealRecord` and `verifyRecord` are aliases.
-Adjacent `.d.mts` files describe the TypeScript interface.
-The package exports `@agent-art/protocol` and the smaller
-`@agent-art/protocol/clients` entry, both with TypeScript declarations. The
-manifest is private and has no dependency or lifecycle-script requirement.
+In a browser application with an ESM bundler:
 
 ```js
-import { defineWork, createRecord, seal, verify } from '@agent-art/protocol';
+import { defineWork } from '@agent-art/protocol';
+import { mountReading } from '@agent-art/protocol/reading-ui';
+import '@agent-art/protocol/reading.css';
+
+// The publisher authors this text and its reading policy.
+const invitation = 'Read https://agentart.work/agent-index.json. '
+  + 'Use it to discover relevant public sources. Report access failures. '
+  + 'Confirm readiness; I will ask my questions in this conversation.';
 
 const work = defineWork({
-  id: 'public-reading',
-  version: 'reading-conditions-1',
-  title: 'Read a public knowledge index',
-  purpose: 'Discuss relevant public sources inside the visitor’s Agent.',
+  id: 'https://agentart.work/#reading', version: '1',
+  title: 'Read Agent Art Lab',
+  purpose: 'Discuss the Lab in the visitor’s own Agent.',
   capabilities: ['handoff'],
-  context: [{
-    id: 'knowledge-index', kind: 'reference', mode: 'live',
-    url: 'https://agentart.work/agent-index.json',
-  }],
-  conditions: { questionsAndAnswers: 'Remain inside the visitor’s Agent.' },
+  context: [
+    { id: 'invitation', kind: 'text', mode: 'snapshot', text: invitation },
+    { id: 'index', kind: 'reference', mode: 'live',
+      url: 'https://agentart.work/agent-index.json' },
+  ],
+  conditions: { questionsAndAnswers: 'Stay inside the visitor’s Agent.' },
 });
-const sealed = await seal(createRecord({ work }));
-const assessment = await verify(sealed);
+
+const mounted = mountReading(document.querySelector('#ask-your-agent'), {
+  work,
+  label: 'Ask your Agent',
+  evidence: false, // Default: no receipt creation or persistent storage.
+});
+
+// Call mounted.destroy() when a framework unmounts this component.
 ```
 
-A Work is an identified participation frame: purpose, offered/discoverable
-context and conditions. Its declaration version is distinct from an optional
-encounter `instance`. An instance is required once Acts, Relations or artifacts
-are retained; a handoff alone does not require one. Text context retains exact
-content as a `snapshot`.
-Reference context can be `live`; a `snapshot` reference requires an explicitly
-declared `sha256:<hex>` digest. This module does not acquire referenced sources.
-The presence of a digest is not evidence that a client fetched its bytes.
+The example invitation is illustrative. Consumers retain their own canonical
+prompt, source format, usage/answer policy and failure instructions exactly.
+The SDK requires a retained text snapshot and at least one public HTTPS DNS
+source reference. It performs no source acquisition or DNS check. References
+identify offered locations; their presence proves neither retrieval nor reading.
 
-`capabilities` names `handoff`, `participation`, or both. Capabilities select
-the supported operations; they do not assert that those operations occurred.
-An initial reading record may contain only the Work. Empty collections are
-normalized to `[]`. No Participant, encounter ledger, accepted contribution,
-answer callback or artifact is required for reading.
+For static sites, copy `index.mjs`, `clients.mjs`, `reading.mjs`,
+`reading-ui.mjs` and `reading.css` from the installed package into one public
+asset directory. Import the UI by its relative asset URL and include the CSS.
+No Node server, local helper, account, database, answer callback, Agent
+registration or model API is required at runtime. Bare npm imports require a
+bundler or explicit browser import mapping; they are not browser URLs.
 
-Participation records can contain:
+The UI uses the host's font and supports `--aap-ink`, `--aap-paper`,
+`--aap-muted`, `--aap-line` and `--aap-radius` CSS properties. It does not inject
+styles or contact an asset host. Keep a manual prompt available when scripts
+are disabled or a client/clipboard route is unavailable.
 
-- Participants: `id`, declared `kind`, `label`, optional `roles` and `authority`.
-- Acts: `id`, attributed `participant`, `kind`, exact JSON `content`, optional
-  `context` binding the Work version and other Act identifiers.
-- Relations: `id`, declaring `participant`, `kind`, source Act `from`, and
-  `to: { type: 'work' | 'act', id }`. The Work target names the declaration;
-  the enclosing record identifies any particular encounter.
-- Observations: `id`, `observer`, `event`, bound `subjects`, optional public
-  `material`, and explicit `trust` and `limits` arrays.
-- Artifacts: `id`, `mediaType`, exact string `content`, optional `actIds` and
-  application claim labels.
+## Browser behavior
 
-Identifiers are unique within the complete record, including context items.
-Participant, Act, Relation, observation and artifact references must resolve
-locally. An Act's declared Work version must match. Act kinds and Relation
-kinds remain application-defined; no initiating participant, alternating turn
-order, fixed round count or mandatory final synthesis is imposed. A recorded
-refusal is retained as an Act; absence, host denial or network failure is not
-converted into one.
+- **New conversation:** a selected Claude or Codex URL route prepares a draft.
+  The installed app and browser must support it. The visitor reviews and sends
+  inside the Agent, then asks there. The browser cannot reliably detect an
+  installation or confirm draft arrival.
+- **Existing conversation:** manual copying and pasting into the conversation
+  the visitor chooses. No private-history access or automatic attachment.
+- **Another Agent or oversized context:** manual copying without truncation.
+- **Clipboard denied:** reveal and select the exact context for manual copying.
 
-## Bounded verification
+The native route names describe prepared URLs, not universal compatibility or
+an authenticated connection. No app is opened automatically at mount time,
+after a timer, on reload or as a hidden retry. Questions and answers remain in
+the chosen Agent. No Send action, model choice or account setting is automated.
 
-Sealing adds `schema: 'agent-art-protocol/0.1-experimental'` and
-`integrity: { algorithm: 'sha256', digest: '<lowercase hex>' }`.
-Verification produces named `checks` with `supported`, `contradicted` or
-`not-established` status, supporting detail, optional subject and explicit
-general limits. There is no blanket genuineness, artistic-value or protocol
-certification flag.
-
-Core checks distinguish structure/references, record integrity, retained
-Agent-attributed Acts, source acquisition and Agent execution origin.
-Execution origin remains `not-established`. A selected client is not a
-verified Agent Participant. A retained Agent-attributed Act supports only
-the package's attribution and preservation; it does not establish model
-authorship, private intention or freedom from curator/host intervention.
-
-An application can declare `conditions.evidence.requireAgentAct` and/or
-`requireConsequence`. These are checking obligations, not evidence of
-completion. An encounter awaiting participation is valid. Missing required
-material remains `not-established`, rather than proving a false claim.
-
-The owner supplies consequence checks:
+## Use your own UI
 
 ```js
-const assessment = await verify(sealed, {
-  checkConsequence: async record => [{
-    claim: 'exact-pair-in-retained-artifact',
-    subject: record.artifacts[0].id,
-    status: 'supported', // The owner must actually check its rules here.
-    detail: 'Describe the exact retained artifact and rule evaluated.',
-  }],
-});
+import { createReading } from '@agent-art/protocol/reading';
+
+const reading = createReading({ work });
+const plan = reading.prepare({ client: 'claude-app', conversation: 'fresh' });
+// plan.kind === 'native': bind plan.url to an explicit visitor click.
+// plan.kind === 'manual': offer plan.context for copying instead.
 ```
 
-The callback receives a defensive copy only after successful structure and
-digest checks. Findings must identify retained artifact subjects and cannot
-override reserved core claims. Required consequence is supported only when
-every retained artifact has supported findings and no contrary/unavailable
-finding. Those findings still depend on the supplied checker, retained input
-and rules. They do not independently establish a rendered website observation
-or artistic significance. Missing or failed checkers remain unestablished.
-THOUGHT owns its exact pair, pin and SVG checks; no THOUGHT renderer is embedded
-in this module.
+Options are `work`, optional `context`, and optional `clients`. Context defaults
+to the Work's sole text snapshot; if several exist, explicitly select an exact
+snapshot. Clients are `claude-app`, `codex-app` and `manual`; manual fallback
+is always retained. The returned public frame and plans are frozen. Reading
+uses only `handoff` and requires no Participant, Act, Relation or encounter.
+The core vocabulary remains Work, Participant, Act and Relation, with evidence
+across them; the reading profile does not impose human-first or fixed rounds
+on other protocol uses.
 
-The SHA-256 seal is unsigned and recomputable by any editor. It detects changes
-relative to a particular digest. It cannot establish an independent original,
-operator identity, execution origin or absence of earlier editing. Preserve
-original contributions and attributable interventions in the application;
-resealing edited content does not prove it came from an Agent.
+## Optional receipts
 
-## Native handoff preparation
+Set `evidence: true` when mounting to offer a local receipt download.
+`onReceipt(receipt)` may observe that result when evidence is enabled. The UI
+keeps only the current receipt in memory; it does not persist a visitor ledger.
+Call `destroy()` to remove its UI/listeners and discard the mounted reference.
+
+A custom interface can call this only **after observing the named action**:
 
 ```js
-import { buildClientHandoff } from '@agent-art/protocol/clients';
-const prepared = buildClientHandoff({
-  client: 'claude-app', surface: 'chat', conversation: 'fresh',
-  prompt: 'Public context offered to the visitor’s Agent.',
+const receipt = await reading.receipt({
+  event: 'context-copied',
+  client: 'claude-app', conversation: 'existing',
+  observer: 'publisher-browser-interface',
 });
 ```
 
-Allowlisted routes prepare a fresh composer and require the user's Send:
-Codex uses `codex://new?prompt=...`; Claude reading uses
-`claude://claude.ai/new?q=...`. The explicitly chosen Claude `surface: 'code'`
-retains `claude://code/new?q=...` for THOUGHT's existing native-tool path.
-This builder does not qualify those client capabilities. Current installation
-and runtime observations belong in each integration's qualification record.
-Existing conversations require manual copying and pasting into the user's
-chosen chat; automatic private-history attachment is rejected.
+Events are `handoff-requested`, `context-copied` or `manual-context-selected`.
+The first requires a fresh native plan. The caller is trusted for its statement;
+the SDK is not an independent witness. Receipts contain the offered Work,
+bounded observation, trust/limits and zero Participants, Acts and Relations.
+They establish neither app arrival, Send, source acquisition, Agent execution
+nor comprehension. Web Crypto is required for receipts; its failure does not
+prevent native handoff or manual copying.
 
-The builder preserves exact text through query encoding and rejects malformed
-Unicode, NUL, empty text and prompts larger than 12,000 UTF-8 bytes. It performs
-no discovery, native opening, storage, hashing, logging, inference or callback.
-A private scoped handoff may pass through it in memory, but must never be
-retained in a public record. URL handlers and the chosen client receive the
-prepared URL; applications must account for that trust boundary.
+`verify(receipt)` from the package root returns named `supported`,
+`contradicted` and `not-established` findings. The SHA-256 seal is unsigned and
+recomputable. An editor can fabricate and reseal a coherent package. There is
+no blanket genuineness flag. Applications must exclude private history,
+credentials and private handoff capabilities themselves; the SDK does not
+automatically redact arbitrary Work content.
 
-## Encoding and privacy limits
+## Compatibility and release scope
 
-Factories reject unknown structural fields and return detached JSON values.
-Strings retain exact Unicode and line endings: no trimming or normalization
-is applied to retained content. The candidate encoding recursively sorts
-object keys by JavaScript string order, preserves array order, and uses
-JavaScript JSON escaping/number serialization. Numbers must be finite and not
-negative zero. Strings/keys must be well-formed Unicode without NUL. Undefined,
-functions, symbols, sparse/extended arrays, custom prototypes, accessors,
-non-enumerable properties, cycles and nesting beyond 64 levels are rejected.
-This is an explicitly bounded experimental encoding, not RFC 8785 compliance
-or a language-independent numeric representation guarantee. The sealed body
-includes every normalized collection; removing an empty field fails integrity.
+The supported 0.1 reading surface is `createReading`, `mountReading`, its CSS,
+existing client URL preparation and bounded reading receipts. Future releases
+must preserve these reading calls/defaults and verify 0.1 receipts. Existing
+alpha-core/client exports remain available for experimental consumers; their
+participation APIs do not constitute a supported artwork-return service.
 
-Plain JSON is allowed inside declared conditions, contribution content,
-authority and observation material. An allowlist of structural field names
-cannot prove those values contain no secrets. Applications must construct
-public exports from explicitly selected public fields, excluding credentials,
-private handoff URLs, machine paths and private transcripts. The module does
-not claim automatic redaction, trusted signatures or privacy certification.
+The SDK package version is separate from the experimental record schema
+`agent-art-protocol/0.1-experimental`. The exact encoding and named core checks
+are retained from the alpha: well-formed Unicode, unchanged strings/line
+endings, sorted object keys and SHA-256. This is not RFC 8785 compliance or an
+independent issuer signature. Unknown future record fields may be rejected by
+older verifiers; backward compatibility does not promise forward acceptance.
 
-Run the focused synthetic checks with:
+THOUGHT's scoped return, authorization, acceptance/recovery, artwork renderer
+and consequence checker remain with THOUGHT. A later artwork release can add
+optional participation facilities without changing reading's lightweight flow.
+SDK 0.1 supplies no OAuth service, model execution, private chat control or
+independently rooted execution evidence.
 
-```sh
-node --test protocol/test/*.test.mjs
-```
-
-These checks exercise both lightweight reading and attributed artwork records,
-including mutation detection, source pins, missing material, unsigned resealing,
-owner consequence checks, direction/round independence and refusal retention.
-They are not live-Agent trials or production transport qualification.
+Run `npm run test:sdk` from the protocol repository for package/controller
+checks. Browser/client observations and consumer pins belong in the
+[reading qualification record](https://github.com/agent-art-work/agent-art-protocol/blob/codex/reading-sdk-0.1.0/pilot/reading-consumers/QUALIFICATION.md).
+Earlier alpha evidence remains at its immutable source commit; new browser
+observations must not upgrade those historical results.

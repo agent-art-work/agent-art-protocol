@@ -1,7 +1,7 @@
 {
   "name": "@agent-art/protocol",
-  "version": "0.1.0-alpha.0",
-  "description": "Private experimental SDK for Agent handoff and claim-scoped participation evidence.",
+  "version": "0.1.0",
+  "description": "Private reading SDK: reusable browser handoff and optional bounded receipts.",
   "private": true,
   "type": "module",
   "main": "./index.mjs",
@@ -16,17 +16,33 @@
       "types": "./clients.d.mts",
       "import": "./clients.mjs",
       "default": "./clients.mjs"
-    }
+    },
+    "./reading": {
+      "types": "./reading.d.mts",
+      "import": "./reading.mjs",
+      "default": "./reading.mjs"
+    },
+    "./reading-ui": {
+      "types": "./reading-ui.d.mts",
+      "import": "./reading-ui.mjs",
+      "default": "./reading-ui.mjs"
+    },
+    "./reading.css": "./reading.css"
   },
   "files": [
     "index.mjs",
     "index.d.mts",
     "clients.mjs",
     "clients.d.mts",
-    "README.md"
+    "README.md",
+    "reading.mjs",
+    "reading.d.mts",
+    "reading-ui.mjs",
+    "reading-ui.d.mts",
+    "reading.css"
   ],
   "engines": {
     "node": ">=22"
   },
-  "sideEffects": false
+  "sideEffects": ["./reading.css"]
 }

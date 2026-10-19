@@ -2,10 +2,12 @@
 
 Read README.md, ARCHITECTURE.md, examples/THOUGHT.md and SOURCE.md first.
 
-- This is a candidate protocol design with a private experimental SDK and
-  authorized local Lab/THOUGHT pilots. Read protocol/README.md for the package
-  boundary. Do not start new live Agent trials, registry publication or
-  deployment without operator direction.
+- The generic protocol remains candidate. SDK 0.1.0 supports public-document
+  reading; read spec/0.1/READING.md and protocol/README.md for its boundary.
+  Four reading consumers are isolated local integrations, not deployments.
+  Earlier THOUGHT/core paths remain experimental; new artwork participation
+  is deferred to a later compatible release. Do not start new live Agent
+  trials, registry publication or deployment without operator direction.
 - Preserve four primitives: Work, Participant, Act, Relation. Evidence is a
   layer across them. Do not introduce a universal human-first, alternating-turn,
   fixed-round or final-synthesis requirement.
@@ -17,6 +19,12 @@ Read README.md, ARCHITECTURE.md, examples/THOUGHT.md and SOURCE.md first.
   freedom from host/curator intervention. Do not use a blanket genuineness flag.
 - Qualify actual client/runtime paths before claiming support. A copied prompt,
   browser simulation or fixture is not a working curator-to-real-Agent path.
+- Reading may have zero Participants, Acts and Relations. Receipts are opt-in;
+  no persistent evidence storage, enrollment or answer callback is required.
+  A handoff request does not establish sending, reading or Agent execution.
+- Packaged SDK changes require a fresh archive and matching consumer dependency
+  locks/digests. Preserve prior alpha APIs and receipt verification; do not
+  reuse an earlier archive's qualification for changed packaged inputs.
 - Keep artwork-specific rules and implementation with their owners. The Lab
   owns research/publication; this repository owns the protocol candidate.
 - Preserve source attribution and immutable historical references. Do not

@@ -1,0 +1,86 @@
+{
+  "schema": "agent-art.reading-consumer.v1",
+  "consumer": "lab",
+  "repository": "https://github.com/agent-art-work/Agent-Art-Lab",
+  "baseCommit": "d658be2cc19307d113e64bd3fa0b2ad56a0a4bfc",
+  "patch": "lab.patch",
+  "patchSha256": "0a675383a9cd519ac3f25d87ad525226c90ca82fb1a35c9b27aaacf4a77e6522",
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.0",
+    "archive": "vendor/agent-art-protocol-0.1.0.tgz",
+    "sha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+    "distribution": "Private vendored tarball with relative file dependency and locked integrity."
+  },
+  "entry": {
+    "route": "/",
+    "component": "site/assets/agent-art-reading.mjs",
+    "ownerPrompt": "Canonical prompt in docs/AGENT_ACCESS.md",
+    "indexUrl": "https://agentart.work/agent-index.json",
+    "placement": "Visible before the original manual prompt disclosure.",
+    "evidence": false
+  },
+  "scope": {
+    "capabilities": [
+      "handoff"
+    ],
+    "questionAnswerLocation": "The visitor asks their own Agent inside that Agent.",
+    "returnCallback": false,
+    "localHelper": false,
+    "inference": false,
+    "enrollment": false
+  },
+  "build": {
+    "command": "npm run build",
+    "output": "_site",
+    "previewPort": 4174,
+    "result": "passed"
+  },
+  "checks": [
+    {
+      "command": "npm test",
+      "result": "passed",
+      "tests": 21
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tests",
+      "result": "passed",
+      "tests": 37
+    },
+    {
+      "command": "npm run check:site",
+      "result": "passed",
+      "publicFiles": 61,
+      "localLinks": 588,
+      "networkRequests": 0
+    },
+    {
+      "command": "node pilot/lab.mjs --prepare-only (from protocol repository)",
+      "result": "passed"
+    }
+  ],
+  "browserQualification": {
+    "date": "2026-10-19",
+    "browser": "Regular stable Google Chrome, com.google.Chrome",
+    "desktop": "1440x1000 light",
+    "mobile": "390x844 dark",
+    "freshContextExact": true,
+    "existingConversationManual": true,
+    "horizontalOverflow": false,
+    "websiteQuestionInputs": 0,
+    "optionalEvidenceOff": true
+  },
+  "nativeHandoffObservation": {
+    "route": "Regular Chrome to installed Claude desktop via claude native URL",
+    "result": "One-time browser Open permission reached a fresh Claude chat containing the public Lab context.",
+    "send": false,
+    "modelInvocation": false,
+    "fullComposerByteReadback": false,
+    "cleanup": "Automatic approval review blocked field cleanup because private draft ownership was uncertain. Operator elected to clear the test draft manually."
+  },
+  "limits": [
+    "Open request is not proof of arrival, sending, source retrieval, reading or Agent participation.",
+    "No production deployment, registry publication or Agent inference.",
+    "Original Lab checkout remains unchanged; this patch targets an isolated pinned clone."
+  ]
+}

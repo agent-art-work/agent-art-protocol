@@ -1,0 +1,144 @@
+{
+  "schema": "agent-art.reading-consumer.v1",
+  "consumer": "inshell",
+  "repository": "https://github.com/inshell-art/inshell.art",
+  "baseCommit": "1a44454d4904fdc330f83ec3d86236783302411f",
+  "patch": "inshell.patch",
+  "patchSha256": "2d132a90be84d0648090f1e19187b5f8aadf6386e1789e19bedc2c0a73b0a84c",
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.0",
+    "archive": "vendor/agent-art-protocol-0.1.0.tgz",
+    "sha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+    "distribution": "Private vendored tarball with relative file dependency and locked integrity."
+  },
+  "entry": {
+    "route": "/docs",
+    "component": "apps/home/src/components/DocsAgentReading.tsx",
+    "ownerPrompt": "agentDocsPrompt in apps/home/src/content/docs.ts, called with https://inshell.art",
+    "indexUrl": "https://inshell.art/docs/agent-index.json",
+    "placement": "Visible before the existing prompt disclosure/copy controls.",
+    "evidence": false
+  },
+  "scope": {
+    "capabilities": [
+      "handoff"
+    ],
+    "questionAnswerLocation": "The visitor asks their own Agent inside that Agent.",
+    "returnCallback": false,
+    "localHelper": false,
+    "inference": false,
+    "enrollment": false,
+    "untouched": [
+      "THOUGHT participation and minting",
+      "Other artwork flows",
+      "Existing authored Docs prompt/copy controls"
+    ]
+  },
+  "build": {
+    "command": "VITE_DEPLOY_ENV=preview pnpm --filter @inshell/home build",
+    "output": "dist/home",
+    "previewPort": 4176,
+    "spa": true,
+    "result": "passed",
+    "warnings": [
+      "Existing Vite native-config compatibility and plugin deprecation warnings.",
+      "Existing large bundle warning."
+    ]
+  },
+  "checks": [
+    {
+      "command": "pnpm install --offline --frozen-lockfile --ignore-scripts --force",
+      "result": "passed",
+      "note": "Used the existing local package store; force refresh replaced an earlier same-path draft archive without dependency re-resolution. All 11 installed SDK files match the final archive byte-for-byte."
+    },
+    {
+      "command": "pnpm --filter @inshell/home exec jest --runInBand --coverage=false --runTestsByPath tests/DocsPage.test.tsx tests/DocsAgentReading.test.tsx",
+      "result": "passed",
+      "tests": 66,
+      "existingTests": 64,
+      "integrationTests": 2
+    },
+    {
+      "command": "pnpm --filter @inshell/home run type-check:source",
+      "result": "passed"
+    },
+    {
+      "command": "node --import tsx --test scripts/generate-agent-docs.test.ts",
+      "result": "passed",
+      "tests": 9
+    },
+    {
+      "command": "node --import tsx scripts/generate-agent-docs.ts --check",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/check-pub-boundary.mjs",
+      "result": "passed",
+      "externalFetches": 0
+    },
+    {
+      "command": "git diff --cached --check",
+      "result": "passed"
+    },
+    {
+      "command": "Apply binary patch to exact base contents and compare all resulting files",
+      "result": "passed",
+      "files": 10
+    },
+    {
+      "command": "UTF-8/LF and redacted path/credential scan on patch and metadata",
+      "result": "passed"
+    }
+  ],
+  "browserQualification": {
+    "status": "passed-local-static-ui",
+    "browser": "Regular Google Chrome, verified bundle ID com.google.Chrome, disposable headless profiles.",
+    "desktop": {
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "freshActionVisible": true,
+      "contextExact": true,
+      "closedDisclosureAncestor": false,
+      "existingOpenHidden": true,
+      "existingCopyVisible": true,
+      "questionInputs": 0,
+      "horizontalOverflow": false,
+      "receiptsHidden": true,
+      "requests": 13,
+      "failedRequests": 0,
+      "visualInspection": "passed"
+    },
+    "mobile": {
+      "viewport": "390x844",
+      "colorScheme": "dark",
+      "freshActionVisible": true,
+      "contextExact": true,
+      "closedDisclosureAncestor": false,
+      "existingOpenHidden": true,
+      "existingCopyVisible": true,
+      "questionInputs": 0,
+      "horizontalOverflow": false,
+      "receiptsHidden": true,
+      "requestsPerRun": 13,
+      "runs": 2,
+      "failedRequests": 0,
+      "visualInspection": "passed"
+    },
+    "clipboardFallback": {
+      "method": "Synthetic clipboard-denial fixture in actual mobile browser.",
+      "readonlyContextOpened": true,
+      "focused": true,
+      "selectedAll": true,
+      "contextExact": true,
+      "receiptRemainedHidden": true
+    },
+    "note": "Only local static UI and offered native link/context inspected. No native client or model was launched; Agent arrival, reading and execution remain unestablished. Disposable profiles closed and cleaned by the verification runner."
+  },
+  "limits": [
+    "The native link prepares a client handoff; it cannot establish that an Agent opened, read the index, answered or participated.",
+    "Existing-conversation mode requires manual copy and paste.",
+    "The local preview uses the public canonical HTTPS index for the SDK handoff; the preserved original copy prompt continues using its existing origin behavior.",
+    "No production deployment or registry publication."
+  ]
+}

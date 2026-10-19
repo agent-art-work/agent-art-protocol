@@ -31,8 +31,8 @@ test('the actual private SDK tarball installs offline and exposes only its inten
     const output = run('npm', ['pack', '--offline', '--ignore-scripts', '--json', '--pack-destination', packed], packageRoot);
     const [tarball] = JSON.parse(output);
     assert.equal(tarball.name, '@agent-art/protocol');
-    assert.equal(tarball.version, '0.1.0-alpha.0');
-    assert.deepEqual(tarball.files.map(item => item.path).sort(), ['README.md', 'clients.d.mts', 'clients.mjs', 'index.d.mts', 'index.mjs', 'package.json']);
+    assert.equal(tarball.version, '0.1.0');
+    assert.deepEqual(tarball.files.map(item => item.path).sort(), ['README.md', 'clients.d.mts', 'clients.mjs', 'index.d.mts', 'index.mjs', 'package.json', 'reading-ui.d.mts', 'reading-ui.mjs', 'reading.css', 'reading.d.mts', 'reading.mjs']);
     fs.writeFileSync(path.join(consumer, 'package.json'), JSON.stringify({ name: 'sdk-boundary-smoke', private: true, type: 'module' }));
     run('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', '--save-exact', path.join(packed, tarball.filename)], consumer);
     const manifest = JSON.parse(fs.readFileSync(path.join(consumer, 'node_modules/@agent-art/protocol/package.json'), 'utf8'));
@@ -40,22 +40,32 @@ test('the actual private SDK tarball installs offline and exposes only its inten
     assert.equal(manifest.license, undefined);
     assert.equal(manifest.dependencies, undefined);
     assert.equal(manifest.scripts, undefined);
-    for (const route of Object.values(manifest.exports)) assert.ok(fs.statSync(path.join(consumer, 'node_modules/@agent-art/protocol', route.types)).isFile());
+    assert.deepEqual(manifest.sideEffects, ['./reading.css']);
+    for (const route of Object.values(manifest.exports)) if (typeof route === 'object') assert.ok(fs.statSync(path.join(consumer, 'node_modules/@agent-art/protocol', route.types)).isFile());
     const result = run(process.execPath, ['--input-type=module', '--eval', `
       import assert from 'node:assert/strict';
       import { defineWork, createRecord, seal, verify, buildClientHandoff } from '@agent-art/protocol';
       import { buildClientHandoff as fromClients } from '@agent-art/protocol/clients';
+      import { createReading } from '@agent-art/protocol/reading';
+      import { mountReading } from '@agent-art/protocol/reading-ui';
+      assert.equal(typeof mountReading, 'function');
       assert.equal(buildClientHandoff, fromClients);
       const record = await seal(createRecord({ work: defineWork({
         id: 'sdk-smoke-reading', version: '1', title: 'Package boundary',
         purpose: 'Check installed imports without an Agent call.', capabilities: ['handoff'],
-        context: [{ id: 'offered-context', kind: 'text', mode: 'snapshot', text: 'Public context. 意图' }],
+        context: [
+          { id: 'offered-context', kind: 'text', mode: 'snapshot', text: 'Public context. 意图' },
+          { id: 'public-index', kind: 'reference', mode: 'live', url: 'https://agentart.work/agent-index.json' },
+        ],
         conditions: { answers: 'Remain inside the visitor’s Agent.' },
       }) }));
       const report = await verify(record);
       assert.equal(report.checks.find(item => item.claim === 'record-integrity').status, 'supported');
       assert.equal(report.checks.find(item => item.claim === 'agent-execution-origin').status, 'not-established');
       assert.equal(record.acts.length, 0);
+      const reading = createReading({ work: record.work });
+      assert.equal(reading.prepare({client:'claude-app',conversation:'existing'}).kind, 'manual');
+      assert.equal(new URL(reading.prepare({client:'claude-app',conversation:'fresh'}).url).searchParams.get('q'),'Public context. 意图');
       const prepared = fromClients({ client: 'claude-app', surface: 'code', prompt: 'Public context. 意图' });
       assert.equal(new URL(prepared.url).searchParams.get('q'), 'Public context. 意图');
       await assert.rejects(import('@agent-art/protocol/test/records.test.mjs'), { code: 'ERR_PACKAGE_PATH_NOT_EXPORTED' });

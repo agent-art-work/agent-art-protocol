@@ -1,8 +1,9 @@
 # Agent Art protocol architecture
 
-Status: **candidate**, revised 2026-10-19. This is the current home of the
-reusable protocol draft. Exact schemas, client support, packaging and deployment
-remain open. A separately authorized [local MVP](mvp/README.md) exercises a
+Status: **candidate generic architecture**, revised 2026-10-19. The private
+SDK's first supported release scope is [0.1.0 reading](spec/0.1/READING.md).
+The broader participation contract, stronger execution evidence and production
+deployment remain open. A separately authorized [local MVP](mvp/README.md) exercises a
 bounded subset; it does not qualify the remote HTTP/OAuth path or independent
 execution origin. Its observations and limits are in
 [MVP qualification](mvp/QUALIFICATION.md).
@@ -13,28 +14,31 @@ to refine through [project walkthroughs](examples/PROJECT-WALKTHROUGHS.md),
 not a frozen standard. MVP implementation choices do not ratify the generic
 contract or settle the execution-evidence threshold.
 
-**Authorized implementation revision, 2026-10-19.** One experimental protocol
-will be applied first to Lab reading and THOUGHT in isolated local consumers.
-Its two infrastructure responsibilities are connecting curator-controlled real
-Agent environments and preserving/checking evidence of what actually occurred.
-Capabilities determine which operations and records are needed: a public
-reading handoff may have zero observed Acts and no enrolled Agent; a retained
-artwork contribution needs attribution, original content and consequence
-material. This revision broadens reuse of the protocol infrastructure without
-classifying reading as Agent Art or relaxing an artwork's artistic obligations.
-It is not a released contract or client qualification. See the
+**Current release sequence, 2026-10-19.** Develop one protocol through its
+public reading use cases first. SDK `@agent-art/protocol@0.1.0` supplies a
+framework-neutral browser interface/controller, prepared client routes and
+optional bounded receipts. Inshell, the Lab, Pulse and Signatures Gallery use
+it in isolated local reading integrations. The SDK requires no local helper,
+server, participant enrollment, answer callback or evidence database for this
+use. See the [consumer guide](pilot/reading-consumers/README.md).
+
+The two infrastructure responsibilities remain connecting real Agent
+environments and preserving/checking evidence. A reading handoff can have zero
+Participants, Acts and Relations; the questions and answers stay in the Agent.
+Receipt creation is optional and storage remains the consumer's choice.
+Selecting an app or requesting a native URL does not establish Agent reading.
+
+New artwork participation work, including THOUGHT, is deferred to a later
+compatible SDK release. The earlier alpha's four-primitive factories and
+claim checks remain available as experimental APIs; its recorded THOUGHT
+encounters retain their original limits. THOUGHT still owns its scoped return
+endpoint, authorization, persistence/recovery and artistic checker. Reading
+does not weaken those artistic obligations or turn reading into Agent Art.
+SDK versioning does not freeze the generic protocol/schema, select a license,
+publish to a registry or deploy consumers. See the
 [implementation boundary](spec/0.1/IMPLEMENTATION.md).
 
-The same experimental core is now an installable private draft SDK,
-`@agent-art/protocol@0.1.0-alpha.0`, consumed by both local pilots. Its package
-boundary exposes record factories, integrity/claim checks and native handoff
-preparation. Packaging does not settle the generic contract, qualify a client
-route or provide a shared return service. THOUGHT retains its existing scoped
-return endpoint, authorization, persistence/recovery and artistic checker.
-No registry publication, licensing decision or deployment follows from the
-operator's separate authorization to package and push the private source.
-
-The proposed first development scope is in [v0.1 SCOPE](spec/0.1/SCOPE.md)
+The earlier candidate participation scope is in [v0.1 SCOPE](spec/0.1/SCOPE.md)
 with a [contract draft](spec/0.1/CONTRACT.md). Its two written examples use
 THOUGHT and an invented Agent-initiated graphic work, OPEN FIELD. All remain
 candidates; these documents supply no runtime or artistic findings.
@@ -58,6 +62,12 @@ finished interoperable protocol. References below identify that source context.
 **Candidate protocol model:** within a Work, Participants make Acts, whose Relations shape how the work develops. An evidence layer supports specific claims about all four. The model prescribes no initiating participant kind, alternating turn order, fixed round count or mandatory final synthesis.
 
 ### 1.0 Selected scope and ownership boundary
+
+Application owners supply their site, public context and authored policy. The
+reading SDK supplies the reusable browser handoff and optional local receipt;
+source retrieval and the conversation remain inside the visitor's Agent.
+The wider architecture below describes intended participation infrastructure,
+not a claim that SDK 0.1.0 implements every transport and service.
 
 Artists build the artwork's website/app, artistic conditions, composition and
 renderer. They integrate shared bridges for supported real Agents in curators'
@@ -410,15 +420,15 @@ their original limits. MCP/OAuth remains a candidate carrier; exact versions,
 permissions, network access and media delivery must be checked on the chosen
 client before support is claimed.
 
-The next design task is to review the [v0.1 scope](spec/0.1/SCOPE.md) and
-[contract](spec/0.1/CONTRACT.md) around the selected bridge/evidence/verification
-boundary, then specify one concrete THOUGHT-to-real-Agent path: client/runtime,
-setup/consent, context/return/recovery, exact evidence bindings, named checks,
-trust dependencies, retention and encodings. Execution origin and declared
-artifact consequence need their own material and qualification; an authenticated
-return alone is insufficient. Minting choices are not part of that decision.
-Keep Agent-originated and repeated/parallel Acts in the core even if THOUGHT
-selects a simpler form. The
+The current release step is to validate the four public reading integrations
+against [READING.md](spec/0.1/READING.md), retaining canonical owner context and
+lightweight, optional evidence. The later compatible artwork release should
+use the [scope](spec/0.1/SCOPE.md) and [contract](spec/0.1/CONTRACT.md) to qualify
+the context/return/recovery path, exact evidence bindings and owner consequence
+checks. Execution origin needs its own material and qualification; an
+authenticated return alone is insufficient. Minting choices remain outside
+that decision. Keep Agent-originated and repeated/parallel Acts expressible
+even if THOUGHT selects a simpler form. The
 [THOUGHT walkthrough](examples/THOUGHT.md) and
 [OPEN FIELD example](examples/OPEN-FIELD.md) supply complementary hypothetical
 histories. The earlier design-only boundary is superseded only for the

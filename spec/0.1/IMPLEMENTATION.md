@@ -1,23 +1,58 @@
-# Experimental implementation boundary
+# Implementation boundaries and release sequence
 
-Authorized 2026-10-19. This is a bounded implementation of candidate protocol
-semantics, not a v0.1 release, conformance certificate or production rollout.
-The earlier architecture, design gates and dated research retain their
-evidence limits. This note supersedes their design-only restriction only for
-the operator-directed local work below.
+Updated 2026-10-19. The current supported SDK scope is
+[0.1.0 public reading](READING.md). The generic participation architecture and
+wire contract remain candidate; SDK version `0.1.0` does not ratify them.
+The earlier local alpha, MVP and research keep their original observations.
 
-## One protocol, two first consumers
+## Current release: reading first
+
+The operator selected a focused reading release before further artwork
+participation development. Private `@agent-art/protocol@0.1.0` supplies the
+browser reading controller, reusable interface/styles, prepared client routes
+and optional bounded receipts. It adds no model hosting, account connection,
+source-fetch service, answer callback or mandatory evidence storage.
+
+Four isolated consumers use the archive: Lab reading, Inshell Docs, Pulse
+reading and Signatures Gallery About. Their authored prompts, public indices,
+source rules and original manual controls remain with their owners. The
+[consumer guide](../../pilot/reading-consumers/README.md) records reviewable
+patches and metadata; [qualification](../../pilot/reading-consumers/QUALIFICATION.md)
+separates fixtures, actual DOM behavior and the bounded native handoff check.
+No production deployment or registry publication has occurred.
+
+The candidate archive's SHA-256 is
+`646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0`.
+The 27 SDK tests passed. The installed archive's exported declarations passed
+strict checking with an existing TypeScript compiler, and eight browser DOM
+regressions passed at desktop light and mobile dark sizes. The final root run
+passed 86 tests, including retained earlier MVP/pilot and consumer checks;
+it is not 86 reading-only checks. Older aggregate counts below are historical.
+
+New THOUGHT and Signatures artwork-participation work is deferred to a later
+compatible release. Existing alpha core/client exports and original receipt
+verification remain available as experimental paths. Later work must preserve
+the reading APIs and earlier readable receipts; it must not silently add Agent
+enrollment, persistent storage, contribution callbacks or stronger evidence
+claims to reading. Compatibility does not mean older verifiers accept every
+future record; a schema or capability change needs an explicit version boundary.
+
+## Earlier alpha: one protocol, two first consumers
+
+The operator's earlier authorization on 2026-10-19 began a bounded local
+Lab/THOUGHT implementation. The following records that experiment; the
+reading-first sequence above supersedes its next-step scope.
 
 The protocol keeps **Work, Participant, Act and Relation**, with evidence
 across them. Its two practical responsibilities are connecting a curator's
 real Agent environment and preserving/checking limited evidence. It does not
 operate the Agent's model or take ownership of artistic interpretation.
 
-The selected dogfooding direction eventually includes reading at Inshell,
+The alpha's selected dogfooding direction included reading at Inshell,
 Agent-Art-Lab, Pulse and Signatures Gallery, plus THOUGHT and Signatures'
-preview participation. This step implements **Lab reading and THOUGHT only**.
-The remaining uses are future targets. No mint, wallet, chain operation,
-production publication or deployment is part of this step.
+preview participation. Its initial step implemented **Lab reading and THOUGHT**.
+The other uses were future targets at that stage. No mint, wallet, chain
+operation, production publication or deployment was part of that step.
 
 | First consumer | Work and capability | Participation and evidence boundary |
 | --- | --- | --- |
@@ -44,7 +79,7 @@ Participant, Act and Relation records, optional observations/artifacts and
 integrity envelopes. Its export names, JSON shapes and encoding are local
 experimental choices; the candidate contract is not a stable wire standard.
 
-### Private draft SDK packaging
+### Earlier private alpha packaging
 
 The operator subsequently requested an installable draft SDK and a source
 push. The existing core is packaged as private
@@ -87,7 +122,7 @@ live sites are not changed by this authorization. The local helper is a
 development mechanism, not qualification of direct browser-to-app delivery
 or a decision about production installation and hosting.
 
-## Claims and qualification
+## Claims and earlier qualification
 
 An integrity seal and deterministic verification can expose changed retained
 bytes and inconsistent references under the implemented method. They are

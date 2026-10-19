@@ -1,0 +1,205 @@
+{
+  "schema": "agent-art-protocol.reading-consumer-pilot/0.1",
+  "consumer": "Signatures Gallery",
+  "repository": "https://github.com/agent-art-work/Agent-Art-signatures.gallery",
+  "source": {
+    "commit": "aa9f97b10152dcd3da112b85d4bd063c020165bb",
+    "cachedOriginMain": "37d2619eb2da48bc1e47144beae35ee4bb261ad9",
+    "branch": "codex/about-the-work",
+    "selection": "Active owner HEAD retains non-breaking dependency/security and documentation maintenance; About reading and preview implementation is identical to cached origin/main."
+  },
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.0",
+    "private": true,
+    "archive": "vendor/agent-art-protocol-0.1.0.tgz",
+    "sha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+    "dependency": "file:vendor/agent-art-protocol-0.1.0.tgz",
+    "packageDirectory": "."
+  },
+  "integration": {
+    "pages": [
+      "/about"
+    ],
+    "ownerPrompt": "src/openMint/aboutReadingPrompt.ts",
+    "ownerIndex": "https://signatures.gallery/agent-index.json",
+    "entry": "src/preview/client.ts",
+    "profile": "src/preview/reading.ts",
+    "build": "scripts/build-preview-cloudflare.mjs",
+    "readingScope": "Progressive enhancement of About reading only. The existing owner textarea explicitly carries publicOrigin, including nonindexable staging pages without canonical metadata. The local packaged staging preview offers the staging index and exact staging invitation; the production preview uses the production origin. Original SSR copy controls remain the fallback. Separate artwork preview and mint-assessment prompts are unchanged.",
+    "evidence": true,
+    "previewIndex": "https://staging.signatures.gallery/agent-index.json"
+  },
+  "commands": {
+    "install": {
+      "cwd": ".",
+      "argv": [
+        "npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ]
+    },
+    "build": {
+      "cwd": ".",
+      "argv": [
+        "npm",
+        "run",
+        "preview:build"
+      ]
+    },
+    "typecheck": {
+      "cwd": ".",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ]
+    },
+    "test": {
+      "cwd": ".",
+      "argv": [
+        "npm",
+        "run",
+        "test:preview"
+      ]
+    },
+    "ownerRegression": {
+      "cwd": ".",
+      "argv": [
+        "npm",
+        "run",
+        "test:open"
+      ]
+    },
+    "serve": {
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--import",
+        "tsx",
+        "scripts/preview-cloudflare-local.mjs",
+        "<fresh-build-destination>",
+        "4178"
+      ],
+      "routes": [
+        "http://127.0.0.1:4178/about",
+        "http://127.0.0.1:4178/p/Inshell/INTP"
+      ]
+    }
+  },
+  "validation": {
+    "date": "2026-10-19",
+    "sdkArchiveVerified": true,
+    "unrelatedDependencyPinsChanged": false,
+    "typecheck": true,
+    "previewTests": {
+      "passed": 229,
+      "failed": 0
+    },
+    "packagedWorkerTests": {
+      "passed": 19,
+      "failed": 0
+    },
+    "ownerRegression": {
+      "passed": 3924,
+      "skipped": 625,
+      "failed": 0,
+      "note": "Opt-in persistence/database checks remain skipped under the repository default configuration."
+    },
+    "rendererLocks": true,
+    "publicBuild": true,
+    "workerSha256": "121790f13e4bc1d7e62ff9f6a528f5273a20e7aacf7e2c1b22c7244fbfaf0d63",
+    "browserNetworkWalletGuard": true,
+    "mintingEnabled": false,
+    "originalCheckoutModified": false,
+    "browser": {
+      "method": "Isolated headless regular Google Chrome (com.google.Chrome), using visual-dom-cdp; owner reading disclosure opened via its summary.",
+      "nativeAppArrival": "not-tested",
+      "AgentReading": "not-established",
+      "physicalMobileDevice": false,
+      "clipboardDelivery": "not-tested-in-this-pass",
+      "screenshotsVisuallyInspected": true,
+      "checks": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "colorScheme": "light",
+          "disclosureInitiallyClosed": true,
+          "disclosureOpened": true,
+          "SDKVisible": true,
+          "ownerInvitationExact": true,
+          "offeredIndexOrigin": "https://staging.signatures.gallery",
+          "claudeFreshURLExact": true,
+          "codexFreshURLExact": true,
+          "existingConversationManualOnly": true,
+          "otherAgentCopyAvailable": true,
+          "receiptInitiallyHidden": true,
+          "websiteQuestionInputs": 0,
+          "horizontalOverflow": false,
+          "allControlsInsideViewport": true,
+          "minimumControlHeight": 44,
+          "controlsHaveDistinctForegroundBackground": true,
+          "requests": {
+            "methods": [
+              "GET"
+            ],
+            "failed": []
+          },
+          "nativeHandoffActivated": false,
+          "AgentCallPerformed": false,
+          "localTrace": ".local/qa/reading-v010-signatures-desktop-open.json",
+          "localScreenshot": ".local/qa/reading-v010-signatures-desktop-open.png"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "colorScheme": "dark",
+          "disclosureInitiallyClosed": true,
+          "disclosureOpened": true,
+          "SDKVisible": true,
+          "ownerInvitationExact": true,
+          "offeredIndexOrigin": "https://staging.signatures.gallery",
+          "claudeFreshURLExact": true,
+          "codexFreshURLExact": true,
+          "existingConversationManualOnly": true,
+          "otherAgentCopyAvailable": true,
+          "receiptInitiallyHidden": true,
+          "websiteQuestionInputs": 0,
+          "horizontalOverflow": false,
+          "allControlsInsideViewport": true,
+          "minimumControlHeight": 44,
+          "controlsHaveDistinctForegroundBackground": true,
+          "requests": {
+            "methods": [
+              "GET"
+            ],
+            "failed": []
+          },
+          "nativeHandoffActivated": false,
+          "AgentCallPerformed": false,
+          "localTrace": ".local/qa/reading-v010-signatures-mobile.json",
+          "localScreenshot": ".local/qa/reading-v010-signatures-mobile.png"
+        }
+      ],
+      "ownerPromptEndpointFormatting": "The public about.txt endpoint appends one LF; comparison removes that endpoint-only LF and retains the owner invitation/SSR value exactly.",
+      "resolvedIssue": "The initial staging smoke retained the original copy UI because staging pages omit canonical metadata. Explicit owner publicOrigin binding resolves that mismatch without changing the SDK or its archive."
+    }
+  },
+  "limits": [
+    "A browser native URL request or clipboard action does not establish app arrival, sending, source retrieval, Agent reading or execution.",
+    "Optional unsigned receipts retain the offered public context and caller observation, with zero Agent Participants, Acts and Relations.",
+    "No Agent inference, private conversation inspection, contract interaction or deployment was performed."
+  ],
+  "patch": {
+    "file": "signatures.patch",
+    "sha256": "090ad0f503850325dc2b00d848536828ae180e5a67f9d8221a2383dcf651b52d",
+    "format": "git binary diff with zero context; apply using git apply --binary --unidiff-zero",
+    "cleanApplyChecked": true
+  }
+}

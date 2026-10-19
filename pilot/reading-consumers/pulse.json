@@ -1,0 +1,197 @@
+{
+  "schema": "agent-art-protocol.reading-consumer-pilot/0.1",
+  "consumer": "Pulse",
+  "repository": "https://github.com/inshell-art/pulse",
+  "source": {
+    "commit": "32adfe39e1bf775f387ddab698780f256ed0cc81",
+    "cachedOriginMain": "32adfe39e1bf775f387ddab698780f256ed0cc81",
+    "branch": "main"
+  },
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.0",
+    "private": true,
+    "archive": "vendor/agent-art-protocol-0.1.0.tgz",
+    "sha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+    "dependency": "file:../vendor/agent-art-protocol-0.1.0.tgz",
+    "packageDirectory": "evm"
+  },
+  "integration": {
+    "pages": [
+      "/",
+      "/projects"
+    ],
+    "ownerPrompt": "evm/playground/docs/agent-prompt.txt",
+    "ownerIndex": "https://pulse.inshell.art/docs/agent-index.json",
+    "entry": "evm/playground/reading-entry.js",
+    "profile": "evm/playground/reading-profile.js",
+    "build": "evm/playground/generate-reading.js",
+    "readingScope": "Shared controls always offer published Pulse documentation, including in the local preview. The separate original manual preview prompt retains the preview-origin index path.",
+    "evidence": true,
+    "theme": "The always-dark opening panel explicitly maps SDK ink/paper variables to its own opening colors, including when the page preference is light."
+  },
+  "commands": {
+    "install": {
+      "cwd": "evm",
+      "argv": [
+        "npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ]
+    },
+    "build": {
+      "cwd": "evm",
+      "argv": [
+        "node",
+        "playground/build-site.js"
+      ]
+    },
+    "test": {
+      "cwd": "evm",
+      "argv": [
+        "node",
+        "--test",
+        "playground/knowledge.test.js",
+        "playground/worker.test.js",
+        "playground/reading-profile.test.js"
+      ]
+    },
+    "serve": {
+      "cwd": "evm",
+      "argv": [
+        "node",
+        "playground/server.js"
+      ],
+      "environment": {
+        "PULSE_SITE_HOST": "127.0.0.1",
+        "PORT": "4177",
+        "PULSE_RPC_URL": "",
+        "SEPOLIA_RPC_URL": "",
+        "PULSE_SEPOLIA_ENV_FILE": "/dev/null"
+      },
+      "routes": [
+        "http://127.0.0.1:4177/",
+        "http://127.0.0.1:4177/projects"
+      ]
+    }
+  },
+  "validation": {
+    "date": "2026-10-19",
+    "sdkArchiveVerified": true,
+    "unrelatedDependencyPinsChanged": false,
+    "tests": {
+      "passed": 13,
+      "failed": 0
+    },
+    "publicBuild": true,
+    "staticNodeWorkerParity": true,
+    "liveRpc": false,
+    "originalCheckoutModified": false,
+    "browser": {
+      "method": "Isolated headless regular Google Chrome (com.google.Chrome), using visual-dom-cdp; owner reading disclosure opened via its summary.",
+      "nativeAppArrival": "not-tested",
+      "AgentReading": "not-established",
+      "physicalMobileDevice": false,
+      "clipboardDelivery": "not-tested-in-this-pass",
+      "screenshotsVisuallyInspected": true,
+      "checks": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "colorScheme": "light",
+          "disclosureInitiallyClosed": true,
+          "disclosureOpened": true,
+          "SDKVisible": true,
+          "ownerInvitationExact": true,
+          "offeredIndexOrigin": "https://pulse.inshell.art",
+          "claudeFreshURLExact": true,
+          "codexFreshURLExact": true,
+          "existingConversationManualOnly": true,
+          "otherAgentCopyAvailable": true,
+          "receiptInitiallyHidden": true,
+          "websiteQuestionInputs": 0,
+          "horizontalOverflow": false,
+          "allControlsInsideViewport": true,
+          "minimumControlHeight": 44,
+          "controlsHaveDistinctForegroundBackground": true,
+          "requests": {
+            "methods": [
+              "GET"
+            ],
+            "failed": [
+              {
+                "path": "/api/status",
+                "status": 503,
+                "method": "GET"
+              }
+            ]
+          },
+          "nativeHandoffActivated": false,
+          "AgentCallPerformed": false,
+          "localTrace": ".local/qa/reading-v010-pulse-desktop-open.json",
+          "localScreenshot": ".local/qa/reading-v010-pulse-desktop-open.png"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "colorScheme": "dark",
+          "disclosureInitiallyClosed": true,
+          "disclosureOpened": true,
+          "SDKVisible": true,
+          "ownerInvitationExact": true,
+          "offeredIndexOrigin": "https://pulse.inshell.art",
+          "claudeFreshURLExact": true,
+          "codexFreshURLExact": true,
+          "existingConversationManualOnly": true,
+          "otherAgentCopyAvailable": true,
+          "receiptInitiallyHidden": true,
+          "websiteQuestionInputs": 0,
+          "horizontalOverflow": false,
+          "allControlsInsideViewport": true,
+          "minimumControlHeight": 44,
+          "controlsHaveDistinctForegroundBackground": true,
+          "requests": {
+            "methods": [
+              "GET"
+            ],
+            "failed": [
+              {
+                "path": "/api/status",
+                "status": 503,
+                "method": "GET"
+              }
+            ]
+          },
+          "nativeHandoffActivated": false,
+          "AgentCallPerformed": false,
+          "localTrace": ".local/qa/reading-v010-pulse-mobile.json",
+          "localScreenshot": ".local/qa/reading-v010-pulse-mobile.png"
+        }
+      ],
+      "expectedUnavailableSource": {
+        "path": "/api/status",
+        "status": 503,
+        "countPerRun": 1,
+        "reason": "The existing calculator requests its status independently of reading controls. RPC configuration is deliberately blank and /dev/null is used for the local env source, so the local gateway is unavailable. No live Sepolia RPC was tested."
+      },
+      "manualPreviewOriginRetained": true
+    }
+  },
+  "limits": [
+    "A browser native URL request or clipboard action does not establish app arrival, sending, source retrieval, Agent reading or execution.",
+    "Optional unsigned receipts retain the offered public context and caller observation, with zero Agent Participants, Acts and Relations.",
+    "No Agent inference, private conversation inspection, contract interaction or deployment was performed."
+  ],
+  "patch": {
+    "file": "pulse.patch",
+    "sha256": "b34fcaebd4a8747871f86561e7d44d7aeb38642a1b5e8a7a78221c84545ac3ad",
+    "format": "git binary diff with zero context; apply using git apply --binary --unidiff-zero",
+    "cleanApplyChecked": true
+  }
+}

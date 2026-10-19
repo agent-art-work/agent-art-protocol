@@ -1,60 +1,89 @@
 # Agent Art Protocol
 
-A candidate participation protocol for artist-defined works in which human and
-Agent intention can affect the work in their own right.
+A candidate protocol for connecting users' real Agent environments and
+preserving claim-scoped evidence. Its artistic purpose is to support works
+in which human and Agent intention can have consequential standing.
 
-**Status: candidate protocol with authorized local implementation.** This repository starts
-private. The [local participation study](mvp/README.md) supplies a curator
-surface, local service, stdio MCP adapter and limited evidence checker. It is
-not a released SDK or protocol certification; the proposed remote HTTP/OAuth
-path and independent execution-origin evidence remain unqualified.
+**Current SDK: private `@agent-art/protocol@0.1.0`, focused on documentation
+reading.** A reusable **Ask your Agent** interface carries a site's public
+context into the visitor's Agent; the visitor asks and continues there.
+The SDK performs no inference and collects no questions, answers or private
+history. Existing conversations use manual copying and pasting.
 
-The protocol is not frozen. [Decisions and open discussion](DISCUSSION.md)
-separates the working agreements, proposals, unresolved questions and MVP
-findings. The [project walkthrough guide](examples/PROJECT-WALKTHROUGHS.md)
-starts with existing THOUGHT and Signatures' preview so actual artworks can
-inform the design.
+This is one evolving protocol. The generic architecture remains candidate;
+new artwork participation work, including THOUGHT, is deferred to a later
+compatible release. Earlier alpha/core APIs remain experimental and their
+observations are preserved. Reading uses **Work** and optional operational
+evidence with zero Participants, Acts and Relations; it is not thereby art.
 
-On 2026-10-19 the operator selected **one protocol** to dogfood across reading
-and artistic participation. The current implementation step applies the same
-four primitives and evidence facilities to **Lab reading and THOUGHT**, in
-isolated local consumers. Reading can stop at context handoff with zero
-observed Acts; an artwork's retained contributions require their own
-attribution and consequence material. This does not classify reading as art,
-freeze the generic contract or establish Agent execution origin. See the
-[implementation boundary](spec/0.1/IMPLEMENTATION.md) and experimental
-[core interface](protocol/README.md).
+## Install and integrate
 
-The core is now packaged as the **private draft SDK
-`@agent-art/protocol@0.1.0-alpha.0`**. Run `npm run sdk:pack` to create
-`.local/sdk/agent-art-protocol-0.1.0-alpha.0.tgz`, then install that archive in
-a consuming application. Typed imports expose the four primitives, bounded
-sealing/verification and native handoff preparation. See the
-[SDK installation and API guide](protocol/README.md). The package is private
-and has no selected reuse license; this is source development in the existing
-private repository, not an npm publication or stable protocol release.
+Run `npm run sdk:pack` to create
+`.local/sdk/agent-art-protocol-0.1.0.tgz`. Copy it into the consuming project's
+`vendor/` directory and install its relative file dependency:
 
-The Lab helper imports the installed SDK and serves its browser modules.
-THOUGHT imports the same package through its normal module resolver. Its
-return endpoint, authorization, durable acceptance/recovery and artistic
-renderer still belong to THOUGHT; a general shared return bridge remains
-unfinished. SDK packaging does not establish additional client or origin
-claims. `npm test` prepares the package before checking the consumers;
-`npm run test:sdk` includes a fresh offline tarball installation check.
+```sh
+npm install ./vendor/agent-art-protocol-0.1.0.tgz --ignore-scripts
+```
 
-To walk through the MVP, run `npm run dev` and open
-[the local surface](http://127.0.0.1:4173/). An installed, authenticated Claude
-Code client is required for the real Agent step. The page never fabricates an
-Agent reply. See [bounded qualification](mvp/QUALIFICATION.md) for checks and
-limits.
+Use the application's existing package manager and retain its dependency lock.
+The archive has no runtime dependencies or lifecycle scripts. The package
+remains private; no registry publication or reuse license is selected.
 
-The separate [Agent Art Lab reading pilot](pilot/README.md) runs at
-<http://127.0.0.1:4174/> with `npm run pilot:lab`. It experiments with reuse of
-the handoff layer for public reading: open a new desktop Agent conversation
-with Lab context, or paste context into an existing conversation. Questions
-and answers stay inside the Agent. See its qualification record for checked
-client paths. Its previous observations qualify only the recorded handoff
-experiment; they do not automatically qualify the new shared-core integration.
+The developer supplies a versioned Work with the exact public invitation,
+source/index references and authored reading policy, then mounts the shared
+interface or uses the headless controller:
+
+| Entry point | Purpose |
+| --- | --- |
+| `@agent-art/protocol/reading-ui` | Framework-neutral interface with client selection, fresh/existing conversation behavior and copy fallback |
+| `@agent-art/protocol/reading.css` | Styles that inherit host typography and configurable colors |
+| `@agent-art/protocol/reading` | Frozen reading frame, prepared routes and optional bounded receipts for a custom UI |
+| `@agent-art/protocol`, `/clients` | Existing factories, per-claim checks and native URL builder; wider participation APIs remain experimental |
+
+See the [SDK installation/API guide](protocol/README.md) and
+[reading release contract](spec/0.1/READING.md). Public reading requires no
+additional backend, local helper, account, enrollment, callback or evidence database.
+Receipts are opt-in; adopting persistent storage is not a protocol requirement.
+
+## Current consumers and checks
+
+| Isolated reading integration | Entry |
+| --- | --- |
+| Agent Art Lab | Homepage reading controls |
+| inshell.art | Docs page |
+| Pulse | Homepage and Projects |
+| signatures.gallery | About page; artwork preview and mint flows remain separate |
+
+These are reviewable local integrations. Their original checkouts and live
+sites are unchanged. The [consumer guide](pilot/reading-consumers/README.md)
+identifies the patches, locked archive and local walkthroughs; the
+[reading qualification](pilot/reading-consumers/QUALIFICATION.md) separates
+synthetic, browser and native-client observations. The candidate archive's
+SHA-256 is `646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0`.
+
+The 27 SDK tests passed, including actual offline package installation and
+backward verification of an alpha receipt. Regular Chrome fixture checks
+passed eight DOM regressions at desktop and mobile sizes. One Lab-to-Claude
+Open was observed as a fresh conversation containing the public Lab context;
+composer content was not fully byte-verified, and nothing was sent. This
+establishes neither reading nor inference. The user chose to clear that draft
+manually after automatic approval review blocked uncertain field cleanup.
+See qualification for the precise observations and remaining limits.
+
+`npm run test:sdk` checks the SDK. The final `npm test` run passed 86 tests,
+including retained earlier MVP/pilot code; this is not 86 reading-only checks.
+
+## Wider protocol and earlier experiments
+
+The [discussion record](DISCUSSION.md) distinguishes working agreements,
+proposals and findings. The [local participation MVP](mvp/README.md), earlier
+[Lab/THOUGHT alpha qualification](pilot/PROTOCOL-QUALIFICATION.md), and
+[project walkthroughs](examples/PROJECT-WALKTHROUGHS.md) retain their original
+scope. They do not qualify new release clients or settle independent Agent
+execution evidence. THOUGHT still owns its return endpoint, authorization,
+durable acceptance/recovery, creative conditions and renderer; a shared
+participation return service is unfinished.
 
 The selected scope, clarified 2026-10-18, is **curator-Agent bridges,
 participation evidence and verification**. Artists build their artwork's
@@ -77,9 +106,8 @@ The [THOUGHT walkthrough](examples/THOUGHT.md) and hypothetical
 human-first and Agent-initiated participation. Their histories are invented
 design examples, not live runs. [SOURCE.md](SOURCE.md) records prior research.
 
-The implementation remains a bounded experiment. Inshell, Pulse and Signatures'
-reading uses and Signatures' preview participation are future dogfooding
-targets, not implemented or qualified integrations. Generic encoding,
+The implementation remains bounded. Signatures' preview participation and new
+THOUGHT participation work are later-release targets. Generic encoding,
 authorization, retention, cross-client support and stronger execution evidence
 remain open. Claude Code on macOS via remote HTTP MCP/OAuth is still an
 unqualified proposal. The execution claim and acceptable trust remain in
@@ -101,7 +129,7 @@ working integrations.
 
 Keep the initial work together in this repository. Separate SDK/service repos
 are deferred until there is a demonstrated packaging or maintenance need.
-No runtime stack, managed hosting or license is selected by this rollout.
+No managed Agent runtime, hosting platform or license is selected by this rollout.
 
 The generic design was developed in WILL and separated here on 2026-10-17.
 [SOURCE.md](SOURCE.md) pins the complete prior synthesis and research attribution;
@@ -127,13 +155,14 @@ not adopted semantics or implementation.
 examines execution origin, fabrication/tampering, independent verification and
 application to the work. It identifies where the operator-trusted v0.1 draft
 falls short of the stronger evidence requirement. The current drafts incorporate
-claim-scoped evidence and verification, but select no stronger origin mechanism
-and provide no runtime qualification. The dated research retains its original
-findings and limits.
+claim-scoped evidence and verification, but select no stronger origin mechanism.
+The dated research itself supplies no runtime qualification and retains its
+original findings and limits.
 
 [Choosing the first infrastructure](research/2026-10-17-infrastructure-pivot.md)
 compares curator-supplied Agents, artist-defined Agents and existing-runtime
 adapters against their adoption costs, artistic relationships and evidence
 limits. Its dated recommendations remain research. The current architecture and
 v0.1 drafts record the subsequent scope clarification without selecting a hosted
-Agent platform, mint policy or implemented client path.
+Agent platform or mint policy. Current bounded client observations are recorded
+separately from that research.

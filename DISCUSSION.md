@@ -5,11 +5,11 @@ the protocol is not frozen. This record separates agreements, proposals,
 experiments and unresolved questions so we can explore real projects without
 turning earlier recommendations into decisions.
 
-The next activity is to walk through projects and understand how the protocol
-would be used. Start with the [project walkthrough guide](examples/PROJECT-WALKTHROUGHS.md).
-The projects can expose missing concepts, unnecessary requirements or a poor
-artist experience. They are evidence for refining the design, not candidates
-being graded against an already settled standard.
+The current sequence is the [SDK 0.1.0 reading release](spec/0.1/READING.md)
+across four isolated local consumers, followed by compatible artwork
+participation work. Earlier project discussions and observations below retain
+their date and scope. They inform the design rather than grading artworks
+against an already settled standard.
 
 ## How to read the status
 
@@ -352,14 +352,52 @@ capability split: `handoff` can retain zero Acts; `participation` and any
 consequence claim carry their applicable attribution, preservation and
 checking duties. No app selection creates a verified Agent identity.
 
-The other four selected uses remain future targets. This authorization does
+At that stage, the other four selected uses remained future targets. That authorization did
 not establish a passed native-client or real-contribution trial, stronger
 execution evidence, generic conformance, production deployment or publication.
 Earlier MVP and reading-pilot observations remain scoped to their candidates;
 new results must identify what was actually checked. The wire API and broader
 contract remain experimental and revisable.
 
-## Directions set aside or deferred
+## Reading-first release decision, later on 2026-10-19
+
+**Working agreement.** SDK `@agent-art/protocol@0.1.0` focuses on public
+documentation reading. Apply it to Inshell Docs, Agent Art Lab, Pulse and
+Signatures Gallery About before adding larger artwork participation to a
+later compatible release. This is one protocol with several use cases, not
+a separate general button product alongside an art-only protocol.
+
+**Implemented candidate.** The SDK now includes a framework-neutral browser
+interface, headless controller, native URL preparation and optional bounded
+receipts. The four reading integrations use the locked private archive in
+isolated clones, with [consumer patches/metadata](pilot/reading-consumers/README.md).
+Original application checkouts and live sites remain unchanged. No registry
+publication, license selection or deployment follows from this step.
+
+The site retains its canonical invitation, public sources and reading policy.
+The SDK handles client choice, fresh versus existing conversations, exact
+context carriage and manual fallback. The visitor asks inside their Agent.
+Reading needs no Agent enrollment, returned Act, answer collection, account,
+additional backend or persistent evidence store. Receipts are off by default; a consumer
+may opt in without implying that the Agent read or participated.
+
+The four primitives and evidence layer remain the common vocabulary. A reading
+Work is a public frame and may have zero Participants, Acts and Relations.
+THOUGHT's new contribution handling is deferred, while earlier experimental
+code and findings remain. The later release must preserve reading APIs and
+earlier receipt verification without imposing new artwork duties on reading.
+This does not freeze the generic schema or promise universal forward parsing.
+
+**Bounded findings.** The 27 SDK tests passed, as did eight actual browser DOM
+regressions at desktop and mobile sizes. A one-time regular-Chrome Lab Open
+reached a fresh Claude conversation containing the public Lab context. The
+composer was not fully byte-verified; no Send or inference was performed.
+Automatic approval review blocked uncertain draft-field cleanup, and the user
+chose to clear it manually. That choice is not a tool-observed cleanup result.
+The [current qualification](pilot/reading-consumers/QUALIFICATION.md) keeps
+these findings separate from earlier native and real-generation experiments.
+
+## Earlier alpha packaging and deferred directions
 
 **Private SDK development, later on 2026-10-19.** The operator asked to turn
 the existing core into a draft/MVP SDK and push it. The bounded step packages

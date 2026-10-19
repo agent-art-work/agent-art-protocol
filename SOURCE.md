@@ -223,3 +223,41 @@ The requested push targets the existing private repository on a feature
 branch. No registry release, visibility change, reuse license, deployment or
 new paid Agent trial is selected. The preserved WILL references and dated
 research remain unchanged.
+
+## Reading SDK 0.1.0 continuation, 2026-10-19
+
+The operator subsequently selected a reading-first release: apply one SDK to
+the existing documentation-reading uses at Inshell, Agent Art Lab, Pulse and
+Signatures Gallery, then add larger artwork participation in a later compatible
+release. New THOUGHT work is deferred. The alpha's earlier factories, receipt
+verification and experiments remain experimental paths with their original
+limits; they are not rewritten as findings for this release.
+
+Private `@agent-art/protocol@0.1.0` adds the reusable browser reading interface,
+controller/styles and optional caller-observed receipts. Its archive SHA-256
+is `646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0`.
+Four consumer integrations are prepared in isolated local clones. Their
+[patches/metadata](pilot/reading-consumers/README.md) retain source identities,
+dependency/archive locks and consumer-owned prompt boundaries. Original
+checkouts and deployed sites are unchanged. This is local package/application
+work, not registry publication, licensing or deployment.
+
+The [reading contract](spec/0.1/READING.md) records the selected release boundary:
+a public Work frame, zero required Agent Acts and opt-in operational evidence.
+The SDK does not acquire sources, inspect conversations or enforce the Agent's
+reading policy. Questions and answers remain inside the visitor's Agent.
+Unsigned receipts support only their named local observations, under caller
+trust; no new execution-origin mechanism was added.
+
+The [reading qualification](pilot/reading-consumers/QUALIFICATION.md) records
+27 SDK tests, installed-declaration checking and actual browser regression
+checks separately from earlier aggregate suites. A one-time Lab-to-Claude
+Open in regular Chrome was observed as a fresh conversation containing the
+public Lab context, without full composer-byte verification, Send or inference.
+Automatic approval review blocked draft cleanup because field ownership was
+uncertain; the user chose manual cleanup. No tool-verified cleanup result is
+claimed. These observations do not establish that an Agent read any source.
+
+The preserved WILL source/hash and all earlier dated research remain unchanged.
+The broader Work/Participant/Act/Relation architecture stays candidate, with
+artistic participation and mint policy boundaries intact.

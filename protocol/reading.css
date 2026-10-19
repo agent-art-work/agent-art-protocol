@@ -1,0 +1,43 @@
+.aap-reading {
+  --_aap-ink: var(--aap-ink, var(--ink, CanvasText));
+  --_aap-paper: var(--aap-paper, var(--paper, Canvas));
+  --_aap-line: var(--aap-line, var(--line, color-mix(in srgb, currentColor 25%, transparent)));
+  --_aap-muted: var(--aap-muted, var(--muted, currentColor));
+  color: var(--_aap-ink);
+  font: inherit;
+  line-height: 1.5;
+  min-width: 0;
+  max-width: 100%;
+}
+.aap-reading *, .aap-reading *::before, .aap-reading *::after { box-sizing: border-box; }
+.aap-reading [hidden] { display: none !important; }
+.aap-reading-options, .aap-reading-actions { display: flex; align-items: end; flex-wrap: wrap; gap: .75rem; }
+.aap-reading-options { margin-bottom: .75rem; }
+.aap-reading-options label { display: grid; gap: .35rem; min-width: 0; font: inherit; font-size: .8em; }
+.aap-reading :is(select, button, .aap-reading-open) {
+  font: inherit;
+  color: var(--_aap-ink);
+  background: var(--_aap-paper);
+  border: 1px solid var(--_aap-line);
+  border-radius: var(--aap-radius, 0);
+  padding: .65rem .9rem;
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+}
+.aap-reading select { width: 100%; font-size: 1rem; }
+.aap-reading-actions { align-items: stretch; }
+.aap-reading .aap-reading-open { display: inline-flex; align-items: center; color: var(--_aap-paper); background: var(--_aap-ink); border-color: var(--_aap-ink); text-decoration: none; }
+.aap-reading button, .aap-reading select, .aap-reading summary { cursor: pointer; }
+.aap-reading :is(button, select):disabled { opacity: .65; cursor: wait; }
+.aap-reading :is(a, button, select, textarea, summary):focus-visible { outline: 2px solid var(--_aap-ink); outline-offset: 3px; }
+.aap-reading :is(.aap-reading-route, .aap-reading-status) { margin: .75rem 0; color: var(--_aap-muted); font-size: .8em; overflow-wrap: anywhere; }
+.aap-reading .aap-reading-status:empty { display: none; }
+.aap-reading :is(.aap-reading-context, .aap-reading-evidence) { margin: .85rem 0 0; font-size: .8em; }
+.aap-reading summary { list-style: revert; }
+.aap-reading .aap-reading-text { display: block; width: 100%; margin-top: .6rem; padding: .75rem; font: inherit; color: var(--_aap-ink); background: var(--_aap-paper); border: 1px solid var(--_aap-line); resize: vertical; }
+.aap-reading-evidence p { margin: .65rem 0; }
+@media (max-width: 480px) {
+  .aap-reading-options > label { flex: 1 1 100%; }
+  .aap-reading-actions > :is(a, button) { flex: 1 1 100%; justify-content: center; }
+}
