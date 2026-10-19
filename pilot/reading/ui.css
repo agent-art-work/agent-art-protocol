@@ -1,0 +1,27 @@
+.reading-bridge { margin: 8px 0 28px; color: var(--ink, #34312d); }
+.reading-bridge [hidden] { display: none !important; }
+.reading-bridge .rb-label { margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted, #69625a); }
+.reading-bridge .rb-heading { font-size: 25px; margin-bottom: 12px; }
+.reading-bridge .rb-intro { font-size: 15px; color: var(--muted, #69625a); }
+.rb-controls { display: grid; gap: 10px; }
+.rb-controls label { font-size: 14px; }
+.rb-controls select, .rb-context-text { box-sizing: border-box; width: 100%; min-width: 0; border: 1px solid var(--line, #ded9cf); border-radius: 0; padding: 12px; background: var(--paper, #fbf9f4); color: var(--ink, #34312d); font: inherit; font-size: 16px; line-height: 1.6; }
+.rb-context-text { resize: vertical; margin-top: 10px; }
+.reading-bridge :is(textarea, select, button, summary):focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.reading-bridge .rb-route { font-size: 14px; margin: 5px 0 0; }
+.reading-bridge .rb-next { font-size: 13px; color: var(--muted, #69625a); margin: 0 0 8px; }
+.rb-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.rb-actions button { padding: 10px 16px; min-height: 44px; border: 1px solid var(--ink, #34312d); background: var(--ink, #34312d); color: var(--paper, #fbf9f4); font: inherit; font-size: 15px; }
+.rb-actions .rb-copy-button { background: transparent; color: var(--ink, #34312d); }
+.rb-actions button:disabled { opacity: .6; cursor: wait; }
+.reading-bridge .rb-status { margin: 16px 0; font-size: 13px; overflow-wrap: anywhere; }
+.rb-context { margin: 20px 0; border-block: 1px solid var(--line, #ded9cf); padding: 12px 0; font-size: 13px; }
+.rb-context summary { cursor: pointer; }
+.rb-context p { margin: 12px 0 0; font-size: 13px; color: var(--muted, #69625a); }
+.reading-bridge .rb-limit { margin: 12px 0 0; font-size: 13px; color: var(--muted, #69625a); }
+@media (max-width: 520px) { .rb-actions { flex-direction: column; } .rb-actions button { width: 100%; } }
+
+.rb-evidence { margin: 16px 0; font-size: 13px; }
+.rb-evidence summary { cursor: pointer; }
+.rb-evidence p { font-size: 13px; }
+.rb-download { font: inherit; color: inherit; background: transparent; border: 1px solid var(--line, #ded9cf); padding: 8px 12px; min-height: 40px; }

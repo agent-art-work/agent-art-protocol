@@ -2,8 +2,10 @@
 
 Read README.md, ARCHITECTURE.md, examples/THOUGHT.md and SOURCE.md first.
 
-- This is a candidate protocol design. Current scope is documentation; do not
-  start implementation, live Agent trials or deployment without operator direction.
+- This is a candidate protocol design with a private experimental SDK and
+  authorized local Lab/THOUGHT pilots. Read protocol/README.md for the package
+  boundary. Do not start new live Agent trials, registry publication or
+  deployment without operator direction.
 - Preserve four primitives: Work, Participant, Act, Relation. Evidence is a
   layer across them. Do not introduce a universal human-first, alternating-turn,
   fixed-round or final-synthesis requirement.

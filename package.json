@@ -3,11 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "node mvp/dev.mjs",
-    "test": "node --test mvp/test/*.test.mjs mvp/agent/test.mjs",
+    "pretest": "node scripts/sdk.mjs install",
+    "test": "node --test protocol/test/*.test.mjs mvp/test/*.test.mjs mvp/agent/test.mjs pilot/*.test.mjs pilot/reading/*.test.mjs",
     "mvp:agent": "node mvp/agent/launch.mjs",
-    "mvp:verify": "node mvp/verify.mjs"
+    "mvp:verify": "node mvp/verify.mjs",
+    "pilot:lab": "node pilot/lab.mjs",
+    "test:pilot": "node --test pilot/*.test.mjs pilot/reading/*.test.mjs",
+    "pretest:pilot": "node scripts/sdk.mjs install",
+    "test:protocol": "node --test protocol/test/*.test.mjs",
+    "test:sdk": "node --test protocol/test/*.test.mjs",
+    "sdk:pack": "node scripts/sdk.mjs pack",
+    "sdk:prepare": "node scripts/sdk.mjs install",
+    "pilot:thought": "node pilot/thought.mjs"
   }
 }

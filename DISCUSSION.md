@@ -55,7 +55,7 @@ boundary and trust assumptions.
 
 | Primitive | Present meaning |
 | --- | --- |
-| Work | The artistic conditions and an identified encounter under them; distinguish the definition from its developing instance |
+| Work | An identified frame for intended participation: purpose, context and conditions; distinguish the declaration/version from an encounter when recorded |
 | Participant | An attributed contributor, including humans and Agents; a claimed role and its authority remain separate from proven execution identity |
 | Act | An attributable contribution or expression, including a proposal, response, question, revision or explicit refusal under the Work's conditions |
 | Relation | An attributed link stating what an Act addresses, responds to, continues, transforms or contests |
@@ -71,6 +71,16 @@ same Participant, Agent–Agent encounters, parallel branches and continuing or
 unresolved works must remain expressible. An artwork may choose a stricter
 form, as THOUGHT does. Human authorization or launching a client is distinct
 from originating an artistic Act.
+
+**Candidate refinement for the authorized experiment, 2026-10-19.** Work's
+frame can support a public reading invitation without asserting artistic
+status or actual Agent participation. The same four primitives remain, but
+not every encounter populates all four: Lab reading can have zero observed
+Acts and no registered Agent. A selected application and an open acknowledgment
+are operational observations. Artistic profiles retain consequential Agent
+choice, original contributions, attribution/intervention and consequence
+requirements. This is a deliberate revision of the art-specific draft's
+applicability, not a released generic standard.
 
 An accepted contribution, a selected artifact and a completed Work are
 different outcomes. Presentation can occur while participation remains open.
@@ -247,6 +257,30 @@ to replace a better existing curator experience.
 
 ## Project findings and the next discussion
 
+**Additional experiment, 2026-10-19.** The operator selected agentart.work's
+existing reading invitation and requested a local shared-bridge prototype.
+The [reading pilot](pilot/README.md) preserves the Lab-owned prompt, source
+format and baseline copy flow, adding an observed local Claude Code route and
+an explicit answer return. Other clients remain manual routes. Its
+[qualification record](pilot/QUALIFICATION.md) identifies the observed path
+and limits. This tests possible reuse of the bridge layer; it does not adopt
+general document reading as a normative Agent Art profile, establish broader
+client support or demonstrate maintenance savings. Production distribution of
+the local component remains unresolved.
+
+**Flow correction, later on 2026-10-19.** The operator clarified that the reading
+button should open the visitor's Agent with the Lab's context; questions and
+answers belong inside that Agent. The Q&A experiment above is superseded as
+the intended experience, with its observations preserved. The revised local
+candidate offers an explicit new-conversation native handoff for desktop
+clients and manual context copying for an existing conversation. It does not
+automatically attach to private history, send a question, launch background
+inference or return an answer to the website. Native-client behavior must be
+qualified separately; the earlier CLI trial supplies no such qualification.
+The proposed shared benefit is maintaining client routes and clear fallback,
+while the Lab retains its documents and reading policy. Maintenance savings
+and general client compatibility remain unestablished.
+
 The [project guide](examples/PROJECT-WALKTHROUGHS.md) preserves the current
 comparison and source references. Keep these three THOUGHT references separate:
 the existing application, the [hypothetical protocol trace](examples/THOUGHT.md)
@@ -263,7 +297,80 @@ would add and what it would distort. We have not decided to migrate either
 artwork. The proposal to use them as reference integrations is a way to learn
 about the design, not a conformance verdict or implementation mandate.
 
+## Selected development cases: reading and artwork participation
+
+**Working direction, later on 2026-10-19.** The operator selected existing
+projects as real consumers through which to develop and use the protocol:
+
+| Consumer case | What it should exercise |
+| --- | --- |
+| inshell.art documentation reading | Its public knowledge index, source discovery and authored usage/answer policy |
+| agentart.work reading | The Lab's public documents, index and reading policy; extend the existing local pilot |
+| Pulse documentation reading | Its own public knowledge contract and source-access instructions |
+| signatures.gallery reading | The work's explanation and reading instructions, separate from participating in its preview |
+| THOUGHT participation | Context delivery, a real Agent contribution, exact acceptance/preservation and its consequence in the poem |
+| signatures.gallery preview participation | An Agent's interpretation/parameter choice, its graphic consequence and attributable later variation |
+
+These are six uses of one candidate protocol, not a general handoff library
+selected as a separate product alongside an art-only protocol. Reading is an
+intended use case in its own right. The protocol's two principal infrastructure
+responsibilities are connecting users' real Agent environments and preserving
+evidence with explicit claims and limits. Local clients may use cloud inference.
+
+The development should learn from the consumers' existing source formats,
+authored policies and user flows. It should identify which integration and
+evidence work is actually removed, what obligations are added, and which
+client paths work. Existing reading assets and artwork-specific facilities
+are the baseline, not capabilities newly supplied by this protocol.
+
+The four primitives remain Work, Participant, Act and Relation, with evidence
+across them and their supporting operations. The broader meaning of Work,
+lightweight reading requirements, conditional participation obligations and
+evidence bindings are still being polished; this direction does not ratify
+those candidate changes or establish conformance for any existing project.
+A copied invitation or accepted application-open request is not an Agent Act
+or proof of reading. Artistic participation and consequence claims retain
+their stronger requirements and unresolved execution-origin dependencies.
+
+Start with the current Lab pilot and compare the other real reading contracts
+before extracting common requirements. Use THOUGHT and Signatures preview to
+test what contribution handling and evidence require beyond handoff. This is
+a proposed sequence; the consumer selection is the operator's stated direction.
+Keep useful existing artwork behavior and leave minting policy with its owner.
+
+This records the development direction during the no-implementation design
+discussion. It does not start the new integrations, Agent trials or deployment.
+Artwork repositories retain their implementation/release responsibilities;
+the protocol and normative requirements remain candidates.
+
+**Implementation authorization, later on 2026-10-19.** The operator then
+authorized development of that one protocol, starting with Lab reading and
+THOUGHT. This supersedes the design-only restriction above for a bounded
+local implementation in isolated consumers. The
+[implementation note](spec/0.1/IMPLEMENTATION.md) records the experimental
+capability split: `handoff` can retain zero Acts; `participation` and any
+consequence claim carry their applicable attribution, preservation and
+checking duties. No app selection creates a verified Agent identity.
+
+The other four selected uses remain future targets. This authorization does
+not establish a passed native-client or real-contribution trial, stronger
+execution evidence, generic conformance, production deployment or publication.
+Earlier MVP and reading-pilot observations remain scoped to their candidates;
+new results must identify what was actually checked. The wire API and broader
+contract remain experimental and revisable.
+
 ## Directions set aside or deferred
+
+**Private SDK development, later on 2026-10-19.** The operator asked to turn
+the existing core into a draft/MVP SDK and push it. The bounded step packages
+`@agent-art/protocol@0.1.0-alpha.0` for local archive installation and pushes
+the current feature branch to the existing private repository. This adds a
+package boundary and developer entry points, without selecting a license,
+publishing to a registry, deploying consumers or freezing the protocol.
+Both pilots consume the packaged core. General callback transport, scoped
+authorization and durable acceptance/recovery have not been extracted into
+shared SDK facilities; THOUGHT still owns those operations. Actual packaging
+and consumer checks belong in the dated qualification record.
 
 | Direction | Disposition and reason |
 | --- | --- |

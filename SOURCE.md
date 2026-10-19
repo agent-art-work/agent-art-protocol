@@ -139,3 +139,87 @@ Recording these findings performs no new runtime trial, artwork migration,
 publication or deployment. Project encounters can revise the candidate
 design; the preserved WILL source, its digest and dated research reports
 remain unchanged.
+
+## Local Lab reading pilot, 2026-10-19
+
+After discussing reuse of the curator-Agent bridge for documentation reading,
+the operator explicitly requested a local prototype on Agent Art Lab. The
+[pilot](pilot/README.md) uses an isolated Lab clone and a preserved consumer
+patch, leaving the original checkout and live publication unchanged. Lab source
+format and reading policy remain with that consumer; reusable client handling,
+local task delivery, acceptance and inspection live in this repository.
+
+The [qualification record](pilot/QUALIFICATION.md) separates source inspection,
+synthetic checks, public acquisition and one actual scoped Claude Code reading
+through the local browser form. The earlier fresh-subagent reading baseline is
+a separate controlled transfer, not an external desktop handoff qualification.
+The former copy-helper reassessment and all historical evidence remain intact.
+The prototype does not establish that reading is Agent Art or select a generic
+protocol revision, distribution model, publication or deployment.
+
+### Flow correction, later on 2026-10-19
+
+The operator clarified that the website should hand the Lab context to the
+visitor's own Agent; the visitor then asks questions there. This supersedes
+the earlier website Q&A experience as the pilot's intended flow, without
+erasing its actual CLI trial, source-acquisition checks or other observations.
+Those remain a dated experiment in the [qualification record](pilot/QUALIFICATION.md).
+
+The revised candidate distinguishes a new desktop conversation with a prepared
+context draft from manual copying into an existing conversation. It provides
+no automatic private-history attachment, website question or answer collection,
+background inference or answer callback. Native URL handlers and actual draft
+placement require separate per-client qualification; earlier CLI or synthetic
+results are not relabeled as desktop evidence. The Lab continues to own its
+sources and reading policy. No production publication or deployment follows
+from this correction.
+
+Subsequent local checks of that revised candidate observed the complete unsent
+context in Claude desktop and cleared the owned draft. The Codex native open
+was accepted, but direct composer inspection was blocked by the active
+computer-use rule; neither visible draft placement nor its cleanup is claimed.
+The [qualification record](pilot/QUALIFICATION.md) separates these observations,
+revised browser checks and 42 passing synthetic tests, including 22 retained
+tests of the superseded engine/client. Opens used the local helper, so these
+checks do not qualify production browser protocol prompts. No Send action,
+Agent reading, publication or deployment was requested by these checks.
+
+## One protocol implementation direction, 2026-10-19
+
+The operator selected documentation reading at Inshell, the Lab, Pulse and
+Signatures Gallery as dogfooding for the same protocol used for THOUGHT and
+Signatures' preview participation, then authorized development starting with
+**Lab reading and THOUGHT**. The remaining uses are future targets. This
+direction supersedes the earlier design-only restriction for the bounded
+local implementation; it does not authorize deployment, publication or minting.
+
+The [implementation note](spec/0.1/IMPLEMENTATION.md) records a capability-based
+revision: a Work identifies intended context and conditions; `handoff` can
+produce zero observed Acts, while `participation` records and any consequence
+claim retain their applicable attribution, preservation and checking duties.
+No application selection fabricates a verified Agent identity. The core and
+consumer interfaces are experimental, and Agent execution origin remains
+unestablished. These are new design/implementation choices, not retroactive
+findings in the preserved WILL synthesis or dated research.
+
+Consumer changes are prepared in isolated local clones or worktrees. Earlier
+Lab reading, native handoff and participation-MVP observations retain their
+own scope and do not qualify the new integrations. Actual runtime results
+must identify the checked candidate and observation boundary separately.
+
+## Private draft SDK continuation, 2026-10-19
+
+The operator subsequently requested a draft/MVP SDK and a source push. The
+existing experimental core was packaged as private
+`@agent-art/protocol@0.1.0-alpha.0`, with typed root and client-handoff entry
+points and an explicit runtime file allowlist. The Lab and THOUGHT local
+consumers use that packaged code. This is a source/package boundary change,
+not stronger participation evidence, universal client support or a new Agent
+runtime. THOUGHT's existing return service and work-specific rules remain
+with THOUGHT. The [qualification record](pilot/PROTOCOL-QUALIFICATION.md)
+separates package installation and consumer checks from earlier trial results.
+
+The requested push targets the existing private repository on a feature
+branch. No registry release, visibility change, reuse license, deployment or
+new paid Agent trial is selected. The preserved WILL references and dated
+research remain unchanged.

@@ -1,12 +1,30 @@
 # Agent Art protocol v0.1 contract draft
 
-Status: **candidate**, revised 2026-10-18. All requirements in this document are
+Status: **candidate**, revised 2026-10-19. All requirements in this document are
 proposed contract semantics. Field labels and operation names are explanatory, not a
 stable JSON schema, RPC interface or released wire format. No implementation
 or client conformance is claimed. [SCOPE.md](SCOPE.md) defines curator-Agent
 bridges, participation evidence and verification as the first scope;
 [ARCHITECTURE.md](../../ARCHITECTURE.md) supplies the
 conceptual model and source context.
+
+### Dated applicability revision, 2026-10-19
+
+The operator authorized one experimental implementation, first applied to Lab
+reading and THOUGHT. This draft now distinguishes `handoff` from `participation`
+capabilities. A declaration supplies context and conditions without claiming
+that an Agent has already participated. Supporting operations apply when the
+profile exposes them; public reading does not require admission, grants,
+submission acceptance, a callback, a final artifact or a close operation.
+
+Participant, Act and Relation collections can be empty. A client-open event is
+an infrastructure observation; it does not populate an Agent identity or
+contribution. Participation authority, exact-content preservation, acceptance
+and consequence requirements apply when those operations or claims are made.
+This conditionality does not permit a contribution-bearing artwork to omit
+evidence required by its declared profile. Reading is not classified as art.
+The [implementation note](IMPLEMENTATION.md) identifies the experimental wire
+API separately from this candidate contract; neither is a released standard.
 
 ## 1. Contract invariants
 
@@ -33,8 +51,10 @@ conceptual model and source context.
 
 ## 2. Shared record conventions
 
-Every record has a stable reference and declared type/version. Work-scoped
-records identify the Work instance and its pinned definition. Creative
+Every retained record has a stable reference and declared type/version.
+Work-scoped contribution records identify their encounter and pinned
+definition. A handoff-only record can identify the declaration without
+registering a private conversation or per-visitor instance. Creative
 attribution identifies the claimed Participant; administrative actions identify
 the acting principal/role. Records identify the applicable protocol draft,
 profile and evidence policy. The exact envelope and canonical encoding are open.
@@ -52,12 +72,21 @@ meaning without negotiation. Exact discovery and negotiation remain open.
 
 | Record | Candidate required information |
 | --- | --- |
-| Work definition | Definition reference/version; publishing artist claim and authority; exact conditions or resolvable content identity; permitted participants, Acts and Relations; validation, composition/review/completion rules; evidence/checking and access/retention policies |
-| Work instance | Instance reference; pinned definition; creation/admission authority; operational status; context/state references and any attributable lifecycle changes |
+| Work definition | Declaration reference/version, title and purpose; identified context and live/snapshot source policy; applicable participation conditions and capabilities; publisher claim when supplied |
+| Work instance, when retained participation needs it | Encounter reference and pinned definition; context/state references; attributable lifecycle or admission authority where the profile provides it |
+| Artistic participation profile | Consequential Agent choices, permitted contributions/relations, attribution and intervention rules, validation/composition/rendering, applicable review/completion and evidence/access/retention policies |
 
-Definitions and instances are two parts of Work, not two primitives. The artist
-declares what the Agent can decide and how those decisions affect the work.
-Publishing authority gives no right to author another Participant's Acts.
+Work is an identified frame for intended participation: its purpose, context
+and conditions. Definitions and instances are two parts of Work, not two
+primitives. A Work is not necessarily an artifact, task or chat session, and
+its scope does not require a fixed duration or ending. An artwork's artist
+declares what the Agent can decide and how those decisions affect the work;
+publishing authority gives no right to author another Participant's Acts.
+
+A declaration may permit live public sources. Its index URL is a discovery
+location, not immutable content or proof of retrieval. Exact delivered/read
+context claims need their own versioned material and observations. A public
+reading handoff need not pin or download the entire source corpus.
 
 For this first scope, each instance pins one immutable definition. A different
 definition uses a new instance with an explicit reference to prior material if
@@ -74,8 +103,14 @@ requires an explicit profile rule and attributable transition.
 
 | Record | Candidate required information |
 | --- | --- |
-| Participant | Participant reference; claimed kind such as human or Agent; Work admission/role; attribution label and its declared basis |
-| Connection/access binding | Connection reference; authenticated principal and issuer claim; attributed Participant/role; Work scope; permitted operations; validity/revocation policy and binding authority |
+| Participant, when attributed | Participant reference; claimed kind such as human or Agent; role/admission when applicable; attribution label and its declared basis |
+| Connection/access binding, when access is controlled | Connection reference; authenticated principal and issuer claim; attributed Participant/role; Work scope; permitted operations; validity/revocation policy and binding authority |
+
+Neither a selected application nor an anonymous public handoff automatically
+creates or authenticates a Participant. The intended Agent can remain
+unregistered, and no observed Agent Act is a valid limited outcome. If a
+service later accepts an Act with claimed attribution, it must supply and
+check the applicable authority basis rather than infer it from an open event.
 
 Participant identity is distinct from an account, credential, client session,
 model name and connection. Connection replacement preserves explicit binding
@@ -168,6 +203,11 @@ to the actual model are different observable events. None proves comprehension.
 
 These are semantic capabilities, not one-to-one MCP tools or prescribed HTTP
 endpoints. Their mapping, discovery and error encoding remain open.
+
+The following obligations govern operations a profile actually exposes.
+They do not require every handoff to implement every operation. In particular,
+§4.1–4.3 describe retained submissions and their coordination, not mandatory
+state or enrollment for a public reading invitation.
 
 | Operation | Contract obligation |
 | --- | --- |

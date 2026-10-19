@@ -1,8 +1,28 @@
 # Agent Art protocol v0.1 scope
 
-Status: **candidate draft**, revised 2026-10-18. This names a proposed first
-development scope, not a released protocol version. No implementation, live Agent trial,
-client qualification, publication or deployment accompanies this document.
+Status: **candidate draft**, revised 2026-10-19. This names a first development
+scope, not a released protocol version. The operator has now authorized a
+bounded local implementation; that direction does not qualify a client,
+evidence claim, publication or deployment.
+
+### Dated implementation direction, 2026-10-19
+
+Develop one protocol through four eventual documentation-reading uses
+(Inshell, the Lab, Pulse and Signatures Gallery) and two artistic uses
+(THOUGHT and Signatures' preview participation). The current implementation
+step covers **Lab reading and THOUGHT only**, in isolated local consumers.
+The other uses remain future dogfooding targets, not supported integrations.
+Minting remains outside every use. This direction does not ratify all candidate
+fields, select a release or establish universal client compatibility.
+
+The Work declaration identifies intended context and conditions. Profiles
+select `handoff` and/or `participation` capabilities; submission, authority,
+preservation and consequence obligations apply to the operations and claims
+actually exposed. Lab reading may end at context handoff with zero observed
+Acts and no registered Agent. A contribution-bearing artwork must still
+preserve the original contribution and material needed to check its declared
+consequence. It cannot use the reading profile to evade those obligations.
+See [IMPLEMENTATION.md](IMPLEMENTATION.md) for the bounded experiment.
 
 The separately authorized [local MVP](../../mvp/README.md) now exercises a
 bounded text subset. The gate states below preserve this pre-MVP design
@@ -35,8 +55,8 @@ browser simulation does not establish that complete outcome. The stronger
 execution-origin mechanism remains unselected and unqualified; service receipts
 alone cannot close that gap.
 
-The artistic requirement is consequential room for Agent choice within the
-work's conditions. A work must state which choices it leaves to the Agent and
+The artistic profile requirement is consequential room for Agent choice within
+the work's conditions. An artwork must state which choices it leaves to the Agent and
 how those choices affect the work. Formal protocol conformance cannot determine
 whether the encounter achieves intentional participation or artistic value.
 
@@ -58,10 +78,11 @@ whether the encounter achieves intentional participation or artistic value.
 | Reference path | Proposed first target: Claude Code on macOS through HTTP MCP/OAuth, explicit curator setup/consent and invitation handoff; exact versions and behavior unqualified |
 | Examples | THOUGHT's human-first two-line candidate and OPEN FIELD's Agent-originated graphic development, without a different core protocol |
 
-The core meaning is carrier-independent. MCP is the proposed first carrier;
+The core meaning is carrier-independent. MCP was the proposed first carrier;
 its tools/resources/prompts do not replace the participation primitives. A
 local development adapter would not qualify the remote authorization path.
-The reference target is a proposal, not a promise of client support. A local
+That reference target remains a proposal, not a promise of client support.
+The authorized local experiment also reuses native desktop handoffs. A local
 Agent client does not imply locally executed model inference.
 
 ## 3. Participation evidence and verification
@@ -136,7 +157,12 @@ This permits Agent artistic initiation without claiming autonomous wake-up.
 Operational limits and access expiry do not become a universal artistic round
 limit or a fabricated refusal.
 
-## 5. Proposed development gates
+## 5. Historical proposed development gates, 2026-10-18
+
+These states record the pre-experiment design baseline. The dated implementation
+direction above authorizes a bounded capability subset; actual results belong
+in its qualification record. In particular, a handoff-only reader is not required
+to pass an artwork-consequence gate and cannot claim that consequence instead.
 
 | Gate | Evidence required before passing | Current state |
 | --- | --- | --- |
@@ -151,7 +177,7 @@ The documents are not evidence of passing the runtime gates. Model perception
 is not inferred merely from fetching an image or SVG. A successful integration
 of these two works would establish bounded reuse, not universality across art.
 
-## 6. Choices to settle before implementation
+## 6. Choices for generic qualification
 
 1. Review the candidate record fields and operation semantics in the contract;
    choose exact schema, identifier, encoding, digest and compatibility rules.
@@ -170,6 +196,7 @@ of these two works would establish bounded reuse, not universality across art.
    processing/results in an implementation design. Downstream minting admission
    is not a prerequisite for resolving these protocol choices.
 
-Writing and reviewing this scope does not authorize implementation or live
-trials. The next bounded design step is to settle those choices for the first
-real-client connection, then authorize its implementation separately.
+The earlier design-only boundary is superseded for the local implementation
+explicitly authorized on 2026-10-19, described in
+[IMPLEMENTATION.md](IMPLEMENTATION.md). Generic qualification, stronger origin
+claims, production deployment and publication remain separate decisions.

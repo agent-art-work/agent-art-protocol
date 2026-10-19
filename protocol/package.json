@@ -1,0 +1,32 @@
+{
+  "name": "@agent-art/protocol",
+  "version": "0.1.0-alpha.0",
+  "description": "Private experimental SDK for Agent handoff and claim-scoped participation evidence.",
+  "private": true,
+  "type": "module",
+  "main": "./index.mjs",
+  "types": "./index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./index.d.mts",
+      "import": "./index.mjs",
+      "default": "./index.mjs"
+    },
+    "./clients": {
+      "types": "./clients.d.mts",
+      "import": "./clients.mjs",
+      "default": "./clients.mjs"
+    }
+  },
+  "files": [
+    "index.mjs",
+    "index.d.mts",
+    "clients.mjs",
+    "clients.d.mts",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "sideEffects": false
+}

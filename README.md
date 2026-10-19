@@ -3,7 +3,7 @@
 A candidate participation protocol for artist-defined works in which human and
 Agent intention can affect the work in their own right.
 
-**Status: candidate protocol design with a local MVP.** This repository starts
+**Status: candidate protocol with authorized local implementation.** This repository starts
 private. The [local participation study](mvp/README.md) supplies a curator
 surface, local service, stdio MCP adapter and limited evidence checker. It is
 not a released SDK or protocol certification; the proposed remote HTTP/OAuth
@@ -15,11 +15,46 @@ findings. The [project walkthrough guide](examples/PROJECT-WALKTHROUGHS.md)
 starts with existing THOUGHT and Signatures' preview so actual artworks can
 inform the design.
 
+On 2026-10-19 the operator selected **one protocol** to dogfood across reading
+and artistic participation. The current implementation step applies the same
+four primitives and evidence facilities to **Lab reading and THOUGHT**, in
+isolated local consumers. Reading can stop at context handoff with zero
+observed Acts; an artwork's retained contributions require their own
+attribution and consequence material. This does not classify reading as art,
+freeze the generic contract or establish Agent execution origin. See the
+[implementation boundary](spec/0.1/IMPLEMENTATION.md) and experimental
+[core interface](protocol/README.md).
+
+The core is now packaged as the **private draft SDK
+`@agent-art/protocol@0.1.0-alpha.0`**. Run `npm run sdk:pack` to create
+`.local/sdk/agent-art-protocol-0.1.0-alpha.0.tgz`, then install that archive in
+a consuming application. Typed imports expose the four primitives, bounded
+sealing/verification and native handoff preparation. See the
+[SDK installation and API guide](protocol/README.md). The package is private
+and has no selected reuse license; this is source development in the existing
+private repository, not an npm publication or stable protocol release.
+
+The Lab helper imports the installed SDK and serves its browser modules.
+THOUGHT imports the same package through its normal module resolver. Its
+return endpoint, authorization, durable acceptance/recovery and artistic
+renderer still belong to THOUGHT; a general shared return bridge remains
+unfinished. SDK packaging does not establish additional client or origin
+claims. `npm test` prepares the package before checking the consumers;
+`npm run test:sdk` includes a fresh offline tarball installation check.
+
 To walk through the MVP, run `npm run dev` and open
 [the local surface](http://127.0.0.1:4173/). An installed, authenticated Claude
 Code client is required for the real Agent step. The page never fabricates an
 Agent reply. See [bounded qualification](mvp/QUALIFICATION.md) for checks and
 limits.
+
+The separate [Agent Art Lab reading pilot](pilot/README.md) runs at
+<http://127.0.0.1:4174/> with `npm run pilot:lab`. It experiments with reuse of
+the handoff layer for public reading: open a new desktop Agent conversation
+with Lab context, or paste context into an existing conversation. Questions
+and answers stay inside the Agent. See its qualification record for checked
+client paths. Its previous observations qualify only the recorded handoff
+experiment; they do not automatically qualify the new shared-core integration.
 
 The selected scope, clarified 2026-10-18, is **curator-Agent bridges,
 participation evidence and verification**. Artists build their artwork's
@@ -42,13 +77,13 @@ The [THOUGHT walkthrough](examples/THOUGHT.md) and hypothetical
 human-first and Agent-initiated participation. Their histories are invented
 design examples, not live runs. [SOURCE.md](SOURCE.md) records prior research.
 
-The next activity is to walk through projects, identify what artists and
-curators gain or must do, and refine the scope/contract with those findings.
-A concrete curator-to-real-Agent bridge still needs exact evidence bindings,
-verification claims/methods, trust dependencies, encoding, authorization and
-retention before full implementation. Claude Code on macOS via HTTP MCP/OAuth
-remains a proposed target; support and its execution-evidence path are
-unqualified. The execution claim and acceptable trust are still in discussion.
+The implementation remains a bounded experiment. Inshell, Pulse and Signatures'
+reading uses and Signatures' preview participation are future dogfooding
+targets, not implemented or qualified integrations. Generic encoding,
+authorization, retention, cross-client support and stronger execution evidence
+remain open. Claude Code on macOS via remote HTTP MCP/OAuth is still an
+unqualified proposal. The execution claim and acceptable trust remain in
+discussion; local recording and integrity checks cannot settle them.
 
 | Home | Responsibility |
 | --- | --- |

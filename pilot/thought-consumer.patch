@@ -1,0 +1,248 @@
+diff --git a/apps/thought/src/plain-return/client.ts b/apps/thought/src/plain-return/client.ts
+index dba0f33..1da2ded 100644
+--- a/apps/thought/src/plain-return/client.ts
++++ b/apps/thought/src/plain-return/client.ts
+@@ -4,0 +5 @@ import { API, PENDING_KEY, SAVED_KEY, assertRunId, createBrief, validateWork, ty
++import type { ThoughtProtocolAttachment } from "./protocol";
+@@ -26,2 +27,2 @@ export type WorkExport = { schema: "inshell.thought.plain-work-export.v1"; stage
+-function storedRecord(work: PlainWork): ThoughtWorkRecord {
+-  return appendThoughtWork([], {
++function storedRecord(work: PlainWork, protocol?: ThoughtProtocolAttachment): ThoughtWorkRecord {
++  const stored = appendThoughtWork([], {
+@@ -34,0 +36,14 @@ function storedRecord(work: PlainWork): ThoughtWorkRecord {
++  return { ...stored, ...(protocol ? { agentArtProtocol: protocol } : {}) };
++}
++function savedProtocols(storage: WorkStorage) {
++  const result = new Map<string, ThoughtProtocolAttachment>();
++  try {
++    const records = JSON.parse(storage.getItem(SAVED_KEY) ?? "[]");
++    if (!Array.isArray(records)) return result;
++    for (const record of records) {
++      if (record?.runContext?.mode !== "experimental-plain-http") continue;
++      const work = validateWork(JSON.parse(record.provenanceJson));
++      if (record.agentArtProtocol?.record?.instance === work.runId) result.set(work.runId, record.agentArtProtocol);
++    }
++  } catch { /* Existing artwork remains readable without a protocol attachment. */ }
++  return result;
+@@ -150 +165 @@ export class PlainClient {
+-  save() {
++  save(protocol?: ThoughtProtocolAttachment) {
+@@ -154 +169,3 @@ export class PlainClient {
+-    writeThoughtWorks(this.savedStorage, works.map((work, index) => ({ ...storedRecord(work), id: index + 1 })), SAVED_KEY);
++    const retained = savedProtocols(this.savedStorage);
++    if (protocol) retained.set(this.work.runId, protocol);
++    writeThoughtWorks(this.savedStorage, works.map((work, index) => ({ ...storedRecord(work, retained.get(work.runId)), id: index + 1 })), SAVED_KEY);
+diff --git a/apps/thought/src/plain-return/plain-return.test.ts b/apps/thought/src/plain-return/plain-return.test.ts
+index c13a16f..3d1e1b7 100644
+--- a/apps/thought/src/plain-return/plain-return.test.ts
++++ b/apps/thought/src/plain-return/plain-return.test.ts
+@@ -15,0 +16 @@ import { readThoughtWorks } from "../works";
++import { buildClientHandoff } from "@agent-art/protocol";
+@@ -119,4 +120,6 @@ test("both launch paths retain the shared native-curl-only handoff and frozen cr
+-  assert.ok(view.includes('[["ChatGPT", "codex://new?", "prompt"], ["Claude", "claude://code/new?", "q"]]'));
+-  assert.ok(view.includes('link.href = prefix + new URLSearchParams({ [key]: task })'));
+-  for (const [prefix, key] of [["codex://new?", "prompt"], ["claude://code/new?", "q"]]) {
+-    const delivered = new URL(prefix + new URLSearchParams({ [key]: task })).searchParams.get(key)!;
++  assert.ok(view.includes('import { buildClientHandoff } from "@agent-art/protocol"'));
++  assert.ok(view.includes('surface: "code"'));
++  for (const [client, surface, prefix, key] of [["codex-app", "chat", "codex://new?", "prompt"], ["claude-app", "code", "claude://code/new?", "q"]] as const) {
++    const link = buildClientHandoff({ client, surface, prompt: task, conversation: "fresh" });
++    assert.ok(link.url.startsWith(prefix));
++    const delivered = new URL(link.url).searchParams.get(key)!;
+diff --git a/apps/thought/src/plain-return/view.ts b/apps/thought/src/plain-return/view.ts
+index cc51911..7db9902 100644
+--- a/apps/thought/src/plain-return/view.ts
++++ b/apps/thought/src/plain-return/view.ts
+@@ -15,0 +16,2 @@ import { createBrief } from "./model";
++import { buildClientHandoff } from "@agent-art/protocol";
++import { prepareThoughtProtocol } from "./protocol";
+@@ -68,0 +71 @@ let historical: ReturnType<typeof readEarlierWorks>[number] | null = null;
++let evidenceNotice: { runId: string; detail: string; tone: ThoughtConsoleTone } | null = null;
+@@ -289 +292 @@ function render() {
+-  const signature = JSON.stringify([enabled, client.state, client.work?.runId, historical?.runId, client.reviewed, client.conflict, Boolean(task), launched, cancelling, actionError, libraryOpen, loaded, prompt.value]);
++  const signature = JSON.stringify([enabled, client.state, client.work?.runId, historical?.runId, client.reviewed, client.conflict, Boolean(task), launched, cancelling, actionError, libraryOpen, loaded, prompt.value, evidenceNotice]);
+@@ -356 +359 @@ function render() {
+-      for (const [label, prefix, key] of [["ChatGPT", "codex://new?", "prompt"], ["Claude", "claude://code/new?", "q"]]) {
++      for (const route of [{ label: "ChatGPT", client: "codex-app", surface: "chat" }, { label: "Claude", client: "claude-app", surface: "code" }] as const) {
+@@ -359,2 +362,2 @@ function render() {
+-        link.textContent = label;
+-        link.href = prefix + new URLSearchParams({ [key]: task });
++        link.textContent = route.label;
++        link.href = buildClientHandoff({ client: route.client, surface: route.surface, prompt: task, conversation: "fresh" }).url;
+@@ -373 +376,2 @@ function render() {
+-    message(client.state === "saved" ? loaded ? "Work loaded" : "Work saved" : client.reviewed ? "Work reviewed" : "Return received", client.state === "saved"
++    if (evidenceNotice && evidenceNotice.runId === client.work?.runId) message("Evidence checked", evidenceNotice.detail, evidenceNotice.tone);
++    else message(client.state === "saved" ? loaded ? "Work loaded" : "Work saved" : client.reviewed ? "Work reviewed" : "Return received", client.state === "saved"
+@@ -377 +381,5 @@ function render() {
+-    if (client.state === "review") button(client.reviewed ? "Save" : "Review complete", () => { if (client.reviewed) client.save(); else client.review(); });
++    if (client.state === "review") button(client.reviewed ? "Save" : "Review complete", async () => {
++      if (client.reviewed) client.save(await prepareThoughtProtocol(client.work!));
++      else client.review();
++      evidenceNotice = null;
++    });
+@@ -415,2 +423,3 @@ function render() {
+-    if (!historical && enabled && !client.conflict && (client.state === "review" || client.state === "saved")) button("Export work", () => {
+-      const record = client.exportWork();
++    if (!historical && enabled && !client.conflict && (client.state === "review" || client.state === "saved")) button("Export work", async () => {
++      const original = client.exportWork();
++      const record = { ...original, agentArtProtocol: await prepareThoughtProtocol(original.work) };
+@@ -422,0 +432,7 @@ function render() {
++    if (!historical && enabled && !client.conflict && (client.state === "review" || client.state === "saved")) button("Check evidence", async () => {
++      const attachment = await prepareThoughtProtocol(client.work!);
++      const matched = attachment.verification.checks.some(check => check.claim === "thought-exact-pair-rendered" && check.status === "supported");
++      evidenceNotice = { runId: client.work!.runId, tone: matched ? "neutral" : "warning", detail: matched
++        ? "The exact line pair and SVG match THOUGHT's retained app record. Independent Agent identity and execution remain unestablished."
++        : "The line pair or SVG could not be matched to THOUGHT's retained app record. Keep the work open for inspection." };
++    });
+diff --git a/apps/thought/src/plain-return/protocol.ts b/apps/thought/src/plain-return/protocol.ts
+new file mode 100644
+index 0000000..a4c9e9f
+--- /dev/null
++++ b/apps/thought/src/plain-return/protocol.ts
+@@ -0,0 +1,85 @@
++import {
++  defineWork, participant, act, relation, createRecord, seal, verify, canonicalJSON,
++  type ConsequenceCheck, type ParticipationRecord, type SealedRecord, type Verification,
++} from "@agent-art/protocol";
++import { createBrief, PINS, validateWork, type PlainWork } from "./model";
++
++export type ThoughtProtocolAttachment = { record: SealedRecord; verification: Verification };
++const HUMAN = "thought:curator";
++const AGENT = "thought:external-agent";
++const SERVICE = "thought:app";
++const HUMAN_ACT = "thought:prompt-line";
++const AGENT_ACT = "thought:agent-line";
++const SVG = "thought:svg";
++
++// THOUGHT owns the artistic conditions and checker. Shared infrastructure owns
++// record construction, integrity encoding and per-claim verification. Private
++// handoffs and browser/return capabilities never enter these records.
++export function thoughtParticipationRecord(input: PlainWork): ParticipationRecord {
++  const work = validateWork(input);
++  const brief = createBrief(work.runId, work.promptLine);
++  const definition = defineWork({
++    id: "https://inshell.art/thought#plain-participation", version: work.briefSha256,
++    title: "THOUGHT: an exact prompt and Agent return",
++    purpose: "Preserve the two attributed lines and their distinct positions in THOUGHT's artist-defined terminal-chat artwork.",
++    publisher: { id: "https://inshell.art", label: "Inshell" },
++    capabilities: ["handoff", "participation"],
++    context: [{ id: "thought:offered-brief", kind: "text", text: brief.text, mode: "snapshot" }],
++    conditions: {
++      profile: "inshell.thought.work.v2", pins: { ...PINS },
++      formalInput: "The original THOUGHT Terminal English validator remains authoritative for each exact line.",
++      contribution: "The external Agent chooses its exact line under the offered brief; bearer possession does not prove Agent authorship.",
++      composition: "Prompt at upper right; Agent return at lower left, using the pinned THOUGHT renderer.",
++      review: "Acceptance, curator review, browser save and external publication are distinct. No mint is enabled by this profile.",
++      retention: "The visitor chooses browser save and export. No private Agent conversation is captured.",
++      evidence: { requireAgentAct: true, requireConsequence: true },
++    },
++  });
++  return createRecord({
++    work: definition, instance: work.runId,
++    participants: [
++      participant({ id: HUMAN, kind: "human", label: "Curator (application attribution)", roles: ["curator"], authority: { basis: "The browser supplied the accepted prompt; human identity is not independently established." } }),
++      participant({ id: AGENT, kind: "agent", label: "External Agent (claimed attribution)", roles: ["contributor"], authority: { basis: "THOUGHT accepted a line through the run-scoped return capability.", executionOrigin: "not-established" } }),
++      participant({ id: SERVICE, kind: "service", label: "THOUGHT application", roles: ["operator"], authority: { basis: "Application return record reconstructed and checked by this browser; no independent issuer signature." } }),
++    ],
++    acts: [
++      act({ id: HUMAN_ACT, participant: HUMAN, kind: "line", content: work.promptLine, context: { workVersion: definition.version } }),
++      act({ id: AGENT_ACT, participant: AGENT, kind: "line", content: work.agentLine, context: { workVersion: definition.version, actIds: [HUMAN_ACT] } }),
++    ],
++    relations: [relation({ id: "thought:response-relation", participant: SERVICE, kind: "responds-to", from: AGENT_ACT, to: { type: "act", id: HUMAN_ACT } })],
++    observations: [{
++      id: "thought:acceptance-observation", observer: SERVICE, event: "application-acceptance-record-observed",
++      subjects: [work.runId, AGENT_ACT],
++      material: { acceptedAt: work.acceptedAt, schema: work.schema, briefSha256: work.briefSha256, responseSha256: work.responseSha256, provenance: { ...work.provenance } },
++      trust: ["THOUGHT application, run-scoped bearer authorization and this browser's reconstruction of the returned record."],
++      limits: ["A capability holder could submit a manually authored line.", "Provider, model, private context and independent execution origin remain unestablished.", "The response Relation is declared by the application from its run semantics, not a separately authenticated Agent declaration."],
++    }],
++    artifacts: [{ id: SVG, mediaType: "image/svg+xml", content: work.svg, actIds: [HUMAN_ACT, AGENT_ACT], claims: ["thought-exact-pair-rendered"] }],
++  });
++}
++
++export function checkThoughtConsequence(record: ParticipationRecord, input: PlainWork): ConsequenceCheck[] {
++  const accepted = validateWork(input);
++  const expected = thoughtParticipationRecord(accepted);
++  const artifact = record.artifacts.find(item => item.id === SVG);
++  if (!artifact) return [];
++  const matches = record.instance === accepted.runId
++    && canonicalJSON(record.work) === canonicalJSON(expected.work)
++    && canonicalJSON(record.participants) === canonicalJSON(expected.participants)
++    && canonicalJSON(record.acts) === canonicalJSON(expected.acts)
++    && canonicalJSON(record.relations) === canonicalJSON(expected.relations)
++    && canonicalJSON(artifact) === canonicalJSON(expected.artifacts[0]);
++  return [{
++    claim: "thought-exact-pair-rendered", subject: artifact.id,
++    status: matches ? "supported" : "contradicted",
++    detail: matches
++      ? "The exact accepted curator and Agent lines, attribution, response Relation, pinned conditions and deterministic THOUGHT SVG match this application record. This does not attest execution origin or a live website display."
++      : "The retained participation or SVG differs from THOUGHT's exact accepted pair and pinned derivation. An internally valid digest cannot repair that consequence mismatch.",
++  }];
++}
++
++export async function prepareThoughtProtocol(work: PlainWork): Promise<ThoughtProtocolAttachment> {
++  const record = await seal(thoughtParticipationRecord(work));
++  const verification = await verify(record, { checkConsequence: input => checkThoughtConsequence(input, work) });
++  return { record, verification };
++}
+diff --git a/apps/thought/src/plain-return/protocol.test.ts b/apps/thought/src/plain-return/protocol.test.ts
+new file mode 100644
+index 0000000..3828d97
+--- /dev/null
++++ b/apps/thought/src/plain-return/protocol.test.ts
+@@ -0,0 +1,55 @@
++import assert from "node:assert/strict";
++import { test } from "node:test";
++import { seal, verify, buildClientHandoff } from "@agent-art/protocol";
++import { makeWork, SAVED_KEY, handoff } from "./model";
++import { PlainClient } from "./client";
++import { thoughtParticipationRecord, prepareThoughtProtocol, checkThoughtConsequence } from "./protocol";
++
++const work = () => makeWork("plain_synthetic-protocol-test", "Who listens?", "The quiet waits.", "2026-10-19T00:00:00.000Z");
++test("THOUGHT uses shared four-primitives and verifies its exact artistic consequence without certifying origin", async () => {
++  const accepted = work();
++  const bundle = await prepareThoughtProtocol(accepted);
++  assert.equal(bundle.record.instance, accepted.runId);
++  assert.equal(bundle.record.acts.length, 2);
++  assert.equal(bundle.record.acts[0].content, accepted.promptLine);
++  assert.equal(bundle.record.acts[1].content, accepted.agentLine);
++  assert.equal(bundle.record.artifacts[0].content, accepted.svg);
++  assert.equal(bundle.record.relations[0].participant, "thought:app");
++  assert.ok(bundle.verification.checks.some(item => item.claim === "thought-exact-pair-rendered" && item.status === "supported"));
++  assert.ok(bundle.verification.checks.some(item => item.claim === "agent-execution-origin" && item.status === "not-established"));
++  assert.ok(!JSON.stringify(bundle).includes("Bearer "));
++  assert.ok(!JSON.stringify(bundle).includes("browserToken"));
++});
++test("resealing an edited Agent line or SVG cannot satisfy THOUGHT's own exact-pair checker", async () => {
++  const accepted = work();
++  for (const mutate of [
++    (record: ReturnType<typeof thoughtParticipationRecord>) => { record.acts[1].content = "Someone changed it."; },
++    (record: ReturnType<typeof thoughtParticipationRecord>) => { record.artifacts[0].content = "<svg/>"; },
++    (record: ReturnType<typeof thoughtParticipationRecord>) => { record.relations[0].participant = "thought:external-agent"; },
++  ]) {
++    const changed = thoughtParticipationRecord(accepted); mutate(changed);
++    const report = await verify(await seal(changed), { checkConsequence: record => checkThoughtConsequence(record, accepted) });
++    assert.ok(report.checks.some(item => item.claim === "record-integrity" && item.status === "supported"));
++    assert.ok(report.checks.some(item => item.claim === "thought-exact-pair-rendered" && item.status === "contradicted"));
++  }
++});
++test("saving stores the protocol attachment with the original canonical work in one storage write", async () => {
++  const values = new Map<string, string>();
++  const storage = { getItem: (key: string) => values.get(key) ?? null, setItem: (key: string, value: string) => { values.set(key, value); }, removeItem: (key: string) => { values.delete(key); } };
++  const client = new PlainClient(storage, storage);
++  client.work = work(); client.state = "review"; client.review();
++  const bundle = await prepareThoughtProtocol(client.work);
++  client.save(bundle);
++  const saved = JSON.parse(values.get(SAVED_KEY)!);
++  assert.equal(saved[0].agentArtProtocol.record.integrity.digest, bundle.record.integrity.digest);
++  assert.deepEqual(JSON.parse(saved[0].provenanceJson), client.work);
++  assert.deepEqual(client.exportWork().work, work());
++});
++test("shared client routes retain THOUGHT's Claude Code return capability without putting it in evidence", async () => {
++  const token = "s".repeat(43);
++  const task = handoff(work().runId, work().promptLine, "http://127.0.0.1:4175", token, Date.now() + 60000).text;
++  const link = buildClientHandoff({ client: "claude-app", surface: "code", conversation: "fresh", prompt: task });
++  assert.ok(link.url.startsWith("claude://code/new?q="));
++  assert.equal(new URL(link.url).searchParams.get("q"), task);
++  assert.ok(!JSON.stringify(await prepareThoughtProtocol(work())).includes(token));
++});

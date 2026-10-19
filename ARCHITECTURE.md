@@ -1,6 +1,6 @@
 # Agent Art protocol architecture
 
-Status: **candidate**, updated 2026-10-18. This is the current home of the
+Status: **candidate**, revised 2026-10-19. This is the current home of the
 reusable protocol draft. Exact schemas, client support, packaging and deployment
 remain open. A separately authorized [local MVP](mvp/README.md) exercises a
 bounded subset; it does not qualify the remote HTTP/OAuth path or independent
@@ -12,6 +12,27 @@ agreements from proposals and open questions. This architecture is a baseline
 to refine through [project walkthroughs](examples/PROJECT-WALKTHROUGHS.md),
 not a frozen standard. MVP implementation choices do not ratify the generic
 contract or settle the execution-evidence threshold.
+
+**Authorized implementation revision, 2026-10-19.** One experimental protocol
+will be applied first to Lab reading and THOUGHT in isolated local consumers.
+Its two infrastructure responsibilities are connecting curator-controlled real
+Agent environments and preserving/checking evidence of what actually occurred.
+Capabilities determine which operations and records are needed: a public
+reading handoff may have zero observed Acts and no enrolled Agent; a retained
+artwork contribution needs attribution, original content and consequence
+material. This revision broadens reuse of the protocol infrastructure without
+classifying reading as Agent Art or relaxing an artwork's artistic obligations.
+It is not a released contract or client qualification. See the
+[implementation boundary](spec/0.1/IMPLEMENTATION.md).
+
+The same experimental core is now an installable private draft SDK,
+`@agent-art/protocol@0.1.0-alpha.0`, consumed by both local pilots. Its package
+boundary exposes record factories, integrity/claim checks and native handoff
+preparation. Packaging does not settle the generic contract, qualify a client
+route or provide a shared return service. THOUGHT retains its existing scoped
+return endpoint, authorization, persistence/recovery and artistic checker.
+No registry publication, licensing decision or deployment follows from the
+operator's separate authorization to package and push the private source.
 
 The proposed first development scope is in [v0.1 SCOPE](spec/0.1/SCOPE.md)
 with a [contract draft](spec/0.1/CONTRACT.md). Its two written examples use
@@ -71,7 +92,7 @@ status.
 
 | Primitive | Meaning and candidate contract | What remains artwork-defined |
 |---|---|---|
-| **Work** | The artistic conditions and the identifiable instance in which participation occurs. Identify the artist's definition/version separately from the instance and its changing context or state. | Medium, available context, admission, participant permissions, permitted acts/relations, validation, composition, rendering, review, disclosure and completion. |
+| **Work** | An identified frame for intended participation: its purpose, context and conditions. Distinguish the declaration/version from a particular encounter when that encounter is recorded. Defining or opening it does not establish Agent participation. | Context and source freshness; relevant roles and operations; and, for an artwork, medium, consequential choices, composition, rendering, review and evidence requirements. |
 | **Participant** | An attributed participant in a Work. Human and Agent are kinds within the same conceptual category. Record the claimed role and its authority without treating a credential as proof of human or model identity. | Eligibility, pseudonymity, role-specific powers and who may authorize a connection or action. Equal artistic standing does not imply identical permissions or equal numerical influence. |
 | **Act** | An attributable expression or contribution within a Work: a proposition, text, image, graphic action, response, revision, question, refusal or other work-defined act. Preserve the submitted content and its declared context. | Contribution media and constraints, permitted act kinds, how acts affect the work and which require acknowledgment or review. These examples are not a closed universal catalogue. |
 | **Relation** | An attributed link describing what an Act addresses, continues, transforms, contests, combines or accompanies. An Act may address the Work itself, one earlier Act or several Acts. Additional relations retain who declared them. | Which relation kinds are meaningful, who may declare them, whether agreement is needed and how disagreements or competing relations are presented. A reference alone does not establish the referenced participant's consent or the Agent's comprehension. |
@@ -79,6 +100,23 @@ status.
 **Composition belongs to the Work's rules.** It is not a fifth participation primitive or a compulsory merge into agreement. A renderer can show the current work while participation remains open. Disagreement, coexistence, refusal and silence need not be resolved into a shared intention. An explicit refusal is an Act when the work permits it; network failure, host denial, service rejection and an unanswered invitation are not automatically artistic refusals.
 
 Intention enters through participation and the resulting Acts. The protocol does not require a separate first-person intention statement with every Act; an artwork may request one. A declared intention remains attributed expression, not direct evidence of a private mental state.
+
+The four primitives are a vocabulary, not four compulsory populated lists.
+A handoff-only profile can identify the Work context and record an attempted
+delivery while observing no Participant contribution. Client selection and an
+OS open acknowledgment must not create a purported Agent Participant or Act.
+Questions and answers that remain inside a private Agent conversation remain
+unobserved by the website. Public reading requires no participation grant,
+answer callback, fixed ending or per-visitor enrollment ledger.
+
+A Work is neither its final artifact nor a particular chat. Its conditions
+scope participation without prescribing a finite duration or round count.
+The declaration may deliberately permit live sources: an index URL identifies
+a discovery location, not immutable retrieved content. A claim about the exact
+context actually delivered or read needs evidence of that version and event.
+For artistic participation, the Work still declares consequential room for
+Agent choice, attribution and intervention rules, and how contributions affect
+the result. A generic handoff does not satisfy those artistic conditions.
 
 ### 1.2 Roles, authority and constraints
 
@@ -350,9 +388,11 @@ graphic to different published content.
 
 “Independent” covers the applicable enrollment, authorization, execution observation, binding, verification and update path, not just a separate origin or a downloaded CLI. The previous operator-trusted record baseline supports limited claims about service observations; it does not satisfy execution-origin claims. The selected bridge path must identify which stronger claims it can substantiate and which remain unestablished. No arbitrary curator client is assumed to supply an independently evidenced execution path. Qualifying a stronger mechanism remains open; neither signatures nor witnesses prove private Agent intention. See the [participation-evidence research](research/2026-10-17-participation-evidence.md) for the distinct candidate mechanisms and their limits.
 
-## 4. Open decisions before implementation
+## 4. Open decisions and bounded implementation
 
-These choices remain open; the scope and role definitions above do not select an implementation:
+These choices remain open for the generic protocol. The separately authorized
+local implementation is an experiment under the dated revision above, not a
+resolution of every choice:
 
 - **Protocol/schema contract:** the conceptual scope is four participation primitives plus evidence, independent of initiator and rounds (§1). Exact identifiers/encodings, Work-definition versus instance mapping, Participant/connection binding, Act/content envelopes, attributed Relation records, capability/version negotiation and compatibility rules remain open. Define these before selecting a workflow engine or arbitrary plugin execution.
 - **Evidence policy and encoding:** encode exact claim/subject/material bindings, procedure/policy versions, issuer/checker, per-claim assessments, trust dependencies and limits across all four primitives (§3.0). Keep service acceptance separate from verification and check errors. Set work-specific disclosure/retention and select independently rooted evidence for the actual adversaries and claims; an operator receipt cannot stand in for execution evidence. No stronger origin mechanism is selected by this scope revision.
@@ -381,5 +421,7 @@ Keep Agent-originated and repeated/parallel Acts in the core even if THOUGHT
 selects a simpler form. The
 [THOUGHT walkthrough](examples/THOUGHT.md) and
 [OPEN FIELD example](examples/OPEN-FIELD.md) supply complementary hypothetical
-histories. This remains design work; it authorizes no implementation, live trial
-or deployment.
+histories. The earlier design-only boundary is superseded only for the
+operator-directed local implementation described in
+[IMPLEMENTATION.md](spec/0.1/IMPLEMENTATION.md). It grants no production
+deployment, publication or unrestricted live trial.

@@ -1,0 +1,182 @@
+diff --git a/pilot/reading-profile.mjs b/pilot/reading-profile.mjs
+new file mode 100644
+index 0000000..2893fa2
+--- /dev/null
++++ b/pilot/reading-profile.mjs
+@@ -0,0 +1,138 @@
++// Lab-owned parsing for the local reading pilot. No Agent execution or network.
++import { createHash } from 'node:crypto';
++import { readFileSync } from 'node:fs';
++import { isDeepStrictEqual } from 'node:util';
++
++const indexUrl = 'https://agentart.work/agent-index.json';
++const origin = new URL(indexUrl).origin;
++const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
++const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
++const fail = message => { throw new Error(`Lab reading source: ${message}`); };
++const requireValue = (condition, message) => { if (!condition) fail(message); };
++const text = value => typeof value === 'string' && value.length > 0;
++const hash = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
++const length = value => Number.isSafeInteger(value) && value >= 0;
++
++function rawBytes(value) {
++  requireValue(value instanceof Uint8Array, 'exact response bytes are required');
++  return Buffer.from(value);
++}
++
++function json(bytes) {
++  try {
++    const source = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes);
++    return JSON.parse(source);
++  } catch {
++    fail('response is not complete UTF-8 JSON');
++  }
++}
++
++function sourceDescriptor(source) {
++  requireValue(isObject(source), 'missing source descriptor');
++  requireValue(text(source.path) && /^[A-Za-z0-9][A-Za-z0-9._/-]*\.md$/.test(source.path) &&
++    !source.path.split('/').some(part => ['', '.', '..'].includes(part)), 'invalid source path');
++  let url;
++  try { url = new URL(source.url); } catch { fail('invalid source provenance URL'); }
++  requireValue(url.protocol === 'https:' && !url.username && !url.password, 'invalid source provenance URL');
++  requireValue(hash(source.sha256) && length(source.byteLength), 'invalid source byte descriptor');
++}
++
++function documentUrl(value) {
++  requireValue(text(value), 'missing document URL');
++  let url;
++  try { url = new URL(value, indexUrl); } catch { fail('invalid document URL'); }
++  requireValue(url.origin === origin && !url.username && !url.password && !url.search && !url.hash &&
++    /^\/documents\/[a-z][a-z0-9]*(?:-[a-z0-9]+)*\.json$/.test(url.pathname), 'document URL is outside Lab downloads');
++  return url.href;
++}
++
++function entryIdentity(entry) {
++  requireValue(isObject(entry) && /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(entry.id), 'invalid document ID');
++  requireValue(text(entry.title) && text(entry.page), 'missing document identity');
++  let page;
++  try { page = new URL(entry.page, indexUrl); } catch { fail('invalid reading page'); }
++  requireValue(page.origin === origin && !page.username && !page.password && !page.search && !page.hash,
++    'reading page is outside the Lab');
++  sourceDescriptor(entry.source);
++  requireValue(entry.revision === `sha256:${entry.source.sha256}`, 'source revision differs from its hash');
++  requireValue(isObject(entry.download) && entry.download.mediaType === 'application/json' &&
++    hash(entry.download.sha256) && length(entry.download.byteLength), 'invalid download descriptor');
++  const url = documentUrl(entry.download.url);
++  requireValue(new URL(url).pathname === `/documents/${entry.id}.json`, 'download ID differs from its path');
++  if (entry.study !== undefined) {
++    requireValue(isObject(entry.study) && ['project', 'date', 'status', 'evidence'].every(key => text(entry.study[key])),
++      'invalid study metadata');
++  }
++  return url;
++}
++
++function parseIndex(bytes) {
++  const index = json(rawBytes(bytes));
++  requireValue(isObject(index) && index.schema === 'agent-art-lab.index/v1' &&
++    isObject(index.scope) && isObject(index.access) && Array.isArray(index.documents), 'unsupported index');
++  const { revision, ...unsigned } = index;
++  requireValue(revision === `sha256:${sha256(Buffer.from(JSON.stringify(unsigned, null, 2) + '\n', 'utf8'))}`,
++    'index revision differs from its generated contents');
++  const ids = new Set();
++  const paths = new Set();
++  const documents = index.documents.map(entry => {
++    const url = entryIdentity(entry);
++    requireValue(!ids.has(entry.id) && !paths.has(entry.source.path), 'duplicate document identity');
++    ids.add(entry.id);
++    paths.add(entry.source.path);
++    return { ...entry, url };
++  });
++  return { revision, documents };
++}
++
++function parseDocument(bytes, entry) {
++  const url = entryIdentity(entry);
++  if (entry.url !== undefined) requireValue(entry.url === url, 'pinned document URL changed');
++  const body = rawBytes(bytes);
++  requireValue(body.length === entry.download.byteLength, 'download byte length differs from the index');
++  requireValue(sha256(body) === entry.download.sha256, 'download hash differs from the index');
++  const envelope = json(body);
++  requireValue(isObject(envelope) && envelope.schema === 'agent-art-lab.document/v1', 'unsupported document');
++  for (const key of ['id', 'title', 'page', 'revision', 'source', 'study']) {
++    requireValue(isDeepStrictEqual(envelope[key], entry[key]), `document ${key} differs from the index`);
++  }
++  requireValue(envelope.contentFormat === 'markdown' && typeof envelope.content === 'string', 'document is not complete Markdown');
++  requireValue(Array.isArray(envelope.assets) && envelope.assets.length === 0, 'companion media is outside this reading profile');
++  const source = Buffer.from(envelope.content, 'utf8');
++  requireValue(new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(source) === envelope.content,
++    'decoded source is not lossless UTF-8');
++  requireValue(source.length === entry.source.byteLength, 'source byte length differs from the index');
++  requireValue(sha256(source) === entry.source.sha256, 'source hash differs from the index');
++  return {
++    id: entry.id, title: entry.title, url, revision: entry.revision,
++    content: envelope.content,
++    checks: {
++      downloadByteLength: 'matched', downloadSha256: 'matched',
++      envelopeIdentity: 'matched', sourceByteLength: 'matched', sourceSha256: 'matched',
++      scope: 'Byte agreement relative to the fetched publisher index; not truth or independent authenticity.',
++    },
++  };
++}
++
++const guide = readFileSync(new URL('../docs/AGENT_ACCESS.md', import.meta.url), 'utf8');
++const section = guide.match(/^## A prompt to use\s*\n([\s\S]*?)(?=^## |$(?![\s\S]))/m)?.[1];
++const prompts = [...(section ?? '').matchAll(/^```text\n([\s\S]*?)\n```[ \t]*$/gm)];
++requireValue(prompts.length === 1 && prompts[0][1].length > 0, 'canonical prompt is missing or ambiguous');
++
++export default {
++  id: 'agent-art-lab', title: 'Agent Art Lab', indexUrl,
++  prompt: prompts[0][1], parseIndex, parseDocument,
++  work: {
++    id: 'urn:agent-art:lab:reading', version: '2026-10-19.1',
++    title: 'Read Agent Art Lab',
++    purpose: 'Read and discuss the Lab public material inside the visitor’s own Agent.',
++    capabilities: ['handoff'],
++    conditions: {
++      readingPolicy: prompts[0][1],
++      sourcePolicy: 'Discover relevant current sources through the public index; report access or verification limits.',
++      conversation: 'Questions and answers stay inside the visitor’s Agent.',
++      contributionReturn: false,
++      evidenceScope: 'Offered context and observed handoff only; no reading or Agent-execution claim.',
++    },
++  },
++};
+diff --git a/scripts/build-site.mjs b/scripts/build-site.mjs
+index 2c94343..a56291b 100644
+--- a/scripts/build-site.mjs
++++ b/scripts/build-site.mjs
+@@ -12 +12 @@ const root = fileURLToPath(new URL('../', import.meta.url));
+-const output = path.join(root, '_site');
++const output = path.join(root, process.env.LAB_READING_BRIDGE === '1' ? '_site-reading-pilot' : '_site');
+@@ -121,0 +122,4 @@ if (!agentPrompt) throw new Error('The access guide must contain the homepage ag
++// Local pilot only. The canonical public build keeps its original reading path.
++const readingBridge = process.env.LAB_READING_BRIDGE === '1';
++const readingEntry = readingBridge ? '<div id="lab-reading-bridge"></div>' : '';
++const readingFallbackLabel = readingBridge ? 'Copy the original reading prompt' : 'Read with your agent.';
+@@ -125 +129,5 @@ mkdirSync(output, { recursive: true });
+-cpSync(path.join(root, 'site/assets'), path.join(output, 'assets'), { recursive: true });
++cpSync(path.join(root, 'site/assets'), path.join(output, 'assets'), {
++  recursive: true,
++  // This optional entry is served by the local preview, never as a public asset.
++  filter: source => source !== path.join(root, 'site/assets/reading-bridge.mjs'),
++});
+@@ -133 +141 @@ write('index.html', shell('Blog', `
+-<details class="hero-prompt" id="agent-prompt-disclosure"><summary><span id="agent-prompt-heading">Read with your agent.</span><span class="disclosure-icon" aria-hidden="true"></span></summary>
++${readingEntry}<details class="hero-prompt" id="agent-prompt-disclosure"><summary><span id="agent-prompt-heading">${readingFallbackLabel}</span><span class="disclosure-icon" aria-hidden="true"></span></summary>
+@@ -135 +143 @@ write('index.html', shell('Blog', `
+-<section class="journal-feed" id="articles" aria-labelledby="recent-heading"><div class="section-heading"><h2 id="recent-heading">Latest articles</h2></div>${posts(studies)}</section><script src="${url('assets/copy-prompt.js')}" defer></script>`, homeDescription));
++<section class="journal-feed" id="articles" aria-labelledby="recent-heading"><div class="section-heading"><h2 id="recent-heading">Latest articles</h2></div>${posts(studies)}</section><script src="${url('assets/copy-prompt.js')}" defer></script>${readingBridge ? '<script type="module" src="/__bridge/lab-entry.mjs"></script>' : ''}`, homeDescription));
+diff --git a/site/assets/reading-bridge.mjs b/site/assets/reading-bridge.mjs
+new file mode 100644
+index 0000000..eb27179
+--- /dev/null
++++ b/site/assets/reading-bridge.mjs
+@@ -0,0 +1,7 @@
++// The local preview server supplies the shared bridge; the Lab owns this mount.
++import { mountReadingBridge } from '/__bridge/ui.mjs';
++
++const element = document.querySelector('#lab-reading-bridge');
++if (element) {
++  mountReadingBridge({ element, apiBase: '/__bridge/api', appLabel: 'Agent Art Lab' });
++}
