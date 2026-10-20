@@ -1,6 +1,6 @@
-# Reading SDK 0.1.0
+# Reading SDK 0.1.1
 
-`@agent-art/protocol@0.1.0` supplies a framework-neutral **Ask your Agent**
+`@agent-art/protocol@0.1.1` supplies a framework-neutral **Ask your Agent**
 interface, browser handoff controller and optional bounded receipts. The
 package is private. This is the reading release of one evolving Agent Art
 protocol; artwork participation remains experimental work for a later release.
@@ -9,11 +9,11 @@ It does not operate a model or collect a visitor's questions and answers.
 ## Install
 
 From the protocol repository, run `npm run sdk:pack`. Copy the resulting
-`.local/sdk/agent-art-protocol-0.1.0.tgz` into the consuming application's
+`.local/sdk/agent-art-protocol-0.1.1.tgz` into the consuming application's
 `vendor/` folder, then install its relative file dependency:
 
 ```sh
-npm install ./vendor/agent-art-protocol-0.1.0.tgz --ignore-scripts
+npm install ./vendor/agent-art-protocol-0.1.1.tgz --ignore-scripts
 ```
 
 Use the application's existing package manager and commit its dependency lock.
@@ -69,26 +69,68 @@ No Node server, local helper, account, database, answer callback, Agent
 registration or model API is required at runtime. Bare npm imports require a
 bundler or explicit browser import mapping; they are not browser URLs.
 
-The UI uses the host's font and supports `--aap-ink`, `--aap-paper`,
-`--aap-muted`, `--aap-line` and `--aap-radius` CSS properties. It does not inject
-styles or contact an asset host. Keep a manual prompt available when scripts
-are disabled or a client/clipboard route is unavailable.
+The compact interface puts a small **Ask your Agent** label and Open bubble
+mark beside **ChatGPT**, **Claude** and always-visible **Copy** on one line.
+The label is not an action. Configured native links appear immediately;
+their presence does not mean the apps were detected or are installed.
+
+Styles use the `aap-reading` namespace and support `--aap-ink`, `--aap-paper`,
+`--aap-muted`, `--aap-line` and `--aap-radius` CSS properties. The selected Seal
+presentation also retains its `--aap-seal-*` and `--aap-gate-*` customization
+aliases. The SDK does not inject styles or contact an asset host. Keep a
+manual prompt available when scripts are disabled or a client/clipboard route
+is unavailable.
 
 ## Browser behavior
 
-- **New conversation:** a selected Claude or Codex URL route prepares a draft.
-  The installed app and browser must support it. The visitor reviews and sends
-  inside the Agent, then asks there. The browser cannot reliably detect an
-  installation or confirm draft arrival.
+- **New desktop conversation:** ChatGPT and Claude links carry the exact
+  context through their native draft routes. The installed app and browser
+  must support the route. The visitor reviews the app mode and draft, then
+  sends inside the Agent. The browser cannot confirm arrival.
 - **Existing conversation:** manual copying and pasting into the conversation
   the visitor chooses. No private-history access or automatic attachment.
 - **Another Agent or oversized context:** manual copying without truncation.
 - **Clipboard denied:** reveal and select the exact context for manual copying.
 
+The **ChatGPT** label uses the existing `codex-app` identifier and
+`codex://new?prompt=…` URL. It does not force ordinary Chat, Work or Codex mode.
+The visitor's application handles the destination. **Claude** uses the
+`claude://claude.ai/new?q=…` Chat route. Both links prepare context; they do not
+send it. Copy works with either a new or an existing conversation and does
+not declare which one the visitor chooses.
+
 The native route names describe prepared URLs, not universal compatibility or
-an authenticated connection. No app is opened automatically at mount time,
-after a timer, on reload or as a hidden retry. Questions and answers remain in
-the chosen Agent. No Send action, model choice or account setting is automated.
+an authenticated connection. The SDK performs no app probing, discovery
+request or loopback access by default. No app opens automatically at mount
+time, after a timer, on reload or as a hidden retry. Questions and answers
+remain in the chosen Agent. No Send action, model choice or account setting
+is automated.
+
+## Optional host-reported availability
+
+A host that already has a qualified way to report available clients can
+provide `discoverClients`:
+
+```js
+const mounted = mountReading(host, {
+  work,
+  discoverClients: async () => ({
+    clients: [{ id: 'codex-app' }, { id: 'claude-app' }],
+  }),
+});
+```
+
+This example shows the callback shape; a constant list does not establish
+installation. The callback returns a snapshot of IDs, not URLs or code. The
+SDK recognizes only configured supported IDs and prepares their routes itself.
+A successful empty snapshot leaves Copy available. If the callback fails,
+times out or returns an unusable result, configured native links remain
+offered with availability unverified. A callback result is the host's report;
+the SDK does not independently attest it or call an external detection service.
+The application owns any requests or permissions its callback uses.
+
+Lab's local test integration injects its existing loopback-host detector. That
+helper is not packaged in the SDK and is not required by public reading sites.
 
 ## Use your own UI
 
@@ -112,10 +154,18 @@ on other protocol uses.
 
 ## Optional receipts
 
-Set `evidence: true` when mounting to offer a local receipt download.
-`onReceipt(receipt)` may observe that result when evidence is enabled. The UI
-keeps only the current receipt in memory; it does not persist a visitor ledger.
-Call `destroy()` to remove its UI/listeners and discard the mounted reference.
+Set `evidence: true` when mounting to offer a local receipt download after a
+native handoff is requested. `onReceipt(receipt)` may observe that result when
+evidence is enabled. The UI keeps only the current receipt in memory; it does
+not persist a visitor ledger. Call `destroy()` to remove its UI/listeners and
+discard the mounted reference.
+
+The compact Copy control makes no fresh/existing conversation selection, so
+it creates no receipt. It reports clipboard success or reveals the exact text
+for manual copying. It does not invent a conversation for the receipt schema.
+This differs from the 0.1.0 selector interface, which had an explicit client
+and conversation choice. The headless receipt API remains available unchanged
+for callers that actually know and observe those choices.
 
 A custom interface can call this only **after observing the named action**:
 
@@ -145,10 +195,13 @@ automatically redact arbitrary Work content.
 ## Compatibility and release scope
 
 The supported 0.1 reading surface is `createReading`, `mountReading`, its CSS,
-existing client URL preparation and bounded reading receipts. Future releases
-must preserve these reading calls/defaults and verify 0.1 receipts. Existing
-alpha-core/client exports remain available for experimental consumers; their
-participation APIs do not constitute a supported artwork-return service.
+existing client URL preparation and bounded reading receipts. Version 0.1.1
+keeps the mounted function and existing input options, adds optional
+host-reported discovery and replaces the selector presentation with the compact
+component. Its Copy receipt difference is described above. Headless calls,
+native routes and receipt verification remain unchanged. Existing alpha-core/
+client exports remain available for experimental consumers; their participation
+APIs do not constitute a supported artwork-return service.
 
 The SDK package version is separate from the experimental record schema
 `agent-art-protocol/0.1-experimental`. The exact encoding and named core checks
@@ -164,7 +217,16 @@ SDK 0.1 supplies no OAuth service, model execution, private chat control or
 independently rooted execution evidence.
 
 Run `npm run test:sdk` from the protocol repository for package/controller
-checks. Browser/client observations and consumer pins belong in the
-[reading qualification record](https://github.com/agent-art-work/agent-art-protocol/blob/codex/reading-sdk-0.1.0/pilot/reading-consumers/QUALIFICATION.md).
-Earlier alpha evidence remains at its immutable source commit; new browser
-observations must not upgrade those historical results.
+checks. Version 0.1.1 uses Lab as its single active local test consumer.
+The four earlier 0.1.0 integrations and their archive pins remain historical;
+Inshell, Pulse and signatures.gallery need no continuing development servers
+or automatic upgrade for this SDK change. No public site is deployed.
+
+Before this packaging change, the operator reported a prefilled Lab draft in
+Codex, then a Work destination after selecting ChatGPT → Chat. The operator
+submitted the latter. These are prior preview observations, not new native
+qualification of the 0.1.1 archive or a documented universal routing policy.
+They support keeping mode selection with the destination application.
+Current package, browser and Lab checks belong in the source repository's
+`pilot/reading-sdk/QUALIFICATION.json`. Earlier alpha and 0.1.0 evidence keeps
+its original scope; new observations must not upgrade those historical results.

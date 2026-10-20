@@ -1,11 +1,28 @@
 # Implementation boundaries and release sequence
 
-Updated 2026-10-19. The current supported SDK scope is
-[0.1.0 public reading](READING.md). The generic participation architecture and
-wire contract remain candidate; SDK version `0.1.0` does not ratify them.
+Updated 2026-10-20. The current supported SDK scope is
+[0.1.1 public reading](READING.md). The generic participation architecture and
+wire contract remain candidate; SDK version `0.1.1` does not ratify them.
 The earlier local alpha, MVP and research keep their original observations.
 
-## Current release: reading first
+## Current patch: compact component on Lab
+
+The operator selected the compact Open bubble / Seal **Ask your Agent**
+component for private SDK 0.1.1. ChatGPT desktop prefill, Claude and Copy remain
+inline; the label is noninteractive and no destination app mode is forced.
+Only Lab is maintained as the active local test app. Its exact public context
+remains owner-authored. Optional availability discovery belongs to the host;
+the SDK offers configured links without asserting installation by default.
+
+The [current consumer guide](../../pilot/reading-sdk/README.md) and
+[qualification](../../pilot/reading-sdk/QUALIFICATION.json) pin the fresh
+archive, consumer lock and tests. Earlier alpha APIs and receipt verification
+remain available. Compact Copy creates no receipt because it declares no
+fresh/existing destination; the explicit headless receipt API remains intact.
+No registry publication, new native Agent trial or public deployment is part
+of this update. The first release's four integrations below remain historical.
+
+## Earlier 0.1.0 release: reading first
 
 The operator selected a focused reading release before further artwork
 participation development. Private `@agent-art/protocol@0.1.0` supplies the

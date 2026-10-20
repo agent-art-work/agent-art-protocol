@@ -1,0 +1,154 @@
+{
+  "schema": "agent-art-protocol.open-gate-preview/0.1",
+  "consumer": "Pulse",
+  "date": "2026-10-20",
+  "status": "local-chatgpt-desktop-presentation-candidate",
+  "repository": "https://github.com/inshell-art/pulse",
+  "baseline": {
+    "ownerCommit": "32adfe39e1bf775f387ddab698780f256ed0cc81",
+    "readingSdkReleaseCommit": "9490a04cde7d3cfaf62d503109c3f151c0342061",
+    "readingPatch": "../../reading-consumers/pulse.patch",
+    "readingPatchSha256": "b34fcaebd4a8747871f86561e7d44d7aeb38642a1b5e8a7a78221c84545ac3ad",
+    "tree": "6dc21876eb6d856edee2e30a214607c23825bee1",
+    "method": "owner commit plus immutable reading 0.1.0 consumer patch"
+  },
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.0",
+    "archiveSha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+    "unchanged": true
+  },
+  "presentation": {
+    "sharedFiles": {
+      "open-gate.mjs": "7aa8396122467bc106d1f343834440a71723824d7970d590589d7ca985824740",
+      "open-gate.css": "879ffb598c993d7faa585d1a241058ce0151350daaa24130cfdf6f54ad98efb9",
+      "open-gate.d.mts": "489e4f480f47d8c041ac0a1dff09805de97865e067c3b9054e3d7f7bec4b107c"
+    },
+    "consumerDirectory": "evm/playground",
+    "routes": [
+      "/",
+      "/projects"
+    ],
+    "evidence": true,
+    "ownerPrompt": "evm/playground/docs/agent-prompt.txt",
+    "ownerPromptUnchanged": true,
+    "ownerFallbackRetained": true,
+    "nativeUrlAndReceipts": "Unchanged SDK prepares both native URLs and optional fresh handoff-requested receipts. ChatGPT keeps internal codex-app identifier. Copy issues no receipt; request receipts do not confirm arrival or app mode.",
+    "previewOnly": true,
+    "localFallback": "Published documentation via Open gate; a separate manual disclosure retains the local-preview index prompt.",
+    "label": "Ask your Agent",
+    "interaction": "Compact single-line Seal; no chooser, expansion, conversation selector or automatic launch.",
+    "discovery": {
+      "localAdapterSource": "evm/playground/desktop-discovery.mjs",
+      "sourceSha256": "8cba24445bd6fadd71d84567ddcc388adc9a62785ba2b85b9583f23d20fc3229",
+      "route": "/__aap/desktop-clients.mjs",
+      "scope": "loopback-preview-host",
+      "nodeOnly": true,
+      "publicWorkerRoute": false,
+      "claim": "Allowlisted app bundle, declared URL scheme and executable present on the local preview host; no authenticated connection, account, app arrival, Send, reading or inference claim.",
+      "httpChecks": {
+        "GET": 200,
+        "crossOrigin": 403,
+        "crossSite": 403,
+        "POST": 405,
+        "localPathsExposed": false
+      },
+      "detectedClientIDs": [
+        "codex-app",
+        "claude-app"
+      ]
+    },
+    "style": "Seal",
+    "layout": "compact-single-line",
+    "labelNonInteractive": true,
+    "labelFontPixels": {
+      "desktop": 12,
+      "narrow": 11
+    },
+    "copyAlwaysVisible": true,
+    "expandedPanel": false,
+    "helperText": "Visually hidden; native accessible names identify new desktop conversations; tooltips request app-mode review. Copy works in any conversation.",
+    "logo": {
+      "name": "Open bubble",
+      "opening": "left",
+      "tail": "lower-left",
+      "position": "before label"
+    },
+    "nativeClients": [
+      "codex-app",
+      "claude-app"
+    ],
+    "visibleClientLabels": [
+      "ChatGPT",
+      "Claude"
+    ],
+    "codexLabelOffered": false,
+    "chatgptTransport": "Existing SDK codex://new?prompt=… native desktop link. No browser manual-paste route.",
+    "appMode": "Review in destination app; no mode-forcing parameter or ordinary-Chat observation claimed."
+  },
+  "validation": {
+    "typecheck": "not-applicable",
+    "tests": {
+      "passed": 13,
+      "failed": 0
+    },
+    "build": true,
+    "staticNodeWorkerParity": true,
+    "patchCleanApplyChecked": true,
+    "gitDiffCheck": true,
+    "originalCheckoutModified": false,
+    "browser": "Current restored ChatGPT desktop results in ../QUALIFICATION.json. Prior web-copy observation is archived and does not qualify this destination.",
+    "nativeAgentLaunch": false,
+    "modelCall": false,
+    "walletAction": false,
+    "deployment": false,
+    "date": "2026-10-20"
+  },
+  "patch": {
+    "file": "pulse.patch",
+    "sha256": "afc786b440bf296d7808e6e130b516d698d5e3b1d949baaa76a5167bbaf12e60",
+    "candidateTree": "f6a59d91a42ea2643743c6746aabc55b62f6408e",
+    "format": "additive git binary diff with zero context; first apply the baseline reading patch, then git apply --binary --unidiff-zero this patch"
+  },
+  "browserQualificationFile": "../QUALIFICATION.json",
+  "patchSha256": "afc786b440bf296d7808e6e130b516d698d5e3b1d949baaa76a5167bbaf12e60",
+  "resultTree": "f6a59d91a42ea2643743c6746aabc55b62f6408e",
+  "previousSealPresentationChecks": {
+    "rootTests": 88,
+    "build": "passed",
+    "cleanApply": "Verified exact result tree after immutable SDK reading patch and candidate delta.",
+    "browser": "Desktop light and 320px dark/coarse passed; native links canceled; clipboard denial fixture.",
+    "sdkArchiveAndInstalledFiles": "Unchanged archive and 11 installed package files."
+  },
+  "previousCodexOpenBubbleChecks": {
+    "targetedTests": 13,
+    "build": "passed",
+    "rpc": "disabled",
+    "rootTests": 88,
+    "browser": "Desktop light and 320px dark/coarse passed; Open bubble before singular label; canceled native links and denied clipboard fallback.",
+    "sdkArchiveAndInstalledFiles": "Unchanged archive and 11 installed package files.",
+    "cleanApply": "Exact result tree replayed after immutable SDK reading patch and candidate delta."
+  },
+  "previousChatGPTWebChecks": {
+    "targetedTests": 13,
+    "buildAssets": 26,
+    "build": "passed",
+    "rpc": "disabled",
+    "rootTests": 88,
+    "browser": "Desktop light and 320px dark/coarse passed; ChatGPT plus Claude and Copy; canceled native links; denied clipboard fallback.",
+    "sdkArchiveAndInstalledFiles": "Unchanged archive and all 11 installed package files.",
+    "cleanApply": "Exact result tree replayed after immutable SDK reading patch and candidate delta.",
+    "liveChatGPTQualification": "One unsent public Lab copy/open/native-paste observation; see ../QUALIFICATION.json for formatting and trust limits."
+  },
+  "chatgptDesktopChecks": {
+    "targetedTests": 13,
+    "buildAssets": 26,
+    "build": "passed",
+    "rpc": "disabled",
+    "rootTests": 88,
+    "browser": "Nine current regular-Chrome cases across four consumers and Pulse Projects passed; exact native URLs, ChatGPT label, Copy, canceled links, clipboard denial and responsive geometry checked.",
+    "sdkArchiveAndInstalledFiles": "Unchanged archive and 11 installed package files.",
+    "cleanApply": "Exact result tree replayed after immutable SDK reading patch and updated candidate delta.",
+    "modeVerification": "Same actual Lab native link: operator first confirmed Codex with draft; after selecting ChatGPT > Chat, operator reported Work and submitted it. Automation did not Send or inspect the work. No ordinary-Chat guarantee or universal routing policy; not a live test of every consumer."
+  }
+}

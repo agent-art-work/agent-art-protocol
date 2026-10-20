@@ -3,11 +3,12 @@ import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { handleDesktopDiscovery } from '../open-gate/desktop-discovery.mjs';
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
 
-/** Development-only static host. No SDK API, OS opener or Agent service. */
-export function createStaticReadingServer({ directory, spa = false }) {
+/** Static preview; optional read-only desktop detection, no OS opener. */
+export function createStaticReadingServer({ directory, spa = false, desktopDiscovery = false }) {
   const root = fs.realpathSync(directory);
   return http.createServer((request, response) => {
     response.setHeader('Cache-Control', 'no-store');
@@ -17,6 +18,7 @@ export function createStaticReadingServer({ directory, spa = false }) {
     const allowed = [`127.0.0.1:${port}`, `localhost:${port}`];
     if (!allowed.includes(request.headers.host)) { response.writeHead(403); response.end(); return; }
     if (!['GET', 'HEAD'].includes(request.method)) { response.writeHead(405); response.end(); return; }
+    if (desktopDiscovery && handleDesktopDiscovery(request, response)) return;
     try {
       const url = new URL(request.url, `http://${request.headers.host}`);
       const decoded = decodeURIComponent(url.pathname);
@@ -38,7 +40,7 @@ export function createStaticReadingServer({ directory, spa = false }) {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const directory = process.argv[2]; const port = Number(process.argv[3] || '4176');
   if (!directory || !Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('Use serve.mjs DIRECTORY PORT [--spa].');
-  const server = createStaticReadingServer({ directory, spa: process.argv.includes('--spa') });
+  const server = createStaticReadingServer({ directory, spa: process.argv.includes('--spa'), desktopDiscovery: process.argv.includes('--desktop-agents') });
   server.listen(port, '127.0.0.1', () => console.log(`Static reading preview: http://127.0.0.1:${port}/`));
   const stop = () => server.close(() => process.exit(0));
   process.once('SIGINT', stop); process.once('SIGTERM', stop);

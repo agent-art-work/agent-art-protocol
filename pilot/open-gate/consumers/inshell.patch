@@ -1,0 +1,364 @@
+diff --git a/apps/home/public/docs/agent-index.json b/apps/home/public/docs/agent-index.json
+index 78f657f..88526c8 100644
+--- a/apps/home/public/docs/agent-index.json
++++ b/apps/home/public/docs/agent-index.json
+@@ -22 +22 @@
+-    "sha256": "296fde72feeea8b698c75510e0cc00b159aa7f58e9a7665204ba43b5ebaddd1a",
++    "sha256": "20128904d6a00cb2986d4f890b59c09c08d9429bb32c25f300a1b442ffbb8822",
+diff --git a/apps/home/public/docs/index.md b/apps/home/public/docs/index.md
+index 29c9418..b8fa01a 100644
+--- a/apps/home/public/docs/index.md
++++ b/apps/home/public/docs/index.md
+@@ -3 +3 @@
+-paste this prompt into your Agent
++Read with your Agent
+diff --git a/apps/home/public/docs/source-lock.json b/apps/home/public/docs/source-lock.json
+index bb1c618..2502def 100644
+--- a/apps/home/public/docs/source-lock.json
++++ b/apps/home/public/docs/source-lock.json
+@@ -14 +14 @@
+-  "sourceTreeSha256": "e93158e7acc13e50c477058502062c59e4784999debbb735ba57bb6e8eadcdce",
++  "sourceTreeSha256": "2a78d8f6a3211d69e69b95e0c621d507c026448abc01c53b8129895043df5182",
+@@ -21 +21 @@
+-      "groupSha256": "eabb2edd7f7589ef511dda5b55097cee62b1b33bb28b2fa4a8898c8a9c246926",
++      "groupSha256": "79a28031d0dcc2812247c2175414dc0669648ca7ef59ad3533684966c3362f32",
+@@ -40,2 +40,2 @@
+-          "byteLength": 180802,
+-          "sha256": "46559558450decaef85c14b3e189f3c65cbb62dab19d522f337b8c66148e68e6"
++          "byteLength": 180789,
++          "sha256": "462bf978c02a2beaf3167e784f343d129e96b87a69d08c15593c7efceea42a95"
+@@ -70 +70 @@
+-      "groupSha256": "8643d288005f2538c1b75bff1d2498434e14ce10e3a4b557e1a5df17b13a50b2",
++      "groupSha256": "bea58db9d377b7307cd9a8f7b39bf5b3cbb9eeb2ff3ae5e3344d389b3346188c",
+@@ -114,2 +114,2 @@
+-          "byteLength": 1997,
+-          "sha256": "2a2a95b22b2ed662968b4c12918f4cd8c01d03ed8aa1b109a2480ddc49206bdc"
++          "byteLength": 2543,
++          "sha256": "2e562a46da51d43ec6de08441cdf1b9c652b849c6b49dfb2e006255ca6e9052b"
+@@ -119,2 +119,2 @@
+-          "byteLength": 15682,
+-          "sha256": "11245a9f4eab0bf00ea6d45d0a811519286669b7fd8b315de659f56d60a2f18d"
++          "byteLength": 15859,
++          "sha256": "1f18f3f3d7bd657381efd714155c9edb2e5794b92d07b75449fa35e49336e0d4"
+@@ -226,0 +227,15 @@
++        {
++          "path": "apps/home/src/components/open-gate/open-gate.css",
++          "byteLength": 6170,
++          "sha256": "879ffb598c993d7faa585d1a241058ce0151350daaa24130cfdf6f54ad98efb9"
++        },
++        {
++          "path": "apps/home/src/components/open-gate/open-gate.d.mts",
++          "byteLength": 589,
++          "sha256": "489e4f480f47d8c041ac0a1dff09805de97865e067c3b9054e3d7f7bec4b107c"
++        },
++        {
++          "path": "apps/home/src/components/open-gate/open-gate.mjs",
++          "byteLength": 7155,
++          "sha256": "7aa8396122467bc106d1f343834440a71723824d7970d590589d7ca985824740"
++        },
+diff --git a/apps/home/src/components/DocsAgentReading.tsx b/apps/home/src/components/DocsAgentReading.tsx
+index 4f39cb0..d255dde 100644
+--- a/apps/home/src/components/DocsAgentReading.tsx
++++ b/apps/home/src/components/DocsAgentReading.tsx
+@@ -2,2 +2 @@ import { useEffect, useRef } from "react";
+-import type { MountedReading } from "@agent-art/protocol/reading-ui";
+-import "@agent-art/protocol/reading.css";
++import "./open-gate/open-gate.css";
+@@ -6 +5 @@ import { agentDocsPrompt } from "@/content/docs";
+-/** Inshell owns the reading request; the installed SDK owns client handoff UI. */
++/** Inshell owns the request; Open gate previews the unchanged SDK handoff. */
+@@ -12 +11,2 @@ export function DocsAgentReading() {
+-    let mounted: MountedReading | undefined;
++    let mounted: ReturnType<typeof import("./open-gate/open-gate.mjs").mountOpenGate> | undefined;
++    let restoreManual: (() => void) | undefined;
+@@ -15,2 +15,3 @@ export function DocsAgentReading() {
+-      import("@agent-art/protocol/reading-ui"),
+-    ]).then(([{ defineWork }, { mountReading }]) => {
++      import("@agent-art/protocol/reading"),
++      import("./open-gate/open-gate.mjs"),
++    ]).then(([{ defineWork }, { createReading }, { mountOpenGate }]) => {
+@@ -37 +38,10 @@ export function DocsAgentReading() {
+-      mounted = mountReading(host.current, { work, label: "Ask your Agent", evidence: false });
++      mounted = mountOpenGate(host.current, { createReading, work, evidence: false });
++      const manual = host.current.parentElement?.querySelector<HTMLDetailsElement>("[data-original-reading-prompt]");
++      const summary = manual?.querySelector("summary");
++      if (manual && summary) {
++        const wasOpen = manual.open;
++        const wasSummaryHidden = summary.hidden;
++        manual.open = false;
++        summary.hidden = false;
++        restoreManual = () => { manual.open = wasOpen; summary.hidden = wasSummaryHidden; };
++      }
+@@ -41 +51 @@ export function DocsAgentReading() {
+-    return () => { active = false; mounted?.destroy(); };
++    return () => { active = false; mounted?.destroy(); restoreManual?.(); };
+diff --git a/apps/home/src/components/DocsPage.tsx b/apps/home/src/components/DocsPage.tsx
+index 00169c4..548c8af 100644
+--- a/apps/home/src/components/DocsPage.tsx
++++ b/apps/home/src/components/DocsPage.tsx
+@@ -206,0 +207,2 @@ export default function DocsPage({ topicSlug = null }: DocsPageProps) {
++          <details className="docs-agent__manual" data-original-reading-prompt open>
++            <summary hidden>Copy the original reading prompt</summary>
+@@ -246,0 +249 @@ export default function DocsPage({ topicSlug = null }: DocsPageProps) {
++          </details>
+diff --git a/apps/home/src/components/open-gate/open-gate.css b/apps/home/src/components/open-gate/open-gate.css
+new file mode 100644
+index 0000000..02898a4
+--- /dev/null
++++ b/apps/home/src/components/open-gate/open-gate.css
+@@ -0,0 +1,81 @@
++/* Local compact Seal with Open bubble mark; SDK 0.1.0 remains unchanged. */
++.aap-gate {
++  --_gate-ink: var(--aap-ink, var(--ink, CanvasText));
++  --_gate-paper: var(--aap-paper, var(--paper, Canvas));
++  --_gate-muted: var(--aap-muted, var(--muted, currentColor));
++  --_gate-seal: var(--aap-seal-paper, var(--_gate-ink));
++  --_gate-seal-ink: var(--aap-seal-ink, var(--_gate-paper));
++  --_gate-surface: var(--aap-seal-surface, color-mix(in srgb, var(--_gate-ink) 5%, var(--_gate-paper)));
++  --_gate-line: var(--aap-line, var(--line, color-mix(in srgb, var(--_gate-ink) 24%, var(--_gate-paper))));
++  --_gate-accent: var(--aap-gate-accent, var(--_gate-ink));
++  --_gate-family: var(--aap-gate-font-family, system-ui, sans-serif);
++  --_gate-label-font: 12px;
++  --_gate-action-font: 13px;
++  --_gate-small-font: var(--font-size-12, 12px);
++  --_gate-weight: var(--weight-mid, 500);
++  --_gate-target: 32px;
++  --_gate-gap: 6px;
++  --_gate-title-pad: 8px;
++  --_gate-action-pad: 7px;
++  --_gate-border: 1px;
++  --_gate-radius: var(--aap-gate-radius, 5px);
++  --_gate-mark-size: 18px;
++  --_gate-disabled-opacity: .65;
++  color: var(--_gate-ink); font: inherit; min-width: 0; max-width: 100%;
++  container-type: inline-size;
++}
++.aap-gate *, .aap-gate *::before, .aap-gate *::after { box-sizing: border-box; }
++.aap-gate [hidden] { display: none !important; }
++.aap-gate .aap-gate-row {
++  display: inline-flex; align-items: stretch; flex-wrap: nowrap; gap: 0;
++  width: max-content; max-width: 100%; white-space: nowrap;
++  border: var(--_gate-border) solid var(--_gate-seal); border-radius: var(--_gate-radius);
++  background: var(--_gate-surface); font-family: var(--_gate-family);
++}
++.aap-gate .aap-gate-title {
++  display: inline-flex; align-items: center; flex: 0 0 auto; gap: var(--_gate-gap);
++  padding: 3px var(--_gate-title-pad); background: var(--_gate-seal); color: var(--_gate-seal-ink);
++  border-radius: calc(var(--_gate-radius) - var(--_gate-border)) 0 0 calc(var(--_gate-radius) - var(--_gate-border));
++  font-family: var(--_gate-family); font-size: var(--_gate-label-font); font-weight: var(--_gate-weight);
++  line-height: 1.4; letter-spacing: -.015em; white-space: nowrap;
++}
++.aap-gate .aap-gate-label { font: inherit; letter-spacing: inherit; }
++.aap-gate .aap-gate-mark { position: relative; display: inline-block; flex: 0 0 var(--_gate-mark-size); width: var(--_gate-mark-size); height: var(--_gate-mark-size); color: currentColor; }
++.aap-gate .aap-gate-mark::before, .aap-gate .aap-gate-mark::after { content: ''; position: absolute; }
++.aap-gate .aap-gate-mark::before { inset: 10% 14% 22% 2%; border: calc(var(--_gate-mark-size) * .125) solid currentColor; border-radius: calc(var(--_gate-mark-size) * .23); clip-path: polygon(0 0,100% 0,100% 100%,0 100%,0 72%,24% 72%,24% 34%,0 34%); }
++.aap-gate .aap-gate-mark::after { left: 14%; bottom: 4%; width: 29%; height: 29%; background: currentColor; clip-path: polygon(0 0,100% 0,0 100%); }
++.aap-gate .aap-gate-mark b { display: none; }
++.aap-gate .aap-gate-actions, .aap-gate .aap-gate-apps { display: inline-flex; align-items: center; flex: 0 0 auto; flex-wrap: nowrap; gap: var(--_gate-gap); min-width: 0; }
++.aap-gate .aap-gate-actions { padding: 3px var(--_gate-action-pad); }
++.aap-gate .aap-gate-apps:empty { display: none; }
++.aap-gate :is(.aap-gate-agent, .aap-gate-copy) {
++  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; gap: 4px;
++  min-height: var(--_gate-target); min-width: 44px; padding: 0; border: 0; border-radius: 0;
++  background: transparent; color: var(--_gate-ink); font-family: var(--_gate-family); font-size: var(--_gate-action-font);
++  font-weight: 400; line-height: 1.4; white-space: nowrap; cursor: pointer;
++  text-decoration: underline; text-decoration-color: var(--_gate-line); text-decoration-thickness: 1px; text-underline-offset: 3px;
++}
++.aap-gate :is(.aap-gate-agent, .aap-gate-copy):hover { text-decoration-color: var(--_gate-ink); }
++.aap-gate .aap-gate-arrow { font-size: 12px; line-height: 1; text-decoration: none; }
++.aap-gate .aap-gate-copy-icon { position: relative; display: inline-block; flex: 0 0 11px; width: 11px; height: 11px; color: var(--_gate-muted); }
++.aap-gate .aap-gate-copy-icon::before, .aap-gate .aap-gate-copy-icon::after { content: ''; position: absolute; width: 8px; height: 8px; border: 1px solid currentColor; border-radius: 1px; }
++.aap-gate .aap-gate-copy-icon::before { left: 0; top: 0; }
++.aap-gate .aap-gate-copy-icon::after { right: 0; bottom: 0; background: var(--_gate-surface); }
++.aap-gate :is(a, button, textarea):focus-visible { outline: 2px solid var(--_gate-accent); outline-offset: 2px; }
++.aap-gate .aap-gate-copy:disabled { opacity: var(--_gate-disabled-opacity); cursor: wait; }
++.aap-gate .aap-gate-hint { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
++.aap-gate .aap-gate-status { margin: 8px 0 0; color: var(--_gate-muted); font: inherit; font-size: var(--_gate-small-font); line-height: 1.5; overflow-wrap: anywhere; }
++.aap-gate .aap-gate-status:empty { display: none; }
++.aap-gate .aap-gate-context { display: block; width: 100%; margin-top: 8px; padding: 12px; border: var(--_gate-border) solid var(--_gate-line); background: var(--_gate-paper); color: var(--_gate-ink); font: inherit; font-size: 16px; resize: vertical; }
++.aap-gate .aap-gate-download { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 8px; padding: 8px 12px; border: var(--_gate-border) solid var(--_gate-line); border-radius: var(--_gate-radius); background: var(--_gate-paper); color: var(--_gate-ink); font: inherit; font-size: var(--_gate-action-font); cursor: pointer; }
++@container (max-width: 360px) {
++  .aap-gate .aap-gate-row {
++    --_gate-label-font: 11px; --_gate-mark-size: 14px;
++    --_gate-gap: 4px; --_gate-title-pad: 5px; --_gate-action-pad: 5px;
++  }
++  .aap-gate .aap-gate-arrow { display: none; }
++}
++@container (max-width: 280px) {
++  .aap-gate .aap-gate-row { --_gate-gap: 1px; --_gate-title-pad: 2px; --_gate-action-pad: 4px; }
++}
++@media (pointer: coarse) { .aap-gate { --_gate-target: 44px; } }
+diff --git a/apps/home/src/components/open-gate/open-gate.d.mts b/apps/home/src/components/open-gate/open-gate.d.mts
+new file mode 100644
+index 0000000..8176d83
+--- /dev/null
++++ b/apps/home/src/components/open-gate/open-gate.d.mts
+@@ -0,0 +1,10 @@
++import type { ReadingOptions, Reading, createReading as SDKCreate } from '@agent-art/protocol/reading';
++import type { SealedRecord } from '@agent-art/protocol';
++export interface OpenGateOptions extends ReadingOptions {
++  createReading: typeof SDKCreate;
++  label?: string;
++  evidence?: boolean;
++  onReceipt?: (receipt: SealedRecord) => void | Promise<void>;
++  discoverClients?: () => Promise<{ scope: 'loopback-preview-host'; clients: Array<{ id: string }> }>;
++}
++export function mountOpenGate(element: HTMLElement, options: OpenGateOptions): { readonly reading: Reading; destroy(): void };
+diff --git a/apps/home/src/components/open-gate/open-gate.mjs b/apps/home/src/components/open-gate/open-gate.mjs
+new file mode 100644
+index 0000000..ab6e96f
+--- /dev/null
++++ b/apps/home/src/components/open-gate/open-gate.mjs
+@@ -0,0 +1,99 @@
++const mounts = new WeakMap();
++const names = { 'codex-app': 'ChatGPT', 'claude-app': 'Claude' };
++
++async function localDiscovery(window) {
++  if (window.location.protocol !== 'http:' || !['127.0.0.1', 'localhost', '[::1]'].includes(window.location.hostname)) throw new Error('Local discovery is unavailable.');
++  const endpoint = new URL('/__aap/desktop-clients.mjs', window.location.origin).href;
++  return (await import(/* @vite-ignore */ endpoint)).default;
++}
++
++/** Preview presentation using the unchanged headless reading SDK. */
++export function mountOpenGate(element, { createReading, label = 'Ask your Agent', evidence = false, onReceipt, discoverClients, ...options }) {
++  if (!element?.ownerDocument || typeof createReading !== 'function') throw new TypeError('Choose a host and the installed SDK createReading function.');
++  if (mounts.has(element)) throw new TypeError('Agent links are already mounted here.');
++  const reading = createReading(options);
++  const document = element.ownerDocument;
++  const window = document.defaultView;
++  const node = (tag, className, text) => { const item = document.createElement(tag); if (className) item.className = className; if (text !== undefined) item.textContent = text; return item; };
++  const root = node('div', 'aap-gate'); root.dataset.presentation = 'seal';
++  const row = node('div', 'aap-gate-row');
++  const title = node('span', 'aap-gate-title');
++  const mark = node('span', 'aap-gate-mark'); mark.setAttribute('aria-hidden', 'true'); mark.append(node('b'));
++  title.append(mark, node('span', 'aap-gate-label', label));
++  const actions = node('div', 'aap-gate-actions'); actions.setAttribute('role', 'group'); actions.setAttribute('aria-label', label);
++  const apps = node('span', 'aap-gate-apps');
++  const copy = node('button', 'aap-gate-copy', 'Copy'); copy.type = 'button'; copy.setAttribute('aria-label', 'Copy context for any Agent or conversation'); copy.title = 'Copy into any new or existing Agent conversation';
++  const copyIcon = node('span', 'aap-gate-copy-icon'); copyIcon.setAttribute('aria-hidden', 'true'); copy.append(copyIcon);
++  actions.append(apps, copy); row.append(title, actions);
++  const hint = node('p', 'aap-gate-hint', 'Checking desktop Agents. Copy is always available.');
++  const status = node('p', 'aap-gate-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
++  const context = node('textarea', 'aap-gate-context'); context.readOnly = true; context.rows = 6; context.hidden = true; context.value = reading.context; context.setAttribute('aria-label', 'Context to copy into your Agent');
++  const download = node('button', 'aap-gate-download', 'Download handoff receipt'); download.type = 'button'; download.hidden = true;
++  root.append(row, hint, status, context, download); element.append(root);
++  let destroyed = false, busy = false, generation = 0, retained;
++  const listeners = [];
++  const listen = (target, event, callback) => { target.addEventListener(event, callback); listeners.push(() => target.removeEventListener(event, callback)); };
++  function clearReceipt() { generation++; retained = undefined; download.hidden = true; }
++  async function recordNative(client, expected) {
++    if (!evidence) return;
++    try {
++      const receipt = await reading.receipt({ event: 'handoff-requested', client, conversation: 'fresh', observer: 'visitor-browser' });
++      if (destroyed || generation !== expected) return;
++      retained = receipt; download.hidden = false;
++      if (onReceipt) void Promise.resolve().then(() => onReceipt(receipt)).catch(() => {});
++    } catch { if (!destroyed && generation === expected) status.textContent += ' A receipt is unavailable.'; }
++  }
++  listen(copy, 'click', async () => {
++    if (busy || destroyed) return;
++    busy = true; copy.disabled = true; clearReceipt();
++    try {
++      try { await window.navigator.clipboard.writeText(reading.context); }
++      catch {
++        if (destroyed) return;
++        context.hidden = false; context.focus(); context.select();
++        status.textContent = 'Copy the selected context into any new or existing Agent conversation.';
++        return;
++      }
++      if (!destroyed) status.textContent = 'Context copied. Paste it into any new or existing Agent conversation.';
++    } finally { if (!destroyed) { busy = false; copy.disabled = false; } }
++  });
++  listen(download, 'click', () => {
++    if (!retained || destroyed) return;
++    const url = window.URL.createObjectURL(new window.Blob([JSON.stringify(retained, null, 2) + '\n'], { type: 'application/json' }));
++    const anchor = node('a'); anchor.href = url; anchor.download = 'agent-reading-receipt.json'; anchor.click(); window.setTimeout(() => window.URL.revokeObjectURL(url), 1000);
++  });
++  let deadline;
++  void Promise.race([
++    Promise.resolve().then(() => discoverClients ? discoverClients() : localDiscovery(window)),
++    new Promise((_, reject) => { deadline = window.setTimeout(() => reject(new Error('Discovery timed out.')), 2500); }),
++  ]).then(snapshot => {
++    if (destroyed) return;
++    if (snapshot?.scope !== 'loopback-preview-host' || !Array.isArray(snapshot.clients)) throw new Error('No local discovery.');
++    const ids = Object.keys(names).filter(id => snapshot.clients.some(client => client?.id === id) && reading.clients.includes(id));
++    for (const id of ids) {
++      const plan = reading.prepare({ client: id, conversation: 'fresh' });
++      if (plan.kind !== 'native') continue;
++      const anchor = node('a', 'aap-gate-agent', names[id]); anchor.href = plan.url; anchor.dataset.client = id;
++      anchor.setAttribute('aria-label', `Open a new ${names[id]} desktop conversation with this context`);
++      anchor.title = `Prefill a new ${names[id]} desktop conversation. Review the app mode and send there.`;
++      const arrow = node('span', 'aap-gate-arrow', '↗'); arrow.setAttribute('aria-hidden', 'true'); anchor.append(arrow);
++      listen(anchor, 'click', event => {
++        if (destroyed || event.defaultPrevented) return;
++        clearReceipt(); const expected = generation;
++        window.setTimeout(() => {
++          if (destroyed || event.defaultPrevented || generation !== expected) return;
++          status.textContent = `Handoff requested. Review and send inside ${names[id]}. This page cannot confirm arrival.`;
++          void recordNative(id, expected);
++        }, 0);
++      });
++      apps.append(anchor);
++    }
++    hint.textContent = apps.children.length ? 'Detected on this Mac. Desktop links prefill a new conversation; review the app mode and send there. Copy works in any conversation.' : 'No supported desktop apps were detected. Copy works in any Agent conversation.';
++  }).catch(() => { if (!destroyed) hint.textContent = 'Desktop app detection is unavailable. Copy works in any Agent conversation.'; }).finally(() => window.clearTimeout(deadline));
++  const result = Object.freeze({ reading, destroy() {
++    if (destroyed) return;
++    destroyed = true; window.clearTimeout(deadline); generation++; retained = undefined; listeners.forEach(remove => remove()); root.remove(); mounts.delete(element);
++  } });
++  mounts.set(element, result);
++  return result;
++}
+diff --git a/apps/home/src/content/docs.ts b/apps/home/src/content/docs.ts
+index cd2959b..513219e 100644
+--- a/apps/home/src/content/docs.ts
++++ b/apps/home/src/content/docs.ts
+@@ -350 +350 @@ export const DOCS_SOURCE: DocsSource = {
+-  subtitle: "paste this prompt into your Agent",
++  subtitle: "Read with your Agent",
+diff --git a/apps/home/tests/DocsAgentReading.test.tsx b/apps/home/tests/DocsAgentReading.test.tsx
+index e19119a..31d5746 100644
+--- a/apps/home/tests/DocsAgentReading.test.tsx
++++ b/apps/home/tests/DocsAgentReading.test.tsx
+@@ -10 +10,7 @@ jest.mock("@agent-art/protocol", () => ({ defineWork: (work: Work) => work }));
+-jest.mock("@agent-art/protocol/reading-ui", () => ({ mountReading: (...args: unknown[]) => mount(...args) }));
++const sdkReading = jest.fn();
++const mountGate = jest.fn((element: HTMLElement, options: { createReading: unknown; work: Work; evidence: boolean }) => {
++  expect(options.createReading).toBe(sdkReading);
++  return mount(element, options);
++});
++jest.mock("@agent-art/protocol/reading", () => ({ createReading: sdkReading }));
++jest.mock("../src/components/open-gate/open-gate.mjs", () => ({ mountOpenGate: (...args: Parameters<typeof mountGate>) => mountGate(...args) }));
+@@ -14 +20 @@ import { DocsAgentReading } from "../src/components/DocsAgentReading";
+-afterEach(() => { cleanup(); mount.mockClear(); destroy.mockClear(); });
++afterEach(() => { cleanup(); mount.mockClear(); mountGate.mockClear(); destroy.mockClear(); });
+@@ -16 +22 @@ afterEach(() => { cleanup(); mount.mockClear(); destroy.mockClear(); });
+-describe("Inshell's reading SDK integration", () => {
++describe("Inshell's Open gate preview over the reading SDK", () => {
+@@ -21,0 +28 @@ describe("Inshell's reading SDK integration", () => {
++    expect(element.getAttribute("aria-label")).toBe("Ask your Agent");
+@@ -38,0 +46,24 @@ describe("Inshell's reading SDK integration", () => {
++  test("collapses the original manual group only after a successful gate mount and restores it on cleanup", async () => {
++    const view = render(<StrictMode><section><DocsAgentReading /><details data-original-reading-prompt open><summary hidden>Copy the original reading prompt</summary><pre>Exact owner prompt</pre><button>Copy prompt</button></details></section></StrictMode>);
++    const manual = view.container.querySelector("details")!;
++    const summary = manual.querySelector("summary")!;
++    expect(manual.open).toBe(true);
++    expect(summary.hidden).toBe(true);
++    await waitFor(() => expect(manual.open).toBe(false));
++    expect(summary.hidden).toBe(false);
++    expect(manual.querySelector("pre")?.textContent).toBe("Exact owner prompt");
++    expect(manual.querySelector("button")?.textContent).toBe("Copy prompt");
++    view.unmount();
++    expect(manual.open).toBe(true);
++    expect(summary.hidden).toBe(true);
++    expect(destroy).toHaveBeenCalledTimes(1);
++  });
++
++  test("keeps the original manual group visible when the gate cannot mount", async () => {
++    mountGate.mockImplementationOnce(() => { throw new Error("Fixture unavailable"); });
++    const view = render(<section><DocsAgentReading /><details data-original-reading-prompt open><summary hidden>Copy the original reading prompt</summary><pre>Exact owner prompt</pre><button>Copy prompt</button></details></section>);
++    await waitFor(() => expect(view.container.querySelector(".docs-agent-reading")?.textContent).toContain("Use Copy prompt below"));
++    expect(view.container.querySelector("details")!.open).toBe(true);
++    expect(view.container.querySelector("summary")!.hidden).toBe(true);
++  });
++

@@ -1,0 +1,263 @@
+{
+  "schema": "agent-art.reading-sdk-qualification.v1",
+  "date": "2026-10-20",
+  "status": "private-local-0.1.1-candidate",
+  "package": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.1",
+    "private": true,
+    "archive": ".local/sdk/agent-art-protocol-0.1.1.tgz",
+    "archiveSha256": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18",
+    "packagedFiles": {
+      "package.json": "062f18d04c8fc45950f19b5c00231565f64039d139e2391ec13f06901b81b3b7",
+      "index.mjs": "2a0875c38a71e2f034d6fad3a67171cca067e49f7b9feed136cf5aeec668646c",
+      "index.d.mts": "93fd2b703be6ba24092a2f88d396e3164892fed1948e4d4a07034e812ca4dfa7",
+      "clients.mjs": "30e1cc2966731431fec57c14f72f189d472825b8c9f7853dd1d6d55896cb3619",
+      "clients.d.mts": "6230f68aed26c374048dbef7c3793a912413574bb38e1b313b290f2126ea1bee",
+      "README.md": "35cbe724bbf10e57a60d3e9684083f92c48179a27643f8f1d3576ec91829fc5e",
+      "reading.mjs": "b34bc62cca3c25a4cadc286adad0f49d4b744cdd4a040fe45f6936ac59db098e",
+      "reading.d.mts": "2ac5720d227d6bc79403e37fbff7549fb54daf6fd9eb46ec5ef7ea090845b4d2",
+      "reading-ui.mjs": "e4f04aaaeed221868eaa47fb3ed225c51ce6a0a0aadd8969959bec6ac2d9d231",
+      "reading-ui.d.mts": "1f879a828ddf1b322138b95c4a5f41f7ac4a443e2cb6b9bf1f1b92053f104269",
+      "reading.css": "c7956b49d6a1936846bbb3f900c182f3e3c630153525140a96629b61c6309fa2"
+    },
+    "installedArchiveByteComparison": "passed for all 11 files; fresh SDK installation and consumer lock checked",
+    "runtimeDependencies": 0,
+    "lifecycleScripts": 0
+  },
+  "consumer": {
+    "active": "Lab only",
+    "metadata": "lab.json",
+    "metadataSha256": "a22d73394487cba7af1ece5d2e77d3889d8f6b58872b56870f64aa1f2032a358",
+    "patch": "lab.patch",
+    "patchSha256": "fdb9d0c10f94594ed190e26fb76867a05fd8a57a939586eb14aa1c99f4752eea",
+    "historicalConsumers": "Inshell, Pulse and Signatures reading integrations remain preserved 0.1.0 history; no upgrade or deployment in this patch.",
+    "cleanOfflineLabDependencyReinstall": "Unavailable: third-party tarballs absent from cache. Reused 8 locked baseline dependencies and installed only the fresh SDK offline. See lab.json."
+  },
+  "automatedChecks": [
+    {
+      "command": "npm test",
+      "passed": true,
+      "tests": 88,
+      "boundary": "27 SDK tests plus retained earlier core, MVP and pilot tests; not 88 reading-only tests."
+    },
+    {
+      "command": ".local/reading-v010-inshell/apps/home/node_modules/.bin/tsc --strict --noEmit --module NodeNext --moduleResolution NodeNext --target ES2022 --lib ES2022,DOM protocol/test/type-consumer.mts",
+      "passed": true,
+      "boundary": "Existing local TypeScript compiler; imports resolve to the installed final SDK archive."
+    },
+    {
+      "command": "Lab npm run build; npm test; python3 -B -m unittest discover -s tests; npm run check:site",
+      "passed": true,
+      "nodeTests": 21,
+      "pythonTests": 37,
+      "pages": 24,
+      "publicFiles": 61,
+      "localLinks": 588,
+      "networkRequestsForSiteCheck": 0
+    },
+    {
+      "check": "Pinned full Lab patch clean isolated-index replay",
+      "passed": true,
+      "resultTree": "a7961d590a28625abcc31aec87c24667d17cc703"
+    }
+  ],
+  "browser": {
+    "target": {
+      "application": "/Applications/Google Chrome.app",
+      "bundleId": "com.google.Chrome",
+      "verifiedBeforeLaunch": true,
+      "profile": "Disposable owned headless profile; user browser tabs untouched."
+    },
+    "runner": "check-ui.mjs",
+    "runnerSha256": "31e9521d158add8e8901070c5bc9a1718ec00f4f8b86f9483ec7d2a36c4b7cb6",
+    "fixture": "ui-fixtures.mjs",
+    "fixtureSha256": "25ed46688b906ef11ff33764833e4da75b97fea0b2501aafc2814a74f8157543",
+    "runs": [
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "passed": true,
+        "row": [
+          322.84375,
+          40
+        ],
+        "coarsePointer": false,
+        "minimumActionHeight": 32,
+        "oneLine": true,
+        "noHorizontalOverflow": true,
+        "exactNativeContext": true,
+        "runtimeExceptions": [],
+        "httpFailures": [],
+        "rawEvidence": ".local/qa/reading-sdk-011/lab-1440-light.json",
+        "rawEvidenceSha256": "b7ca58fb7676e70ae9917adbb22a20299cd321b708891cd2faab52bf6241cee4",
+        "screenshot": ".local/qa/reading-sdk-011/lab-1440-light.png",
+        "screenshotSha256": "54ec9b2ad8a24cba4a827a390cabff59da067e2bb68c06af246dad328e865c53"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "dark",
+        "passed": true,
+        "row": [
+          322.84375,
+          40
+        ],
+        "coarsePointer": false,
+        "minimumActionHeight": 32,
+        "oneLine": true,
+        "noHorizontalOverflow": true,
+        "exactNativeContext": true,
+        "runtimeExceptions": [],
+        "httpFailures": [],
+        "rawEvidence": ".local/qa/reading-sdk-011/lab-1440-dark.json",
+        "rawEvidenceSha256": "330fd9fcf4daf6d2d0eeb802bf437104ace922cd9d2e272e6283beb54da73a07",
+        "screenshot": ".local/qa/reading-sdk-011/lab-1440-dark.png",
+        "screenshotSha256": "7b73eb6f4c21c8dcae83198a5307650b276e6679de5747e47d6d55ec0f9c9d06"
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "passed": true,
+        "row": [
+          271.984375,
+          52
+        ],
+        "coarsePointer": true,
+        "minimumActionHeight": 44,
+        "oneLine": true,
+        "noHorizontalOverflow": true,
+        "exactNativeContext": true,
+        "runtimeExceptions": [],
+        "httpFailures": [],
+        "rawEvidence": ".local/qa/reading-sdk-011/lab-390-dark.json",
+        "rawEvidenceSha256": "80c45388a1b5a24f42e5dd9d5ce6bc551dfc7d0184e886203eda04829728b77f",
+        "screenshot": ".local/qa/reading-sdk-011/lab-390-dark.png",
+        "screenshotSha256": "1236cd81ef19fc7c93973caa38f1a4382146bd35b46c925c20323f560a7fd6a7"
+      },
+      {
+        "viewport": [
+          320,
+          720
+        ],
+        "theme": "light",
+        "passed": true,
+        "row": [
+          254.984375,
+          52
+        ],
+        "coarsePointer": true,
+        "minimumActionHeight": 44,
+        "oneLine": true,
+        "noHorizontalOverflow": true,
+        "exactNativeContext": true,
+        "runtimeExceptions": [],
+        "httpFailures": [],
+        "rawEvidence": ".local/qa/reading-sdk-011/lab-320-light.json",
+        "rawEvidenceSha256": "d67db396dde396384afd158de1f3176ba0869a46ea211b9b77ffd3160eab2dc5",
+        "screenshot": ".local/qa/reading-sdk-011/lab-320-light.png",
+        "screenshotSha256": "c2d591eb78a2a519ffffa816730c522c4e29bb1df2200d5edc8b28b5777c8df4"
+      }
+    ],
+    "fixtures": {
+      "passed": true,
+      "results": [
+        {
+          "name": "default routes, exact public context, names and no mode forcing",
+          "passed": true
+        },
+        {
+          "name": "configured client subset retains Copy",
+          "passed": true
+        },
+        {
+          "name": "copy succeeds exactly, denial selects exact text, no invented receipts",
+          "passed": true
+        },
+        {
+          "name": "empty host discovery",
+          "passed": true
+        },
+        {
+          "name": "host discovery filters unknown and repeated IDs",
+          "passed": true
+        },
+        {
+          "name": "failed host discovery offers unverified routes",
+          "passed": true
+        },
+        {
+          "name": "malformed host discovery offers unverified routes",
+          "passed": true
+        },
+        {
+          "name": "timed-out host discovery offers unverified routes",
+          "passed": true
+        },
+        {
+          "name": "oversized context remains exact and manual-only",
+          "passed": true
+        },
+        {
+          "name": "ancestor cancellation creates no receipt or handoff status",
+          "passed": true
+        },
+        {
+          "name": "synthetic native observation verifies and callback failure is visible",
+          "passed": true
+        },
+        {
+          "name": "Copy supersedes a pending native callback without stale status",
+          "passed": true
+        },
+        {
+          "name": "teardown suppresses late discovery and clipboard completion",
+          "passed": true
+        },
+        {
+          "name": "immediate teardown does not start host discovery",
+          "passed": true
+        },
+        {
+          "name": "duplicate mounts and invalid UI options reject",
+          "passed": true
+        }
+      ],
+      "boundary": "Synthetic DOM fixtures only. Native clicks canceled or redirected to same-page fragments; clipboard and host discovery explicitly stubbed. No Agent launch or inference."
+    },
+    "visualInspection": "Desktop component crop and mobile dark screenshot inspected; compact Open bubble label, shared surface and all three actions visible.",
+    "cleanup": "Each disposable Chrome process/profile closed/removed by runner; no new user tabs created. Prior session-owned Lab/Inshell servers stopped; only current Lab preview retained."
+  },
+  "nativeClientEvidence": {
+    "freshTrial": false,
+    "chatgpt": "Existing codex://new?prompt route and internal codex-app identity retained. No mode parameter or app-mode automation.",
+    "claude": "Existing claude://claude.ai/new?q Chat draft route retained.",
+    "priorOperatorReports": "Earlier preview reported Codex with Lab draft, then Work after selecting Chat; operator submitted the latter. Those reports are not a fresh archive qualification.",
+    "source": "../open-gate/QUALIFICATION.json"
+  },
+  "claimBoundaries": [
+    "Prepared exact URL and requested handoff do not establish app arrival, sending, reading, comprehension or Agent execution.",
+    "Host discovery reports allowlisted app IDs; SDK does not independently detect installation or probe loopback. Default routes are offered with availability unverified.",
+    "Native receipt is an unsigned caller-observed request; integrity does not authenticate model authorship or private intention. Compact Copy issues no receipt because no destination conversation is declared.",
+    "Native activation in browser fixtures was canceled or replaced by same-page fragments. Synthetic fixtures do not qualify live native clients.",
+    "No new live Agent trial, registry publication, public deployment, licensing or new artwork participation implementation.",
+    "Old v0.1.0 archive, tag, patches and observations retain their original scope."
+  ],
+  "documentChecks": {
+    "localMarkdownLinks": 180,
+    "missingLinks": 0,
+    "changedTextFilesScanned": 44,
+    "redactedSecretScanFindings": 0,
+    "utf8LfNoBom": "passed",
+    "gitDiffCheck": "passed for staged and unstaged changes",
+    "boundary": "Qualification was recorded before the operator requested source commit/push. Registry publication and deployment remain outside this update."
+  }
+}

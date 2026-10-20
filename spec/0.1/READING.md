@@ -1,9 +1,11 @@
-# SDK 0.1.0 reading profile
+# SDK 0.1 reading profile
 
-Selected 2026-10-19. This is the supported public-document reading scope of
-private `@agent-art/protocol@0.1.0`. The wider Agent Art architecture and
-participation contract remain candidate. New THOUGHT/artwork participation is
-deferred to a later compatible release; earlier experimental APIs remain.
+Selected 2026-10-19; compact component update selected 2026-10-20. This is the
+supported public-document reading scope of private `@agent-art/protocol@0.1.1`.
+The wider Agent Art architecture and participation contract remain candidate.
+New THOUGHT/artwork participation is deferred to a later compatible release;
+earlier experimental APIs remain. Version 0.1.0 and its archive are preserved
+as historical release inputs.
 
 ## Purpose and ownership
 
@@ -14,7 +16,7 @@ later support richer participation; reading does not need an artwork ledger.
 | Owner | Responsibility |
 | --- | --- |
 | Publisher/application | Canonical invitation, source/index references, usage/answer policy, placement and disclosure, original manual fallback |
-| SDK | Browser interface/controller, prepared client routes, explicit fresh/existing behavior, exact context carriage, copy fallback and optional bounded receipts |
+| SDK | Compact browser interface/controller, prepared native draft routes, exact context carriage, copy fallback and optional bounded native-handoff receipts; explicit fresh/existing plans remain available headlessly |
 | Visitor and Agent client | Choosing the conversation, reviewing/sending context, permissions, source retrieval, questions and answers |
 
 The SDK supplies no inference, source fetch, answer service, conversation
@@ -63,13 +65,33 @@ The reading entry points are:
 
 `prepare({ client, conversation })` returns a native URL plan or a manual-copy
 plan; it performs no navigation. The supplied UI binds a native URL to an
-explicit visitor click. It offers Claude, Codex and manual copying; a
-configured subset always retains manual fallback. No installation detection,
-hidden launch, reload launch or automatic retry is supplied.
+explicit visitor click. Its compact, single-line presentation uses the small
+**Ask your Agent** label and Open bubble mark, followed by **ChatGPT**,
+**Claude** and always-visible **Copy**. The label is not a button or a title.
+A configured subset always retains manual fallback. Oversized native context
+also falls back to copying without truncation.
 
-- **Fresh conversation:** a supported native route prepares a context draft.
-  The visitor reviews and sends it inside the Agent. Draft arrival is not a
-  browser-confirmed outcome.
+Without a discovery callback, configured native links appear synchronously as
+offered routes requiring the installed apps. Their presence is not an
+installation finding. The SDK does not probe apps, fetch discovery data or
+contact localhost by default. There is no hidden launch, reload launch or
+automatic retry.
+
+`mountReading` retains `work`, `context?`, `clients?`, `label?`, `evidence?` and
+`onReceipt?`, and adds optional `discoverClients`. A host callback returns
+`{ clients: [{ id }] }`; the SDK recognizes only its configured supported IDs
+and constructs routes itself. No supplied URLs, markup or executable modules
+are accepted as client routes. Successful empty discovery leaves Copy. Failure,
+timeout or unusable discovery leaves the configured native links available
+with installation unverified. A successful snapshot is a host-reported
+availability claim, not an independent SDK attestation. The host owns any
+source, permissions or requests behind its callback. Lab injects its existing
+loopback-host detector for local testing; that helper is outside the package
+and is not a public-site requirement.
+
+- **Fresh desktop conversation:** a supported native route prepares a context
+  draft. The visitor reviews the app mode and draft, then sends it inside the
+  Agent. Draft arrival is not a browser-confirmed outcome.
 - **Existing conversation:** copy and paste into the conversation the visitor
   chooses; no conversation ID or private history is obtained.
 - **Another Agent or oversized context:** manual copying, without truncation.
@@ -80,18 +102,38 @@ or client/clipboard access is unavailable. The SDK does not replace existing
 source formats, impose a new knowledge corpus or enforce the offered policy
 inside an external Agent.
 
+The **ChatGPT** label retains the internal `codex-app` ID and
+`codex://new?prompt=…` route. It does not request or promise ordinary Chat,
+Work or Codex mode; the destination application decides. **Claude** uses its
+`claude://claude.ai/new?q=…` Chat route. No browser extension is required by
+these native links. The component does not select an account, model or app
+preference and performs no Send action.
+
+The stylesheet retains the public `aap-reading` namespace and
+`--aap-ink`, `--aap-paper`, `--aap-muted`, `--aap-line`, `--aap-radius`
+properties, with the selected Seal/Open bubble presentation's customization
+aliases. It is imported explicitly and performs no remote asset requests.
+
 ## Optional evidence
 
 The interface defaults to `evidence: false`: no receipt is created. When
-explicitly enabled, a local receipt may be downloaded or delivered to an
-application-provided callback. Persistence is the application's decision;
-using the protocol does not require collecting a visitor's reading history.
+explicitly enabled, a requested native handoff can produce a local receipt
+for download or an application-provided callback. Persistence is the
+application's decision; using the protocol does not require collecting a
+visitor's reading history.
 
-The controller's `receipt()` accepts only `handoff-requested`, `context-copied`
-and `manual-context-selected`, with the selected client/conversation, named
-observer and optional exact timestamp. Call it only after actually observing
-that action. The SDK preserves a caller statement; it is not an independent
-witness and does not establish a human's identity or motivation.
+The compact Copy control works with any new or existing conversation and does
+not ask the visitor to declare one. It therefore creates no Copy receipt,
+including when clipboard denial reveals and selects the exact context. The
+0.1.0 selector UI had explicit client/conversation selections; this changed
+presentation must not invent those selections merely to create a receipt.
+
+The unchanged headless controller's `receipt()` accepts only
+`handoff-requested`, `context-copied` and `manual-context-selected`, with the
+selected client/conversation, named observer and optional exact timestamp.
+Call it only after actually observing that action. The SDK preserves a caller
+statement; it is not an independent witness and does not establish a human's
+identity or motivation.
 
 | Observation | What it does not establish |
 | --- | --- |
@@ -116,17 +158,34 @@ silently require enrollment, storage, callbacks or contribution records for
 reading. This backward compatibility does not promise that older strict
 verifiers understand future fields, schemas or capability claims.
 
-The release candidate archive's SHA-256 is
-`646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0`.
-The [consumer guide](../../pilot/reading-consumers/README.md) identifies four
-isolated integrations: Lab, Inshell Docs, Pulse and Signatures Gallery About.
-They are local consumer work, not deployed changes. No registry publication,
-license selection or production rollout is implied by SDK version `0.1.0`.
+The 0.1.1 candidate archive's SHA-256 is
+`2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18`. Its active local test consumer is **Lab**. Current
+package, browser and Lab checks are recorded in
+[0.1.1 qualification](../../pilot/reading-sdk/QUALIFICATION.json). The compact
+component and the updated installed archive require their own checks; earlier
+preview or 0.1.0 results do not qualify changed packaged inputs.
 
-The [qualification record](../../pilot/reading-consumers/QUALIFICATION.md)
+The immutable 0.1.0 archive's SHA-256 remains
+`646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0`.
+The [earlier consumer guide](../../pilot/reading-consumers/README.md) identifies
+its four isolated integrations: Lab, Inshell Docs, Pulse and Signatures
+Gallery About. Those records and pins remain historical. Only Lab is updated
+and maintained as the active SDK test consumer for this change; there is no
+need to keep the other three development servers running. No registry
+publication, license selection or public deployment is implied by SDK
+version `0.1.1`.
+
+The [0.1.0 qualification record](../../pilot/reading-consumers/QUALIFICATION.md)
 separates 27 SDK tests, installed-type checks, browser fixtures, consumer
 checks and one bounded Lab-to-Claude native Open. That Open reached a fresh
 conversation containing the public Lab context; full composer-byte equality
 was not checked, and no Send, reading or inference was performed. Earlier
 alpha/MVP encounters retain their own evidence boundaries. Native routes and
 source policy compliance remain qualified per actual client and environment.
+
+In prior compact-preview testing, the operator reported a prefilled Lab draft
+in Codex. After selecting ChatGPT → Chat and invoking the same handoff, the
+operator reported Work and submitted it. These are attributed prior inputs;
+they do not establish a universal routing policy or constitute a fresh native
+test of the 0.1.1 SDK archive. They support preserving desktop prefill while
+leaving the destination mode under application control.

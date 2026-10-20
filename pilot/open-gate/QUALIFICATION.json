@@ -1,0 +1,603 @@
+{
+  "status": "local-chatgpt-desktop-presentation-candidate",
+  "date": "2026-10-20",
+  "supersedes": "Browser copy-and-paste trial retained at qualification/2026-10-20-chatgpt-web-copy.json. Restores historical desktop transport under ChatGPT label.",
+  "sdkVersion": "0.1.0",
+  "sdkArchiveSha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+  "sdkChanged": false,
+  "browser": "Regular stable Google Chrome, explicitly verified com.google.Chrome",
+  "rootTests": 88,
+  "discoveryBoundaryTests": 2,
+  "sharedFiles": {
+    "open-gate.css": "879ffb598c993d7faa585d1a241058ce0151350daaa24130cfdf6f54ad98efb9",
+    "open-gate.d.mts": "489e4f480f47d8c041ac0a1dff09805de97865e067c3b9054e3d7f7bec4b107c",
+    "open-gate.mjs": "7aa8396122467bc106d1f343834440a71723824d7970d590589d7ca985824740"
+  },
+  "detectorSha256": "8cba24445bd6fadd71d84567ddcc388adc9a62785ba2b85b9583f23d20fc3229",
+  "actualDiscovery": {
+    "scope": "loopback-preview-host",
+    "detectedClientIds": [
+      "codex-app",
+      "claude-app"
+    ],
+    "visibleLabels": [
+      "ChatGPT",
+      "Claude"
+    ],
+    "basis": "Allowlisted bundle ID, declared scheme and executable; no login, default-handler or arrival check.",
+    "publicVisitorDetection": "Not implemented."
+  },
+  "cases": [
+    {
+      "consumer": "lab",
+      "route": "http://127.0.0.1:4174/",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "nativeClientIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "visibleClientLabels": [
+        "ChatGPT",
+        "Claude"
+      ],
+      "chatgptNativeLabel": true,
+      "noWebRoute": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 322.84375,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 32,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "lab",
+      "route": "http://127.0.0.1:4174/",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "nativeClientIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "visibleClientLabels": [
+        "ChatGPT",
+        "Claude"
+      ],
+      "chatgptNativeLabel": true,
+      "noWebRoute": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 254.984375,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 44,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "inshell",
+      "route": "http://127.0.0.1:4176/docs",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "nativeClientIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "visibleClientLabels": [
+        "ChatGPT",
+        "Claude"
+      ],
+      "chatgptNativeLabel": true,
+      "noWebRoute": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 320.8125,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 32,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "inshell",
+      "route": "http://127.0.0.1:4176/docs",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "nativeClientIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "visibleClientLabels": [
+        "ChatGPT",
+        "Claude"
+      ],
+      "chatgptNativeLabel": true,
+      "noWebRoute": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 253.125,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 44,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "pulse",
+      "route": "http://127.0.0.1:4177/",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "nativeClientIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "visibleClientLabels": [
+        "ChatGPT",
+        "Claude"
+      ],
+      "chatgptNativeLabel": true,
+      "noWebRoute": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 322.84375,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 32,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "pulse",
+      "route": "http://127.0.0.1:4177/",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "nativeClientIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "visibleClientLabels": [
+        "ChatGPT",
+        "Claude"
+      ],
+      "chatgptNativeLabel": true,
+      "noWebRoute": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 254.984375,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 44,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "signatures",
+      "route": "http://127.0.0.1:4178/about",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "nativeClientIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "visibleClientLabels": [
+        "ChatGPT",
+        "Claude"
+      ],
+      "chatgptNativeLabel": true,
+      "noWebRoute": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 322.71875,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 32,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "signatures",
+      "route": "http://127.0.0.1:4178/about",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "nativeClientIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "visibleClientLabels": [
+        "ChatGPT",
+        "Claude"
+      ],
+      "chatgptNativeLabel": true,
+      "noWebRoute": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 254.984375,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 44,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    }
+  ],
+  "additionalEntry": {
+    "consumer": "pulse",
+    "route": "/projects",
+    "viewport": "320x844 dark/coarse",
+    "result": "passed",
+    "oneLine": true,
+    "allActionsInsideSharedSurface": true,
+    "copyAlwaysVisible": true
+  },
+  "syntheticBrowserFixtures": {
+    "results": [
+      {
+        "scenario": "none",
+        "copyImmediate": true,
+        "copyStillVisible": true,
+        "noAppClaims": true,
+        "copiedExact": true,
+        "noPanel": true,
+        "destroyClean": true
+      },
+      {
+        "scenario": "failure",
+        "copyImmediate": true,
+        "copyStillVisible": true,
+        "noAppClaims": true,
+        "copiedExact": true,
+        "noPanel": true,
+        "destroyClean": true
+      }
+    ],
+    "lateDestroyedClean": true
+  },
+  "liveChatGPTDesktopHandoff": {
+    "source": "Actual local Lab button in regular Chrome",
+    "visibleLabel": "ChatGPT",
+    "internalClientId": "codex-app",
+    "urlForm": "codex://new?prompt=<encoded exact public Lab context>",
+    "sourceContextUtf8Sha256": "ab46fe2b82605d6e06fca7cfc5e2f99aeaa3b1bedc37dada60c46e681f756845",
+    "sourceContextCharacters": 516,
+    "browserHandoffRequestedStatusObserved": true,
+    "nativeAppArrivalObserved": false,
+    "destinationDraftObserved": false,
+    "ordinaryChatModeObserved": false,
+    "forcedChatMode": false,
+    "modeVerification": "Two operator-mediated observations with the same Lab link: Codex selected -> Codex with Lab draft; ChatGPT > Chat selected beforehand -> operator reports Work and submitted it. This does not promise ordinary Chat or establish a universal routing policy.",
+    "sentByAutomation": false,
+    "modelExecutionByAutomation": false,
+    "cleanup": "Owned Chrome source tabs closed separately. First native unsent draft cleanup not tool-confirmed. Second work was submitted by operator and left untouched.",
+    "operatorObservation": {
+      "source": "operator reply after Lab click",
+      "desktopAppCalloutSeen": false,
+      "webChatGPTInBuiltInBrowserSeen": true,
+      "webLoginReported": true,
+      "prefilledDesktopDraftConfirmed": false
+    },
+    "defaultSchemeHandler": {
+      "scheme": "codex",
+      "application": "ChatGPT.app",
+      "bundleIdentifier": "com.openai.codex",
+      "basis": "Read-only NSWorkspace default-handler lookup outside the filesystem sandbox; no app settings changed."
+    },
+    "visibleChromeRetry": {
+      "browser": "regular Google Chrome",
+      "source": "actual local Lab ChatGPT native link",
+      "explicitChromeTabSelection": true,
+      "nativeChromeLinkClick": true,
+      "externalAppPromptObserved": "Open ChatGPT?",
+      "promptOrigin": "http://127.0.0.1:4174",
+      "alwaysAllowChecked": false,
+      "oneTimeOpenAccepted": true,
+      "destinationAppInspection": "blocked by computer-use tool",
+      "destinationMode": "codex, operator-confirmed with Lab draft",
+      "promptSentByAutomation": false
+    },
+    "operatorConfirmedNativeAppArrival": true,
+    "operatorConfirmedDraftPrefill": true,
+    "operatorConfirmedMode": "codex and work in two differently initialized tests",
+    "destinationDraftBytesVerified": false,
+    "operatorConfirmation": {
+      "source": "operator reply after visible regular-Chrome external-app prompt was accepted",
+      "reportedResult": "Codex with the Lab draft",
+      "ordinaryChat": false,
+      "modelExecutionEstablished": false,
+      "draftCleanup": "not confirmed by tools"
+    },
+    "modePolicyReview": {
+      "officialUmbrellaAndCodexDefaultViewConfirmed": true,
+      "allIncomingLinksFollowDefaultView": "not documented; current two observations do not establish all clients, routes or settings",
+      "invariablyOpensCodex": "not supported by operator-reported Work outcome in second test",
+      "ordinaryChatGuaranteed": false,
+      "exactRoutingRule": "unresolved; product preference, local-chat route semantics and subsequent UI transitions are not directly observed",
+      "discriminatingTest": "Same URL retested after operator selected ChatGPT > Chat; operator reported Work and submission."
+    },
+    "chatSelectedTest": {
+      "initialProductAndMode": "ChatGPT > Chat, operator-confirmed Ready before trigger",
+      "inputUnchanged": true,
+      "sourceContextCharacters": 516,
+      "sourceContextUtf8Sha256": "ab46fe2b82605d6e06fca7cfc5e2f99aeaa3b1bedc37dada60c46e681f756845",
+      "urlForm": "codex://new?prompt=<same encoded public Lab context>",
+      "sdkSourceChanged": false,
+      "source": "actual local Lab link in regular Chrome",
+      "linkClicksByAutomation": 1,
+      "externalAppPromptObserved": "Open ChatGPT?",
+      "externalAppPromptAcceptance": "Prompt disappeared before automated acceptance could be verified. Operator subsequently reported the destination.",
+      "reportedDestinationMode": "work",
+      "destinationObservationSource": "operator reply: it is in Work; I have submitted it",
+      "operatorReportedSubmission": true,
+      "automationSentPrompt": false,
+      "automatedModelCall": false,
+      "modelExecutionVerifiedByTools": false,
+      "destinationBytesVerifiedByTools": false,
+      "interferenceAfterSubmission": "none; do not clear or cancel the submitted work"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://learn.chatgpt.com/docs/reference/commands#deep-links",
+      "finding": "Documents new desktop composer with prompt and no automatic Send; no ordinary-Chat mode parameter listed."
+    },
+    {
+      "url": "https://learn.chatgpt.com/docs/changelog#july-2026",
+      "finding": "July 9 release documents Codex joining ChatGPT desktop and configurable Codex default view; does not specify default-view handling of all incoming links."
+    }
+  ],
+  "evidenceBoundary": "Both native links may issue opt-in fresh handoff-requested receipts through unchanged SDK. ChatGPT keeps codex-app internal identity. Request receipts do not confirm app arrival, mode, sending, reading, execution or intention. Copy issues no receipt.",
+  "modelCall": false,
+  "walletOrMintAction": false,
+  "deployment": false,
+  "consumerValidation": {
+    "lab": {
+      "nodeTests": 21,
+      "build": "passed",
+      "siteCheck": {
+        "publicFiles": 63,
+        "localLinks": 589,
+        "networkRequests": 0
+      }
+    },
+    "inshell": {
+      "targetedReadingTests": 4,
+      "strictTypeScript": "passed",
+      "docsFingerprints": "regenerated and checked",
+      "previewBuild": "passed"
+    },
+    "pulse": {
+      "targetedTests": 13,
+      "buildAssets": 26,
+      "build": "passed",
+      "rpc": "disabled"
+    },
+    "signatures": {
+      "previewTests": 229,
+      "packagedWorkerTests": 19,
+      "typecheck": "passed",
+      "rendererLocks": "passed",
+      "previewBuild": "passed",
+      "mintingEnabled": false,
+      "walletConnectionEnabled": false
+    }
+  },
+  "sdkIntegrity": "All four archives retain recorded digest; all 11 installed package files per consumer byte-match protocol source; protocol/ unchanged from v0.1.0.",
+  "cleanup": "Disposable regular-Chrome processes/profiles closed by runners; existing user tabs left alone.",
+  "modelCallBoundary": "No automation Send or direct provider call. Operator independently reported submitting the second handoff in Work; execution result was not inspected."
+}

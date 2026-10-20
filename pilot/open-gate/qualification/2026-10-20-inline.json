@@ -1,0 +1,252 @@
+{
+  "status": "local-inline-presentation-candidate",
+  "date": "2026-10-20",
+  "supersedes": "The 2026-10-19 expandable chooser presentation; that dated qualification is preserved separately.",
+  "sdkVersion": "0.1.0",
+  "sdkArchiveSha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+  "sdkChanged": false,
+  "browser": "Regular stable Google Chrome, explicitly verified com.google.Chrome",
+  "rootTests": 88,
+  "newDiscoveryBoundaryTests": 2,
+  "actualDiscovery": {
+    "scope": "loopback-preview-host",
+    "detectedClientIds": [
+      "codex-app",
+      "claude-app"
+    ],
+    "basis": "Known app bundle, exact ID, declared scheme, executable file. No launch, login or default-handler check.",
+    "publicVisitorDetection": "Not implemented by this candidate."
+  },
+  "cases": [
+    {
+      "consumer": "lab",
+      "route": "http://127.0.0.1:4174/",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agents",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "lab",
+      "route": "http://127.0.0.1:4174/",
+      "viewport": "390x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agents",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "inshell",
+      "route": "http://127.0.0.1:4176/docs",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agents",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "inshell",
+      "route": "http://127.0.0.1:4176/docs",
+      "viewport": "390x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agents",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "pulse",
+      "route": "http://127.0.0.1:4177/",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agents",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "pulse",
+      "route": "http://127.0.0.1:4177/",
+      "viewport": "390x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agents",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "signatures",
+      "route": "http://127.0.0.1:4178/about",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agents",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "signatures",
+      "route": "http://127.0.0.1:4178/about",
+      "viewport": "390x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agents",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    }
+  ],
+  "additionalEntry": {
+    "consumer": "pulse",
+    "route": "/projects",
+    "viewport": "390x844 dark",
+    "result": "passed same checks"
+  },
+  "syntheticBrowserFixtures": {
+    "results": [
+      {
+        "scenario": "none",
+        "copyImmediate": true,
+        "copyStillVisible": true,
+        "noAppClaims": true,
+        "copiedExact": true,
+        "noPanel": true,
+        "destroyClean": true
+      },
+      {
+        "scenario": "failure",
+        "copyImmediate": true,
+        "copyStillVisible": true,
+        "noAppClaims": true,
+        "copiedExact": true,
+        "noPanel": true,
+        "destroyClean": true
+      }
+    ],
+    "lateDestroyedClean": true
+  },
+  "fixtureBoundary": "Empty/failing discovery and successful/denied clipboard behavior are explicit fixtures. Real UI tests compare the visible apps against actual host detection. Native links are canceled before navigation.",
+  "evidenceBoundary": "Optional fresh native-request receipts use existing SDK semantics; cancellation produces no receipt. Copy has no declared target conversation, so no Copy receipt is created.",
+  "nativeAgentLaunched": false,
+  "modelCall": false,
+  "walletOrMintAction": false,
+  "deployment": false,
+  "networkLimit": "Pulse /api/status may return 503 with RPC deliberately disabled. The local module endpoint works under Signatures unchanged connect-src none.",
+  "cleanup": "All owned disposable Chrome processes/profiles closed by runners; user tabs and private chats untouched.",
+  "review": "Independent read-only privacy/security/evidence review found no actionable blocker."
+}

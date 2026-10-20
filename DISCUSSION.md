@@ -5,8 +5,8 @@ the protocol is not frozen. This record separates agreements, proposals,
 experiments and unresolved questions so we can explore real projects without
 turning earlier recommendations into decisions.
 
-The current sequence is the [SDK 0.1.0 reading release](spec/0.1/READING.md)
-across four isolated local consumers, followed by compatible artwork
+The current sequence is [SDK 0.1.1 reading](spec/0.1/READING.md)
+on Lab as the single active test consumer, followed by compatible artwork
 participation work. Earlier project discussions and observations below retain
 their date and scope. They inform the design rather than grading artworks
 against an already settled standard.
@@ -439,3 +439,19 @@ WILL reference. The earlier [evidence study](research/2026-10-17-participation-e
 remain dated research. New decisions should identify which open question they
 settle and what the project encounter taught us; they should not silently
 rewrite an earlier observation into a stronger finding.
+
+## Compact component and one active consumer — 2026-10-20
+
+**Working agreement.** Move the selected Open bubble / Seal **Ask your Agent**
+component into the SDK. Keep ChatGPT desktop prefill, Claude and always-visible
+Copy, with a small noninteractive label and one-line layout. Do not force an
+ordinary Chat destination. The app controls its mode; earlier operator reports
+of Codex and Work retain their original observational limits.
+
+Lab is the only active local test consumer for private SDK 0.1.1. The earlier
+four-site integrations remain preserved history; no four-server maintenance
+or deployment is required. The fresh archive and Lab's matching dependency
+lock have their own [qualification](pilot/reading-sdk/QUALIFICATION.json).
+Host-provided availability checking is optional and outside the SDK's default
+behavior. Reading remains lightweight and evidence opt-in. The wider protocol,
+stronger execution evidence and later artwork participation remain candidate.

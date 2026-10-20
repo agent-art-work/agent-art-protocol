@@ -4,7 +4,7 @@ A candidate protocol for connecting users' real Agent environments and
 preserving claim-scoped evidence. Its artistic purpose is to support works
 in which human and Agent intention can have consequential standing.
 
-**Current SDK: private `@agent-art/protocol@0.1.0`, focused on documentation
+**Current SDK: private `@agent-art/protocol@0.1.1`, focused on documentation
 reading.** A reusable **Ask your Agent** interface carries a site's public
 context into the visitor's Agent; the visitor asks and continues there.
 The SDK performs no inference and collects no questions, answers or private
@@ -19,11 +19,11 @@ evidence with zero Participants, Acts and Relations; it is not thereby art.
 ## Install and integrate
 
 Run `npm run sdk:pack` to create
-`.local/sdk/agent-art-protocol-0.1.0.tgz`. Copy it into the consuming project's
+`.local/sdk/agent-art-protocol-0.1.1.tgz`. Copy it into the consuming project's
 `vendor/` directory and install its relative file dependency:
 
 ```sh
-npm install ./vendor/agent-art-protocol-0.1.0.tgz --ignore-scripts
+npm install ./vendor/agent-art-protocol-0.1.1.tgz --ignore-scripts
 ```
 
 Use the application's existing package manager and retain its dependency lock.
@@ -36,7 +36,7 @@ interface or uses the headless controller:
 
 | Entry point | Purpose |
 | --- | --- |
-| `@agent-art/protocol/reading-ui` | Framework-neutral interface with client selection, fresh/existing conversation behavior and copy fallback |
+| `@agent-art/protocol/reading-ui` | Compact Open bubble component: small Ask your Agent label, ChatGPT desktop prefill, Claude and always-visible Copy |
 | `@agent-art/protocol/reading.css` | Styles that inherit host typography and configurable colors |
 | `@agent-art/protocol/reading` | Frozen reading frame, prepared routes and optional bounded receipts for a custom UI |
 | `@agent-art/protocol`, `/clients` | Existing factories, per-claim checks and native URL builder; wider participation APIs remain experimental |
@@ -46,33 +46,40 @@ See the [SDK installation/API guide](protocol/README.md) and
 additional backend, local helper, account, enrollment, callback or evidence database.
 Receipts are opt-in; adopting persistent storage is not a protocol requirement.
 
-## Current consumers and checks
+## Current consumer and checks
 
-| Isolated reading integration | Entry |
-| --- | --- |
-| Agent Art Lab | Homepage reading controls |
-| inshell.art | Docs page |
-| Pulse | Homepage and Projects |
-| signatures.gallery | About page; artwork preview and mint flows remain separate |
+**Lab is the single active local test consumer for SDK 0.1.1.** Run:
 
-These are reviewable local integrations. Their original checkouts and live
-sites are unchanged. The [consumer guide](pilot/reading-consumers/README.md)
-identifies the patches, locked archive and local walkthroughs; the
-[reading qualification](pilot/reading-consumers/QUALIFICATION.md) separates
-synthetic, browser and native-client observations. The candidate archive's
-SHA-256 is `646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0`.
+```sh
+npm run pilot:lab
+```
 
-The 27 SDK tests passed, including actual offline package installation and
-backward verification of an alpha receipt. Regular Chrome fixture checks
-passed eight DOM regressions at desktop and mobile sizes. One Lab-to-Claude
-Open was observed as a fresh conversation containing the public Lab context;
-composer content was not fully byte-verified, and nothing was sent. This
-establishes neither reading nor inference. The user chose to clear that draft
-manually after automatic approval review blocked uncertain field cleanup.
-See qualification for the precise observations and remaining limits.
+Open [the local Lab preview](http://127.0.0.1:4174/). The application imports
+`mountReading` and the packaged stylesheet; the component is now in the SDK,
+with no separate presentation wrapper. Public sites need no helper. This
+local preview optionally supplies a read-only Mac availability callback; the
+SDK itself does not probe installed applications or fetch discovery endpoints.
+Without a host callback it offers configured desktop links without claiming
+that those apps are installed. Copy is always present.
 
-`npm run test:sdk` checks the SDK. The final `npm test` run passed 86 tests,
-including retained earlier MVP/pilot code; this is not 86 reading-only checks.
+ChatGPT keeps the existing `codex://new?prompt=…` desktop route and internal
+`codex-app` identity; Claude keeps its Chat-prefill route. No app mode is forced.
+Earlier operator reports found a Codex draft in one setup and Work in another,
+even after selecting Chat. These observations do not establish a universal
+routing rule. Users review the app mode and draft before sending.
+
+The [current integration and qualification](pilot/reading-sdk/README.md) pin
+the fresh archive, consumer lock and checks. The SDK is private; its archive
+SHA-256 is `2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18`.
+The earlier [four-consumer integrations](pilot/reading-consumers/README.md) and
+[local design trials](pilot/open-gate/README.md) remain historical records.
+They are not maintained as four active development apps. Original owner
+checkouts and public sites are unchanged.
+
+`npm run test:sdk` checks the SDK's core, reading and package contracts. The
+[current qualification](pilot/reading-sdk/QUALIFICATION.json) separates package,
+Lab and browser fixture checks from earlier live native-client observations.
+A requested handoff does not prove arrival, reading or Agent execution.
 
 ## Wider protocol and earlier experiments
 

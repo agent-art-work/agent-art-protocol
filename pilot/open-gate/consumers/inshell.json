@@ -1,0 +1,188 @@
+{
+  "schema": "agent-art.open-gate-consumer.v1",
+  "consumer": "inshell",
+  "status": "local-chatgpt-desktop-presentation-candidate",
+  "repository": "https://github.com/inshell-art/inshell.art",
+  "baseline": {
+    "baseCommit": "1a44454d4904fdc330f83ec3d86236783302411f",
+    "readingPatch": "../../reading-consumers/inshell.patch",
+    "readingPatchSha256": "2d132a90be84d0648090f1e19187b5f8aadf6386e1789e19bedc2c0a73b0a84c",
+    "tree": "73eeee2374c5c23ab5365cfb51c5bcd4739e83b6",
+    "verifiedBy": "Reconstructed an isolated Git index from the owner base and immutable SDK 0.1 reading patch; tree matched the captured staged baseline."
+  },
+  "patch": "inshell.patch",
+  "patchSha256": "9256c47681a46238ea185314251b5aed4bb1c2a7d86f57058fe6dc9af822ad74",
+  "resultTree": "4935f9d30f31bf1ab01f193af6662fe184ab7055",
+  "sdk": {
+    "version": "0.1.0",
+    "archive": "vendor/agent-art-protocol-0.1.0.tgz",
+    "sha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+    "changed": false
+  },
+  "presentation": {
+    "source": "../open-gate.mjs",
+    "files": [
+      {
+        "path": "apps/home/src/components/open-gate/open-gate.mjs",
+        "sha256": "7aa8396122467bc106d1f343834440a71723824d7970d590589d7ca985824740"
+      },
+      {
+        "path": "apps/home/src/components/open-gate/open-gate.css",
+        "sha256": "879ffb598c993d7faa585d1a241058ce0151350daaa24130cfdf6f54ad98efb9"
+      },
+      {
+        "path": "apps/home/src/components/open-gate/open-gate.d.mts",
+        "sha256": "489e4f480f47d8c041ac0a1dff09805de97865e067c3b9054e3d7f7bec4b107c"
+      }
+    ],
+    "route": "/docs",
+    "entry": "Open bubble before small Ask your Agent label in compact single-line Seal; detected ChatGPT/Claude desktop links and always-visible Copy.",
+    "evidence": false,
+    "previewPort": 4176,
+    "manualFallback": "Original exact prompt and existing copy handler remain in a native details element, initially open with summary hidden. Successful gate mount closes the group and reveals Copy the original reading prompt. Effect cleanup restores initial states; absent JavaScript or mount failure keeps the original group visible.",
+    "subtitle": "Read with your Agent",
+    "controller": "@agent-art/protocol/reading createReading",
+    "discovery": {
+      "scope": "Loopback preview host only.",
+      "module": "/__aap/desktop-clients.mjs",
+      "owner": "Shared local static preview host; no Inshell backend change.",
+      "fallback": "Copy remains visible while discovering, with no supported apps, or when discovery is unavailable.",
+      "sourceSha256": "8cba24445bd6fadd71d84567ddcc388adc9a62785ba2b85b9583f23d20fc3229",
+      "detectedClientIDs": [
+        "codex-app",
+        "claude-app"
+      ]
+    },
+    "style": "Seal",
+    "layout": "compact-single-line",
+    "labelNonInteractive": true,
+    "labelFontPixels": {
+      "desktop": 12,
+      "narrow": 11
+    },
+    "copyAlwaysVisible": true,
+    "expandedPanel": false,
+    "helperText": "Visually hidden; native accessible names identify new desktop conversations; tooltips request app-mode review. Copy works in any conversation.",
+    "label": "Ask your Agent",
+    "logo": {
+      "name": "Open bubble",
+      "opening": "left",
+      "tail": "lower-left",
+      "position": "before label"
+    },
+    "nativeClients": [
+      "codex-app",
+      "claude-app"
+    ],
+    "visibleClientLabels": [
+      "ChatGPT",
+      "Claude"
+    ],
+    "codexLabelOffered": false,
+    "chatgptTransport": "Existing SDK codex://new?prompt=… native desktop link. No browser manual-paste route.",
+    "appMode": "Review in destination app; no mode-forcing parameter or ordinary-Chat observation claimed."
+  },
+  "browserQualification": {
+    "status": "passed-inline-local-ui",
+    "scope": "Desktop light/mobile dark; actual host-detected IDs match visible inline links. Exact prepared context, Copy and denied-clipboard fallback pass. No native client launch or Agent execution claim."
+  },
+  "limits": [
+    "No SDK update, model call, production deployment or original owner checkout change.",
+    "Native desktop handoff requested once from Lab; successful destination placement and ordinary Chat mode need separate observation."
+  ],
+  "docsImpact": {
+    "decision": "Docs change required for the display subtitle; regeneration otherwise binds the local presentation implementation.",
+    "change": "The display subtitle reads Read with your Agent. The local entry changes to inline Ask your Agents, direct host-detected desktop links and Copy. Exact authored agentDocsPrompt remains unchanged; generated source bindings record the candidate bytes.",
+    "reviewed": [
+      "apps/home/src/content/docs.ts subtitle",
+      "apps/home/public/docs/index.md matching subtitle",
+      "apps/home/public/docs/agent-index.json source binding",
+      "apps/home/public/docs/source-lock.json exact source fingerprints"
+    ],
+    "upstreamAndDeployment": "No upstream facts or deployed state changed."
+  },
+  "browserQualificationFile": "../QUALIFICATION.json",
+  "date": "2026-10-20",
+  "previousSealChecks": [
+    {
+      "command": "pnpm --filter @inshell/home exec jest --runInBand --coverage=false --runTestsByPath tests/DocsPage.test.tsx tests/DocsAgentReading.test.tsx",
+      "result": "passed",
+      "tests": 68
+    },
+    {
+      "command": "pnpm --filter @inshell/home run type-check:source",
+      "result": "passed"
+    },
+    {
+      "command": "node --import tsx scripts/generate-agent-docs.ts --check",
+      "result": "passed"
+    },
+    {
+      "command": "VITE_DEPLOY_ENV=preview pnpm --filter @inshell/home build",
+      "result": "passed",
+      "output": "dist/home",
+      "warnings": [
+        "Existing Vite native-config compatibility and plugin deprecation warnings.",
+        "Existing large bundle warning."
+      ]
+    },
+    {
+      "command": "Apply additive patch to the baseline tree in an isolated Git index and compare resulting tree",
+      "result": "passed",
+      "files": 10
+    },
+    {
+      "command": "git diff --cached --check",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/check-pub-boundary.mjs",
+      "result": "passed",
+      "externalFetches": 0
+    },
+    {
+      "command": "gitleaks dir pilot/open-gate --redact --no-banner --no-color",
+      "result": "passed",
+      "note": "Root candidate directory, including additive consumer patch and metadata."
+    }
+  ],
+  "previousSealPresentationChecks": {
+    "rootTests": 88,
+    "build": "passed",
+    "cleanApply": "Verified exact result tree after immutable SDK reading patch and candidate delta.",
+    "browser": "Desktop light and 320px dark/coarse passed; native links canceled; clipboard denial fixture.",
+    "sdkArchiveAndInstalledFiles": "Unchanged archive and 11 installed package files."
+  },
+  "previousCodexOpenBubbleChecks": {
+    "targetedReadingTests": 4,
+    "strictTypeScript": "passed",
+    "docsFingerprints": "regenerated and checked",
+    "previewBuild": "passed",
+    "rootTests": 88,
+    "browser": "Desktop light and 320px dark/coarse passed; Open bubble before singular label; canceled native links and denied clipboard fallback.",
+    "sdkArchiveAndInstalledFiles": "Unchanged archive and 11 installed package files.",
+    "cleanApply": "Exact result tree replayed after immutable SDK reading patch and candidate delta."
+  },
+  "previousChatGPTWebChecks": {
+    "targetedReadingTests": 4,
+    "strictTypeScript": "passed",
+    "docsFingerprints": "regenerated and checked",
+    "previewBuild": "passed",
+    "rootTests": 88,
+    "browser": "Desktop light and 320px dark/coarse passed; ChatGPT plus Claude and Copy; canceled native links; denied clipboard fallback.",
+    "sdkArchiveAndInstalledFiles": "Unchanged archive and all 11 installed package files.",
+    "cleanApply": "Exact result tree replayed after immutable SDK reading patch and candidate delta.",
+    "liveChatGPTQualification": "One unsent public Lab copy/open/native-paste observation; see ../QUALIFICATION.json for formatting and trust limits."
+  },
+  "chatgptDesktopChecks": {
+    "targetedReadingTests": 4,
+    "strictTypeScript": "passed",
+    "docsFingerprints": "regenerated and checked",
+    "previewBuild": "passed",
+    "rootTests": 88,
+    "browser": "Nine current regular-Chrome cases across four consumers and Pulse Projects passed; exact native URLs, ChatGPT label, Copy, canceled links, clipboard denial and responsive geometry checked.",
+    "sdkArchiveAndInstalledFiles": "Unchanged archive and 11 installed package files.",
+    "cleanApply": "Exact result tree replayed after immutable SDK reading patch and updated candidate delta.",
+    "modeVerification": "Same actual Lab native link: operator first confirmed Codex with draft; after selecting ChatGPT > Chat, operator reported Work and submitted it. Automation did not Send or inspect the work. No ordinary-Chat guarantee or universal routing policy; not a live test of every consumer."
+  }
+}

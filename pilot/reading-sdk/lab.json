@@ -1,0 +1,112 @@
+{
+  "schema": "agent-art.reading-sdk-consumer.v1",
+  "consumer": "lab",
+  "status": "local-packaged-reading-sdk-candidate",
+  "date": "2026-10-20",
+  "repository": "https://github.com/agent-art-work/Agent-Art-Lab",
+  "baseCommit": "d658be2cc19307d113e64bd3fa0b2ad56a0a4bfc",
+  "patch": "lab.patch",
+  "patchSha256": "fdb9d0c10f94594ed190e26fb76867a05fd8a57a939586eb14aa1c99f4752eea",
+  "resultTree": "a7961d590a28625abcc31aec87c24667d17cc703",
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.1",
+    "archive": "vendor/agent-art-protocol-0.1.1.tgz",
+    "sha256": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18",
+    "lockIntegrity": "sha512-EQq8FmzAWS2jhSKjH9kT88lzXjk2TrAjAEsvqjTEEuENXu0EaObFWQMDXxgp8KsvuRBcJXk2x0KVfg4Cycd3cA==",
+    "installedPackageFilesChecked": 11,
+    "installedAndSourceMatchArchive": true,
+    "distribution": "Private vendored archive with a relative file dependency and locked integrity."
+  },
+  "entry": {
+    "route": "/",
+    "component": "site/assets/agent-art-reading.mjs",
+    "sdkImport": "@agent-art/protocol/reading-ui",
+    "stylesheet": "@agent-art/protocol/reading.css",
+    "ownerPrompt": "Canonical prompt in docs/AGENT_ACCESS.md",
+    "ownerPromptUnchanged": true,
+    "indexUrl": "https://agentart.work/agent-index.json",
+    "evidence": false,
+    "localHelperRequired": false,
+    "optionalDiscovery": "Only HTTP loopback previews provide a same-origin discovery callback; public pages omit it and offer routes without asserting installation.",
+    "clients": [
+      "ChatGPT",
+      "Claude",
+      "Copy"
+    ],
+    "chatgpt": "Existing codex://new?prompt=… desktop prefill; destination app controls mode; no forced ordinary Chat.",
+    "existingConversation": "Copy and explicit paste in the visitor’s Agent.",
+    "standalonePresentationWrapper": false
+  },
+  "build": {
+    "command": "npm run build",
+    "output": "_site",
+    "previewPort": 4174,
+    "result": "passed"
+  },
+  "checks": [
+    {
+      "command": "npm test",
+      "result": "passed",
+      "tests": 21
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tests",
+      "result": "passed",
+      "tests": 37
+    },
+    {
+      "command": "npm run check:site",
+      "result": "passed",
+      "pages": 24,
+      "publicFiles": 61,
+      "localLinks": 588,
+      "networkRequests": 0
+    },
+    {
+      "check": "All 11 installed SDK files byte-compared with fresh archive and current package source; archive SHA-256 and package-lock SHA-512 checked.",
+      "result": "passed"
+    },
+    {
+      "check": "Clean full patch applied to pinned base through an isolated Git index; exact result tree reproduced.",
+      "result": "passed"
+    }
+  ],
+  "dependencySetup": {
+    "sdkInstall": "npm install ./vendor/agent-art-protocol-0.1.1.tgz --offline --ignore-scripts --no-audit --no-fund --registry https://registry.npmjs.org",
+    "result": "passed after reusing baseline third-party node_modules; only the SDK package changed.",
+    "thirdPartyVersionsMatchLock": {
+      "argparse": "3.0.2",
+      "entities": "8.1.0",
+      "github-slugger": "2.0.0",
+      "linkify-it": "6.1.0",
+      "markdown-it": "15.0.2",
+      "mdurl": "2.1.0",
+      "punycode.js": "2.3.1",
+      "uc.micro": "3.0.0"
+    },
+    "cleanOfflineCi": {
+      "result": "unavailable",
+      "reason": "ENOTCACHED: original third-party dependency tarballs are absent from the local cache. No network fallback was used.",
+      "scope": "This does not qualify a clean offline reinstall of all Lab dependencies. The fresh SDK archive install is checked separately."
+    }
+  },
+  "browserQualification": "QUALIFICATION.json",
+  "files": [
+    "HANDOFF.md",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-site.mjs",
+    "scripts/check_site.py",
+    "site/assets/agent-art-reading.mjs",
+    "site/assets/site.css",
+    "tests/test_blog_pages.mjs",
+    "vendor/agent-art-protocol-0.1.1.tgz"
+  ],
+  "limits": [
+    "Local integration only; original owner checkout and deployed site unchanged.",
+    "No new native Agent launch, Send, source reading, inference, publication or deployment was performed by these checks.",
+    "URL construction and browser handoff request do not establish draft arrival, Agent reading or intentional participation.",
+    "Historical four-consumer SDK 0.1.0 and presentation records remain unchanged; this record does not extend their qualification."
+  ]
+}

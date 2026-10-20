@@ -1,6 +1,6 @@
 {
   "name": "@agent-art/protocol",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Private reading SDK: reusable browser handoff and optional bounded receipts.",
   "private": true,
   "type": "module",
@@ -44,5 +44,7 @@
   "engines": {
     "node": ">=22"
   },
-  "sideEffects": ["./reading.css"]
+  "sideEffects": [
+    "./reading.css"
+  ]
 }

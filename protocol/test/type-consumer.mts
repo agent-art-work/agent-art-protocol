@@ -26,6 +26,7 @@ const prepared = buildClientHandoff({ client: 'claude-app', surface: 'chat', pro
 prepared.url satisfies string;
 const mounted: MountedReading = mountReading(document.createElement('div'), {
   work, evidence: true,
+  discoverClients: async () => ({ clients: [{ id: 'codex-app' }, { id: 'claude-app' }] }),
   onReceipt: async (receipt: SealedRecord) => {
     const report: Verification = await verify(receipt);
     report.checks[0].status satisfies 'supported' | 'contradicted' | 'not-established';

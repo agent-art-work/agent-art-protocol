@@ -1,0 +1,422 @@
+{
+  "status": "local-open-bubble-presentation-candidate",
+  "date": "2026-10-20",
+  "supersedes": "Facing-brackets Seal with plural label; retained at qualification/2026-10-20-seal.json.",
+  "sdkVersion": "0.1.0",
+  "sdkArchiveSha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+  "sdkChanged": false,
+  "browser": "Regular stable Google Chrome, explicitly verified com.google.Chrome",
+  "rootTests": 88,
+  "newDiscoveryBoundaryTests": 2,
+  "actualDiscovery": {
+    "scope": "loopback-preview-host",
+    "detectedClientIds": [
+      "codex-app",
+      "claude-app"
+    ],
+    "basis": "Known app bundle, exact ID, declared scheme, executable file. No launch, login or default-handler check.",
+    "publicVisitorDetection": "Not implemented by this candidate."
+  },
+  "cases": [
+    {
+      "consumer": "lab",
+      "route": "http://127.0.0.1:4174/",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 32,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed",
+      "presentation": "seal",
+      "labelFontPixels": 12,
+      "rowWidth": 306.90625,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      }
+    },
+    {
+      "consumer": "lab",
+      "route": "http://127.0.0.1:4174/",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed",
+      "presentation": "seal",
+      "labelFontPixels": 11,
+      "rowWidth": 252.453125,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      }
+    },
+    {
+      "consumer": "inshell",
+      "route": "http://127.0.0.1:4176/docs",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 32,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed",
+      "presentation": "seal",
+      "labelFontPixels": 12,
+      "rowWidth": 304.875,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      }
+    },
+    {
+      "consumer": "inshell",
+      "route": "http://127.0.0.1:4176/docs",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed",
+      "presentation": "seal",
+      "labelFontPixels": 11,
+      "rowWidth": 250.59375,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      }
+    },
+    {
+      "consumer": "pulse",
+      "route": "http://127.0.0.1:4177/",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 32,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed",
+      "presentation": "seal",
+      "labelFontPixels": 12,
+      "rowWidth": 306.90625,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      }
+    },
+    {
+      "consumer": "pulse",
+      "route": "http://127.0.0.1:4177/",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed",
+      "presentation": "seal",
+      "labelFontPixels": 11,
+      "rowWidth": 252.453125,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      }
+    },
+    {
+      "consumer": "signatures",
+      "route": "http://127.0.0.1:4178/about",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 32,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed",
+      "presentation": "seal",
+      "labelFontPixels": 12,
+      "rowWidth": 306.78125,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      }
+    },
+    {
+      "consumer": "signatures",
+      "route": "http://127.0.0.1:4178/about",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleAppIds": [
+        "codex-app",
+        "claude-app"
+      ],
+      "matchesActualHostDiscovery": true,
+      "exactContextForBothPreparedUrls": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": true,
+      "canceledNativeLinkHasNoReceiptOrStatus": true,
+      "horizontalOverflow": false,
+      "minimumControlHeight": 44,
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed",
+      "presentation": "seal",
+      "labelFontPixels": 11,
+      "rowWidth": 252.453125,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      }
+    }
+  ],
+  "additionalEntry": {
+    "consumer": "pulse",
+    "route": "/projects",
+    "viewport": "320x844 dark/coarse",
+    "result": "passed same checks",
+    "oneLine": true,
+    "copyAlwaysVisible": true,
+    "label": "Ask your Agent",
+    "logoChecks": {
+      "openLeft": true,
+      "tailLeft": true,
+      "iconBeforeLabel": true,
+      "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+      "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+    }
+  },
+  "syntheticBrowserFixtures": {
+    "results": [
+      {
+        "scenario": "none",
+        "copyImmediate": true,
+        "copyStillVisible": true,
+        "noAppClaims": true,
+        "copiedExact": true,
+        "noPanel": true,
+        "destroyClean": true
+      },
+      {
+        "scenario": "failure",
+        "copyImmediate": true,
+        "copyStillVisible": true,
+        "noAppClaims": true,
+        "copiedExact": true,
+        "noPanel": true,
+        "destroyClean": true
+      }
+    ],
+    "lateDestroyedClean": true
+  },
+  "fixtureBoundary": "Empty/failing discovery and successful/denied clipboard behavior are explicit fixtures. Real UI tests compare the visible apps against actual host detection. Native links are canceled before navigation.",
+  "evidenceBoundary": "Optional fresh native-request receipts use existing SDK semantics; cancellation produces no receipt. Copy has no declared target conversation, so no Copy receipt is created.",
+  "nativeAgentLaunched": false,
+  "modelCall": false,
+  "walletOrMintAction": false,
+  "deployment": false,
+  "networkLimit": "Pulse /api/status may return 503 with RPC deliberately disabled. The local module endpoint works under Signatures unchanged connect-src none.",
+  "cleanup": "All owned disposable Chrome processes/profiles closed by runners; user tabs and private chats untouched.",
+  "review": "Regular Chrome DOM checks and screenshot inspection covered all four actual previews at desktop light and 320px dark/coarse; Pulse Projects also checked. Consumer builds checked in parallel.",
+  "sharedFiles": {
+    "open-gate.css": "6c9fd82fc5951de04b9082f79a0939a4f25fdb4b556f3c7778d26f212c3f8826",
+    "open-gate.d.mts": "489e4f480f47d8c041ac0a1dff09805de97865e067c3b9054e3d7f7bec4b107c",
+    "open-gate.mjs": "99df2af4a82ce0cb3670da63c9a554a902ab12ea1a06a81541362afd97d56a02"
+  },
+  "regressionsResolved": [
+    "Explicit label font inheritance prevents Signatures global typography from enlarging the label.",
+    "Reduced spacing at most 280px keeps Copy inside the shared surface despite scrollbar width."
+  ],
+  "sdkIntegrity": "All four vendored archives retain the recorded digest; all 11 installed package files per consumer byte-match protocol source. protocol/ unchanged from v0.1.0.",
+  "consumerValidation": {
+    "lab": {
+      "nodeTests": 21,
+      "build": "passed",
+      "siteCheck": {
+        "publicFiles": 63,
+        "localLinks": 589,
+        "networkRequests": 0
+      }
+    },
+    "inshell": {
+      "targetedReadingTests": 4,
+      "strictTypeScript": "passed",
+      "docsFingerprints": "regenerated and checked",
+      "previewBuild": "passed"
+    },
+    "pulse": {
+      "targetedTests": 13,
+      "build": "passed",
+      "rpc": "disabled"
+    },
+    "signatures": {
+      "previewTests": 229,
+      "packagedWorkerTests": 19,
+      "typecheck": "passed",
+      "rendererLocks": "passed",
+      "previewBuild": "passed",
+      "mintingEnabled": false,
+      "walletConnectionEnabled": false
+    }
+  },
+  "logo": {
+    "name": "Open bubble",
+    "opening": "left",
+    "tail": "lower-left",
+    "position": "before label"
+  },
+  "label": "Ask your Agent"
+}

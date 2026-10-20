@@ -261,3 +261,23 @@ claimed. These observations do not establish that an Agent read any source.
 The preserved WILL source/hash and all earlier dated research remain unchanged.
 The broader Work/Participant/Act/Relation architecture stays candidate, with
 artistic participation and mint policy boundaries intact.
+
+## Compact reading component SDK continuation, 2026-10-20
+
+The operator selected the Open bubble / Seal **Ask your Agent** component for
+the SDK, preserving ChatGPT desktop prefill, Claude and Copy without forcing
+ordinary Chat. Private SDK 0.1.1 packages that presentation under the existing
+`mountReading` entry point. Lab is the single active isolated test consumer;
+the four earlier 0.1.0 integrations and their recorded qualifications remain
+historical. The [current qualification](pilot/reading-sdk/QUALIFICATION.json)
+pins the fresh archive and checks rather than inheriting qualification from
+unchanged route names or earlier archives. No registry publication or deployment
+is part of this update.
+
+Earlier operator-mediated native tests reported a Codex draft in one setup
+and Work after selecting Chat in another. Those reports retain their original
+limits in the [design trial record](pilot/open-gate/QUALIFICATION.json). They
+do not document a universal routing policy or qualify arrival from the new
+archive. No new Agent execution trial is claimed. The SDK offers the existing
+native routes; destination mode belongs to the application. The Lab's optional
+local discovery callback belongs to its host and is not a required SDK helper.

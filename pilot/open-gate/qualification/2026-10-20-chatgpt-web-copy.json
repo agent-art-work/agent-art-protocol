@@ -1,0 +1,556 @@
+{
+  "status": "local-chatgpt-reading-presentation-candidate",
+  "date": "2026-10-20",
+  "supersedes": "Codex/Open bubble presentation retained at qualification/2026-10-20-open-bubble-codex.json.",
+  "sdkVersion": "0.1.0",
+  "sdkArchiveSha256": "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0",
+  "sdkChanged": false,
+  "browser": "Regular stable Google Chrome, explicitly verified com.google.Chrome",
+  "rootTests": 88,
+  "discoveryBoundaryTests": 2,
+  "sharedFiles": {
+    "open-gate.css": "94228b4eb04c3989d2bdeace8e913da056abcb87f51c589428f4037cc28d5121",
+    "open-gate.d.mts": "489e4f480f47d8c041ac0a1dff09805de97865e067c3b9054e3d7f7bec4b107c",
+    "open-gate.mjs": "c72a057cc7e3f4be69cafe6a8d7ac65483539c47b4249252bf6cc747c72b08f0"
+  },
+  "detectorSha256": "6b8449ad35d45203c7ce26571c31fe0f2a8ec53db8bd15220a71ccb470cc8e1a",
+  "actualDiscovery": {
+    "scope": "loopback-preview-host",
+    "detectedClientIds": [
+      "claude-app"
+    ],
+    "basis": "Claude bundle ID, declared scheme and executable; no login or default-handler check.",
+    "publicVisitorDetection": "Not implemented.",
+    "chatgpt": "Browser route, independent of native app detection."
+  },
+  "cases": [
+    {
+      "consumer": "lab",
+      "route": "http://127.0.0.1:4174/",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleNativeClientIds": [
+        "claude-app"
+      ],
+      "visibleWebClientId": "chatgpt-web",
+      "noCodex": true,
+      "manualPasteExplicit": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactClaudeContextInPreparedUrl": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 322.84375,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 32,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "lab",
+      "route": "http://127.0.0.1:4174/",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleNativeClientIds": [
+        "claude-app"
+      ],
+      "visibleWebClientId": "chatgpt-web",
+      "noCodex": true,
+      "manualPasteExplicit": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactClaudeContextInPreparedUrl": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 254.984375,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 44,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "inshell",
+      "route": "http://127.0.0.1:4176/docs",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleNativeClientIds": [
+        "claude-app"
+      ],
+      "visibleWebClientId": "chatgpt-web",
+      "noCodex": true,
+      "manualPasteExplicit": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactClaudeContextInPreparedUrl": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 320.8125,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 32,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "inshell",
+      "route": "http://127.0.0.1:4176/docs",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleNativeClientIds": [
+        "claude-app"
+      ],
+      "visibleWebClientId": "chatgpt-web",
+      "noCodex": true,
+      "manualPasteExplicit": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactClaudeContextInPreparedUrl": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 253.125,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 44,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "pulse",
+      "route": "http://127.0.0.1:4177/",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleNativeClientIds": [
+        "claude-app"
+      ],
+      "visibleWebClientId": "chatgpt-web",
+      "noCodex": true,
+      "manualPasteExplicit": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactClaudeContextInPreparedUrl": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 322.84375,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 32,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "pulse",
+      "route": "http://127.0.0.1:4177/",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleNativeClientIds": [
+        "claude-app"
+      ],
+      "visibleWebClientId": "chatgpt-web",
+      "noCodex": true,
+      "manualPasteExplicit": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactClaudeContextInPreparedUrl": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 254.984375,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 44,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "signatures",
+      "route": "http://127.0.0.1:4178/about",
+      "viewport": "1440x1000",
+      "colorScheme": "light",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleNativeClientIds": [
+        "claude-app"
+      ],
+      "visibleWebClientId": "chatgpt-web",
+      "noCodex": true,
+      "manualPasteExplicit": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactClaudeContextInPreparedUrl": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 323.46875,
+      "rowHeight": 40,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 32,
+      "coarsePointer": false,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    },
+    {
+      "consumer": "signatures",
+      "route": "http://127.0.0.1:4178/about",
+      "viewport": "320x844",
+      "colorScheme": "dark",
+      "result": "passed",
+      "label": "Ask your Agent",
+      "labelNonInteractive": true,
+      "visibleNativeClientIds": [
+        "claude-app"
+      ],
+      "visibleWebClientId": "chatgpt-web",
+      "noCodex": true,
+      "manualPasteExplicit": true,
+      "nativeLinksMatchActualHostDiscovery": true,
+      "exactClaudeContextInPreparedUrl": true,
+      "copyAlwaysVisible": true,
+      "noExpandedPanelOrSelector": true,
+      "clipboardDenialFallback": {
+        "copyStillVisible": true,
+        "enabled": true,
+        "readOnly": true,
+        "selected": true,
+        "noInventedCopyReceipt": true
+      },
+      "canceledNativeLink": {
+        "noHandoffStatus": true,
+        "noReceipt": true
+      },
+      "horizontalOverflow": false,
+      "rowWidth": 254.984375,
+      "rowHeight": 52,
+      "oneLine": true,
+      "allActionsInsideSharedSurface": true,
+      "minimumControlHeight": 44,
+      "coarsePointer": true,
+      "logoChecks": {
+        "openLeft": true,
+        "tailLeft": true,
+        "iconBeforeLabel": true,
+        "outlineClip": "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 72%, 24% 72%, 24% 34%, 0px 34%)",
+        "tailClip": "polygon(0px 0px, 100% 0px, 0px 100%)"
+      },
+      "runtimeErrors": 0,
+      "unexpectedFailedRequests": 0,
+      "screenshotInspection": "passed"
+    }
+  ],
+  "additionalEntry": {
+    "consumer": "pulse",
+    "route": "/projects",
+    "viewport": "320x844 dark/coarse",
+    "result": "passed",
+    "oneLine": true,
+    "allActionsInsideSharedSurface": true,
+    "copyAlwaysVisible": true
+  },
+  "syntheticBrowserFixtures": {
+    "results": [
+      {
+        "scenario": "none",
+        "copyImmediate": true,
+        "copyStillVisible": true,
+        "chatgptAlwaysVisible": true,
+        "noAppClaims": true,
+        "copiedExact": true,
+        "noPanel": true,
+        "destroyClean": true
+      },
+      {
+        "scenario": "failure",
+        "copyImmediate": true,
+        "copyStillVisible": true,
+        "chatgptAlwaysVisible": true,
+        "noAppClaims": true,
+        "copiedExact": true,
+        "noPanel": true,
+        "destroyClean": true
+      }
+    ],
+    "lateDestroyedClean": true
+  },
+  "syntheticChatGPTBehaviorFixtures": {
+    "passed": true,
+    "results": [
+      {
+        "scenario": "copied",
+        "noCodex": true,
+        "copyVisible": true,
+        "noFalseReceipt": true,
+        "manualPasteExplicit": true,
+        "exactCopy": true,
+        "plainChatGPTUrl": true,
+        "visibleRetry": true,
+        "noFalseClipboardError": true
+      },
+      {
+        "scenario": "denied",
+        "noCodex": true,
+        "copyVisible": true,
+        "noFalseReceipt": true,
+        "manualPasteExplicit": true,
+        "noOpening": true,
+        "manualContextVisible": true,
+        "exactSelected": true
+      },
+      {
+        "scenario": "popup-blocked",
+        "noCodex": true,
+        "copyVisible": true,
+        "noFalseReceipt": true,
+        "manualPasteExplicit": true,
+        "exactCopy": true,
+        "plainChatGPTUrl": true,
+        "visibleRetry": true,
+        "noFalseClipboardError": true
+      },
+      {
+        "scenario": "destroyed-pending",
+        "noLateOpening": true,
+        "clean": true
+      }
+    ]
+  },
+  "liveChatGPTHandoff": {
+    "date": "2026-10-20",
+    "regularChromeVerified": true,
+    "bundleId": "com.google.Chrome",
+    "connectionRestored": "Operator enabled Developer mode and Codex extension; dedicated Chrome extension browser became available.",
+    "source": "local candidate component using public Lab context",
+    "clipboardPromiseResolved": true,
+    "actualBrowserTabOpenedByComponent": true,
+    "destination": "https://chatgpt.com/",
+    "ChatSelectedObserved": true,
+    "nativePasteObserved": true,
+    "pastedTextCharactersPreservedIgnoringLineBreaks": true,
+    "destinationByteIdentityEstablished": false,
+    "destinationFormatting": "ChatGPT DOM innerText inserted one extra line break before the URL; native line breaks rendered differently. All non-line-break characters retained.",
+    "sourceContextCharacters": 516,
+    "sourceContextUtf8Sha256": "ab46fe2b82605d6e06fca7cfc5e2f99aeaa3b1bedc37dada60c46e681f756845",
+    "promptSent": false,
+    "modelExecution": false,
+    "automaticPrefill": false,
+    "forceChatMode": false,
+    "nativeDesktopRouteQualified": false,
+    "cleanup": "Cleared only the owned unsent test composer and closed both owned source/destination tabs; subsequent browser inventory contained zero owned tabs.",
+    "limits": [
+      "One signed-in regular-Chrome path on this Mac; no universal browser/client claim.",
+      "Chat selection was observed; plain homepage URL does not force mode.",
+      "No source reading, execution, model authorship or intention claim.",
+      "Browser control virtual clipboard was separate from system clipboard; actual paste checked through regular Chrome Edit > Paste."
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://learn.chatgpt.com/docs/reference/commands#deep-links",
+      "finding": "No documented Chat-specific unsent prefill or mode-forcing contract located; preview uses plain homepage and manual paste."
+    }
+  ],
+  "evidenceBoundary": "Optional fresh Claude native-request receipts retain unchanged SDK limits; cancellation produces no receipt. ChatGPT browser/manual paste and Copy issue no receipt. No sending, reading, execution or intentional-participation evidence follows.",
+  "modelCall": false,
+  "walletOrMintAction": false,
+  "deployment": false,
+  "consumerValidation": {
+    "lab": {
+      "nodeTests": 21,
+      "build": "passed",
+      "siteCheck": {
+        "publicFiles": 63,
+        "localLinks": 589,
+        "networkRequests": 0
+      }
+    },
+    "inshell": {
+      "targetedReadingTests": 4,
+      "strictTypeScript": "passed",
+      "docsFingerprints": "regenerated and checked",
+      "previewBuild": "passed"
+    },
+    "pulse": {
+      "targetedTests": 13,
+      "buildAssets": 26,
+      "build": "passed",
+      "rpc": "disabled"
+    },
+    "signatures": {
+      "previewTests": 229,
+      "packagedWorkerTests": 19,
+      "typecheck": "passed",
+      "rendererLocks": "passed",
+      "previewBuild": "passed",
+      "mintingEnabled": false,
+      "walletConnectionEnabled": false
+    }
+  },
+  "regressionsResolved": [
+    "Smallest-container spacing keeps Copy inside Pulse shared background at 320px, including scrollbar width."
+  ],
+  "sdkIntegrity": "All four archives retain recorded digest; all 11 installed package files per consumer byte-match protocol source; protocol/ unchanged from v0.1.0.",
+  "cleanup": "Owned live source/ChatGPT test tabs closed after clearing the owned unsent draft. Disposable regular-Chrome processes/profiles closed by runners; preexisting user tabs left open."
+}

@@ -1,43 +1,80 @@
+/* Ask your Agent: compact Seal with the Open bubble mark. */
 .aap-reading {
-  --_aap-ink: var(--aap-ink, var(--ink, CanvasText));
-  --_aap-paper: var(--aap-paper, var(--paper, Canvas));
-  --_aap-line: var(--aap-line, var(--line, color-mix(in srgb, currentColor 25%, transparent)));
-  --_aap-muted: var(--aap-muted, var(--muted, currentColor));
-  color: var(--_aap-ink);
-  font: inherit;
-  line-height: 1.5;
-  min-width: 0;
-  max-width: 100%;
+  --_reading-ink: var(--aap-ink, var(--ink, CanvasText));
+  --_reading-paper: var(--aap-paper, var(--paper, Canvas));
+  --_reading-muted: var(--aap-muted, var(--muted, currentColor));
+  --_reading-seal: var(--aap-seal-paper, var(--_reading-ink));
+  --_reading-seal-ink: var(--aap-seal-ink, var(--_reading-paper));
+  --_reading-surface: var(--aap-seal-surface, color-mix(in srgb, var(--_reading-ink) 5%, var(--_reading-paper)));
+  --_reading-line: var(--aap-line, var(--line, color-mix(in srgb, var(--_reading-ink) 24%, var(--_reading-paper))));
+  --_reading-accent: var(--aap-gate-accent, var(--_reading-ink));
+  --_reading-family: var(--aap-font-family, var(--aap-gate-font-family, system-ui, sans-serif));
+  --_reading-label-font: 12px;
+  --_reading-action-font: 13px;
+  --_reading-small-font: var(--font-size-12, 12px);
+  --_reading-weight: var(--weight-mid, 500);
+  --_reading-target: 32px;
+  --_reading-gap: 6px;
+  --_reading-title-pad: 8px;
+  --_reading-action-pad: 7px;
+  --_reading-border: 1px;
+  --_reading-radius: var(--aap-radius, var(--aap-gate-radius, 5px));
+  --_reading-mark-size: 18px;
+  --_reading-disabled-opacity: .65;
+  color: var(--_reading-ink); font: inherit; min-width: 0; max-width: 100%;
+  container-type: inline-size;
 }
 .aap-reading *, .aap-reading *::before, .aap-reading *::after { box-sizing: border-box; }
 .aap-reading [hidden] { display: none !important; }
-.aap-reading-options, .aap-reading-actions { display: flex; align-items: end; flex-wrap: wrap; gap: .75rem; }
-.aap-reading-options { margin-bottom: .75rem; }
-.aap-reading-options label { display: grid; gap: .35rem; min-width: 0; font: inherit; font-size: .8em; }
-.aap-reading :is(select, button, .aap-reading-open) {
-  font: inherit;
-  color: var(--_aap-ink);
-  background: var(--_aap-paper);
-  border: 1px solid var(--_aap-line);
-  border-radius: var(--aap-radius, 0);
-  padding: .65rem .9rem;
-  min-height: 44px;
-  min-width: 0;
-  max-width: 100%;
+.aap-reading .aap-reading-row {
+  display: inline-flex; align-items: stretch; flex-wrap: nowrap; gap: 0;
+  width: max-content; max-width: 100%; white-space: nowrap;
+  border: var(--_reading-border) solid var(--_reading-seal); border-radius: var(--_reading-radius);
+  background: var(--_reading-surface); font-family: var(--_reading-family);
 }
-.aap-reading select { width: 100%; font-size: 1rem; }
-.aap-reading-actions { align-items: stretch; }
-.aap-reading .aap-reading-open { display: inline-flex; align-items: center; color: var(--_aap-paper); background: var(--_aap-ink); border-color: var(--_aap-ink); text-decoration: none; }
-.aap-reading button, .aap-reading select, .aap-reading summary { cursor: pointer; }
-.aap-reading :is(button, select):disabled { opacity: .65; cursor: wait; }
-.aap-reading :is(a, button, select, textarea, summary):focus-visible { outline: 2px solid var(--_aap-ink); outline-offset: 3px; }
-.aap-reading :is(.aap-reading-route, .aap-reading-status) { margin: .75rem 0; color: var(--_aap-muted); font-size: .8em; overflow-wrap: anywhere; }
+.aap-reading .aap-reading-title {
+  display: inline-flex; align-items: center; flex: 0 0 auto; gap: var(--_reading-gap);
+  padding: 3px var(--_reading-title-pad); background: var(--_reading-seal); color: var(--_reading-seal-ink);
+  border-radius: calc(var(--_reading-radius) - var(--_reading-border)) 0 0 calc(var(--_reading-radius) - var(--_reading-border));
+  font-family: var(--_reading-family); font-size: var(--_reading-label-font); font-weight: var(--_reading-weight);
+  line-height: 1.4; letter-spacing: -.015em; white-space: nowrap;
+}
+.aap-reading .aap-reading-label { font: inherit; letter-spacing: inherit; }
+.aap-reading .aap-reading-mark { position: relative; display: inline-block; flex: 0 0 var(--_reading-mark-size); width: var(--_reading-mark-size); height: var(--_reading-mark-size); color: currentColor; }
+.aap-reading .aap-reading-mark::before, .aap-reading .aap-reading-mark::after { content: ''; position: absolute; }
+.aap-reading .aap-reading-mark::before { inset: 10% 14% 22% 2%; border: calc(var(--_reading-mark-size) * .125) solid currentColor; border-radius: calc(var(--_reading-mark-size) * .23); clip-path: polygon(0 0,100% 0,100% 100%,0 100%,0 72%,24% 72%,24% 34%,0 34%); }
+.aap-reading .aap-reading-mark::after { left: 14%; bottom: 4%; width: 29%; height: 29%; background: currentColor; clip-path: polygon(0 0,100% 0,0 100%); }
+.aap-reading .aap-reading-actions, .aap-reading .aap-reading-apps { display: inline-flex; align-items: center; flex: 0 0 auto; flex-wrap: nowrap; gap: var(--_reading-gap); min-width: 0; }
+.aap-reading .aap-reading-actions { padding: 3px var(--_reading-action-pad); }
+.aap-reading .aap-reading-apps:empty { display: none; }
+.aap-reading :is(.aap-reading-agent, .aap-reading-copy) {
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; gap: 4px;
+  min-height: var(--_reading-target); min-width: 44px; padding: 0; border: 0; border-radius: 0;
+  background: transparent; color: var(--_reading-ink); font-family: var(--_reading-family); font-size: var(--_reading-action-font);
+  font-weight: 400; line-height: 1.4; white-space: nowrap; cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--_reading-line); text-decoration-thickness: 1px; text-underline-offset: 3px;
+}
+.aap-reading :is(.aap-reading-agent, .aap-reading-copy):hover { text-decoration-color: var(--_reading-ink); }
+.aap-reading .aap-reading-arrow { font-size: 12px; line-height: 1; text-decoration: none; }
+.aap-reading .aap-reading-copy-icon { position: relative; display: inline-block; flex: 0 0 11px; width: 11px; height: 11px; color: var(--_reading-muted); }
+.aap-reading .aap-reading-copy-icon::before, .aap-reading .aap-reading-copy-icon::after { content: ''; position: absolute; width: 8px; height: 8px; border: 1px solid currentColor; border-radius: 1px; }
+.aap-reading .aap-reading-copy-icon::before { left: 0; top: 0; }
+.aap-reading .aap-reading-copy-icon::after { right: 0; bottom: 0; background: var(--_reading-surface); }
+.aap-reading :is(a, button, textarea):focus-visible { outline: 2px solid var(--_reading-accent); outline-offset: 2px; }
+.aap-reading .aap-reading-copy:disabled { opacity: var(--_reading-disabled-opacity); cursor: wait; }
+.aap-reading .aap-reading-hint { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.aap-reading .aap-reading-status { margin: 8px 0 0; color: var(--_reading-muted); font: inherit; font-size: var(--_reading-small-font); line-height: 1.5; overflow-wrap: anywhere; }
 .aap-reading .aap-reading-status:empty { display: none; }
-.aap-reading :is(.aap-reading-context, .aap-reading-evidence) { margin: .85rem 0 0; font-size: .8em; }
-.aap-reading summary { list-style: revert; }
-.aap-reading .aap-reading-text { display: block; width: 100%; margin-top: .6rem; padding: .75rem; font: inherit; color: var(--_aap-ink); background: var(--_aap-paper); border: 1px solid var(--_aap-line); resize: vertical; }
-.aap-reading-evidence p { margin: .65rem 0; }
-@media (max-width: 480px) {
-  .aap-reading-options > label { flex: 1 1 100%; }
-  .aap-reading-actions > :is(a, button) { flex: 1 1 100%; justify-content: center; }
+.aap-reading .aap-reading-text { display: block; width: 100%; margin-top: 8px; padding: 12px; border: var(--_reading-border) solid var(--_reading-line); background: var(--_reading-paper); color: var(--_reading-ink); font: inherit; font-size: 16px; resize: vertical; }
+.aap-reading .aap-reading-download { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 8px; padding: 8px 12px; border: var(--_reading-border) solid var(--_reading-line); border-radius: var(--_reading-radius); background: var(--_reading-paper); color: var(--_reading-ink); font: inherit; font-size: var(--_reading-action-font); cursor: pointer; }
+@container (max-width: 360px) {
+  .aap-reading .aap-reading-row {
+    --_reading-label-font: 11px; --_reading-mark-size: 14px;
+    --_reading-gap: 4px; --_reading-title-pad: 5px; --_reading-action-pad: 5px;
+  }
+  .aap-reading .aap-reading-arrow { display: none; }
 }
+@container (max-width: 280px) {
+  .aap-reading .aap-reading-row { --_reading-gap: 1px; --_reading-title-pad: 2px; --_reading-action-pad: 4px; }
+}
+@media (pointer: coarse) { .aap-reading { --_reading-target: 44px; } }

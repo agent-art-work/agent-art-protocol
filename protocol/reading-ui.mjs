@@ -1,144 +1,138 @@
 import { createReading } from './reading.mjs';
 
-const NAMES = { 'claude-app': 'Claude', 'codex-app': 'Codex', manual: 'Another Agent' };
-let nextId = 0;
+const NAMES = { 'codex-app': 'ChatGPT', 'claude-app': 'Claude' };
 const mounts = new WeakMap();
+let nextId = 0;
 
-/** Mount a reading handoff. The host supplies the Work and imports reading.css. */
+/** Compact desktop handoff. Discovery, when supplied, belongs to the host. */
 export function mountReading(element, options) {
   if (!element?.ownerDocument || typeof element.replaceChildren !== 'function') throw new TypeError('Choose a DOM element for the reading controls.');
   if (mounts.has(element)) throw new TypeError('Reading controls are already mounted here. Destroy them before mounting again.');
-  const { label = 'Ask your Agent', evidence = false, onReceipt, ...input } = options || {};
-  if (typeof label !== 'string' || !label.trim() || typeof evidence !== 'boolean' || (onReceipt !== undefined && typeof onReceipt !== 'function')) throw new TypeError('Invalid reading interface options.');
+  const { label = 'Ask your Agent', evidence = false, onReceipt, discoverClients, ...input } = options || {};
+  if (typeof label !== 'string' || !label.trim() || typeof evidence !== 'boolean'
+      || (onReceipt !== undefined && typeof onReceipt !== 'function')
+      || (discoverClients !== undefined && typeof discoverClients !== 'function')) throw new TypeError('Invalid reading interface options.');
   const reading = createReading(input);
   const document = element.ownerDocument;
   const window = document.defaultView;
-  const id = `aap-reading-${++nextId}`;
-  let destroyed = false;
-  let busy = false;
-  let generation = 0;
-  let retained;
-  const listeners = [];
   const node = (tag, className, text) => {
     const item = document.createElement(tag);
     if (className) item.className = className;
     if (text !== undefined) item.textContent = text;
     return item;
   };
-  const listen = (item, event, handler) => { item.addEventListener(event, handler); listeners.push(() => item.removeEventListener(event, handler)); };
-  const root = node('div', 'aap-reading');
-  const selectors = node('div', 'aap-reading-options');
-  const agentLabel = node('label', '', 'Your Agent');
-  const client = node('select', 'aap-reading-client');
-  client.id = `${id}-client`; agentLabel.htmlFor = client.id;
-  for (const name of reading.clients) {
-    const option = node('option', '', NAMES[name]); option.value = name; client.append(option);
-  }
-  // A route is offered, never inferred to be installed from browser heuristics.
-  client.value = reading.clients.includes('claude-app') ? 'claude-app' : reading.clients[0];
-  agentLabel.append(client);
-  const conversationLabel = node('label', '', 'Conversation');
-  const conversation = node('select', 'aap-reading-conversation');
-  conversation.id = `${id}-conversation`; conversationLabel.htmlFor = conversation.id;
-  for (const [value, text] of [['fresh', 'New conversation'], ['existing', 'Existing conversation · copy']]) {
-    const option = node('option', '', text); option.value = value; conversation.append(option);
-  }
-  conversationLabel.append(conversation); selectors.append(agentLabel, conversationLabel);
-  const actions = node('div', 'aap-reading-actions');
-  const open = node('a', 'aap-reading-open', label);
-  const copy = node('button', 'aap-reading-copy', 'Copy context'); copy.type = 'button';
-  actions.append(open, copy);
-  const route = node('p', 'aap-reading-route'); route.id = `${id}-route`; open.setAttribute('aria-describedby', route.id);
+  const root = node('div', 'aap-reading'); root.dataset.presentation = 'seal';
+  const row = node('div', 'aap-reading-row');
+  const title = node('span', 'aap-reading-title');
+  const mark = node('span', 'aap-reading-mark'); mark.setAttribute('aria-hidden', 'true');
+  title.append(mark, node('span', 'aap-reading-label', label));
+  const actions = node('div', 'aap-reading-actions'); actions.setAttribute('role', 'group'); actions.setAttribute('aria-label', label);
+  const apps = node('span', 'aap-reading-apps');
+  const copy = node('button', 'aap-reading-copy', 'Copy'); copy.type = 'button';
+  copy.setAttribute('aria-label', 'Copy context for any Agent or conversation'); copy.title = 'Copy into any new or existing Agent conversation';
+  const copyIcon = node('span', 'aap-reading-copy-icon'); copyIcon.setAttribute('aria-hidden', 'true'); copy.append(copyIcon);
+  actions.append(apps, copy); row.append(title, actions);
+  const hint = node('p', 'aap-reading-hint'); hint.id = `aap-reading-${++nextId}-hint`;
+  copy.setAttribute('aria-describedby', hint.id);
   const status = node('p', 'aap-reading-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
-  const contextDetails = node('details', 'aap-reading-context');
-  contextDetails.append(node('summary', '', 'Context for your Agent'));
-  const context = node('textarea', 'aap-reading-text');
-  context.value = reading.context; context.readOnly = true; context.rows = 7;
-  context.setAttribute('aria-label', `${reading.work.title}: context to copy`); contextDetails.append(context);
-  const receiptDetails = node('details', 'aap-reading-evidence'); receiptDetails.hidden = true;
-  receiptDetails.append(node('summary', '', 'Handoff receipt'));
-  receiptDetails.append(node('p', '', 'This browser recorded an action with the offered public context. It does not establish app arrival, sending, Agent reading or execution.'));
-  const download = node('button', 'aap-reading-download', 'Download receipt'); download.type = 'button'; receiptDetails.append(download);
-  root.append(selectors, actions, route, status, contextDetails, receiptDetails);
-  element.append(root);
-
-  function clearReceipt() { retained = undefined; receiptDetails.hidden = true; receiptDetails.open = false; generation++; }
-  function plan() { return reading.prepare({ client: client.value, conversation: conversation.value }); }
-  function render() {
-    const prepared = plan();
-    open.hidden = prepared.kind !== 'native';
-    if (prepared.kind === 'native') open.href = prepared.url; else open.removeAttribute('href');
-    open.setAttribute('aria-label', `${label}: ${NAMES[client.value]}, new conversation`);
-    copy.textContent = prepared.kind === 'native' ? 'Copy context instead' : 'Copy context';
-    copy.disabled = busy; client.disabled = busy; conversation.disabled = busy;
-    open.setAttribute('aria-disabled', String(busy));
-    route.textContent = prepared.kind === 'native'
-      ? `New ${NAMES[client.value]} conversation. Requires the installed app. Review and send the draft there, then ask your questions. If no draft appears, copy the context instead.`
-      : conversation.value === 'existing'
-        ? 'Copy into the existing conversation you choose inside your Agent. This page cannot attach to its private history.'
-        : 'Copy into a new conversation in your Agent. Review and send it there, then ask your questions.';
+  const context = node('textarea', 'aap-reading-text'); context.readOnly = true; context.rows = 6; context.hidden = true;
+  context.value = reading.context; context.setAttribute('aria-label', `${reading.work.title}: context to copy`);
+  const download = node('button', 'aap-reading-download', 'Download handoff receipt'); download.type = 'button'; download.hidden = true;
+  root.append(row, hint, status, context, download); element.append(root);
+  let destroyed = false, busy = false, generation = 0, retained, deadline;
+  const listeners = [];
+  const listen = (target, event, handler) => { target.addEventListener(event, handler); listeners.push(() => target.removeEventListener(event, handler)); };
+  function clearReceipt() { generation++; retained = undefined; download.hidden = true; }
+  function copyBusy(value) {
+    busy = value; copy.disabled = value;
+    for (const anchor of apps.children) anchor.setAttribute('aria-disabled', String(value));
   }
-  function changed() { clearReceipt(); render(); status.textContent = ''; }
-  async function record(event, selected, expectedGeneration) {
+  async function recordNative(client, expected) {
     if (!evidence) return;
     try {
-      const receipt = await reading.receipt({ event, client: selected.client, conversation: selected.conversation, observer: 'visitor-browser' });
-      if (destroyed || expectedGeneration !== generation) return;
-      retained = receipt; receiptDetails.hidden = false;
-      if (onReceipt) {
-        void Promise.resolve().then(() => onReceipt(receipt)).catch(() => {
-          if (!destroyed && expectedGeneration === generation) status.textContent += ' The receipt callback failed; the local receipt is still available.';
-        });
-      }
-    } catch {
-      if (!destroyed && expectedGeneration === generation) status.textContent += ' A receipt is unavailable for this action.';
+      const receipt = await reading.receipt({ event: 'handoff-requested', client, conversation: 'fresh', observer: 'visitor-browser' });
+      if (destroyed || generation !== expected) return;
+      retained = receipt; download.hidden = false;
+      if (onReceipt) void Promise.resolve().then(() => {
+        if (!destroyed && generation === expected) return onReceipt(receipt);
+      }).catch(() => {
+        if (!destroyed && generation === expected) status.textContent += ' The receipt callback failed; the local receipt is still available.';
+      });
+    } catch { if (!destroyed && generation === expected) status.textContent += ' A receipt is unavailable for this action.'; }
+  }
+  const nativeIds = Object.keys(NAMES).filter(id => reading.clients.includes(id) && reading.prepare({ client: id, conversation: 'fresh' }).kind === 'native');
+  function renderClients(ids) {
+    if (destroyed) return;
+    for (const id of ids) {
+      const plan = reading.prepare({ client: id, conversation: 'fresh' });
+      const anchor = node('a', 'aap-reading-agent', NAMES[id]); anchor.href = plan.url; anchor.dataset.client = id;
+      anchor.setAttribute('aria-describedby', hint.id);
+      anchor.setAttribute('aria-label', `Open a new ${NAMES[id]} desktop conversation with this context`);
+      anchor.setAttribute('aria-disabled', String(busy));
+      anchor.title = `Requires ${NAMES[id]} desktop. Prefill a new conversation; review the app mode and send there.`;
+      const arrow = node('span', 'aap-reading-arrow', '↗'); arrow.setAttribute('aria-hidden', 'true'); anchor.append(arrow);
+      listen(anchor, 'click', event => {
+        if (destroyed || busy || event.defaultPrevented) { event.preventDefault(); return; }
+        clearReceipt(); const expected = generation;
+        // Keep navigation on the ordinary visitor click; never launch from a timer.
+        window.setTimeout(() => {
+          if (destroyed || event.defaultPrevented || generation !== expected) return;
+          status.textContent = `Handoff requested. Your browser may ask to open ${NAMES[id]}. Review the app mode and draft there. This page cannot confirm arrival.`;
+          void recordNative(id, expected);
+        }, 0);
+      });
+      apps.append(anchor);
     }
   }
-  listen(client, 'change', changed); listen(conversation, 'change', changed);
-  listen(open, 'click', event => {
-    if (destroyed || busy || event.defaultPrevented) { event.preventDefault(); return; }
-    const selected = plan();
-    if (selected.kind !== 'native') { event.preventDefault(); return; }
-    clearReceipt();
-    const expectedGeneration = generation;
-    // Do not await Web Crypto or a callback before the browser's trusted click
-    // follows the native URL. There is no hidden launch, timer or auto-retry.
-    window.setTimeout(() => {
-      if (event.defaultPrevented || destroyed || expectedGeneration !== generation) return;
-      status.textContent = `Handoff requested. Check ${NAMES[selected.client]} for the draft. This page cannot confirm whether it arrived.`;
-      void record('handoff-requested', selected, expectedGeneration);
-    }, 0);
-  });
-  listen(copy, 'click', async () => {
-    if (destroyed || busy) return;
-    const selected = plan(); clearReceipt(); const expectedGeneration = generation;
-    busy = true; render();
+  listen(copy, 'click', async event => {
+    if (destroyed || busy || event.defaultPrevented) return;
+    clearReceipt(); const expected = generation; copyBusy(true);
     try {
       try { await window.navigator.clipboard.writeText(reading.context); }
       catch {
-        if (destroyed) return;
-        contextDetails.open = true; context.focus(); context.select();
-        status.textContent = 'Clipboard access is unavailable. Copy the selected context and paste it into your chosen Agent conversation.';
-        void record('manual-context-selected', selected, expectedGeneration);
+        if (destroyed || generation !== expected) return;
+        context.hidden = false; context.focus(); context.select();
+        status.textContent = 'Copy the selected context into any new or existing Agent conversation.';
         return;
       }
-      if (destroyed) return;
-      status.textContent = conversation.value === 'existing'
-        ? 'Context copied. Paste into your chosen existing conversation, review and send it, then ask there.'
-        : 'Context copied. Paste into a new conversation, review and send it, then ask there.';
-      void record('context-copied', selected, expectedGeneration);
-    } finally { if (!destroyed) { busy = false; render(); } }
+      if (!destroyed && generation === expected) status.textContent = 'Context copied. Paste it into any new or existing Agent conversation.';
+      // This compact action declares no destination conversation, so issues no receipt.
+    } finally { if (!destroyed) copyBusy(false); }
   });
   listen(download, 'click', () => {
     if (!retained || destroyed) return;
     const url = window.URL.createObjectURL(new window.Blob([JSON.stringify(retained, null, 2) + '\n'], { type: 'application/json' }));
-    const link = node('a'); link.href = url; link.download = 'agent-reading-receipt.json'; link.click();
+    const anchor = node('a'); anchor.href = url; anchor.download = 'agent-reading-receipt.json'; anchor.click();
     window.setTimeout(() => window.URL.revokeObjectURL(url), 1000);
   });
+  const offeredHint = nativeIds.length
+    ? 'Desktop links require installed apps; availability has not been checked. Review the destination app mode. Copy works in any conversation.'
+    : 'Copy context into any new or existing Agent conversation. No configured native route can carry this context.';
+  if (!discoverClients || !nativeIds.length) {
+    renderClients(nativeIds); hint.textContent = offeredHint;
+  } else {
+    hint.textContent = 'Checking app availability with the host integration. Copy is always available.';
+    void Promise.race([
+      Promise.resolve().then(() => { if (!destroyed) return discoverClients(); }),
+      new Promise((_, reject) => { deadline = window.setTimeout(() => reject(new Error('Discovery timed out.')), 2500); }),
+    ]).then(snapshot => {
+      if (destroyed) return;
+      if (!snapshot || !Array.isArray(snapshot.clients)) throw new Error('Invalid host discovery result.');
+      const ids = nativeIds.filter(id => snapshot.clients.some(client => client?.id === id));
+      renderClients(ids);
+      hint.textContent = ids.length
+        ? 'App availability reported by the host integration. Review the destination app mode and draft. Copy works in any conversation.'
+        : 'The host integration reported no configured desktop apps. Copy works in any Agent conversation.';
+    }).catch(() => {
+      if (destroyed) return;
+      renderClients(nativeIds); hint.textContent = `App availability could not be checked. ${offeredHint}`;
+    }).finally(() => window.clearTimeout(deadline));
+  }
   const mounted = Object.freeze({ reading, destroy() {
     if (destroyed) return;
-    destroyed = true; generation++; retained = undefined; listeners.forEach(remove => remove()); root.remove(); mounts.delete(element);
+    destroyed = true; window.clearTimeout(deadline); generation++; retained = undefined;
+    listeners.forEach(remove => remove()); root.remove(); mounts.delete(element);
   } });
-  mounts.set(element, mounted); render();
+  mounts.set(element, mounted);
   return mounted;
 }

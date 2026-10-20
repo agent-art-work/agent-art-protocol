@@ -1,7 +1,7 @@
 # Agent Art protocol architecture
 
-Status: **candidate generic architecture**, revised 2026-10-19. The private
-SDK's first supported release scope is [0.1.0 reading](spec/0.1/READING.md).
+Status: **candidate generic architecture**, revised 2026-10-20. The private
+SDK's first supported release scope is [0.1.1 reading](spec/0.1/READING.md).
 The broader participation contract, stronger execution evidence and production
 deployment remain open. A separately authorized [local MVP](mvp/README.md) exercises a
 bounded subset; it does not qualify the remote HTTP/OAuth path or independent
@@ -14,13 +14,15 @@ to refine through [project walkthroughs](examples/PROJECT-WALKTHROUGHS.md),
 not a frozen standard. MVP implementation choices do not ratify the generic
 contract or settle the execution-evidence threshold.
 
-**Current release sequence, 2026-10-19.** Develop one protocol through its
-public reading use cases first. SDK `@agent-art/protocol@0.1.0` supplies a
-framework-neutral browser interface/controller, prepared client routes and
-optional bounded receipts. Inshell, the Lab, Pulse and Signatures Gallery use
-it in isolated local reading integrations. The SDK requires no local helper,
-server, participant enrollment, answer callback or evidence database for this
-use. See the [consumer guide](pilot/reading-consumers/README.md).
+**Current release sequence, 2026-10-20.** Develop one protocol through its
+public reading use cases first. Private SDK `@agent-art/protocol@0.1.1` supplies
+the compact Open bubble **Ask your Agent** component, controller, desktop
+prefill routes and optional bounded receipts. ChatGPT, Claude and Copy are
+inline; destination app mode is not forced. Lab is the single active local
+test consumer. The earlier four 0.1.0 integrations remain historical.
+The SDK requires no local helper, participant enrollment, answer callback or
+evidence database. Optional host discovery reports availability; the SDK does
+no application probing. See the [current consumer guide](pilot/reading-sdk/README.md).
 
 The two infrastructure responsibilities remain connecting real Agent
 environments and preserving/checking evidence. A reading handoff can have zero
@@ -67,7 +69,7 @@ Application owners supply their site, public context and authored policy. The
 reading SDK supplies the reusable browser handoff and optional local receipt;
 source retrieval and the conversation remain inside the visitor's Agent.
 The wider architecture below describes intended participation infrastructure,
-not a claim that SDK 0.1.0 implements every transport and service.
+not a claim that SDK 0.1.1 implements every transport and service.
 
 Artists build the artwork's website/app, artistic conditions, composition and
 renderer. They integrate shared bridges for supported real Agents in curators'
@@ -420,9 +422,10 @@ their original limits. MCP/OAuth remains a candidate carrier; exact versions,
 permissions, network access and media delivery must be checked on the chosen
 client before support is claimed.
 
-The current release step is to validate the four public reading integrations
-against [READING.md](spec/0.1/READING.md), retaining canonical owner context and
-lightweight, optional evidence. The later compatible artwork release should
+The current release step is to validate SDK 0.1.1 on the single active Lab
+consumer against [READING.md](spec/0.1/READING.md), retaining canonical owner
+context and lightweight, optional evidence. The four 0.1.0 integration records
+remain historical; maintaining four development apps is not required. The later compatible artwork release should
 use the [scope](spec/0.1/SCOPE.md) and [contract](spec/0.1/CONTRACT.md) to qualify
 the context/return/recovery path, exact evidence bindings and owner consequence
 checks. Execution origin needs its own material and qualification; an

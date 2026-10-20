@@ -9,11 +9,11 @@
   "scripts": {
     "dev": "node mvp/dev.mjs",
     "pretest": "node scripts/sdk.mjs install",
-    "test": "node --test protocol/test/*.test.mjs mvp/test/*.test.mjs mvp/agent/test.mjs pilot/*.test.mjs pilot/reading/*.test.mjs",
+    "test": "node --test protocol/test/*.test.mjs mvp/test/*.test.mjs mvp/agent/test.mjs pilot/*.test.mjs pilot/reading/*.test.mjs pilot/open-gate/*.test.mjs",
     "mvp:agent": "node mvp/agent/launch.mjs",
     "mvp:verify": "node mvp/verify.mjs",
     "pilot:lab": "node pilot/lab.mjs",
-    "test:pilot": "node --test pilot/*.test.mjs pilot/reading/*.test.mjs",
+    "test:pilot": "node --test pilot/*.test.mjs pilot/reading/*.test.mjs pilot/open-gate/*.test.mjs",
     "pretest:pilot": "node scripts/sdk.mjs install",
     "test:protocol": "node --test protocol/test/*.test.mjs",
     "test:sdk": "node --test protocol/test/*.test.mjs",

@@ -1,0 +1,81 @@
+/* Local compact Seal with Open bubble mark; SDK 0.1.0 remains unchanged. */
+.aap-gate {
+  --_gate-ink: var(--aap-ink, var(--ink, CanvasText));
+  --_gate-paper: var(--aap-paper, var(--paper, Canvas));
+  --_gate-muted: var(--aap-muted, var(--muted, currentColor));
+  --_gate-seal: var(--aap-seal-paper, var(--_gate-ink));
+  --_gate-seal-ink: var(--aap-seal-ink, var(--_gate-paper));
+  --_gate-surface: var(--aap-seal-surface, color-mix(in srgb, var(--_gate-ink) 5%, var(--_gate-paper)));
+  --_gate-line: var(--aap-line, var(--line, color-mix(in srgb, var(--_gate-ink) 24%, var(--_gate-paper))));
+  --_gate-accent: var(--aap-gate-accent, var(--_gate-ink));
+  --_gate-family: var(--aap-gate-font-family, system-ui, sans-serif);
+  --_gate-label-font: 12px;
+  --_gate-action-font: 13px;
+  --_gate-small-font: var(--font-size-12, 12px);
+  --_gate-weight: var(--weight-mid, 500);
+  --_gate-target: 32px;
+  --_gate-gap: 6px;
+  --_gate-title-pad: 8px;
+  --_gate-action-pad: 7px;
+  --_gate-border: 1px;
+  --_gate-radius: var(--aap-gate-radius, 5px);
+  --_gate-mark-size: 18px;
+  --_gate-disabled-opacity: .65;
+  color: var(--_gate-ink); font: inherit; min-width: 0; max-width: 100%;
+  container-type: inline-size;
+}
+.aap-gate *, .aap-gate *::before, .aap-gate *::after { box-sizing: border-box; }
+.aap-gate [hidden] { display: none !important; }
+.aap-gate .aap-gate-row {
+  display: inline-flex; align-items: stretch; flex-wrap: nowrap; gap: 0;
+  width: max-content; max-width: 100%; white-space: nowrap;
+  border: var(--_gate-border) solid var(--_gate-seal); border-radius: var(--_gate-radius);
+  background: var(--_gate-surface); font-family: var(--_gate-family);
+}
+.aap-gate .aap-gate-title {
+  display: inline-flex; align-items: center; flex: 0 0 auto; gap: var(--_gate-gap);
+  padding: 3px var(--_gate-title-pad); background: var(--_gate-seal); color: var(--_gate-seal-ink);
+  border-radius: calc(var(--_gate-radius) - var(--_gate-border)) 0 0 calc(var(--_gate-radius) - var(--_gate-border));
+  font-family: var(--_gate-family); font-size: var(--_gate-label-font); font-weight: var(--_gate-weight);
+  line-height: 1.4; letter-spacing: -.015em; white-space: nowrap;
+}
+.aap-gate .aap-gate-label { font: inherit; letter-spacing: inherit; }
+.aap-gate .aap-gate-mark { position: relative; display: inline-block; flex: 0 0 var(--_gate-mark-size); width: var(--_gate-mark-size); height: var(--_gate-mark-size); color: currentColor; }
+.aap-gate .aap-gate-mark::before, .aap-gate .aap-gate-mark::after { content: ''; position: absolute; }
+.aap-gate .aap-gate-mark::before { inset: 10% 14% 22% 2%; border: calc(var(--_gate-mark-size) * .125) solid currentColor; border-radius: calc(var(--_gate-mark-size) * .23); clip-path: polygon(0 0,100% 0,100% 100%,0 100%,0 72%,24% 72%,24% 34%,0 34%); }
+.aap-gate .aap-gate-mark::after { left: 14%; bottom: 4%; width: 29%; height: 29%; background: currentColor; clip-path: polygon(0 0,100% 0,0 100%); }
+.aap-gate .aap-gate-mark b { display: none; }
+.aap-gate .aap-gate-actions, .aap-gate .aap-gate-apps { display: inline-flex; align-items: center; flex: 0 0 auto; flex-wrap: nowrap; gap: var(--_gate-gap); min-width: 0; }
+.aap-gate .aap-gate-actions { padding: 3px var(--_gate-action-pad); }
+.aap-gate .aap-gate-apps:empty { display: none; }
+.aap-gate :is(.aap-gate-agent, .aap-gate-copy) {
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; gap: 4px;
+  min-height: var(--_gate-target); min-width: 44px; padding: 0; border: 0; border-radius: 0;
+  background: transparent; color: var(--_gate-ink); font-family: var(--_gate-family); font-size: var(--_gate-action-font);
+  font-weight: 400; line-height: 1.4; white-space: nowrap; cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--_gate-line); text-decoration-thickness: 1px; text-underline-offset: 3px;
+}
+.aap-gate :is(.aap-gate-agent, .aap-gate-copy):hover { text-decoration-color: var(--_gate-ink); }
+.aap-gate .aap-gate-arrow { font-size: 12px; line-height: 1; text-decoration: none; }
+.aap-gate .aap-gate-copy-icon { position: relative; display: inline-block; flex: 0 0 11px; width: 11px; height: 11px; color: var(--_gate-muted); }
+.aap-gate .aap-gate-copy-icon::before, .aap-gate .aap-gate-copy-icon::after { content: ''; position: absolute; width: 8px; height: 8px; border: 1px solid currentColor; border-radius: 1px; }
+.aap-gate .aap-gate-copy-icon::before { left: 0; top: 0; }
+.aap-gate .aap-gate-copy-icon::after { right: 0; bottom: 0; background: var(--_gate-surface); }
+.aap-gate :is(a, button, textarea):focus-visible { outline: 2px solid var(--_gate-accent); outline-offset: 2px; }
+.aap-gate .aap-gate-copy:disabled { opacity: var(--_gate-disabled-opacity); cursor: wait; }
+.aap-gate .aap-gate-hint { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.aap-gate .aap-gate-status { margin: 8px 0 0; color: var(--_gate-muted); font: inherit; font-size: var(--_gate-small-font); line-height: 1.5; overflow-wrap: anywhere; }
+.aap-gate .aap-gate-status:empty { display: none; }
+.aap-gate .aap-gate-context { display: block; width: 100%; margin-top: 8px; padding: 12px; border: var(--_gate-border) solid var(--_gate-line); background: var(--_gate-paper); color: var(--_gate-ink); font: inherit; font-size: 16px; resize: vertical; }
+.aap-gate .aap-gate-download { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 8px; padding: 8px 12px; border: var(--_gate-border) solid var(--_gate-line); border-radius: var(--_gate-radius); background: var(--_gate-paper); color: var(--_gate-ink); font: inherit; font-size: var(--_gate-action-font); cursor: pointer; }
+@container (max-width: 360px) {
+  .aap-gate .aap-gate-row {
+    --_gate-label-font: 11px; --_gate-mark-size: 14px;
+    --_gate-gap: 4px; --_gate-title-pad: 5px; --_gate-action-pad: 5px;
+  }
+  .aap-gate .aap-gate-arrow { display: none; }
+}
+@container (max-width: 280px) {
+  .aap-gate .aap-gate-row { --_gate-gap: 1px; --_gate-title-pad: 2px; --_gate-action-pad: 4px; }
+}
+@media (pointer: coarse) { .aap-gate { --_gate-target: 44px; } }
