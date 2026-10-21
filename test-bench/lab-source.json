@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/agent-art-work/Agent-Art-Lab",
+  "commit": "225d09591ae6ba012176f1cc002738e9d6fef11f",
+  "path": "docs/AGENT_ACCESS.md",
+  "sourceSha256": "3f14b26382b6db17d3a6cf0d6ace7f9ffe8a0468e4bfb1dcdac7ff5c40cff9e1",
+  "workSha256": "18674026923b4939ca9da1b67ac2bde1ec8d7d718a692eff55e81b79d008ad6c",
+  "contextSha256": "ebef0c1f9ce1c03a6028f840086b9ff079cb3fc2df53d79e6053b9b4f6a8bde6",
+  "contextBytes": 983,
+  "sdkVersion": "0.1.2",
+  "archiveSha256": "0a535238ad9eaecd973fa8127b7d24f745ca502908ad1f7377654ecdd8bdcfa5"
+}

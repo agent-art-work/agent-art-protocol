@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab reading · Protocol test bench</title>
+  <link rel="stylesheet" href="/sdk/reading.css"><link rel="stylesheet" href="/bench.css">
+  <script type="module" src="/bench.mjs"></script>
+</head>
+<body>
+  <header><p class="eyebrow">Agent Art Protocol · local development</p><h1>Reading test bench</h1>
+    <p>One public Lab invitation. Browser behavior and real desktop observations stay separate.</p>
+    <nav aria-label="Test lane"><a href="/?lane=browser" id="browser-lane">Browser checks</a><a href="/?lane=desktop" id="desktop-lane">Desktop trial</a></nav>
+  </header>
+  <main>
+    <section aria-labelledby="invitation-heading"><p class="eyebrow" id="lane-label"></p><h2 id="invitation-heading">Read Agent Art Lab</h2>
+      <p id="lane-boundary"></p><div id="reading"></div>
+      <p class="muted">The ChatGPT action uses the Codex desktop URL handler. Record the actual destination mode below. Claude requests Chat.</p>
+      <details><summary>Exact offered public context</summary><pre id="context"></pre></details>
+      <details><summary>Build, source and environment</summary><pre id="pins"></pre></details>
+    </section>
+    <section aria-labelledby="results-heading"><h2 id="results-heading">Run observations</h2>
+      <p id="run-id" class="muted">Preparing pinned inputs…</p><p id="error" role="alert" hidden></p>
+      <div class="actions"><a id="download" hidden>Download local run JSON</a><button id="new-run" type="button" disabled>New run</button></div>
+      <div id="results" aria-live="polite"></div>
+      <p class="muted">This is a local operator record, not an SDK receipt or independent execution proof. An empty stage means not run. Nothing is sent back by an Agent.</p>
+    </section>
+    <section id="observation-panel" aria-labelledby="observe-heading" hidden><h2 id="observe-heading">Record a desktop observation</h2>
+      <p>Use only this run’s new test conversation. Record each stage independently. Do not paste private history or answers.</p>
+      <form id="observation-form">
+        <label>Requested client<select name="client"><option value="claude-app">Claude desktop</option><option value="codex-app">Codex desktop handler</option></select></label>
+        <label>Actual destination<select name="surface"><option value="unknown">Not observed</option><option value="claude-chat">Claude Chat</option><option value="claude-code">Claude Code</option><option value="chatgpt-chat">ChatGPT Chat</option><option value="chatgpt-work">ChatGPT Work</option><option value="codex">Codex</option></select></label>
+        <label>Stage<select name="claim"><option value="draft-arrived">Draft arrived</option><option value="context-matches">Exact public draft matches</option><option value="sent">Sent by operator</option><option value="permission">Required permission</option><option value="source-access">Public index access</option><option value="completion">Visible orientation completed</option></select></label>
+        <label>Outcome<select name="status"><option value="operator-reported">Operator reported</option><option value="failed">Failed</option><option value="not-observed">Not observed</option><option value="not-run">Not run</option></select></label>
+        <label class="wide">Public-only note (optional, 240 characters)<input name="notes" maxlength="240" placeholder="For example: approval expired; visible completion unavailable"></label>
+        <div class="wide"><button type="submit" id="save-observation" disabled>Append observation</button></div>
+      </form>
+      <details><summary>Compare this run’s public draft locally</summary>
+        <p>Paste only the public draft from the new test composer. Comparison covers the text entered here; textarea line endings may be normalized. Text is cleared and never stored or uploaded. A match remains an operator report about its source, not a raw composer or transport-byte check.</p>
+        <label>Public draft<textarea id="draft-compare" rows="5" autocomplete="off" spellcheck="false"></textarea></label>
+        <button type="button" id="compare">Compare UTF-8 text</button><p id="compare-result" aria-live="polite"></p>
+      </details>
+      <details><summary>What to check, and how failures count</summary><ol>
+        <li>Click one client once. If the browser asks to open the app, record approval or cancellation; do not assume the app received anything.</li>
+        <li>Observe the new composer and actual mode. Compare the draft separately; visual similarity is not byte equality.</li>
+        <li>Review and send in the client. Grant or deny its ordinary permissions there. No automatic Send, permission change or retry is provided.</li>
+        <li>Observe index retrieval and the visible orientation separately. An Agent saying “read” is not independently observed HTTP bytes. The introduction does not require reading the whole collection.</li>
+        <li>Expired approval, failed networking, missing/truncated drafts, and missing output retain their own outcomes. Backend activity plus a visible UI error is a mismatch, not proof that nothing executed.</li>
+        <li>Leave the test conversation unsent if only checking delivery. Preserve unrelated work. Cleanup only a draft/conversation you can identify as this test.</li>
+      </ol></details>
+    </section>
+  </main>
+  <footer>Reading only · SDK 0.1.2 · THOUGHT and artwork return paths remain deferred.</footer>
+</body>
+</html>

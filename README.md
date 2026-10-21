@@ -94,6 +94,16 @@ Lab-owned rollout is recorded below.
 Lab and browser fixture checks from earlier live native-client observations.
 A requested handoff does not prove arrival, reading or Agent execution.
 
+The [reading interoperability test bench](test-bench/README.md) adds a local
+developer surface and separate browser/real-client reports for the exact Lab
+invitation. Run `npm run bench`; `npm run bench:browser` checks the installed
+SDK without launching native clients. Desktop observations are operator-assisted
+and retain their source, versions and per-stage outcomes. The
+[initial findings](test-bench/QUALIFICATION.md) include a narrow default-font
+layout failure, Claude's visible orientation with raw-download failure, and an
+operator-reported Codex draft kept unsent. These extend test infrastructure;
+THOUGHT and new artwork participation remain deferred.
+
 The operator subsequently requested [four-site dogfooding](pilot/dogfood-0.1.1/README.md).
 Those current-release integrations are prepared separately for review; they do
 not change the tagged SDK archive or imply publication/deployment. Lab remains
