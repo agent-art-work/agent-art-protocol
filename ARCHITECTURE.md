@@ -5,6 +5,15 @@ SDK's first supported release scope is [0.1.1 reading](spec/0.1/READING.md).
 The private 0.1.2 candidate adds an identity/About link with ⓘ, retaining that
 reading scope and the immutable 0.1.1 release. See the
 [component contract](spec/0.1/COMPONENT.md).
+The private local 0.1.3 candidate replaces the component's default presentation
+with Quiet field, preserving that reading scope and the immutable 0.1.2 archive.
+Its package and bench checks remain in the historical
+[0.1.3 qualification](pilot/reading-sdk-013/README.md). The current private
+0.1.4 local candidate retains Quiet field and refines name-only underlines,
+the Copy glyph and three-second inline success feedback. Its own package and
+browser checks belong to [0.1.4 qualification](pilot/reading-sdk-014/README.md);
+earlier findings do not qualify changed inputs. Site integration remains
+with the site owner, separately from SDK qualification and release.
 The broader participation contract, stronger execution evidence and production
 deployment remain open. A separately authorized [local MVP](mvp/README.md) exercises a
 bounded subset; it does not qualify the remote HTTP/OAuth path or independent
@@ -20,7 +29,9 @@ contract or settle the execution-evidence threshold.
 **Current release sequence, 2026-10-21.** Develop one protocol through its
 public reading use cases first. Private SDK `@agent-art/protocol@0.1.2` supplies
 the compact Open bubble **Ask your Agent** component, controller, desktop
-prefill routes and optional bounded receipts. ChatGPT, Claude and Copy are
+prefill routes and optional bounded receipts. The 0.1.3 candidate introduced
+the Quiet field default; the current 0.1.4 local candidate retains it with
+refined glyphs and inline Copy feedback. ChatGPT, Claude and Copy are
 inline. Its mark, label and ⓘ form a separate About link to the Lab-owned page.
 Claude deliberately requests Chat; the ChatGPT desktop route supplies
 no Chat/Work/Codex selector. See [native destination guidance](pilot/reading-sdk/NATIVE-HANDOFF.md).

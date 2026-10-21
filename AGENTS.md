@@ -2,8 +2,12 @@
 
 Read README.md, ARCHITECTURE.md, examples/THOUGHT.md and SOURCE.md first.
 
-- The generic protocol remains candidate. SDK 0.1.2 supports public-document
-  reading; read spec/0.1/READING.md and protocol/README.md for its boundary.
+- The generic protocol remains candidate. SDK 0.1.4 is a private local Quiet
+  field candidate with refined action glyphs and inline Copy feedback for
+  public-document reading. Released 0.1.2 and historical 0.1.3 candidate
+  bytes/qualifications remain immutable. No 0.1.4 publication or deployment
+  is selected. Read
+  spec/0.1/READING.md and protocol/README.md for the reading boundary.
   Lab is the single active local test consumer; earlier four-consumer records
   are historical isolated integrations, not deployments. Lab's owner separately
   released its reading component and About page on agentart.work.

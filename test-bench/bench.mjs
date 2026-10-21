@@ -104,6 +104,7 @@ document.querySelector('#compare').addEventListener('click', async () => {
 try {
   config = await api('/api/config');
   bench.manifest = config.manifest; bench.context = config.context;
+  document.querySelector('#sdk-version').textContent = config.manifest.sdkVersion;
   document.querySelector('#context').textContent = config.context;
   document.querySelector('#pins').textContent = JSON.stringify({ manifest: config.manifest, source: config.source, environment: config.environment }, null, 2);
   mounted = mountReading(document.querySelector('#reading'), { work: config.work, evidence: false });

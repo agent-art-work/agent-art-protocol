@@ -1,12 +1,17 @@
-/* Ask your Agent: compact Seal with the Open bubble mark. */
+/* Ask your Agent: Quiet field is the default. Sites supply theme and placement. */
 .aap-reading {
   --_reading-ink: var(--aap-ink, var(--ink, CanvasText));
   --_reading-paper: var(--aap-paper, var(--paper, Canvas));
   --_reading-muted: var(--aap-muted, var(--muted, currentColor));
-  --_reading-seal: var(--aap-seal-paper, var(--_reading-ink));
-  --_reading-seal-ink: var(--aap-seal-ink, var(--_reading-paper));
-  --_reading-surface: var(--aap-seal-surface, color-mix(in srgb, var(--_reading-ink) 5%, var(--_reading-paper)));
-  --_reading-line: var(--aap-line, var(--line, color-mix(in srgb, var(--_reading-ink) 24%, var(--_reading-paper))));
+  --_reading-palette: #a77c62;
+  --_reading-signal: var(--aap-signal, color-mix(in srgb, var(--_reading-palette) 95%, var(--_reading-ink)));
+  --_reading-frame: var(--aap-frame, var(--aap-seal-paper, color-mix(in srgb, var(--_reading-signal) 50%, transparent)));
+  --_reading-label-surface: var(--aap-label-surface, var(--aap-seal-paper, color-mix(in srgb, var(--_reading-signal) 15%, var(--_reading-paper))));
+  --_reading-label-ink: var(--aap-seal-ink, var(--_reading-ink));
+  --_reading-mark: var(--aap-mark, var(--aap-seal-ink, var(--_reading-signal)));
+  --_reading-copy-icon: var(--aap-copy-icon, var(--aap-muted, var(--_reading-signal)));
+  --_reading-surface: var(--aap-seal-surface, var(--_reading-paper));
+  --_reading-line: var(--aap-line, var(--_reading-frame));
   --_reading-accent: var(--aap-gate-accent, var(--_reading-ink));
   --_reading-family: var(--aap-font-family, var(--aap-gate-font-family, system-ui, sans-serif));
   --_reading-label-font: 12px;
@@ -19,7 +24,7 @@
   --_reading-action-pad: 7px;
   --_reading-border: 1px;
   --_reading-radius: var(--aap-radius, var(--aap-gate-radius, 5px));
-  --_reading-mark-size: 18px;
+  --_reading-mark-size: 8px;
   --_reading-disabled-opacity: .65;
   color: var(--_reading-ink); font: inherit; min-width: 0; max-width: 100%;
   container-type: inline-size;
@@ -27,26 +32,43 @@
 .aap-reading *, .aap-reading *::before, .aap-reading *::after { box-sizing: border-box; }
 .aap-reading [hidden] { display: none !important; }
 .aap-reading .aap-reading-row {
+  position: relative; isolation: isolate;
   display: inline-flex; align-items: stretch; flex-wrap: nowrap; gap: 0;
-  width: max-content; max-width: 100%; white-space: nowrap;
-  border: var(--_reading-border) solid var(--_reading-seal); border-radius: var(--_reading-radius);
+  width: max-content; max-width: 100%; white-space: nowrap; padding: var(--_reading-border);
+  border: 0; border-radius: calc(var(--_reading-radius) + 1px);
   background: var(--_reading-surface); font-family: var(--_reading-family);
+}
+.aap-reading .aap-reading-row::before {
+  content: ''; position: absolute; left: var(--_reading-tail-left, 17px); bottom: -3.5px; width: 8px; height: 4px;
+  background: var(--_reading-label-surface); clip-path: polygon(0 0,100% 0,50% 100%);
+  pointer-events: none;
+}
+.aap-reading .aap-reading-outline {
+  position: absolute; z-index: 1; left: 0; top: 0; width: 100%; height: calc(100% + 4px);
+  overflow: visible; pointer-events: none; fill: none;
+}
+.aap-reading .aap-reading-radius-box {
+  position: absolute; inset: 0; overflow: hidden; visibility: hidden; pointer-events: none;
+}
+.aap-reading .aap-reading-radius-probe {
+  position: absolute; left: 0; top: 0; width: var(--_reading-radius); height: var(--_reading-radius);
+  display: block; margin: 0; padding: 0; border: 0;
+}
+.aap-reading .aap-reading-outline path {
+  fill: none; stroke: var(--_reading-frame); stroke-width: 1px; stroke-linejoin: round;
 }
 .aap-reading .aap-reading-title {
   display: inline-flex; align-items: center; flex: 0 0 auto; gap: var(--_reading-gap);
   min-height: var(--_reading-target); text-decoration: none;
-  padding: 3px var(--_reading-title-pad); background: var(--_reading-seal); color: var(--_reading-seal-ink);
-  border-radius: calc(var(--_reading-radius) - var(--_reading-border)) 0 0 calc(var(--_reading-radius) - var(--_reading-border));
+  padding: 3px var(--_reading-title-pad); background: var(--_reading-label-surface); color: var(--_reading-label-ink);
+  border-radius: var(--_reading-radius) 0 0 var(--_reading-radius);
   font-family: var(--_reading-family); font-size: var(--_reading-label-font); font-weight: var(--_reading-weight);
   line-height: 1.4; letter-spacing: -.015em; white-space: nowrap;
 }
 .aap-reading .aap-reading-label { font: inherit; letter-spacing: inherit; }
 .aap-reading .aap-reading-info { flex: 0 0 auto; font-size: 12px; font-weight: 400; line-height: 1; }
 .aap-reading .aap-reading-title:hover .aap-reading-label { text-decoration: underline; text-underline-offset: 3px; }
-.aap-reading .aap-reading-mark { position: relative; display: inline-block; flex: 0 0 var(--_reading-mark-size); width: var(--_reading-mark-size); height: var(--_reading-mark-size); color: currentColor; }
-.aap-reading .aap-reading-mark::before, .aap-reading .aap-reading-mark::after { content: ''; position: absolute; }
-.aap-reading .aap-reading-mark::before { inset: 10% 14% 22% 2%; border: calc(var(--_reading-mark-size) * .125) solid currentColor; border-radius: calc(var(--_reading-mark-size) * .23); clip-path: polygon(0 0,100% 0,100% 100%,0 100%,0 72%,24% 72%,24% 34%,0 34%); }
-.aap-reading .aap-reading-mark::after { left: 14%; bottom: 4%; width: 29%; height: 29%; background: currentColor; clip-path: polygon(0 0,100% 0,0 100%); }
+.aap-reading .aap-reading-mark { display: inline-block; flex: 0 0 var(--_reading-mark-size); width: var(--_reading-mark-size); height: var(--_reading-mark-size); border-radius: 50%; background: var(--_reading-mark); }
 .aap-reading .aap-reading-actions, .aap-reading .aap-reading-apps { display: inline-flex; align-items: center; flex: 0 0 auto; flex-wrap: nowrap; gap: var(--_reading-gap); min-width: 0; }
 .aap-reading .aap-reading-actions { padding: 3px var(--_reading-action-pad); }
 .aap-reading .aap-reading-apps:empty { display: none; }
@@ -55,29 +77,34 @@
   min-height: var(--_reading-target); min-width: 44px; padding: 0; border: 0; border-radius: 0;
   background: transparent; color: var(--_reading-ink); font-family: var(--_reading-family); font-size: var(--_reading-action-font);
   font-weight: 400; line-height: 1.4; white-space: nowrap; cursor: pointer;
-  text-decoration: underline; text-decoration-color: var(--_reading-line); text-decoration-thickness: 1px; text-underline-offset: 3px;
+  text-decoration: none;
 }
-.aap-reading :is(.aap-reading-agent, .aap-reading-copy):hover { text-decoration-color: var(--_reading-ink); }
+.aap-reading .aap-reading-agent-name { text-decoration: underline; text-decoration-color: var(--_reading-line); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.aap-reading .aap-reading-agent:hover .aap-reading-agent-name { text-decoration-color: var(--_reading-ink); }
 .aap-reading .aap-reading-arrow { font-size: 12px; line-height: 1; text-decoration: none; }
-.aap-reading .aap-reading-copy-icon { position: relative; display: inline-block; flex: 0 0 11px; width: 11px; height: 11px; color: var(--_reading-muted); }
-.aap-reading .aap-reading-copy-icon::before, .aap-reading .aap-reading-copy-icon::after { content: ''; position: absolute; width: 8px; height: 8px; border: 1px solid currentColor; border-radius: 1px; }
-.aap-reading .aap-reading-copy-icon::before { left: 0; top: 0; }
-.aap-reading .aap-reading-copy-icon::after { right: 0; bottom: 0; background: var(--_reading-surface); }
+.aap-reading .aap-reading-copy-label { display: grid; }
+.aap-reading .aap-reading-copy-label > span { grid-area: 1/1; }
+.aap-reading .aap-reading-copy-done, .aap-reading .aap-reading-copy-done-glyph { opacity: 0; }
+.aap-reading .aap-reading-copy[data-state=copied] :is(.aap-reading-copy-ready,.aap-reading-copy-ready-glyph) { opacity: 0; }
+.aap-reading .aap-reading-copy[data-state=copied] :is(.aap-reading-copy-done,.aap-reading-copy-done-glyph) { opacity: 1; }
+.aap-reading .aap-reading-copy-icon { display: block; flex: 0 0 12px; width: 12px; height: 12px; overflow: visible; color: var(--_reading-copy-icon); fill: none; stroke: currentColor; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; }
 .aap-reading :is(a, button, textarea):focus-visible { outline: 2px solid var(--_reading-accent); outline-offset: 2px; }
 .aap-reading .aap-reading-copy:disabled { opacity: var(--_reading-disabled-opacity); cursor: wait; }
-.aap-reading .aap-reading-hint { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.aap-reading :is(.aap-reading-hint,.aap-reading-announcement) { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .aap-reading .aap-reading-status { margin: 8px 0 0; color: var(--_reading-muted); font: inherit; font-size: var(--_reading-small-font); line-height: 1.5; overflow-wrap: anywhere; }
 .aap-reading .aap-reading-status:empty { display: none; }
 .aap-reading .aap-reading-text { display: block; width: 100%; margin-top: 8px; padding: 12px; border: var(--_reading-border) solid var(--_reading-line); background: var(--_reading-paper); color: var(--_reading-ink); font: inherit; font-size: 16px; resize: vertical; }
 .aap-reading .aap-reading-download { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 8px; padding: 8px 12px; border: var(--_reading-border) solid var(--_reading-line); border-radius: var(--_reading-radius); background: var(--_reading-paper); color: var(--_reading-ink); font: inherit; font-size: var(--_reading-action-font); cursor: pointer; }
 @container (max-width: 360px) {
   .aap-reading .aap-reading-row {
-    --_reading-label-font: 11px; --_reading-mark-size: 14px;
+    --_reading-label-font: 11px;
     --_reading-gap: 4px; --_reading-title-pad: 5px; --_reading-action-pad: 5px;
   }
   .aap-reading .aap-reading-arrow { display: none; }
 }
 @container (max-width: 280px) {
-  .aap-reading .aap-reading-row { --_reading-gap: 1px; --_reading-title-pad: 2px; --_reading-action-pad: 4px; }
+  .aap-reading .aap-reading-row { --_reading-gap: 1px; --_reading-title-pad: 1px; --_reading-action-pad: 1px; --_reading-action-font: 12px; }
+  .aap-reading .aap-reading-copy { gap: 2px; }
 }
 @media (pointer: coarse) { .aap-reading { --_reading-target: 44px; } }
+@media (prefers-color-scheme: dark) { .aap-reading { --_reading-palette: #b9937b; } }

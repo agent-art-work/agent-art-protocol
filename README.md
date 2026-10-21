@@ -4,8 +4,12 @@ A candidate protocol for connecting users' real Agent environments and
 preserving claim-scoped evidence. Its artistic purpose is to support works
 in which human and Agent intention can have consequential standing.
 
-**Current SDK candidate: private `@agent-art/protocol@0.1.2`, focused on documentation
-reading.** The reusable **Ask your Agent component** carries a site's public
+**Current local SDK candidate: private `@agent-art/protocol@0.1.4`, focused on
+documentation reading.** It retains the Quiet field default and refines action
+underlines, the Copy glyph and brief inline clipboard feedback. About,
+ChatGPT, Claude and Copy remain separate actions. This is local candidate
+work; SDK 0.1.2 and 0.1.3 archives and historical results are unchanged.
+The reusable **Ask your Agent component** carries a site's public
 context into the visitor's Agent; the visitor asks and continues there.
 The SDK performs no inference and collects no questions, answers or private
 history. Existing conversations use manual copying and pasting.
@@ -19,11 +23,11 @@ evidence with zero Participants, Acts and Relations; it is not thereby art.
 ## Install and integrate
 
 Run `npm run sdk:pack` to create
-`.local/sdk/agent-art-protocol-0.1.2.tgz`. Copy it into the consuming project's
+`.local/sdk/agent-art-protocol-0.1.4.tgz`. Copy it into the consuming project's
 `vendor/` directory and install its relative file dependency:
 
 ```sh
-npm install ./vendor/agent-art-protocol-0.1.2.tgz --ignore-scripts
+npm install ./vendor/agent-art-protocol-0.1.4.tgz --ignore-scripts
 ```
 
 Use the application's existing package manager and retain its dependency lock.
@@ -36,7 +40,7 @@ interface or uses the headless controller:
 
 | Entry point | Purpose |
 | --- | --- |
-| `@agent-art/protocol/reading-ui` | Compact Open bubble component: Ask your Agent ⓘ About link, ChatGPT desktop prefill, Claude and always-visible Copy |
+| `@agent-art/protocol/reading-ui` | Compact Quiet field component: Ask your Agent ⓘ About link, ChatGPT desktop prefill, Claude and always-visible Copy |
 | `@agent-art/protocol/reading.css` | Component styles with supported theme hooks for colors, font family and radius |
 | `@agent-art/protocol/reading` | Frozen reading frame, prepared routes and optional bounded receipts for a custom UI |
 | `@agent-art/protocol`, `/clients` | Existing factories, per-claim checks and native URL builder; wider participation APIs remain experimental |
@@ -49,12 +53,24 @@ Receipts are opt-in; adopting persistent storage is not a protocol requirement.
 The SDK owns the component's mark and structure; each site controls theme and
 placement. See the [styling boundary and supported CSS variables](spec/0.1/COMPONENT.md).
 
-In 0.1.2 the mark, label and ⓘ link to
+Since 0.1.2 the mark, label and ⓘ link to
 [What is Ask your Agent?](https://agentart.work/ask-your-agent/). This identity
 link is separate from the two Agent links and Copy, and carries no Work/prompt
-query. Lab owns the explanation page. The new private archive SHA-256 is
+query. Lab owns the explanation page. The historical 0.1.2 archive SHA-256 is
 `0a535238ad9eaecd973fa8127b7d24f745ca502908ad1f7377654ecdd8bdcfa5`;
 its [qualification](pilot/reading-sdk-012/) is separate from the preserved 0.1.1 record.
+
+The preserved 0.1.3 local candidate added independent signal, frame, label-field, mark and
+Copy-icon colors through the [public presentation contract](spec/0.1/COMPONENT.md#quiet-field-default-in-the-013-local-candidate).
+The 0.1.4 candidate retains those hooks and adds
+[bounded inline Copy feedback](spec/0.1/COMPONENT.md#action-and-copy-feedback-in-the-014-local-candidate)
+without adding public options or changing context/native routes.
+SDK geometry and responsive fit remain shared. Its own fresh archive and
+consumer lock require browser qualification, including Copy fitting a 257px
+container in a 320px viewport with system fonts. Neither a changed source tree
+nor an earlier archive's passing check establishes that qualification. No
+native trial, registry publication, site rollout or deployment follows from
+this local presentation work.
 
 ## Current consumer and checks
 

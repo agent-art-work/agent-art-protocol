@@ -73,9 +73,15 @@ export function createBenchServer({ inputs, storeDir = path.join(ROOT, '.local/t
         const run = addObservation(previous, value);
         writeRun(run); json(response, 201, { run, summary: summarizeRun(run) }); return;
       }
-      const staticFiles = { '/': 'index.html', '/bench.mjs': 'bench.mjs', '/bench.css': 'bench.css' };
+      const staticFiles = { '/': 'index.html', '/bench.mjs': 'bench.mjs', '/bench.css': 'bench.css', '/ui-candidate-fixtures.mjs': 'ui-candidate-fixtures.mjs', '/ui-fixtures-014.mjs': 'ui-fixtures-014.mjs', '/ui-feedback-fixtures-014.mjs': 'ui-feedback-fixtures-014.mjs' };
       let file = staticFiles[url.pathname] && path.join(HERE, staticFiles[url.pathname]);
       if (url.pathname.startsWith('/sdk/') && ASSETS.has(url.pathname.slice(5))) file = path.join(inputs.packageDir, url.pathname.slice(5));
+      // Reuse unchanged public synthetic UI fixtures against the current pinned
+      // package. These are explicit local routes, never arbitrary file paths.
+      if (url.pathname === '/ui-fixtures.mjs') file = path.join(ROOT, 'pilot/reading-sdk-012/ui-fixtures.mjs');
+      if (url.pathname === '/assets/agent-art-reading-work.mjs') file = path.join(ROOT, 'pilot/reading-sdk-012/work.mjs');
+      const fixturePrefix = '/assets/agent-art-sdk/';
+      if (url.pathname.startsWith(fixturePrefix) && ASSETS.has(url.pathname.slice(fixturePrefix.length))) file = path.join(inputs.packageDir, url.pathname.slice(fixturePrefix.length));
       if (request.method !== 'GET' || !file) { json(response, 404, { error: 'Not found.' }); return; }
       response.writeHead(200, { ...HEADERS, 'Content-Type': TYPES[path.extname(file)] }); response.end(fs.readFileSync(file));
     } catch (error) {

@@ -1,0 +1,490 @@
+{
+  "schema": "agent-art.reading-sdk-browser-qualification.v1",
+  "date": "2026-10-21",
+  "status": "private-local-0.1.3-package-and-bench-browser-checks-passed",
+  "package": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.3",
+    "private": true,
+    "archive": ".local/sdk/archives/a1a80c260e48c2b0ee61ab28c381cc3732f817c9ca33f476018a46f7e6e9a805.tgz",
+    "archiveSha256": "a1a80c260e48c2b0ee61ab28c381cc3732f817c9ca33f476018a46f7e6e9a805",
+    "packagedFiles": {
+      "package.json": "79d343f383fcdbf8834c2b9d527a47719a3017634ae014de150da25d6bc7341c",
+      "index.mjs": "2a0875c38a71e2f034d6fad3a67171cca067e49f7b9feed136cf5aeec668646c",
+      "index.d.mts": "93fd2b703be6ba24092a2f88d396e3164892fed1948e4d4a07034e812ca4dfa7",
+      "clients.mjs": "30e1cc2966731431fec57c14f72f189d472825b8c9f7853dd1d6d55896cb3619",
+      "clients.d.mts": "6230f68aed26c374048dbef7c3793a912413574bb38e1b313b290f2126ea1bee",
+      "README.md": "1bbcb41c445e8c02f79a1d69011964116766fd0689e8b9122702eb3940db4cbd",
+      "reading.mjs": "b34bc62cca3c25a4cadc286adad0f49d4b744cdd4a040fe45f6936ac59db098e",
+      "reading.d.mts": "2ac5720d227d6bc79403e37fbff7549fb54daf6fd9eb46ec5ef7ea090845b4d2",
+      "reading-ui.mjs": "135fce7e62f70da8a064cc79b5eb264b375dc8a0abed546f6e71d6a6da8e13a4",
+      "reading-ui.d.mts": "5b0f79bfc8de88a24e1ffd93d6c035f310b816fabdcc7a2e11b5871598cc196d",
+      "reading.css": "37dbe512eefc17de4570bfd4c7a8527a9b4262773618bd482a3115edd2705482"
+    },
+    "installedAndSourceMatchArchive": true,
+    "installedArchiveFilesChecked": 11,
+    "installLockSha256": "6a975d71beab22c756c6e1544d9a56d42074b183b4ef7436a90575656505ccc9",
+    "lockIntegrity": "sha512-bnwekd/chFnO89YIIUiRMVB/EW8QoOyLOAUmYll82BRX0Cqj+IH8xpwECFTdMNbuFaOrm9BKYxJUVK2kx9yQEA=="
+  },
+  "reading": {
+    "workSha256": "18674026923b4939ca9da1b67ac2bde1ec8d7d718a692eff55e81b79d008ad6c",
+    "contextSha256": "ebef0c1f9ce1c03a6028f840086b9ff079cb3fc2df53d79e6053b9b4f6a8bde6",
+    "contextBytes": 983
+  },
+  "historical012ArchiveUnchanged": true,
+  "realClientResults": "not-run",
+  "limits": [
+    "SDK package and controlled browser checks are direct maintainer results; actual-site checks are attributed to the site owner.",
+    "No native Agent launch, Send, source reading, publication or deployment.",
+    "Historical 0.1.2 findings retain their original limits and are not results for this candidate."
+  ],
+  "designInput": {
+    "snapshot": "pilot/reading-sdk-013/design-brief.json",
+    "sha256": "0919286f08ad9868470fbe932282c361da6471a47f8165100852014e93cc1614",
+    "source": "Lab-owned local operator-selected preset; source commit unpinned"
+  },
+  "browser": {
+    "report": ".local/test-bench/browser/sdk013-final/report.json",
+    "reportSha256": "b7052d78383d2bf7e88faf79a45a00f7fd8119de256d21623b33d2f979cada92",
+    "browser": {
+      "application": "Google Chrome stable",
+      "bundleId": "com.google.Chrome",
+      "identityVerifiedBeforeLaunch": true,
+      "disposableOwnedProfile": true,
+      "version": "Chrome/156.0.8078.47"
+    },
+    "scenarios": [
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-1440-light.png",
+        "screenshotSha256": "786e082a92c61a009f908e92f76da627b2109478c0dec8ac0589b8ff388a476d"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "dark",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-1440-dark.png",
+        "screenshotSha256": "4f96431e64249a8916e17b04d0cfbe914f970900225da67fac6b2ae8d43f46e9"
+      },
+      {
+        "viewport": [
+          320,
+          900
+        ],
+        "theme": "light",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-320-light.png",
+        "screenshotSha256": "68a86e0bc9234c5a323efe7c49fe9bad827bca7316470d337f166a2f1bbca6b1"
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-390-dark.png",
+        "screenshotSha256": "4fb23be74d000d7fc531ee2d0f004c175928f21b4485602f93a03baf092886bb"
+      },
+      {
+        "viewport": [
+          320,
+          900
+        ],
+        "theme": "dark",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-320-dark.png",
+        "screenshotSha256": "be912ba00f434e4efe727c44ad92d8b564ec3ec04705dcb2056f734a366a8ecb"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "name": "signal-hook",
+        "passed": true,
+        "screenshot": "browser-1440-light-signal-hook.png",
+        "screenshotSha256": "73f911057051dac9e045453e4ff8e726834855a1a5abf566ab4349cafa8c2311"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "name": "public-hooks",
+        "passed": true,
+        "screenshot": "browser-1440-light-public-hooks.png",
+        "screenshotSha256": "5a09f5be71fbe21f8c1dac268d0e84def84c888edefa2a1f0e0a8e2e46109723"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "dark",
+        "name": "signal-hook",
+        "passed": true,
+        "screenshot": "browser-1440-dark-signal-hook.png",
+        "screenshotSha256": "c46174210d6a74d2987e73991f944d9944437c7df9df8ebded77a3dbc30bffe2"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "dark",
+        "name": "public-hooks",
+        "passed": true,
+        "screenshot": "browser-1440-dark-public-hooks.png",
+        "screenshotSha256": "75de17f329714b7bcb488293eb73512cb52817a7673e5f3fe8e2552d70b3baf8"
+      }
+    ],
+    "screenshotInspection": "All nine final-archive screenshots inspected: default 1440 light/dark, 320 light/dark, 390 dark, and signal-only/independent public hooks in light/dark. Static dot, closed outline, tiny tail and inline Copy remain visible; no component clipping seen. At 320px, Copy remains inside the 257px frame. Runtime pixel, calc and percentage radius changes were restored to 5px before screenshots. Synthetic browser lane only; no native delivery or Agent execution findings.",
+    "fixtureInputs": {
+      "pilot/reading-sdk-012/ui-fixtures.mjs": "62a39754bebe9e17962a16e94522bf2cd59bad479ac5026fb36c44196d8773f9",
+      "pilot/reading-sdk-012/work.mjs": "7df05e00f92d3a44af3430e40e0a55338da41a2834517d142f0576c34695d512",
+      "test-bench/ui-candidate-fixtures.mjs": "21b31d40b9f403ea489509869d47a5ec459140ec52c61a925aa18a0be2e040f0"
+    },
+    "compatibilityFixtures": {
+      "passed": true,
+      "results": [
+        {
+          "name": "default routes, exact public context, names and no mode forcing",
+          "passed": true
+        },
+        {
+          "name": "identity About click has no Agent, clipboard or evidence side effects",
+          "passed": true
+        },
+        {
+          "name": "configured client subset retains Copy",
+          "passed": true
+        },
+        {
+          "name": "copy succeeds exactly, denial selects exact text, no invented receipts",
+          "passed": true
+        },
+        {
+          "name": "empty host discovery",
+          "passed": true
+        },
+        {
+          "name": "host discovery filters unknown and repeated IDs",
+          "passed": true
+        },
+        {
+          "name": "failed host discovery offers unverified routes",
+          "passed": true
+        },
+        {
+          "name": "malformed host discovery offers unverified routes",
+          "passed": true
+        },
+        {
+          "name": "timed-out host discovery offers unverified routes",
+          "passed": true
+        },
+        {
+          "name": "oversized context remains exact and manual-only",
+          "passed": true
+        },
+        {
+          "name": "ancestor cancellation creates no receipt or handoff status",
+          "passed": true
+        },
+        {
+          "name": "synthetic native observation verifies and callback failure is visible",
+          "passed": true
+        },
+        {
+          "name": "Copy supersedes a pending native callback without stale status",
+          "passed": true
+        },
+        {
+          "name": "teardown suppresses late discovery and clipboard completion",
+          "passed": true
+        },
+        {
+          "name": "immediate teardown does not start host discovery",
+          "passed": true
+        },
+        {
+          "name": "duplicate mounts and invalid UI options reject",
+          "passed": true
+        }
+      ]
+    },
+    "observerLifecycle": {
+      "passed": true,
+      "results": [
+        {
+          "name": "outline observer disconnects, suppresses queued delivery and permits remount",
+          "passed": true
+        }
+      ],
+      "boundary": "Synthetic observer instrumentation with real browser layout. No native Agent activation, clipboard access or source fetch."
+    },
+    "runtimeRadiusChecks": [
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "passed": true,
+        "results": [
+          {
+            "name": "runtime pixel radius",
+            "value": "9px",
+            "actual": {
+              "rx": 9,
+              "ry": 9,
+              "width": 330.46875,
+              "height": 40
+            },
+            "expected": {
+              "rx": 9,
+              "ry": 9
+            },
+            "passed": true
+          },
+          {
+            "name": "runtime calc radius",
+            "value": "calc(1rem - 1px)",
+            "actual": {
+              "rx": 14,
+              "ry": 14,
+              "width": 330.46875,
+              "height": 40
+            },
+            "expected": {
+              "rx": 14,
+              "ry": 14
+            },
+            "passed": true
+          },
+          {
+            "name": "runtime percentage radius",
+            "value": "10%",
+            "actual": {
+              "rx": 33.046875,
+              "ry": 4,
+              "width": 330.46875,
+              "height": 40
+            },
+            "expected": {
+              "rx": 33.046875,
+              "ry": 4
+            },
+            "passed": true
+          },
+          {
+            "name": "legacy radius alias",
+            "value": "11px",
+            "actual": {
+              "rx": 11,
+              "ry": 11,
+              "width": 330.46875,
+              "height": 40
+            },
+            "expected": {
+              "rx": 11,
+              "ry": 11
+            },
+            "passed": true
+          },
+          {
+            "name": "explicit radius precedes alias",
+            "value": "7px",
+            "actual": {
+              "rx": 7,
+              "ry": 7,
+              "width": 330.46875,
+              "height": 40
+            },
+            "expected": {
+              "rx": 7,
+              "ry": 7
+            },
+            "passed": true
+          },
+          {
+            "name": "restore default radius",
+            "value": "default",
+            "actual": {
+              "rx": 5,
+              "ry": 5,
+              "width": 330.46875,
+              "height": 40
+            },
+            "expected": {
+              "rx": 5,
+              "ry": 5
+            },
+            "passed": true
+          }
+        ],
+        "boundary": "Public runtime CSS variables only; no remount or native activation."
+      },
+      {
+        "viewport": [
+          320,
+          900
+        ],
+        "passed": true,
+        "results": [
+          {
+            "name": "runtime pixel radius",
+            "value": "9px",
+            "actual": {
+              "rx": 9,
+              "ry": 9,
+              "width": 257,
+              "height": 52
+            },
+            "expected": {
+              "rx": 9,
+              "ry": 9
+            },
+            "passed": true
+          },
+          {
+            "name": "runtime calc radius",
+            "value": "calc(1rem - 1px)",
+            "actual": {
+              "rx": 14,
+              "ry": 14,
+              "width": 257,
+              "height": 52
+            },
+            "expected": {
+              "rx": 14,
+              "ry": 14
+            },
+            "passed": true
+          },
+          {
+            "name": "runtime percentage radius",
+            "value": "10%",
+            "actual": {
+              "rx": 25.6875,
+              "ry": 5.1875,
+              "width": 257,
+              "height": 52
+            },
+            "expected": {
+              "rx": 25.700000000000003,
+              "ry": 5.2
+            },
+            "passed": true
+          },
+          {
+            "name": "legacy radius alias",
+            "value": "11px",
+            "actual": {
+              "rx": 11,
+              "ry": 11,
+              "width": 257,
+              "height": 52
+            },
+            "expected": {
+              "rx": 11,
+              "ry": 11
+            },
+            "passed": true
+          },
+          {
+            "name": "explicit radius precedes alias",
+            "value": "7px",
+            "actual": {
+              "rx": 7,
+              "ry": 7,
+              "width": 257,
+              "height": 52
+            },
+            "expected": {
+              "rx": 7,
+              "ry": 7
+            },
+            "passed": true
+          },
+          {
+            "name": "restore default radius",
+            "value": "default",
+            "actual": {
+              "rx": 5,
+              "ry": 5,
+              "width": 257,
+              "height": 52
+            },
+            "expected": {
+              "rx": 5,
+              "ry": 5
+            },
+            "passed": true
+          }
+        ],
+        "boundary": "Public runtime CSS variables only; no remount or native activation."
+      }
+    ],
+    "cleanup": {
+      "ownedChromeClosed": true,
+      "ownServerClosed": true,
+      "disposableProfileRemoved": true,
+      "userTabsAccessed": false
+    }
+  },
+  "automatedRepositoryTests": {
+    "passed": 118,
+    "failed": 0,
+    "log": ".local/test-bench/sdk013-tests-final.log",
+    "logSha256": "c26c88b427dbefe66d2ac8bb1b2cfd0ec4172aa802503932184ef8a0a96e4c28"
+  },
+  "actualSiteIntegration": {
+    "status": "owner-reported-local-checks-passed",
+    "repository": "https://github.com/agent-art-work/agentart.work",
+    "branch": "codex/agentart-work-v2",
+    "archiveSha256": "a1a80c260e48c2b0ee61ab28c381cc3732f817c9ca33f476018a46f7e6e9a805",
+    "installedFilesMatched": 11,
+    "viewports": [
+      1440,
+      320
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "checks": [
+      "closed outline and fixed geometry",
+      "Copy containment",
+      "public color hooks and neutral text",
+      "keyboard focus",
+      "exact 983-byte synthetic Copy and manual prompt",
+      "denied clipboard selection",
+      "no-JavaScript disclosure",
+      "canceled native URLs"
+    ],
+    "ownerReportedTests": {
+      "python": 39,
+      "node": 25,
+      "pages": 29,
+      "httpDocumentExports": 21
+    },
+    "source": "Site-owner session report; raw site evidence remains with that owner and was not rerun by the SDK maintainer.",
+    "release": "local only; no push, native trial or deployment reported"
+  }
+}

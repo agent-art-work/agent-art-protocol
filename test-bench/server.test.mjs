@@ -27,8 +27,9 @@ async function fixture(t) {
 }
 
 test('pinned public Work and installed package are served without exposing package paths or launching a client', async t => {
-  const { origin, config } = await fixture(t);
-  assert.equal(config.manifest.sdkVersion, '0.1.2');
+  const { origin, config, inputs } = await fixture(t);
+  assert.equal(config.manifest.sdkVersion, inputs.packagePin.sdkVersion);
+  assert.equal(config.manifest.archiveSha256, inputs.packagePin.archiveSha256);
   assert.equal(config.manifest.contextBytes, 983);
   assert.equal(config.context, config.work.context[0].text);
   assert.equal(config.packageDir, undefined);
@@ -38,6 +39,12 @@ test('pinned public Work and installed package are served without exposing packa
   assert.match(await page.text(), /Browser checks/);
   assert.equal((await fetch(origin + '/sdk/reading-ui.mjs')).status, 200);
   assert.equal((await fetch(origin + '/sdk/package.json')).status, 404);
+  assert.equal((await fetch(origin + '/ui-fixtures.mjs')).status, 200);
+  assert.equal((await fetch(origin + '/ui-candidate-fixtures.mjs')).status, 200);
+  assert.equal((await fetch(origin + '/assets/agent-art-reading-work.mjs')).status, 200);
+  const fixtureUI = await fetch(origin + '/assets/agent-art-sdk/reading-ui.mjs');
+  assert.equal(await fixtureUI.text(), await (await fetch(origin + '/sdk/reading-ui.mjs')).text());
+  assert.equal((await fetch(origin + '/assets/agent-art-sdk/package.json')).status, 404);
 });
 
 test('local write capability, Origin and Host checks prevent cross-site record injection', async t => {

@@ -5,10 +5,30 @@ Codex desktop URL handler. Browser checks and real-client observations have
 separate reports and provenance. This is not a visitor-side helper or a new
 protocol requirement. THOUGHT and artwork return paths remain deferred.
 
-The bench imports the installed, qualified private SDK **0.1.2**. It does not
-change the package or use a replacement component. Its public invitation is
+The bench imports the installed private **0.1.4 local candidate**, selected by
+[sdk-candidate.json](sdk-candidate.json). It does not use a replacement component.
+The historical 0.1.2 and 0.1.3 packages and findings remain preserved. Its public invitation is
 copied exactly from the Lab's pinned canonical source, without adding a case
 ID, a question, a callback URL or instructions to an Agent to report back.
+
+The bench is a developer test page, not another public reading application or
+a service between a site and its visitor's Agent. The component at its top is
+the installed SDK under test. The two result tables below distinguish what
+the browser requested from what was actually observed or reported in a desktop
+client. A run is one local test record tied to exact package/context pins;
+**New run** starts a fresh record, not an Agent conversation. **Download local
+run JSON** exports that record and its summary, not an Agent transcript.
+
+The [0.1.3 design](../spec/0.1/COMPONENT.md#quiet-field-default-in-the-013-local-candidate)
+replaced the default presentation with Quiet field. The current
+[0.1.4 candidate](../spec/0.1/COMPONENT.md#action-and-copy-feedback-in-the-014-local-candidate)
+retains it and refines action glyphs and inline Copy feedback. It has its own
+archive, explicit input pins, matching consumer lock and
+[qualification](../pilot/reading-sdk-014/README.md).
+Earlier green tests or desktop observations cannot be relabeled as results for
+that candidate. An older running bench keeps the inputs loaded at startup;
+use a fresh run on a newly started candidate bench instead of reusing an old
+run fragment.
 
 ## Start
 
@@ -50,8 +70,16 @@ npm run bench:report -- .local/test-bench/runs/<run-id>.json
 does not invoke an Agent. The repository's `npm test` includes these tests.
 
 `bench:browser` verifies regular stable Chrome's bundle before launching an
-owned disposable profile. It tests desktop light/dark, 320px light and 390px
-dark views. Native clicks have a second cancellation guard, and clipboard
+owned disposable profile. The Quiet field browser cases cover desktop
+light/dark, 320px light/dark, 390px dark and signal-only/independent public
+color overrides. The 0.1.4 checks also inspect the stable-width **Copied**
+state, name-only underlines, coherent Copy glyph, three-second reset, repeated
+Copy attempts, denied clipboard fallback and cleanup on destroy. Both Copy
+states must fit the recorded 257px container in a 320px viewport; wider
+site-preview fit does not substitute for that check. The suite also checks
+runtime radius changes, reused DOM behavior fixtures and observer teardown.
+The historical 0.1.2 selection retains its
+original four viewport cases. Native clicks have a second cancellation guard, and clipboard
 success/denial is isolated from the OS clipboard. External requests are
 blocked. Its report and screenshots go into a new ignored
 `.local/test-bench/browser/<timestamp>/` directory. `-- --output <directory>`
@@ -59,10 +87,13 @@ selects a destination explicitly. Each report says `realClientResults: not-run`;
 successful browser tests never populate desktop results. Screenshot inspection
 is a separately recorded human/agent activity.
 
-The [initial qualification](QUALIFICATION.md) includes a currently failing
-320px SDK layout check. The runner preserves that failure and exits nonzero;
-the unit/API suite passes. This is an open SDK finding to address in a new
-package, with fresh archive qualification.
+The [initial qualification](QUALIFICATION.md) preserves the 0.1.2 failure at
+320px. The preserved [0.1.3 qualification](../pilot/reading-sdk-013/README.md)
+records its own fit results. The 0.1.4 candidate must check both ready and
+copied states under default system fonts; neither a prior pass nor a failed
+preliminary archive is relabeled as this archive's result. Explicit
+`packagePin: null` in the input
+loader selects the historical 0.1.2 package and qualification.
 
 ## Real-client procedure
 

@@ -3,6 +3,14 @@
 Selected 2026-10-19; compact component update selected 2026-10-20; identity/About
 link selected 2026-10-21 for the private `@agent-art/protocol@0.1.2` candidate.
 This remains the public-document reading scope of the SDK.
+The private local 0.1.3 candidate refines the default component to Quiet field.
+It preserves the reading API, canonical context and action semantics. Its
+[historical qualification](../../pilot/reading-sdk-013/README.md) is separate from
+the immutable 0.1.2 archive and earlier real-client observations.
+The current private 0.1.4 local candidate retains Quiet field and refines
+name-only underlines, the Copy glyph and three-second inline success feedback.
+Its [own qualification](../../pilot/reading-sdk-014/README.md) must check the
+fresh archive; the 0.1.3 archive and its findings remain unchanged.
 The wider Agent Art architecture and participation contract remain candidate.
 New THOUGHT/artwork participation is deferred to a later compatible release;
 earlier experimental APIs remain. Version 0.1.0 and its archive are preserved
@@ -67,7 +75,8 @@ The reading entry points are:
 `prepare({ client, conversation })` returns a native URL plan or a manual-copy
 plan; it performs no navigation. The supplied UI binds a native URL to an
 explicit visitor click. Its compact, single-line presentation uses the small
-**Ask your Agent** label and Open bubble mark, followed by **ChatGPT**,
+**Ask your Agent** label and, since the 0.1.3 candidate, a dot inside the closed bubble outline,
+followed by **ChatGPT**,
 **Claude** and always-visible **Copy**. In 0.1.2 the mark, label and ⓘ form one
 ordinary About link to `https://agentart.work/ask-your-agent/`; the client links
 and Copy remain separate. The identity is not an Agent-launch button or heading.
@@ -100,6 +109,16 @@ and is not a public-site requirement.
 - **Another Agent or oversized context:** manual copying, without truncation.
 - **Clipboard denied:** reveal and select the exact text for manual copying.
 
+In the 0.1.4 local candidate, Agent names are underlined separately from their
+decorative arrows, and Copy has one coherent SVG glyph. Clipboard success
+temporarily shows **Copied** with a check inside the same stable-width button
+for three seconds. A visually hidden, polite announcement confirms success;
+no visible success paragraph is added below the component. Clipboard failure
+keeps its visible exact-text fallback and manual instruction. A repeated
+attempt clears the previous timer, and `destroy()` clears pending feedback.
+This confirms only the clipboard call; it does not establish paste or Send.
+No new public option, hook or Copy receipt is introduced by this feedback.
+
 The publisher keeps the original prompt accessible when JavaScript is absent
 or client/clipboard access is unavailable. The SDK does not replace existing
 source formats, impose a new knowledge corpus or enforce the offered policy
@@ -129,6 +148,12 @@ The stylesheet retains the public `aap-reading` namespace and
 `--aap-ink`, `--aap-paper`, `--aap-muted`, `--aap-line`, `--aap-radius`
 properties, with the selected Seal/Open bubble presentation's customization
 aliases. It is imported explicitly and performs no remote asset requests.
+The 0.1.3 candidate adds independent signal, frame, label-field, mark and Copy
+color hooks and makes Quiet field the default. The historical presentation
+and its previous findings remain in the preserved 0.1.2 archive.
+The 0.1.4 candidate retains those hooks and geometry; its glyph/feedback
+refinements require a fresh archive and separate browser checks, including
+both Copy states fitting a 257px container in a 320px viewport.
 
 Call the whole interface the **Ask your Agent component**. The SDK owns the
 mark and structure; sites control theme and placement. The

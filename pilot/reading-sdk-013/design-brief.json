@@ -1,0 +1,37 @@
+{
+  "name": "Quiet field",
+  "revision": "2026-10-21",
+  "status": "operator-approved-design",
+  "scope": "Lab local preview; protocol implementation pending",
+  "settings": {
+    "palette": "Clay",
+    "colors": { "light": "#a77c62", "dark": "#b9937b" },
+    "theme": "auto",
+    "icon": "dot",
+    "tail": "point",
+    "edge": 50,
+    "tint": 15,
+    "dotSize": 100,
+    "corners": { "tl": 5, "tr": 5, "bl": 5, "br": 5 },
+    "linkCorners": true
+  },
+  "rendering": {
+    "signalMix": "95% palette color, 5% theme ink; sRGB",
+    "frame": "Closed continuous 1 CSS px outline, 50% signal opacity; no opening",
+    "corners": "5 CSS px outline arcs; prototype background outer radius 6 CSS px",
+    "tail": "Tiny point; 8 CSS px base from x=17 to x=25, tip at x=21, 4 CSS px below baseline",
+    "labelField": "15% signal, 85% theme paper; neutral text",
+    "mark": "Static 8 CSS px filled signal-colored dot",
+    "escapedLogoDot": "Original Off grid position (26,5), radius 2.2 in its 32x32 viewBox; header and footer",
+    "otherAccents": "Full signal color for Copy glyph and escaped logo dot; action underlines at frame opacity",
+    "appearance": "Follow system light/dark preference; preserve existing typography, reading width and Dots texture"
+  },
+  "integration": {
+    "componentOwner": "agent-art-protocol",
+    "siteOwner": "Agent-Art-Lab",
+    "releasedSdk": "0.1.2 remains immutable and unchanged",
+    "requiredSupport": "Supported component presentation for Dot, closed bubble and tiny tail, with independent frame, field, mark and Copy colors",
+    "preserve": ["About link", "separate ChatGPT, Claude and Copy actions", "canonical prompt bytes", "keyboard and clipboard fallbacks", "responsive fit"],
+    "exclude": ["internal tuning panel from production", "private SDK selector overrides", "native trials or deployment as part of design approval"]
+  }
+}

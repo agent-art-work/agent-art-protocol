@@ -1,0 +1,1782 @@
+{
+  "schema": "agent-art.reading-sdk-browser-qualification.v1",
+  "date": "2026-10-21",
+  "status": "private-local-0.1.4-package-and-bench-browser-checks-passed",
+  "package": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.4",
+    "private": true,
+    "archive": ".local/sdk/archives/e035ac72091956dc3fa76acb0359876f6137ccca01a7551e4f675f1ca037d430.tgz",
+    "archiveSha256": "e035ac72091956dc3fa76acb0359876f6137ccca01a7551e4f675f1ca037d430",
+    "packagedFiles": {
+      "package.json": "65fa1f1137fa7d1c233b6b155a83863ea89fa633fd7824950da7e5e562b8721d",
+      "index.mjs": "2a0875c38a71e2f034d6fad3a67171cca067e49f7b9feed136cf5aeec668646c",
+      "index.d.mts": "93fd2b703be6ba24092a2f88d396e3164892fed1948e4d4a07034e812ca4dfa7",
+      "clients.mjs": "30e1cc2966731431fec57c14f72f189d472825b8c9f7853dd1d6d55896cb3619",
+      "clients.d.mts": "6230f68aed26c374048dbef7c3793a912413574bb38e1b313b290f2126ea1bee",
+      "README.md": "b3a67a7fe534723977d68fde62bf10fe2997570dad86b41fbfe507828d6d0ff4",
+      "reading.mjs": "b34bc62cca3c25a4cadc286adad0f49d4b744cdd4a040fe45f6936ac59db098e",
+      "reading.d.mts": "2ac5720d227d6bc79403e37fbff7549fb54daf6fd9eb46ec5ef7ea090845b4d2",
+      "reading-ui.mjs": "1af36fadf6d3a151b3aee98a276023f37a81727df555163e90b327bc641401f5",
+      "reading-ui.d.mts": "5b0f79bfc8de88a24e1ffd93d6c035f310b816fabdcc7a2e11b5871598cc196d",
+      "reading.css": "6d1af7a264cea0df7c0f38567030f64d6b6ed50b1fe8fb7873a02cef7a664289"
+    },
+    "installedAndSourceMatchArchive": true,
+    "installedArchiveFilesChecked": 11,
+    "installLockSha256": "b101e0649e20da77723d09a362853928852f3d0b9ad4c0dcc8fc53beafff4e41",
+    "lockIntegrity": "sha512-qxx7SVO/gzmOmpjjaxzE/g6pPrAHhXBF/u9gbHkFbQNjN1GQMmlwZ+vBqLuz34W7wohT0cDgw8/K3MaDnGZJEA=="
+  },
+  "reading": {
+    "workSha256": "18674026923b4939ca9da1b67ac2bde1ec8d7d718a692eff55e81b79d008ad6c",
+    "contextSha256": "ebef0c1f9ce1c03a6028f840086b9ff079cb3fc2df53d79e6053b9b4f6a8bde6",
+    "contextBytes": 983
+  },
+  "historical012ArchiveUnchanged": true,
+  "historical013ArchiveUnchanged": true,
+  "realClientResults": "not-run",
+  "limits": [
+    "SDK package and controlled browser checks are direct maintainer results; earlier actual-site checks remain attributed to their exact prior archive.",
+    "Clipboard and three-second timer fixtures are synthetic. DOM live-region checks do not qualify assistive-technology speech.",
+    "At an extreme 50% radius, the independently rounded label tint may extend beyond the elliptical outline. Large-radius tests establish contour/tail geometry, not arbitrary-pill surface aesthetics. The default 5px appearance is unchanged.",
+    "Qualification includes no native Agent launch, Send, source reading, registry publication, tag or deployment; the operator separately authorized a private source commit and push.",
+    "Historical 0.1.2 and 0.1.3 findings retain their original limits and are not results for this candidate."
+  ],
+  "browser": {
+    "report": ".local/test-bench/browser/sdk014-radius-final/report.json",
+    "reportSha256": "98f2b2f6bff40b2e5ca847461833d94b699a429da5ddc63d83209a0848e2da02",
+    "browser": {
+      "application": "Google Chrome stable",
+      "bundleId": "com.google.Chrome",
+      "identityVerifiedBeforeLaunch": true,
+      "disposableOwnedProfile": true,
+      "version": "Chrome/156.0.8078.47"
+    },
+    "scenarios": [
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-1440-light.png",
+        "screenshotSha256": "ef2cf536e0d5546441f07f46d36474d16657f4d259f86d226b27034df72ba985",
+        "successScreenshot": {
+          "path": "browser-1440-light-copied.png",
+          "sha256": "1a2ab3e07efa4d6737fcd8f61ffdd7179bc7f4292e4754a88603bb54c09cc2f7"
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "dark",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-1440-dark.png",
+        "screenshotSha256": "09f6781811ebcc07539dca6f9a16bb5be654cb94d3e237166fabe326b4224eff"
+      },
+      {
+        "viewport": [
+          320,
+          900
+        ],
+        "theme": "light",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-320-light.png",
+        "screenshotSha256": "b23a073569ded32361584f381af09da60a2c3e1abfeabb611b978e8f5a956a71",
+        "successScreenshot": {
+          "path": "browser-320-light-copied.png",
+          "sha256": "a186d6c9dbec004f16cb0242a2ebbf683b4796e9fedb61ddd94208c6ec0d1b8e"
+        }
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-390-dark.png",
+        "screenshotSha256": "f7fb3f93a750c317c6d691f11376d112867e3f50529a0f5583546633f98c1ed6"
+      },
+      {
+        "viewport": [
+          320,
+          900
+        ],
+        "theme": "dark",
+        "name": "default",
+        "passed": true,
+        "screenshot": "browser-320-dark.png",
+        "screenshotSha256": "39d6469ece54d4432ab223c78b4057e0554441ed088a8946251752038891d315",
+        "successScreenshot": {
+          "path": "browser-320-dark-copied.png",
+          "sha256": "6a3bdaa972e7da22c37d18ecc904f6bff07d4f1dfb83a82053078bf1020cb2bb"
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "name": "signal-hook",
+        "passed": true,
+        "screenshot": "browser-1440-light-signal-hook.png",
+        "screenshotSha256": "baf064c94166758af7f9632e3a07a513f4d2863bfda263e9c98b7071a230e963"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "name": "public-hooks",
+        "passed": true,
+        "screenshot": "browser-1440-light-public-hooks.png",
+        "screenshotSha256": "dacc358d43e5d77af154fd0f1174461af99c5dad2bfd3c533d7869c9299d5948"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "dark",
+        "name": "signal-hook",
+        "passed": true,
+        "screenshot": "browser-1440-dark-signal-hook.png",
+        "screenshotSha256": "8a1d4d8d54245eafb9b4bbed52200d87a86ab86d0256473d7960fac6418d2fcc"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "dark",
+        "name": "public-hooks",
+        "passed": true,
+        "screenshot": "browser-1440-dark-public-hooks.png",
+        "screenshotSha256": "2b051d6019b2ff64b13d44e9a2973521391bcff45320b4aa6d4f8d78fd45e7f6"
+      },
+      {
+        "viewport": [
+          320,
+          900
+        ],
+        "theme": "light",
+        "name": "site-width265",
+        "passed": true,
+        "screenshot": "browser-320-light-site-width265.png",
+        "screenshotSha256": "b10195b73bdc20baf7176bb38445bfd875c8e9c3567dc8f392e2a5d8b8711ccf",
+        "successScreenshot": {
+          "path": "browser-320-light-site-width265-copied.png",
+          "sha256": "dc5c7ef97a80e3f925bc80cf1cc966bf26c0c2dbb113ff97ffbc951b13da6527"
+        }
+      },
+      {
+        "viewport": [
+          320,
+          900
+        ],
+        "theme": "dark",
+        "name": "site-width265",
+        "passed": true,
+        "screenshot": "browser-320-dark-site-width265.png",
+        "screenshotSha256": "24b3930f99445f3029cfbba48d375e1070976be0be6c962583925abe92547546",
+        "successScreenshot": {
+          "path": "browser-320-dark-site-width265-copied.png",
+          "sha256": "5e0cad20e636d7e646a3c2de0691afd1a66f9e476b72c9816cabf511e1dab97d"
+        }
+      }
+    ],
+    "screenshotInspection": "All 22 screenshots inspected: 16 standard ready/Copied captures plus six 10%, 50% and 999px radius samples at 1440px and 320px. Default 5px presentation retains names-only underlines, unadorned arrows/Copy, contained glyphs and no visible success paragraph. The normalized large-radius contour has an aligned 8x4px background tail, with no bottom-corner backtracking or tail overlap. At extreme 50% radius, the independently rounded label tint can visibly extend outside the elliptical outline; arbitrary-pill surface styling is not qualified by these geometric checks. Control geometry, no-page-jump acceptance and keyboard focus are measured separately in recorded DOM results. Synthetic browser checks only; no native delivery or execution findings.",
+    "fixtureInputs": {
+      "pilot/reading-sdk-012/ui-fixtures.mjs": "62a39754bebe9e17962a16e94522bf2cd59bad479ac5026fb36c44196d8773f9",
+      "pilot/reading-sdk-012/work.mjs": "7df05e00f92d3a44af3430e40e0a55338da41a2834517d142f0576c34695d512",
+      "test-bench/ui-candidate-fixtures.mjs": "21b31d40b9f403ea489509869d47a5ec459140ec52c61a925aa18a0be2e040f0",
+      "test-bench/ui-fixtures-014.mjs": "42b0495201d57a6767506fe76fe61982eaa900be27eb40ec233548fc3e19ff8a",
+      "test-bench/ui-feedback-fixtures-014.mjs": "8363b895b3bc3e2f38a44023cdcad7aab910fd4981c4ffc3c29e3b580638cf90"
+    },
+    "fixtureAdapter": {
+      "source": "pilot/reading-sdk-012/ui-fixtures.mjs",
+      "adapted": "test-bench/ui-fixtures-014.mjs",
+      "changes": [
+        "Final Copy action is identified by its stable aria-label instead of whole textContent, because both Copy and Copied state text remain in the DOM."
+      ],
+      "limits": "This compatibility change does not qualify feedback behavior; targeted 0.1.4 fixtures check actual visibility, geometry and timers."
+    },
+    "compatibilityFixtures": {
+      "passed": true,
+      "results": [
+        {
+          "name": "default routes, exact public context, names and no mode forcing",
+          "passed": true
+        },
+        {
+          "name": "identity About click has no Agent, clipboard or evidence side effects",
+          "passed": true
+        },
+        {
+          "name": "configured client subset retains Copy",
+          "passed": true
+        },
+        {
+          "name": "copy succeeds exactly, denial selects exact text, no invented receipts",
+          "passed": true
+        },
+        {
+          "name": "empty host discovery",
+          "passed": true
+        },
+        {
+          "name": "host discovery filters unknown and repeated IDs",
+          "passed": true
+        },
+        {
+          "name": "failed host discovery offers unverified routes",
+          "passed": true
+        },
+        {
+          "name": "malformed host discovery offers unverified routes",
+          "passed": true
+        },
+        {
+          "name": "timed-out host discovery offers unverified routes",
+          "passed": true
+        },
+        {
+          "name": "oversized context remains exact and manual-only",
+          "passed": true
+        },
+        {
+          "name": "ancestor cancellation creates no receipt or handoff status",
+          "passed": true
+        },
+        {
+          "name": "synthetic native observation verifies and callback failure is visible",
+          "passed": true
+        },
+        {
+          "name": "Copy supersedes a pending native callback without stale status",
+          "passed": true
+        },
+        {
+          "name": "teardown suppresses late discovery and clipboard completion",
+          "passed": true
+        },
+        {
+          "name": "immediate teardown does not start host discovery",
+          "passed": true
+        },
+        {
+          "name": "duplicate mounts and invalid UI options reject",
+          "passed": true
+        }
+      ],
+      "boundary": "Synthetic DOM fixtures only. Native clicks canceled or redirected to same-page fragments; clipboard and host discovery explicitly stubbed. No Agent launch or inference."
+    },
+    "observerLifecycle": {
+      "passed": true,
+      "results": [
+        {
+          "name": "outline observer disconnects, suppresses queued delivery and permits remount",
+          "passed": true
+        }
+      ],
+      "boundary": "Synthetic observer instrumentation with real browser layout. No native Agent activation, clipboard access or source fetch."
+    },
+    "feedbackFixtures": {
+      "passed": true,
+      "results": [
+        {
+          "name": "257px container keeps Copy/Copied/reset/repeat geometry stable",
+          "passed": true,
+          "initial": {
+            "state": "ready",
+            "row": {
+              "left": 24,
+              "top": 2111.359375,
+              "width": 257,
+              "height": 52,
+              "right": 281,
+              "bottom": 2163.359375
+            },
+            "root": {
+              "left": 24,
+              "top": 2111.359375,
+              "width": 257,
+              "height": 52,
+              "right": 281,
+              "bottom": 2163.359375
+            },
+            "below": {
+              "left": 24,
+              "top": 2163.359375,
+              "width": 257,
+              "height": 24,
+              "right": 281,
+              "bottom": 2187.359375
+            },
+            "controls": [
+              {
+                "left": 25,
+                "top": 2112.359375,
+                "width": 102.671875,
+                "height": 50,
+                "right": 127.671875,
+                "bottom": 2162.359375
+              },
+              {
+                "left": 128.671875,
+                "top": 2115.359375,
+                "width": 50.828125,
+                "height": 44,
+                "right": 179.5,
+                "bottom": 2159.359375
+              },
+              {
+                "left": 180.5,
+                "top": 2115.359375,
+                "width": 44,
+                "height": 44,
+                "right": 224.5,
+                "bottom": 2159.359375
+              },
+              {
+                "left": 225.5,
+                "top": 2115.359375,
+                "width": 54.203125,
+                "height": 44,
+                "right": 279.703125,
+                "bottom": 2159.359375
+              }
+            ]
+          },
+          "success": {
+            "state": "copied",
+            "row": {
+              "left": 24,
+              "top": 2111.359375,
+              "width": 257,
+              "height": 52,
+              "right": 281,
+              "bottom": 2163.359375
+            },
+            "root": {
+              "left": 24,
+              "top": 2111.359375,
+              "width": 257,
+              "height": 52,
+              "right": 281,
+              "bottom": 2163.359375
+            },
+            "below": {
+              "left": 24,
+              "top": 2163.359375,
+              "width": 257,
+              "height": 24,
+              "right": 281,
+              "bottom": 2187.359375
+            },
+            "controls": [
+              {
+                "left": 25,
+                "top": 2112.359375,
+                "width": 102.671875,
+                "height": 50,
+                "right": 127.671875,
+                "bottom": 2162.359375
+              },
+              {
+                "left": 128.671875,
+                "top": 2115.359375,
+                "width": 50.828125,
+                "height": 44,
+                "right": 179.5,
+                "bottom": 2159.359375
+              },
+              {
+                "left": 180.5,
+                "top": 2115.359375,
+                "width": 44,
+                "height": 44,
+                "right": 224.5,
+                "bottom": 2159.359375
+              },
+              {
+                "left": 225.5,
+                "top": 2115.359375,
+                "width": 54.203125,
+                "height": 44,
+                "right": 279.703125,
+                "bottom": 2159.359375
+              }
+            ]
+          },
+          "reset": {
+            "state": "ready",
+            "row": {
+              "left": 24,
+              "top": 2111.359375,
+              "width": 257,
+              "height": 52,
+              "right": 281,
+              "bottom": 2163.359375
+            },
+            "root": {
+              "left": 24,
+              "top": 2111.359375,
+              "width": 257,
+              "height": 52,
+              "right": 281,
+              "bottom": 2163.359375
+            },
+            "below": {
+              "left": 24,
+              "top": 2163.359375,
+              "width": 257,
+              "height": 24,
+              "right": 281,
+              "bottom": 2187.359375
+            },
+            "controls": [
+              {
+                "left": 25,
+                "top": 2112.359375,
+                "width": 102.671875,
+                "height": 50,
+                "right": 127.671875,
+                "bottom": 2162.359375
+              },
+              {
+                "left": 128.671875,
+                "top": 2115.359375,
+                "width": 50.828125,
+                "height": 44,
+                "right": 179.5,
+                "bottom": 2159.359375
+              },
+              {
+                "left": 180.5,
+                "top": 2115.359375,
+                "width": 44,
+                "height": 44,
+                "right": 224.5,
+                "bottom": 2159.359375
+              },
+              {
+                "left": 225.5,
+                "top": 2115.359375,
+                "width": 54.203125,
+                "height": 44,
+                "right": 279.703125,
+                "bottom": 2159.359375
+              }
+            ]
+          },
+          "repeated": {
+            "state": "copied",
+            "row": {
+              "left": 24,
+              "top": 2111.359375,
+              "width": 257,
+              "height": 52,
+              "right": 281,
+              "bottom": 2163.359375
+            },
+            "root": {
+              "left": 24,
+              "top": 2111.359375,
+              "width": 257,
+              "height": 52,
+              "right": 281,
+              "bottom": 2163.359375
+            },
+            "below": {
+              "left": 24,
+              "top": 2163.359375,
+              "width": 257,
+              "height": 24,
+              "right": 281,
+              "bottom": 2187.359375
+            },
+            "controls": [
+              {
+                "left": 25,
+                "top": 2112.359375,
+                "width": 102.671875,
+                "height": 50,
+                "right": 127.671875,
+                "bottom": 2162.359375
+              },
+              {
+                "left": 128.671875,
+                "top": 2115.359375,
+                "width": 50.828125,
+                "height": 44,
+                "right": 179.5,
+                "bottom": 2159.359375
+              },
+              {
+                "left": 180.5,
+                "top": 2115.359375,
+                "width": 44,
+                "height": 44,
+                "right": 224.5,
+                "bottom": 2159.359375
+              },
+              {
+                "left": 225.5,
+                "top": 2115.359375,
+                "width": 54.203125,
+                "height": 44,
+                "right": 279.703125,
+                "bottom": 2159.359375
+              }
+            ]
+          }
+        },
+        {
+          "name": "pending copy invalidates old timer and suppresses queued success reset",
+          "passed": true
+        },
+        {
+          "name": "denial preserves visible exact selected manual fallback",
+          "passed": true
+        },
+        {
+          "name": "destroy clears feedback timer and ignores queued delivery",
+          "passed": true
+        },
+        {
+          "name": "265px container keeps Copy/Copied/reset/repeat geometry stable",
+          "passed": true,
+          "initial": {
+            "state": "ready",
+            "row": {
+              "left": 24,
+              "top": 804.359375,
+              "width": 257.703125,
+              "height": 52,
+              "right": 281.703125,
+              "bottom": 856.359375
+            },
+            "root": {
+              "left": 24,
+              "top": 804.359375,
+              "width": 265,
+              "height": 52,
+              "right": 289,
+              "bottom": 856.359375
+            },
+            "below": {
+              "left": 24,
+              "top": 856.359375,
+              "width": 265,
+              "height": 24,
+              "right": 289,
+              "bottom": 880.359375
+            },
+            "controls": [
+              {
+                "left": 25,
+                "top": 805.359375,
+                "width": 102.671875,
+                "height": 50,
+                "right": 127.671875,
+                "bottom": 855.359375
+              },
+              {
+                "left": 128.671875,
+                "top": 808.359375,
+                "width": 50.828125,
+                "height": 44,
+                "right": 179.5,
+                "bottom": 852.359375
+              },
+              {
+                "left": 180.5,
+                "top": 808.359375,
+                "width": 44,
+                "height": 44,
+                "right": 224.5,
+                "bottom": 852.359375
+              },
+              {
+                "left": 225.5,
+                "top": 808.359375,
+                "width": 54.203125,
+                "height": 44,
+                "right": 279.703125,
+                "bottom": 852.359375
+              }
+            ]
+          },
+          "success": {
+            "state": "copied",
+            "row": {
+              "left": 24,
+              "top": 804.359375,
+              "width": 257.703125,
+              "height": 52,
+              "right": 281.703125,
+              "bottom": 856.359375
+            },
+            "root": {
+              "left": 24,
+              "top": 804.359375,
+              "width": 265,
+              "height": 52,
+              "right": 289,
+              "bottom": 856.359375
+            },
+            "below": {
+              "left": 24,
+              "top": 856.359375,
+              "width": 265,
+              "height": 24,
+              "right": 289,
+              "bottom": 880.359375
+            },
+            "controls": [
+              {
+                "left": 25,
+                "top": 805.359375,
+                "width": 102.671875,
+                "height": 50,
+                "right": 127.671875,
+                "bottom": 855.359375
+              },
+              {
+                "left": 128.671875,
+                "top": 808.359375,
+                "width": 50.828125,
+                "height": 44,
+                "right": 179.5,
+                "bottom": 852.359375
+              },
+              {
+                "left": 180.5,
+                "top": 808.359375,
+                "width": 44,
+                "height": 44,
+                "right": 224.5,
+                "bottom": 852.359375
+              },
+              {
+                "left": 225.5,
+                "top": 808.359375,
+                "width": 54.203125,
+                "height": 44,
+                "right": 279.703125,
+                "bottom": 852.359375
+              }
+            ]
+          },
+          "reset": {
+            "state": "ready",
+            "row": {
+              "left": 24,
+              "top": 804.359375,
+              "width": 257.703125,
+              "height": 52,
+              "right": 281.703125,
+              "bottom": 856.359375
+            },
+            "root": {
+              "left": 24,
+              "top": 804.359375,
+              "width": 265,
+              "height": 52,
+              "right": 289,
+              "bottom": 856.359375
+            },
+            "below": {
+              "left": 24,
+              "top": 856.359375,
+              "width": 265,
+              "height": 24,
+              "right": 289,
+              "bottom": 880.359375
+            },
+            "controls": [
+              {
+                "left": 25,
+                "top": 805.359375,
+                "width": 102.671875,
+                "height": 50,
+                "right": 127.671875,
+                "bottom": 855.359375
+              },
+              {
+                "left": 128.671875,
+                "top": 808.359375,
+                "width": 50.828125,
+                "height": 44,
+                "right": 179.5,
+                "bottom": 852.359375
+              },
+              {
+                "left": 180.5,
+                "top": 808.359375,
+                "width": 44,
+                "height": 44,
+                "right": 224.5,
+                "bottom": 852.359375
+              },
+              {
+                "left": 225.5,
+                "top": 808.359375,
+                "width": 54.203125,
+                "height": 44,
+                "right": 279.703125,
+                "bottom": 852.359375
+              }
+            ]
+          },
+          "repeated": {
+            "state": "copied",
+            "row": {
+              "left": 24,
+              "top": 804.359375,
+              "width": 257.703125,
+              "height": 52,
+              "right": 281.703125,
+              "bottom": 856.359375
+            },
+            "root": {
+              "left": 24,
+              "top": 804.359375,
+              "width": 265,
+              "height": 52,
+              "right": 289,
+              "bottom": 856.359375
+            },
+            "below": {
+              "left": 24,
+              "top": 856.359375,
+              "width": 265,
+              "height": 24,
+              "right": 289,
+              "bottom": 880.359375
+            },
+            "controls": [
+              {
+                "left": 25,
+                "top": 805.359375,
+                "width": 102.671875,
+                "height": 50,
+                "right": 127.671875,
+                "bottom": 855.359375
+              },
+              {
+                "left": 128.671875,
+                "top": 808.359375,
+                "width": 50.828125,
+                "height": 44,
+                "right": 179.5,
+                "bottom": 852.359375
+              },
+              {
+                "left": 180.5,
+                "top": 808.359375,
+                "width": 44,
+                "height": 44,
+                "right": 224.5,
+                "bottom": 852.359375
+              },
+              {
+                "left": 225.5,
+                "top": 808.359375,
+                "width": 54.203125,
+                "height": 44,
+                "right": 279.703125,
+                "bottom": 852.359375
+              }
+            ]
+          }
+        }
+      ],
+      "feedbackDelayMs": 3000,
+      "timersCreated": 10,
+      "boundary": "Synthetic browser layout at 257px and 265px available widths. Clipboard writes and three-second timer callbacks are stubbed; no native Agent launch or inference."
+    },
+    "keyboardCopyFocus": {
+      "before": {
+        "activeTag": "BUTTON",
+        "activeClass": "aap-reading-copy",
+        "copyFocused": true,
+        "copyDisabled": false,
+        "clipboardCount": 0
+      },
+      "pending": {
+        "activeTag": "BUTTON",
+        "activeClass": "aap-reading-copy",
+        "copyFocused": true,
+        "copyDisabled": true,
+        "clipboardCount": 0
+      },
+      "after": {
+        "activeTag": "BUTTON",
+        "activeClass": "aap-reading-copy",
+        "copyFocused": true,
+        "copyDisabled": false,
+        "clipboardCount": 1
+      },
+      "activationConfirmed": true,
+      "retainedAfterCompletion": true,
+      "boundary": "Real browser keyboard activation with an isolated pending clipboard promise. Focus retention is diagnostic, separate from the release scope checks."
+    },
+    "runtimeRadiusChecks": [
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "passed": true,
+        "results": [
+          {
+            "name": "runtime pixel radius",
+            "value": "9px",
+            "actual": {
+              "rx": 9,
+              "ry": 9,
+              "width": 343.140625,
+              "height": 40,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 43.5,
+                "left": 17,
+                "baseline": 39.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 9,
+              "ry": 9
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "runtime calc radius",
+            "value": "calc(1rem - 1px)",
+            "actual": {
+              "rx": 14,
+              "ry": 14,
+              "width": 343.140625,
+              "height": 40,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 43.5,
+                "left": 17,
+                "baseline": 39.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 14,
+              "ry": 14
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "runtime percentage radius",
+            "value": "10%",
+            "actual": {
+              "rx": 34.3125,
+              "ry": 4,
+              "width": 343.140625,
+              "height": 40,
+              "tail": {
+                "right": 42.8125,
+                "tipX": 38.8125,
+                "tipY": 43.5,
+                "left": 34.8125,
+                "baseline": 39.5
+              },
+              "triangle": {
+                "left": 34.8125,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 34.3140625,
+              "ry": 4
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "near-pill radius reserves the tiny-tail run",
+            "value": "50%",
+            "actual": {
+              "rx": 167.0703125,
+              "ry": 19.47632058287796,
+              "width": 343.140625,
+              "height": 40,
+              "tail": {
+                "right": 175.5703125,
+                "tipX": 171.5703125,
+                "tipY": 43.5,
+                "left": 167.5703125,
+                "baseline": 39.5
+              },
+              "triangle": {
+                "left": 167.57,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 167.0703125,
+              "ry": 19.47543372341879
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "oversized radius normalizes without corner-tail overlap",
+            "value": "999px",
+            "actual": {
+              "rx": 19.5,
+              "ry": 19.5,
+              "width": 343.140625,
+              "height": 40,
+              "tail": {
+                "right": 28,
+                "tipX": 24,
+                "tipY": 43.5,
+                "left": 20,
+                "baseline": 39.5
+              },
+              "triangle": {
+                "left": 20,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 19.5,
+              "ry": 19.5
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "legacy radius alias",
+            "value": "11px",
+            "actual": {
+              "rx": 11,
+              "ry": 11,
+              "width": 343.140625,
+              "height": 40,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 43.5,
+                "left": 17,
+                "baseline": 39.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 11,
+              "ry": 11
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "explicit radius precedes alias",
+            "value": "7px",
+            "actual": {
+              "rx": 7,
+              "ry": 7,
+              "width": 343.140625,
+              "height": 40,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 43.5,
+                "left": 17,
+                "baseline": 39.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 7,
+              "ry": 7
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "restore default radius",
+            "value": "default",
+            "actual": {
+              "rx": 5,
+              "ry": 5,
+              "width": 343.140625,
+              "height": 40,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 43.5,
+                "left": 17,
+                "baseline": 39.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 5,
+              "ry": 5
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          }
+        ],
+        "boundary": "Public runtime CSS variables only; no remount or native activation."
+      },
+      {
+        "viewport": [
+          320,
+          900
+        ],
+        "passed": true,
+        "results": [
+          {
+            "name": "runtime pixel radius",
+            "value": "9px",
+            "actual": {
+              "rx": 9,
+              "ry": 9,
+              "width": 257,
+              "height": 52,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 55.5,
+                "left": 17,
+                "baseline": 51.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 9,
+              "ry": 9
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "runtime calc radius",
+            "value": "calc(1rem - 1px)",
+            "actual": {
+              "rx": 14,
+              "ry": 14,
+              "width": 257,
+              "height": 52,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 55.5,
+                "left": 17,
+                "baseline": 51.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 14,
+              "ry": 14
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "runtime percentage radius",
+            "value": "10%",
+            "actual": {
+              "rx": 25.6875,
+              "ry": 5.1875,
+              "width": 257,
+              "height": 52,
+              "tail": {
+                "right": 34.1875,
+                "tipX": 30.1875,
+                "tipY": 55.5,
+                "left": 26.1875,
+                "baseline": 51.5
+              },
+              "triangle": {
+                "left": 26.1875,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 25.700000000000003,
+              "ry": 5.2
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "near-pill radius reserves the tiny-tail run",
+            "value": "50%",
+            "actual": {
+              "rx": 124,
+              "ry": 25.089494163424124,
+              "width": 257,
+              "height": 52,
+              "tail": {
+                "right": 132.5,
+                "tipX": 128.5,
+                "tipY": 55.5,
+                "left": 124.5,
+                "baseline": 51.5
+              },
+              "triangle": {
+                "left": 124.5,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 124,
+              "ry": 25.089494163424124
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "oversized radius normalizes without corner-tail overlap",
+            "value": "999px",
+            "actual": {
+              "rx": 25.5,
+              "ry": 25.5,
+              "width": 257,
+              "height": 52,
+              "tail": {
+                "right": 34,
+                "tipX": 30,
+                "tipY": 55.5,
+                "left": 26,
+                "baseline": 51.5
+              },
+              "triangle": {
+                "left": 26,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 25.5,
+              "ry": 25.5
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "legacy radius alias",
+            "value": "11px",
+            "actual": {
+              "rx": 11,
+              "ry": 11,
+              "width": 257,
+              "height": 52,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 55.5,
+                "left": 17,
+                "baseline": 51.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 11,
+              "ry": 11
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "explicit radius precedes alias",
+            "value": "7px",
+            "actual": {
+              "rx": 7,
+              "ry": 7,
+              "width": 257,
+              "height": 52,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 55.5,
+                "left": 17,
+                "baseline": 51.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 7,
+              "ry": 7
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          },
+          {
+            "name": "restore default radius",
+            "value": "default",
+            "actual": {
+              "rx": 5,
+              "ry": 5,
+              "width": 257,
+              "height": 52,
+              "tail": {
+                "right": 25,
+                "tipX": 21,
+                "tipY": 55.5,
+                "left": 17,
+                "baseline": 51.5
+              },
+              "triangle": {
+                "left": 17,
+                "width": 8,
+                "height": 4,
+                "bottom": -3.5,
+                "pointed": true
+              }
+            },
+            "expected": {
+              "rx": 5,
+              "ry": 5
+            },
+            "geometry": {
+              "normalizedCornerRun": true,
+              "tailBetweenTangents": true,
+              "noBottomBacktracking": true,
+              "tinyTailGeometry": true,
+              "alignedBackgroundTriangle": true
+            },
+            "passed": true
+          }
+        ],
+        "boundary": "Public runtime CSS variables only; no remount or native activation."
+      }
+    ],
+    "largeRadiusCaptures": [],
+    "limits": [
+      "Synthetic browser interaction only; native links canceled before OS launch.",
+      "Clipboard is isolated and stubbed; it never reads or writes the operating system clipboard.",
+      "No real-client arrival, conversation destination, Send, source reading, model execution or comprehension is established.",
+      "No callback, THOUGHT participation, registry publication or deployment is tested.",
+      "Extreme 50% radius retains a pre-existing label-field composition caveat: its separately rounded tint can extend outside the wide elliptical contour. Large-radius checks qualify contour/tail safety, not all arbitrary-pill surface styling; the selected default remains 5px."
+    ],
+    "cleanup": {
+      "ownedChromeClosed": true,
+      "ownServerClosed": true,
+      "disposableProfileRemoved": true,
+      "userTabsAccessed": false
+    },
+    "radiusScreenshotEvidence": [
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "radiusScreenshots": [
+          {
+            "value": "10%",
+            "path": "radius-1440-light-10pct.png",
+            "sha256": "a10c2e78ca567bf50d0f30c636dfc92968a9c9976d77345bd6bab6f54b3bf62b",
+            "measurement": {
+              "passed": true,
+              "results": [
+                {
+                  "name": "runtime percentage radius",
+                  "value": "10%",
+                  "actual": {
+                    "rx": 34.3125,
+                    "ry": 4,
+                    "width": 343.140625,
+                    "height": 40,
+                    "tail": {
+                      "right": 42.8125,
+                      "tipX": 38.8125,
+                      "tipY": 43.5,
+                      "left": 34.8125,
+                      "baseline": 39.5
+                    },
+                    "triangle": {
+                      "left": 34.8125,
+                      "width": 8,
+                      "height": 4,
+                      "bottom": -3.5,
+                      "pointed": true
+                    }
+                  },
+                  "expected": {
+                    "rx": 34.3140625,
+                    "ry": 4
+                  },
+                  "geometry": {
+                    "normalizedCornerRun": true,
+                    "tailBetweenTangents": true,
+                    "noBottomBacktracking": true,
+                    "tinyTailGeometry": true,
+                    "alignedBackgroundTriangle": true
+                  },
+                  "passed": true
+                }
+              ],
+              "boundary": "Public runtime CSS variables only; no remount or native activation."
+            }
+          },
+          {
+            "value": "50%",
+            "path": "radius-1440-light-50pct.png",
+            "sha256": "ff136d5d74e4feeb2fa7fb31fc78d5fd92c5abf4f7b3c916cc2a63180132d55a",
+            "measurement": {
+              "passed": true,
+              "results": [
+                {
+                  "name": "near-pill radius reserves the tiny-tail run",
+                  "value": "50%",
+                  "actual": {
+                    "rx": 167.0703125,
+                    "ry": 19.47632058287796,
+                    "width": 343.140625,
+                    "height": 40,
+                    "tail": {
+                      "right": 175.5703125,
+                      "tipX": 171.5703125,
+                      "tipY": 43.5,
+                      "left": 167.5703125,
+                      "baseline": 39.5
+                    },
+                    "triangle": {
+                      "left": 167.57,
+                      "width": 8,
+                      "height": 4,
+                      "bottom": -3.5,
+                      "pointed": true
+                    }
+                  },
+                  "expected": {
+                    "rx": 167.0703125,
+                    "ry": 19.47543372341879
+                  },
+                  "geometry": {
+                    "normalizedCornerRun": true,
+                    "tailBetweenTangents": true,
+                    "noBottomBacktracking": true,
+                    "tinyTailGeometry": true,
+                    "alignedBackgroundTriangle": true
+                  },
+                  "passed": true
+                }
+              ],
+              "boundary": "Public runtime CSS variables only; no remount or native activation."
+            }
+          },
+          {
+            "value": "999px",
+            "path": "radius-1440-light-999px.png",
+            "sha256": "220107ffef5d9865ef14b1a03afa9ce698de187e4496dd2191604ebfc42508de",
+            "measurement": {
+              "passed": true,
+              "results": [
+                {
+                  "name": "oversized radius normalizes without corner-tail overlap",
+                  "value": "999px",
+                  "actual": {
+                    "rx": 19.5,
+                    "ry": 19.5,
+                    "width": 343.140625,
+                    "height": 40,
+                    "tail": {
+                      "right": 28,
+                      "tipX": 24,
+                      "tipY": 43.5,
+                      "left": 20,
+                      "baseline": 39.5
+                    },
+                    "triangle": {
+                      "left": 20,
+                      "width": 8,
+                      "height": 4,
+                      "bottom": -3.5,
+                      "pointed": true
+                    }
+                  },
+                  "expected": {
+                    "rx": 19.5,
+                    "ry": 19.5
+                  },
+                  "geometry": {
+                    "normalizedCornerRun": true,
+                    "tailBetweenTangents": true,
+                    "noBottomBacktracking": true,
+                    "tinyTailGeometry": true,
+                    "alignedBackgroundTriangle": true
+                  },
+                  "passed": true
+                }
+              ],
+              "boundary": "Public runtime CSS variables only; no remount or native activation."
+            }
+          }
+        ]
+      },
+      {
+        "viewport": [
+          320,
+          900
+        ],
+        "radiusScreenshots": [
+          {
+            "value": "10%",
+            "path": "radius-320-light-10pct.png",
+            "sha256": "8c0cbfbdac70902b6499e67e825fd7ea07b2b83f108d157b79dccf4bba6e04ed",
+            "measurement": {
+              "passed": true,
+              "results": [
+                {
+                  "name": "runtime percentage radius",
+                  "value": "10%",
+                  "actual": {
+                    "rx": 25.6875,
+                    "ry": 5.1875,
+                    "width": 257,
+                    "height": 52,
+                    "tail": {
+                      "right": 34.1875,
+                      "tipX": 30.1875,
+                      "tipY": 55.5,
+                      "left": 26.1875,
+                      "baseline": 51.5
+                    },
+                    "triangle": {
+                      "left": 26.1875,
+                      "width": 8,
+                      "height": 4,
+                      "bottom": -3.5,
+                      "pointed": true
+                    }
+                  },
+                  "expected": {
+                    "rx": 25.700000000000003,
+                    "ry": 5.2
+                  },
+                  "geometry": {
+                    "normalizedCornerRun": true,
+                    "tailBetweenTangents": true,
+                    "noBottomBacktracking": true,
+                    "tinyTailGeometry": true,
+                    "alignedBackgroundTriangle": true
+                  },
+                  "passed": true
+                }
+              ],
+              "boundary": "Public runtime CSS variables only; no remount or native activation."
+            }
+          },
+          {
+            "value": "50%",
+            "path": "radius-320-light-50pct.png",
+            "sha256": "259082b0c62e8e3a7f658f95a585eb55c64875445fc4ff3a61f2b2af1197200d",
+            "measurement": {
+              "passed": true,
+              "results": [
+                {
+                  "name": "near-pill radius reserves the tiny-tail run",
+                  "value": "50%",
+                  "actual": {
+                    "rx": 124,
+                    "ry": 25.089494163424124,
+                    "width": 257,
+                    "height": 52,
+                    "tail": {
+                      "right": 132.5,
+                      "tipX": 128.5,
+                      "tipY": 55.5,
+                      "left": 124.5,
+                      "baseline": 51.5
+                    },
+                    "triangle": {
+                      "left": 124.5,
+                      "width": 8,
+                      "height": 4,
+                      "bottom": -3.5,
+                      "pointed": true
+                    }
+                  },
+                  "expected": {
+                    "rx": 124,
+                    "ry": 25.089494163424124
+                  },
+                  "geometry": {
+                    "normalizedCornerRun": true,
+                    "tailBetweenTangents": true,
+                    "noBottomBacktracking": true,
+                    "tinyTailGeometry": true,
+                    "alignedBackgroundTriangle": true
+                  },
+                  "passed": true
+                }
+              ],
+              "boundary": "Public runtime CSS variables only; no remount or native activation."
+            }
+          },
+          {
+            "value": "999px",
+            "path": "radius-320-light-999px.png",
+            "sha256": "3185d6d4f9da22ce82630995923e12357da2e669ea2e9fe3e53f34d06cc455ab",
+            "measurement": {
+              "passed": true,
+              "results": [
+                {
+                  "name": "oversized radius normalizes without corner-tail overlap",
+                  "value": "999px",
+                  "actual": {
+                    "rx": 25.5,
+                    "ry": 25.5,
+                    "width": 257,
+                    "height": 52,
+                    "tail": {
+                      "right": 34,
+                      "tipX": 30,
+                      "tipY": 55.5,
+                      "left": 26,
+                      "baseline": 51.5
+                    },
+                    "triangle": {
+                      "left": 26,
+                      "width": 8,
+                      "height": 4,
+                      "bottom": -3.5,
+                      "pointed": true
+                    }
+                  },
+                  "expected": {
+                    "rx": 25.5,
+                    "ry": 25.5
+                  },
+                  "geometry": {
+                    "normalizedCornerRun": true,
+                    "tailBetweenTangents": true,
+                    "noBottomBacktracking": true,
+                    "tinyTailGeometry": true,
+                    "alignedBackgroundTriangle": true
+                  },
+                  "passed": true
+                }
+              ],
+              "boundary": "Public runtime CSS variables only; no remount or native activation."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "automatedRepositoryTests": {
+    "passed": 121,
+    "failed": 0,
+    "log": ".local/test-bench/sdk014-radius-tests-final.log",
+    "logSha256": "e0dc631c705b191d06d0b657b46c730d1581c7c5215f97c0c586bcb0b00b0b6d"
+  },
+  "actualSiteIntegration": {
+    "status": "pending-site-owner-checks-for-changed-archive",
+    "archiveSha256": "e035ac72091956dc3fa76acb0359876f6137ccca01a7551e4f675f1ca037d430",
+    "earlierOwnerReport": "pilot/reading-sdk-014/QUALIFICATION-51b4c10d.json",
+    "limits": "The earlier 51b4c10d site checks are preserved with their exact archive and do not qualify this changed package."
+  },
+  "preliminaryAttempts": [
+    {
+      "report": ".local/test-bench/browser/sdk014-final/report.json",
+      "archiveSha256": "fa5201dcde126565fcb33e6b014a88d94e177dcb56c396eb4d4e3e0ef1e2db0b",
+      "status": "failed",
+      "finding": "Copy overflowed the 257px frame by 1.703125px; 265px fit did not satisfy that criterion."
+    },
+    {
+      "report": ".local/test-bench/browser/sdk014-fit-fixed-probe-inconclusive/report.json",
+      "archiveSha256": "51b4c10d8c742aeadb018362ab2df74b059078f9cf75cac551f17d08e29ac9ba",
+      "status": "harness-probe-inconclusive",
+      "finding": "Optional CDP keyboard probe omitted Enter text and did not activate Copy; corrected event activation passed in the final report."
+    }
+  ],
+  "priorCandidate": {
+    "qualification": "pilot/reading-sdk-014/QUALIFICATION-51b4c10d.json",
+    "archiveSha256": "51b4c10d8c742aeadb018362ab2df74b059078f9cf75cac551f17d08e29ac9ba",
+    "browserReport": ".local/test-bench/browser/sdk014-fit-fixed/report.json",
+    "browserReportSha256": "592eccac09be7bbd1a35be8ae9f09a1da00de9da6759e55a5f060f20900acc2d",
+    "status": "previous-checks-passed-before-stronger-contour-acceptance",
+    "subsequentFinding": "Large radius overrides could make the fixed tail overlap a corner. Prior radius checks validated arc values without establishing contour ordering or fill alignment."
+  }
+}
