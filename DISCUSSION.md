@@ -5,7 +5,7 @@ the protocol is not frozen. This record separates agreements, proposals,
 experiments and unresolved questions so we can explore real projects without
 turning earlier recommendations into decisions.
 
-The current sequence is [SDK 0.1.1 reading](spec/0.1/READING.md)
+The current sequence is [SDK 0.1.2 reading candidate](spec/0.1/READING.md)
 on Lab as the single active test consumer, followed by compatible artwork
 participation work. Earlier project discussions and observations below retain
 their date and scope. They inform the design rather than grading artworks
@@ -455,3 +455,30 @@ lock have their own [qualification](pilot/reading-sdk/QUALIFICATION.json).
 Host-provided availability checking is optional and outside the SDK's default
 behavior. Reading remains lightweight and evidence opt-in. The wider protocol,
 stronger execution evidence and later artwork participation remain candidate.
+
+## Component identity and styling — 2026-10-21
+
+**Working agreement.** Name the whole interface the **Ask your Agent component**.
+The SDK owns its mark and structure; sites control theme and placement through
+supported CSS hooks and their host layout. The
+[component guide](spec/0.1/COMPONENT.md) records the exact 0.1.1 variables,
+defaults and compatibility names. Private implementation tokens are not a
+site-specific styling API. This documents the released implementation without
+changing its package or archive.
+
+**Open proposal.** Make the mark and label one link to a stable component
+explanation, while client links and Copy retain their separate purposes. This
+could help discovery across sites, but an action-worded label may be mistaken
+for an Agent launch. Destination, presentation and interaction details remain
+unsettled. The 0.1.1 label stays noninteractive; this request authorizes
+discussion, not implementation of the link.
+
+**Selected later on 2026-10-21.** The operator approved linking the mark and
+label to “What is Ask your Agent?” on agentart.work and adding the visible ⓘ
+cue. SDK 0.1.2 wraps mark, label and ⓘ in one About link while preserving the
+separate ChatGPT, Claude and Copy actions. Lab owns the explanation page at
+`https://agentart.work/ask-your-agent/`. The link carries no Work/prompt query
+and performs no SDK handoff, clipboard or receipt operation. This selects the
+previous proposal; the 0.1.1 archive and its original noninteractive label are
+preserved. New package/consumer qualification is required; no registry release,
+repository visibility change or generic protocol freeze follows.

@@ -4,8 +4,8 @@ A candidate protocol for connecting users' real Agent environments and
 preserving claim-scoped evidence. Its artistic purpose is to support works
 in which human and Agent intention can have consequential standing.
 
-**Current SDK: private `@agent-art/protocol@0.1.1`, focused on documentation
-reading.** A reusable **Ask your Agent** interface carries a site's public
+**Current SDK candidate: private `@agent-art/protocol@0.1.2`, focused on documentation
+reading.** The reusable **Ask your Agent component** carries a site's public
 context into the visitor's Agent; the visitor asks and continues there.
 The SDK performs no inference and collects no questions, answers or private
 history. Existing conversations use manual copying and pasting.
@@ -19,11 +19,11 @@ evidence with zero Participants, Acts and Relations; it is not thereby art.
 ## Install and integrate
 
 Run `npm run sdk:pack` to create
-`.local/sdk/agent-art-protocol-0.1.1.tgz`. Copy it into the consuming project's
+`.local/sdk/agent-art-protocol-0.1.2.tgz`. Copy it into the consuming project's
 `vendor/` directory and install its relative file dependency:
 
 ```sh
-npm install ./vendor/agent-art-protocol-0.1.1.tgz --ignore-scripts
+npm install ./vendor/agent-art-protocol-0.1.2.tgz --ignore-scripts
 ```
 
 Use the application's existing package manager and retain its dependency lock.
@@ -36,8 +36,8 @@ interface or uses the headless controller:
 
 | Entry point | Purpose |
 | --- | --- |
-| `@agent-art/protocol/reading-ui` | Compact Open bubble component: small Ask your Agent label, ChatGPT desktop prefill, Claude and always-visible Copy |
-| `@agent-art/protocol/reading.css` | Styles that inherit host typography and configurable colors |
+| `@agent-art/protocol/reading-ui` | Compact Open bubble component: Ask your Agent ⓘ About link, ChatGPT desktop prefill, Claude and always-visible Copy |
+| `@agent-art/protocol/reading.css` | Component styles with supported theme hooks for colors, font family and radius |
 | `@agent-art/protocol/reading` | Frozen reading frame, prepared routes and optional bounded receipts for a custom UI |
 | `@agent-art/protocol`, `/clients` | Existing factories, per-claim checks and native URL builder; wider participation APIs remain experimental |
 
@@ -46,9 +46,19 @@ See the [SDK installation/API guide](protocol/README.md) and
 additional backend, local helper, account, enrollment, callback or evidence database.
 Receipts are opt-in; adopting persistent storage is not a protocol requirement.
 
+The SDK owns the component's mark and structure; each site controls theme and
+placement. See the [styling boundary and supported CSS variables](spec/0.1/COMPONENT.md).
+
+In 0.1.2 the mark, label and ⓘ link to
+[What is Ask your Agent?](https://agentart.work/ask-your-agent/). This identity
+link is separate from the two Agent links and Copy, and carries no Work/prompt
+query. Lab owns the explanation page. The new private archive SHA-256 is
+`0a535238ad9eaecd973fa8127b7d24f745ca502908ad1f7377654ecdd8bdcfa5`;
+its [qualification](pilot/reading-sdk-012/) is separate from the preserved 0.1.1 record.
+
 ## Current consumer and checks
 
-**Lab is the single active local test consumer for SDK 0.1.1.** Run:
+**Lab is the single active site integration for SDK 0.1.2.** Run:
 
 ```sh
 npm run pilot:lab
@@ -63,23 +73,46 @@ Without a host callback it offers configured desktop links without claiming
 that those apps are installed. Copy is always present.
 
 ChatGPT keeps the existing `codex://new?prompt=…` desktop route and internal
-`codex-app` identity; Claude keeps its Chat-prefill route. No app mode is forced.
+`codex-app` identity; Claude deliberately uses its Chat-prefill endpoint.
+The ChatGPT route sends no Chat/Work/Codex selector. See
+[native destinations and publisher formatting](pilot/reading-sdk/NATIVE-HANDOFF.md).
 Earlier operator reports found a Codex draft in one setup and Work in another,
 even after selecting Chat. These observations do not establish a universal
 routing rule. Users review the app mode and draft before sending.
 
-The [current integration and qualification](pilot/reading-sdk/README.md) pin
+The [current integration and qualification](pilot/reading-sdk-012/README.md) pin
 the fresh archive, consumer lock and checks. The SDK is private; its archive
-SHA-256 is `2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18`.
+SHA-256 is `0a535238ad9eaecd973fa8127b7d24f745ca502908ad1f7377654ecdd8bdcfa5`.
 The earlier [four-consumer integrations](pilot/reading-consumers/README.md) and
 [local design trials](pilot/open-gate/README.md) remain historical records.
 They are not maintained as four active development apps. Original owner
-checkouts and public sites are unchanged.
+checkouts and public sites were unchanged by those isolated trials; the later
+Lab-owned rollout is recorded below.
 
 `npm run test:sdk` checks the SDK's core, reading and package contracts. The
-[current qualification](pilot/reading-sdk/QUALIFICATION.json) separates package,
+[current qualification](pilot/reading-sdk-012/QUALIFICATION.json) separates package,
 Lab and browser fixture checks from earlier live native-client observations.
 A requested handoff does not prove arrival, reading or Agent execution.
+
+The operator subsequently requested [four-site dogfooding](pilot/dogfood-0.1.1/README.md).
+Those current-release integrations are prepared separately for review; they do
+not change the tagged SDK archive or imply publication/deployment. Lab remains
+the SDK reference dev entry.
+
+On 2026-10-21 the operator authorized Lab's site rollout, and the Lab session
+subsequently reported deployment and live checks completed at
+[agentart.work](https://agentart.work/), using unchanged SDK 0.1.1. Those are
+Lab-owned release findings; this does not release the protocol/npm package or
+another site's integration. See the
+[Lab rollout record](pilot/dogfood-0.1.1/README.md#lab-rollout-completed-2026-10-21).
+
+Lab subsequently released the 0.1.2 identity link and
+[What is Ask your Agent?](https://agentart.work/ask-your-agent/) page via PR #10.
+Its owner reports live About-link, asset and document checks passed. See the
+[0.1.2 rollout and qualification](pilot/reading-sdk-012/README.md#lab-site-rollout-completed).
+The Lab release uses the exact qualified vendored archive. The operator has
+also authorized committing and pushing the 0.1.2 source update on its feature
+branch; creating a 0.1.2 tag or merging to main is a separate step.
 
 ## Wider protocol and earlier experiments
 

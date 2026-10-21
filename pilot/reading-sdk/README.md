@@ -1,10 +1,15 @@
 # Packaged Ask your Agent: SDK 0.1.1
 
+Historical 0.1.1 integration and qualification. The current launcher and package
+follow the [0.1.2 candidate](../reading-sdk-012/README.md); the commands and pins
+below describe the preserved 0.1.1 inputs, not a claim about that new archive.
+
 Lab is the **single active local test consumer**. The SDK now contains the
 selected compact Open bubble / Seal component: a small noninteractive
 **Ask your Agent** label, **ChatGPT**, **Claude** and always-visible **Copy**.
-The label and actions share one background and stay on one line. App mode is
-not forced. The old four-consumer integrations remain historical records.
+The label and actions share one background and stay on one line. ChatGPT mode
+is left to the app; Claude deliberately uses its Chat endpoint. The old
+four-consumer integrations remain historical records.
 
 ```sh
 npm run pilot:lab
@@ -12,8 +17,8 @@ npm run pilot:lab
 
 Open [the local Lab preview](http://127.0.0.1:4174/). The launcher uses the
 isolated `.local/reading-v011-lab` clone, validates its full patch and archive,
-checks all 11 installed package files, builds and serves it. Original owner
-checkouts and public sites are unchanged. `--prepare-only` builds without
+checks all 11 installed package files, builds and serves it. Running this
+isolated launcher changes no owner checkout or live site. `--prepare-only` builds without
 serving; `--no-build` serves the prepared output. `--no-desktop-discovery`
 disables the local endpoint and exercises discovery-failure fallback. The no-callback
 SDK default is covered separately by the DOM fixtures and public-origin adapter. The former `--open-gate`
@@ -32,6 +37,17 @@ URLs, exact-context Copy/manual fallback, optional bounded receipts and
 teardown. Public reading requires no helper, account, callback or database.
 The [API guide](../../protocol/README.md) covers bundler and static imports.
 
+Call this the **Ask your Agent component**. The SDK owns the mark and structure;
+Lab controls its theme and placement. The
+[styling guide](../../spec/0.1/COMPONENT.md) lists the supported CSS hooks and
+their actual defaults. The proposed identity/About link remains discussion;
+the released label is noninteractive.
+
+Lab separately completed its operator-authorized agentart.work rollout on
+2026-10-21, according to its owner session's live verification report. The
+[rollout record](../dogfood-0.1.1/README.md#lab-rollout-completed-2026-10-21)
+keeps those site release findings separate from this isolated SDK qualification.
+
 ChatGPT keeps `codex://new?prompt=…` and the internal `codex-app` identifier;
 Claude keeps `claude://claude.ai/new?q=…`. These prepare a new desktop draft.
 The visitor reviews its destination and sends there. Existing conversations
@@ -39,6 +55,16 @@ use Copy and manual paste. The component does not select ordinary Chat,
 Work or Codex. Prior operator-mediated draft observations retain their limits
 in the [historical design trial](../open-gate/QUALIFICATION.json); no new
 native-client trial was performed for this archive.
+
+The later [permission and destination-error diagnosis](CLIENT-APPROVAL-DIAGNOSIS.md)
+records two operator-run reading attempts whose execution results and visible
+approval errors disagreed. It documents unresolved client boundaries without
+changing the package or treating those attempts as successful end-to-end qualification.
+
+[Native destinations and text formatting](NATIVE-HANDOFF.md) distinguishes the
+chosen Claude Chat endpoint from app-controlled ChatGPT destinations, records
+the operator's later surface observations, and explains publisher-owned prose
+formatting without silently changing the retained context.
 
 Only the local Lab host injects a callback reporting allowlisted Mac desktop
 app IDs through its same-origin, loopback-only endpoint. The SDK itself does

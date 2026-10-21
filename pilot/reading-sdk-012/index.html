@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Ask your Agent — packaged SDK fixture</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/assets/agent-art-sdk/reading.css">
+  <style>
+    * { box-sizing: border-box; }
+    :root { --ink: #34312d; --paper: #fbf9f4; --muted: #69625a; --line: #ded9cf; color-scheme: light; }
+    body { margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink); font: 16px/1.6 Arial, sans-serif; }
+    main { width: 100%; max-width: 720px; margin: 64px auto; padding: 24px; }
+    h1 { margin: 0 0 12px; font-size: 28px; line-height: 1.2; }
+    p { max-width: 56ch; margin: 0 0 24px; }
+    #reading { width: 100%; --aap-font-family: Arial, sans-serif; }
+    .note { margin-top: 24px; font-size: 13px; color: var(--muted); }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink: #ebe5da; --paper: #1c1b19; --muted: #b7afa2; --line: #49443c; color-scheme: dark; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Read with your Agent</h1>
+    <p>A standalone SDK fixture with public Lab context. Ask questions in your chosen Agent.</p>
+    <div id="reading"></div>
+    <p class="note">Synthetic browser qualification only. Native and About navigation remain canceled during checks.</p>
+  </main>
+  <script type="module" src="/fixture.mjs"></script>
+</body>
+</html>

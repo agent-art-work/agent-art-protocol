@@ -1,0 +1,795 @@
+{
+  "schema": "agent-art.reading-sdk-browser-qualification.v1",
+  "date": "2026-10-21",
+  "status": "private-local-0.1.2-browser-checks-passed",
+  "package": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.2",
+    "private": true,
+    "archive": ".local/sdk/agent-art-protocol-0.1.2.tgz",
+    "archiveSha256": "0a535238ad9eaecd973fa8127b7d24f745ca502908ad1f7377654ecdd8bdcfa5",
+    "packagedFiles": {
+      "package.json": "adeda0e23b9b0ccf2ba6048e102f9d95aff1a80b4e98ebed0b0af0d0d0286104",
+      "index.mjs": "2a0875c38a71e2f034d6fad3a67171cca067e49f7b9feed136cf5aeec668646c",
+      "index.d.mts": "93fd2b703be6ba24092a2f88d396e3164892fed1948e4d4a07034e812ca4dfa7",
+      "clients.mjs": "30e1cc2966731431fec57c14f72f189d472825b8c9f7853dd1d6d55896cb3619",
+      "clients.d.mts": "6230f68aed26c374048dbef7c3793a912413574bb38e1b313b290f2126ea1bee",
+      "README.md": "45b0ceb8ae14c57c963751c0f7e74d101e9e1788a78816ee446b9b0c23831be7",
+      "reading.mjs": "b34bc62cca3c25a4cadc286adad0f49d4b744cdd4a040fe45f6936ac59db098e",
+      "reading.d.mts": "2ac5720d227d6bc79403e37fbff7549fb54daf6fd9eb46ec5ef7ea090845b4d2",
+      "reading-ui.mjs": "4983ef5b7ed55e432e6de8b198a17d3d3a42909e09462fbf57c0fd50e241e85d",
+      "reading-ui.d.mts": "5b0f79bfc8de88a24e1ffd93d6c035f310b816fabdcc7a2e11b5871598cc196d",
+      "reading.css": "0a791b20e354c89d0d54c0e1fb053f175803b07929368ed29976ab27de4bc508"
+    },
+    "installedAndSourceMatchArchive": true,
+    "installedArchiveFilesChecked": 11,
+    "installLockSha256": "c2712170b1e1f4fc9f1432e85325909832adea2a408c8e68721c8bd3c39aa079",
+    "lockIntegrity": "sha512-L6e+7SYZ8FrJ8JLgV2gBe0BAHGzzzaIL3J09Ui/ynvqNjhJ5wr5dBZr7dCCLFX8joU6t0Z/BbIv7rR6+iKfeJw=="
+  },
+  "fixture": {
+    "purpose": "Synthetic public Lab-index reading frame; actual Lab adoption is qualified separately by its owner.",
+    "files": {
+      "check-ui.mjs": "4796692b98d8a7cd123c617fcab3fe81b0262048bc91bf70e061de290d39d863",
+      "ui-fixtures.mjs": "62a39754bebe9e17962a16e94522bf2cd59bad479ac5026fb36c44196d8773f9",
+      "serve.mjs": "8eda279aaf2caec07057df9f200e3f5ca057aa7808f78a90dcd4c08593c55f0e",
+      "fixture.mjs": "8af2e4dc2cc3cfdb86ec2d30a9c622e6c57624bfbd948a0a63937c154e4c7431",
+      "index.html": "3de98868b60cb578a5e6446cef7a81c86bd6e00e2b127ca642db12637011bb80",
+      "work.mjs": "7df05e00f92d3a44af3430e40e0a55338da41a2834517d142f0576c34695d512"
+    },
+    "standaloneCliSmoke": {
+      "command": "node pilot/reading-sdk-012/serve.mjs --package-dir <installed-archive-package>",
+      "result": "passed: CLI starts, loopback GET / returns HTTP 200 with fixture HTML, SIGTERM stops the owned server"
+    }
+  },
+  "browser": {
+    "application": "/Applications/Google Chrome.app",
+    "bundleId": "com.google.Chrome",
+    "verifiedBeforeLaunch": true,
+    "version": "Chrome/156.0.8078.47",
+    "profile": "Disposable owned headless profile",
+    "runs": [
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "coarsePointer": false,
+        "passed": true,
+        "actual": {
+          "label": "Ask your Agent",
+          "identity": {
+            "tag": "A",
+            "href": "https://agentart.work/ask-your-agent/",
+            "name": "Ask your Agent — about this component",
+            "title": "What is Ask your Agent?",
+            "text": "Ask your Agentⓘ",
+            "rect": {
+              "left": 377.5,
+              "right": 513.53125,
+              "top": 209.78125,
+              "bottom": 247.78125,
+              "width": 136.03125,
+              "height": 38
+            },
+            "infoHidden": true
+          },
+          "presentation": "seal",
+          "mark": {
+            "openLeft": true,
+            "tailLeft": true,
+            "beforeLabel": true
+          },
+          "row": {
+            "left": 376.5,
+            "right": 713.28125,
+            "top": 208.78125,
+            "bottom": 248.78125,
+            "width": 336.78125,
+            "height": 40
+          },
+          "container": {
+            "left": 376.5,
+            "right": 1048.5,
+            "top": 208.78125,
+            "bottom": 248.78125,
+            "width": 672,
+            "height": 40
+          },
+          "coarse": false,
+          "controls": [
+            {
+              "text": "Ask your Agentⓘ",
+              "className": "aap-reading-title",
+              "tag": "A",
+              "rect": {
+                "left": 377.5,
+                "right": 513.53125,
+                "top": 209.78125,
+                "bottom": 247.78125,
+                "width": 136.03125,
+                "height": 38
+              }
+            },
+            {
+              "text": "ChatGPT↗",
+              "className": "aap-reading-agent",
+              "tag": "A",
+              "rect": {
+                "left": 520.53125,
+                "right": 590.71875,
+                "top": 212.78125,
+                "bottom": 244.78125,
+                "width": 70.1875,
+                "height": 32
+              }
+            },
+            {
+              "text": "Claude↗",
+              "className": "aap-reading-agent",
+              "tag": "A",
+              "rect": {
+                "left": 596.71875,
+                "right": 653.921875,
+                "top": 212.78125,
+                "bottom": 244.78125,
+                "width": 57.203125,
+                "height": 32
+              }
+            },
+            {
+              "text": "Copy",
+              "className": "aap-reading-copy",
+              "tag": "BUTTON",
+              "rect": {
+                "left": 659.921875,
+                "right": 705.28125,
+                "top": 212.78125,
+                "bottom": 244.78125,
+                "width": 45.359375,
+                "height": 32
+              }
+            }
+          ],
+          "oneLine": true,
+          "withinBackground": true,
+          "withinViewport": true,
+          "noOverflow": true,
+          "minHeight": 32,
+          "sharedBackground": "color(srgb 0.945294 0.937255 0.917843)",
+          "sealBackground": "rgb(52, 49, 45)",
+          "apps": [
+            {
+              "client": "codex-app",
+              "exact": true,
+              "params": [
+                "prompt"
+              ]
+            },
+            {
+              "client": "claude-app",
+              "exact": true,
+              "params": [
+                "q"
+              ]
+            }
+          ],
+          "copyVisible": true,
+          "noPanel": true,
+          "hint": "Desktop links require installed apps; availability has not been checked. Review the destination app mode. Copy works in any conversation."
+        },
+        "keyboard": [
+          {
+            "className": "aap-reading-title",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-agent",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-agent",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-copy",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          }
+        ],
+        "fixtures": {
+          "passed": true,
+          "results": [
+            {
+              "name": "default routes, exact public context, names and no mode forcing",
+              "passed": true
+            },
+            {
+              "name": "identity About click has no Agent, clipboard or evidence side effects",
+              "passed": true
+            },
+            {
+              "name": "configured client subset retains Copy",
+              "passed": true
+            },
+            {
+              "name": "copy succeeds exactly, denial selects exact text, no invented receipts",
+              "passed": true
+            },
+            {
+              "name": "empty host discovery",
+              "passed": true
+            },
+            {
+              "name": "host discovery filters unknown and repeated IDs",
+              "passed": true
+            },
+            {
+              "name": "failed host discovery offers unverified routes",
+              "passed": true
+            },
+            {
+              "name": "malformed host discovery offers unverified routes",
+              "passed": true
+            },
+            {
+              "name": "timed-out host discovery offers unverified routes",
+              "passed": true
+            },
+            {
+              "name": "oversized context remains exact and manual-only",
+              "passed": true
+            },
+            {
+              "name": "ancestor cancellation creates no receipt or handoff status",
+              "passed": true
+            },
+            {
+              "name": "synthetic native observation verifies and callback failure is visible",
+              "passed": true
+            },
+            {
+              "name": "Copy supersedes a pending native callback without stale status",
+              "passed": true
+            },
+            {
+              "name": "teardown suppresses late discovery and clipboard completion",
+              "passed": true
+            },
+            {
+              "name": "immediate teardown does not start host discovery",
+              "passed": true
+            },
+            {
+              "name": "duplicate mounts and invalid UI options reject",
+              "passed": true
+            }
+          ],
+          "boundary": "Synthetic DOM fixtures only. Native clicks canceled or redirected to same-page fragments; clipboard and host discovery explicitly stubbed. No Agent launch or inference."
+        },
+        "errors": [],
+        "failures": [],
+        "blocked": [],
+        "boundary": "Installed archive, synthetic public-reading Work. Native clicks canceled or same-page fragments; About navigation canceled; clipboard/discovery stubs. No Agent launch, source fetch or model execution.",
+        "rawEvidence": ".local/qa/reading-sdk-012/fixture-1440-light.json",
+        "rawEvidenceSha256": "79f29a5739b9f642d246b1e54c190b19acbb5d66b35e99c6b83cbc4179477b06",
+        "screenshot": ".local/qa/reading-sdk-012/fixture-1440-light.png",
+        "screenshotSha256": "fd418b5a402fa1e945bab6db4f854edf55e8d5ea98ac7f97ce1e5e3098237bea"
+      },
+      {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "dark",
+        "coarsePointer": false,
+        "passed": true,
+        "actual": {
+          "label": "Ask your Agent",
+          "identity": {
+            "tag": "A",
+            "href": "https://agentart.work/ask-your-agent/",
+            "name": "Ask your Agent — about this component",
+            "title": "What is Ask your Agent?",
+            "text": "Ask your Agentⓘ",
+            "rect": {
+              "left": 377.5,
+              "right": 513.53125,
+              "top": 209.78125,
+              "bottom": 247.78125,
+              "width": 136.03125,
+              "height": 38
+            },
+            "infoHidden": true
+          },
+          "presentation": "seal",
+          "mark": {
+            "openLeft": true,
+            "tailLeft": true,
+            "beforeLabel": true
+          },
+          "row": {
+            "left": 376.5,
+            "right": 713.28125,
+            "top": 208.78125,
+            "bottom": 248.78125,
+            "width": 336.78125,
+            "height": 40
+          },
+          "container": {
+            "left": 376.5,
+            "right": 1048.5,
+            "top": 208.78125,
+            "bottom": 248.78125,
+            "width": 672,
+            "height": 40
+          },
+          "coarse": false,
+          "controls": [
+            {
+              "text": "Ask your Agentⓘ",
+              "className": "aap-reading-title",
+              "tag": "A",
+              "rect": {
+                "left": 377.5,
+                "right": 513.53125,
+                "top": 209.78125,
+                "bottom": 247.78125,
+                "width": 136.03125,
+                "height": 38
+              }
+            },
+            {
+              "text": "ChatGPT↗",
+              "className": "aap-reading-agent",
+              "tag": "A",
+              "rect": {
+                "left": 520.53125,
+                "right": 590.71875,
+                "top": 212.78125,
+                "bottom": 244.78125,
+                "width": 70.1875,
+                "height": 32
+              }
+            },
+            {
+              "text": "Claude↗",
+              "className": "aap-reading-agent",
+              "tag": "A",
+              "rect": {
+                "left": 596.71875,
+                "right": 653.921875,
+                "top": 212.78125,
+                "bottom": 244.78125,
+                "width": 57.203125,
+                "height": 32
+              }
+            },
+            {
+              "text": "Copy",
+              "className": "aap-reading-copy",
+              "tag": "BUTTON",
+              "rect": {
+                "left": 659.921875,
+                "right": 705.28125,
+                "top": 212.78125,
+                "bottom": 244.78125,
+                "width": 45.359375,
+                "height": 32
+              }
+            }
+          ],
+          "oneLine": true,
+          "withinBackground": true,
+          "withinViewport": true,
+          "noOverflow": true,
+          "minHeight": 32,
+          "sharedBackground": "color(srgb 0.150392 0.14549 0.135882)",
+          "sealBackground": "rgb(235, 229, 218)",
+          "apps": [
+            {
+              "client": "codex-app",
+              "exact": true,
+              "params": [
+                "prompt"
+              ]
+            },
+            {
+              "client": "claude-app",
+              "exact": true,
+              "params": [
+                "q"
+              ]
+            }
+          ],
+          "copyVisible": true,
+          "noPanel": true,
+          "hint": "Desktop links require installed apps; availability has not been checked. Review the destination app mode. Copy works in any conversation."
+        },
+        "keyboard": [
+          {
+            "className": "aap-reading-title",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-agent",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-agent",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-copy",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          }
+        ],
+        "errors": [],
+        "failures": [],
+        "blocked": [],
+        "boundary": "Installed archive, synthetic public-reading Work. Native clicks canceled or same-page fragments; About navigation canceled; clipboard/discovery stubs. No Agent launch, source fetch or model execution.",
+        "rawEvidence": ".local/qa/reading-sdk-012/fixture-1440-dark.json",
+        "rawEvidenceSha256": "7abce4988b7b145cef7931c511a6350f0315d72a1753f0d7bb6b9cf1a12e77eb",
+        "screenshot": ".local/qa/reading-sdk-012/fixture-1440-dark.png",
+        "screenshotSha256": "5b3935216db80db3ab313f89c77108637d2017bed35f9bdb9b8be421c793d40c"
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "coarsePointer": true,
+        "passed": true,
+        "actual": {
+          "label": "Ask your Agent",
+          "identity": {
+            "tag": "A",
+            "href": "https://agentart.work/ask-your-agent/",
+            "name": "Ask your Agent — about this component",
+            "title": "What is Ask your Agent?",
+            "text": "Ask your Agentⓘ",
+            "rect": {
+              "left": 25,
+              "right": 140.53125,
+              "top": 209.78125,
+              "bottom": 259.78125,
+              "width": 115.53125,
+              "height": 50
+            },
+            "infoHidden": true
+          },
+          "presentation": "seal",
+          "mark": {
+            "openLeft": true,
+            "tailLeft": true,
+            "beforeLabel": true
+          },
+          "row": {
+            "left": 24,
+            "right": 303.078125,
+            "top": 208.78125,
+            "bottom": 260.78125,
+            "width": 279.078125,
+            "height": 52
+          },
+          "container": {
+            "left": 24,
+            "right": 351,
+            "top": 208.78125,
+            "bottom": 260.78125,
+            "width": 327,
+            "height": 52
+          },
+          "coarse": true,
+          "controls": [
+            {
+              "text": "Ask your Agentⓘ",
+              "className": "aap-reading-title",
+              "tag": "A",
+              "rect": {
+                "left": 25,
+                "right": 140.53125,
+                "top": 209.78125,
+                "bottom": 259.78125,
+                "width": 115.53125,
+                "height": 50
+              }
+            },
+            {
+              "text": "ChatGPT↗",
+              "className": "aap-reading-agent",
+              "tag": "A",
+              "rect": {
+                "left": 145.53125,
+                "right": 199.71875,
+                "top": 212.78125,
+                "bottom": 256.78125,
+                "width": 54.1875,
+                "height": 44
+              }
+            },
+            {
+              "text": "Claude↗",
+              "className": "aap-reading-agent",
+              "tag": "A",
+              "rect": {
+                "left": 203.71875,
+                "right": 247.71875,
+                "top": 212.78125,
+                "bottom": 256.78125,
+                "width": 44,
+                "height": 44
+              }
+            },
+            {
+              "text": "Copy",
+              "className": "aap-reading-copy",
+              "tag": "BUTTON",
+              "rect": {
+                "left": 251.71875,
+                "right": 297.078125,
+                "top": 212.78125,
+                "bottom": 256.78125,
+                "width": 45.359375,
+                "height": 44
+              }
+            }
+          ],
+          "oneLine": true,
+          "withinBackground": true,
+          "withinViewport": true,
+          "noOverflow": true,
+          "minHeight": 44,
+          "sharedBackground": "color(srgb 0.150392 0.14549 0.135882)",
+          "sealBackground": "rgb(235, 229, 218)",
+          "apps": [
+            {
+              "client": "codex-app",
+              "exact": true,
+              "params": [
+                "prompt"
+              ]
+            },
+            {
+              "client": "claude-app",
+              "exact": true,
+              "params": [
+                "q"
+              ]
+            }
+          ],
+          "copyVisible": true,
+          "noPanel": true,
+          "hint": "Desktop links require installed apps; availability has not been checked. Review the destination app mode. Copy works in any conversation."
+        },
+        "keyboard": [
+          {
+            "className": "aap-reading-title",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-agent",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-agent",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-copy",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          }
+        ],
+        "errors": [],
+        "failures": [],
+        "blocked": [],
+        "boundary": "Installed archive, synthetic public-reading Work. Native clicks canceled or same-page fragments; About navigation canceled; clipboard/discovery stubs. No Agent launch, source fetch or model execution.",
+        "rawEvidence": ".local/qa/reading-sdk-012/fixture-390-dark.json",
+        "rawEvidenceSha256": "898b56ac5d5714b01715658811cf220c9eacedd2df4a6847340d9fe37c098789",
+        "screenshot": ".local/qa/reading-sdk-012/fixture-390-dark.png",
+        "screenshotSha256": "65f0d4300a0b9e5f942a2313752f8e8d86afd1ac8d8f70cbf6c66d04dd67f913"
+      },
+      {
+        "viewport": [
+          320,
+          720
+        ],
+        "theme": "light",
+        "coarsePointer": true,
+        "passed": true,
+        "actual": {
+          "label": "Ask your Agent",
+          "identity": {
+            "tag": "A",
+            "href": "https://agentart.work/ask-your-agent/",
+            "name": "Ask your Agent — about this component",
+            "title": "What is Ask your Agent?",
+            "text": "Ask your Agentⓘ",
+            "rect": {
+              "left": 25,
+              "right": 128.53125,
+              "top": 268.96875,
+              "bottom": 318.96875,
+              "width": 103.53125,
+              "height": 50
+            },
+            "infoHidden": true
+          },
+          "presentation": "seal",
+          "mark": {
+            "openLeft": true,
+            "tailLeft": true,
+            "beforeLabel": true
+          },
+          "row": {
+            "left": 24,
+            "right": 281,
+            "top": 267.96875,
+            "bottom": 319.96875,
+            "width": 257,
+            "height": 52
+          },
+          "container": {
+            "left": 24,
+            "right": 281,
+            "top": 267.96875,
+            "bottom": 319.96875,
+            "width": 257,
+            "height": 52
+          },
+          "coarse": true,
+          "controls": [
+            {
+              "text": "Ask your Agentⓘ",
+              "className": "aap-reading-title",
+              "tag": "A",
+              "rect": {
+                "left": 25,
+                "right": 128.53125,
+                "top": 268.96875,
+                "bottom": 318.96875,
+                "width": 103.53125,
+                "height": 50
+              }
+            },
+            {
+              "text": "ChatGPT↗",
+              "className": "aap-reading-agent",
+              "tag": "A",
+              "rect": {
+                "left": 132.53125,
+                "right": 186.71875,
+                "top": 271.96875,
+                "bottom": 315.96875,
+                "width": 54.1875,
+                "height": 44
+              }
+            },
+            {
+              "text": "Claude↗",
+              "className": "aap-reading-agent",
+              "tag": "A",
+              "rect": {
+                "left": 187.71875,
+                "right": 231.71875,
+                "top": 271.96875,
+                "bottom": 315.96875,
+                "width": 44,
+                "height": 44
+              }
+            },
+            {
+              "text": "Copy",
+              "className": "aap-reading-copy",
+              "tag": "BUTTON",
+              "rect": {
+                "left": 232.71875,
+                "right": 278.078125,
+                "top": 271.96875,
+                "bottom": 315.96875,
+                "width": 45.359375,
+                "height": 44
+              }
+            }
+          ],
+          "oneLine": true,
+          "withinBackground": true,
+          "withinViewport": true,
+          "noOverflow": true,
+          "minHeight": 44,
+          "sharedBackground": "color(srgb 0.945294 0.937255 0.917843)",
+          "sealBackground": "rgb(52, 49, 45)",
+          "apps": [
+            {
+              "client": "codex-app",
+              "exact": true,
+              "params": [
+                "prompt"
+              ]
+            },
+            {
+              "client": "claude-app",
+              "exact": true,
+              "params": [
+                "q"
+              ]
+            }
+          ],
+          "copyVisible": true,
+          "noPanel": true,
+          "hint": "Desktop links require installed apps; availability has not been checked. Review the destination app mode. Copy works in any conversation."
+        },
+        "keyboard": [
+          {
+            "className": "aap-reading-title",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-agent",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-agent",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          },
+          {
+            "className": "aap-reading-copy",
+            "focusVisible": true,
+            "outlineWidth": "2px",
+            "outlineStyle": "solid"
+          }
+        ],
+        "errors": [],
+        "failures": [],
+        "blocked": [],
+        "boundary": "Installed archive, synthetic public-reading Work. Native clicks canceled or same-page fragments; About navigation canceled; clipboard/discovery stubs. No Agent launch, source fetch or model execution.",
+        "rawEvidence": ".local/qa/reading-sdk-012/fixture-320-light.json",
+        "rawEvidenceSha256": "4ed816b0353089dac3db959eb98b7d551f20171d90af2b79a20c4b6f8f460811",
+        "screenshot": ".local/qa/reading-sdk-012/fixture-320-light.png",
+        "screenshotSha256": "dd5363ef5abd904ce9c7eed38604df86db848a85fe79232817d2bdd4c945e2b1"
+      }
+    ]
+  },
+  "screenshotInspection": "Desktop component crop, desktop dark screenshot, 390px dark and 320px light screenshots inspected. Open bubble, About indicator, inline actions and Copy remain visible on one line; no clipping or overflow observed. Keyboard focus was measured before normal-appearance screenshots.",
+  "limits": [
+    "No native Agent launch, Send, source reading, model execution, deployment or registry publication.",
+    "Prepared URLs and synthetic browser events do not qualify desktop app delivery or output.",
+    "About destination is canonical but navigation is canceled; this test does not qualify the live About page.",
+    "Each test-owned Chrome target/profile and fixture server closed; no user tabs touched.",
+    "Historical 0.1.1 archive and qualifications remain unchanged."
+  ],
+  "componentScreenshot": {
+    "path": ".local/qa/reading-sdk-012/component.png",
+    "sha256": "b401af799da99c1d08862f22284c6d7625b26f01b0c044a9ee4035d92c79842c"
+  }
+}

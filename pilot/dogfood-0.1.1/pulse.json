@@ -1,0 +1,149 @@
+{
+  "schema": "agent-art-protocol.dogfood-consumer/0.1",
+  "consumer": "Pulse",
+  "repository": "https://github.com/inshell-art/pulse",
+  "status": "isolated-local-candidate-not-deployed",
+  "source": {
+    "commit": "32adfe39e1bf775f387ddab698780f256ed0cc81",
+    "branch": "codex/reading-sdk-0.1.1",
+    "baseRef": "origin/main",
+    "originFetched": true,
+    "originalCheckoutModified": false
+  },
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.1",
+    "private": true,
+    "archive": "vendor/agent-art-protocol-0.1.1.tgz",
+    "sha256": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18",
+    "dependency": "file:../vendor/agent-art-protocol-0.1.1.tgz",
+    "packageDirectory": "evm",
+    "lock": "evm/package-lock.json",
+    "lockSha256": "5b28df8064042359dabd2e842e06ace66bbd8fa8984645c786fedebff8c3723e",
+    "allInstalledFilesMatchArchive": true,
+    "packagedFilesSha256": {
+      "reading.css": "c7956b49d6a1936846bbb3f900c182f3e3c630153525140a96629b61c6309fa2",
+      "package.json": "062f18d04c8fc45950f19b5c00231565f64039d139e2391ec13f06901b81b3b7",
+      "README.md": "35cbe724bbf10e57a60d3e9684083f92c48179a27643f8f1d3576ec91829fc5e",
+      "clients.mjs": "30e1cc2966731431fec57c14f72f189d472825b8c9f7853dd1d6d55896cb3619",
+      "index.mjs": "2a0875c38a71e2f034d6fad3a67171cca067e49f7b9feed136cf5aeec668646c",
+      "reading-ui.mjs": "e4f04aaaeed221868eaa47fb3ed225c51ce6a0a0aadd8969959bec6ac2d9d231",
+      "reading.mjs": "b34bc62cca3c25a4cadc286adad0f49d4b744cdd4a040fe45f6936ac59db098e",
+      "clients.d.mts": "6230f68aed26c374048dbef7c3793a912413574bb38e1b313b290f2126ea1bee",
+      "index.d.mts": "93fd2b703be6ba24092a2f88d396e3164892fed1948e4d4a07034e812ca4dfa7",
+      "reading-ui.d.mts": "1f879a828ddf1b322138b95c4a5f41f7ac4a443e2cb6b9bf1f1b92053f104269",
+      "reading.d.mts": "2ac5720d227d6bc79403e37fbff7549fb54daf6fd9eb46ec5ef7ea090845b4d2"
+    }
+  },
+  "integration": {
+    "pages": [
+      "/",
+      "/projects"
+    ],
+    "entry": "evm/playground/reading-entry.js",
+    "profile": "evm/playground/reading-profile.js",
+    "build": "evm/playground/generate-reading.js",
+    "ownerPrompt": "evm/playground/docs/agent-prompt.txt",
+    "ownerPromptSha256": "b40fac903067f7e9fea8b49a45c499d6a949620098ade5a7949df669bf3986cf",
+    "ownerIndex": "https://pulse.inshell.art/docs/agent-index.json",
+    "workVersion": "2026-09-27-r7:reading-0.1.1",
+    "ui": "SDK mountReading and exact packaged reading.css; no local Open gate wrapper",
+    "clients": [
+      "ChatGPT desktop",
+      "Claude desktop",
+      "Copy"
+    ],
+    "forcedMode": false,
+    "discovery": "not supplied; configured native links are offered without an installation claim",
+    "nativeEvidence": true,
+    "copyEvidence": false,
+    "previewPolicy": "SDK context retains public canonical origin; a separate collapsed manual prompt retains preview-origin reading."
+  },
+  "validation": {
+    "date": "2026-10-20",
+    "tests": {
+      "command": "node --test playground/knowledge.test.js playground/worker.test.js playground/reading-profile.test.js",
+      "cwd": "evm",
+      "passed": 13,
+      "failed": 0,
+      "rpc": "fixtures/local mocks only; no live chain calls"
+    },
+    "build": {
+      "command": "node playground/build-site.js",
+      "cwd": "evm",
+      "publicAssets": 26,
+      "passed": true
+    },
+    "docsSmoke": {
+      "command": "python3 playground/smoke-public-access.py http://127.0.0.1:4187",
+      "cwd": "evm",
+      "completeDownloads": 10,
+      "sourceAndFileHashesMatch": true,
+      "analysisNetworkDisabled": true,
+      "rpcConfigured": false
+    },
+    "install": {
+      "method": "copied prior isolated consumer node_modules; npm install vendored SDK offline with ignore-scripts",
+      "sdkExact": true,
+      "existingDependencyRecordsUnchanged": true,
+      "newDirectDevDependency": "esbuild@0.27.3 pins the existing lock record used for the browser bundle",
+      "cleanOfflineCi": "blocked by missing cached third-party dependency zod@3.25.76 from registry.npmmirror.com; npm ENOTCACHED; no network fallback used"
+    },
+    "browser": {
+      "status": "passed",
+      "runs": [
+        ".local/qa/dogfood-v011/pulse-1440-light.json",
+        ".local/qa/dogfood-v011/pulse-projects-390-dark.json",
+        ".local/qa/dogfood-v011/pulse-projects-320-light.json"
+      ],
+      "boundary": "Regular stable Chrome in disposable profiles. No native activation; exact public context, one-line layout, 32/44px targets, Copy fallback and no discovery endpoint calls checked.",
+      "visualReview": "Projects at320px light inspected: full one-line component, visible Copy, no horizontal clipping."
+    },
+    "ownerPromptPublicCheck": {
+      "url": "https://pulse.inshell.art/docs/agent-prompt.txt",
+      "exactSourceBytesMatch": true,
+      "publicIndexVersion": "2026-09-27-r7",
+      "limits": "read-only HTTP observation on 2026-10-20; this integration was not deployed"
+    },
+    "diffCheck": true,
+    "redactedSecretScan": {
+      "tool": "gitleaks detect --no-git --redact",
+      "scope": "all17 changed files including unpacked SDK",
+      "leaks": 0
+    },
+    "utf8Lf": true
+  },
+  "patch": {
+    "file": "pulse.patch",
+    "sha256": "efee4d3938aaf69717b7f799d001a15d92283d3cf2a28d24bad16692c8b5902b",
+    "format": "git binary diff with zero context; binary section first; apply using git apply --binary --unidiff-zero",
+    "cleanApplyChecked": true,
+    "expectedTree": "61a93a6db516b2b338acbfc8d63123c2c570307f",
+    "replayedTree": "61a93a6db516b2b338acbfc8d63123c2c570307f",
+    "changedFilesSha256": {
+      "evm/package-lock.json": "5b28df8064042359dabd2e842e06ace66bbd8fa8984645c786fedebff8c3723e",
+      "evm/package.json": "2e0a495cf8634036168e972425cab2c9f9768a8e2c839f6e88b854cda6e627b2",
+      "evm/playground/README.md": "04268098575f8e2ce0d8079dda4781076f4eda7beaf2c9ad84b1ce3247e0fb29",
+      "evm/playground/agent.js": "5e279d23261b5c23dfa2a399db9b12565ec9599cfe29d40dc485ef91e360876d",
+      "evm/playground/build-site.js": "f1071546e55936180895a12deb30b07001d8d709705f54983d3cd740a379850c",
+      "evm/playground/generate-reading.js": "6655e232325779b4ea13e8eb0bb22c02f0208b15537e5136a27ddbe2f2e4bed8",
+      "evm/playground/index.html": "170939489e34a193df3853416b6206d3cfe80380eb89f6bcc21dc0d32a2caf60",
+      "evm/playground/knowledge.test.js": "a19f199740732567126a2e44b7bf69b459342be0ddb9b867539461dd4f41c0e2",
+      "evm/playground/projects.html": "2a8581de0de4f1791538bfc658d91fe26c0f54b8299088336181f160daf21203",
+      "evm/playground/public-assets.js": "7857186b999725e6fdda359d1159b07b84358d7d31ea21dfcc782450e6750025",
+      "evm/playground/reading-entry.js": "3d0630ed7f925afccdf567c821b95d1740ad6d8cf7f1d34a0a83a8ffb0e8cb6f",
+      "evm/playground/reading-profile.js": "95202bfdb77608da3e77e9d565a0d121367650f2d19769c009ea5c066874d2a9",
+      "evm/playground/reading-profile.test.js": "1e43d543646c044aa30d591b326f57d4b2037ebcf7ec127c0a3c514bff453c28",
+      "evm/playground/server.js": "95aaf0607f2b6f4acc3d243c276348ef21b655b2d0e03401588c0fe1dfae659a",
+      "evm/playground/styles.css": "afd4fb4c7a5e65e5a2ec2d2ecf3109d595fe9ccdef3c90dc18ffff186aa96ce2",
+      "vendor/README.md": "48c02bd902d77aa4ed2202b4b408b14c33fa2f1a00e6a28a0431f9e8e401dc4c",
+      "vendor/agent-art-protocol-0.1.1.tgz": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18"
+    }
+  },
+  "limits": [
+    "No publication, visibility change, source push, deployment, registry publication, wallet action or chain transaction was performed.",
+    "Offered native links and browser requests do not establish app arrival, sending, reading or Agent execution.",
+    "SDK remains private with no reuse license selected; this vendored package is an owner-review candidate.",
+    "A fresh dependency install still needs access to existing pinned third-party packages or a complete cache."
+  ]
+}

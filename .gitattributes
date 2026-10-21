@@ -1,3 +1,6 @@
 # Git binary patches require a terminating blank line. Check resulting source
 # whitespace in each consumer; keep that serialization delimiter intact here.
 pilot/reading-consumers/*.patch whitespace=-blank-at-eof
+# Full owner patches also encode empty context lines as one space. Preserve
+# their pinned serialization; check whitespace in the applied consumer tree.
+pilot/reading-sdk-012/*.patch whitespace=-blank-at-eol,-blank-at-eof

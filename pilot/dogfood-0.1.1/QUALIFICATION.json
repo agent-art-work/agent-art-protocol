@@ -1,0 +1,294 @@
+{
+  "schema": "agent-art.reading-sdk-dogfood-qualification.v1",
+  "date": "2026-10-20",
+  "status": "four-local-review-candidates-not-deployed",
+  "sdk": {
+    "version": "0.1.1",
+    "archiveSha256": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18",
+    "tagUnchanged": true,
+    "packageSourceUnchanged": true,
+    "all11InstalledFilesCheckedInEachSite": true
+  },
+  "consumers": [
+    {
+      "consumer": "lab",
+      "record": "lab.json",
+      "recordSha256": "23cc069b0acd3f340f9ca22b4d077e301c26020f7c91a6b5ab61c29eba58833d",
+      "baseCommit": "d658be2cc19307d113e64bd3fa0b2ad56a0a4bfc",
+      "resultTree": "981793b5d8103caad47247eaca2015bb02c57ff0",
+      "patch": "lab.patch",
+      "patchSha256": "6e5fd379371aeab9e66613abe0f1403ee37ca51a0013e717e0d5bf1a2db00e20"
+    },
+    {
+      "consumer": "inshell",
+      "record": "inshell.json",
+      "recordSha256": "5a71372d83cb29ed53654ac1c3c806ec55796ad7eecf46c92e30bc0868f22fe8",
+      "baseCommit": "8645ead6d6f638de60709f4c9825667ace52d3b2",
+      "resultTree": "b7635f98021d25f222f416e04d89d9e67af77a00",
+      "patch": "inshell.patch",
+      "patchSha256": "6bddd5db91614bc1fee61116cd49050b041e45161c735ed514bfc4e2acd432dc"
+    },
+    {
+      "consumer": "pulse",
+      "record": "pulse.json",
+      "recordSha256": "c6be273951309580ad16ed457291aa1836d413eff7589df99aeebfbdf0c47f5a",
+      "baseCommit": "32adfe39e1bf775f387ddab698780f256ed0cc81",
+      "resultTree": "61a93a6db516b2b338acbfc8d63123c2c570307f",
+      "patch": "pulse.patch",
+      "patchSha256": "efee4d3938aaf69717b7f799d001a15d92283d3cf2a28d24bad16692c8b5902b"
+    },
+    {
+      "consumer": "signatures",
+      "record": "signatures.json",
+      "recordSha256": "bbb9307cf084df0429c141dd3f0a14dc2eeea001802e63a0154343e70f357601",
+      "baseCommit": "37d2619eb2da48bc1e47144beae35ee4bb261ad9",
+      "resultTree": "5bc98fcd3ad2d5e6638eace6f81f69b4d3467404",
+      "patch": "signatures.patch",
+      "patchSha256": "b9698a72eab886bb2dae5fb0dd4499c31d864494f048c2bb780e9a18c168a98c"
+    }
+  ],
+  "siteChecks": {
+    "lab": "24-page build;21Node tests;37Python tests; publicationcheck30documents/116links and sitecheck588links passed. Clean9-package npmci passed.",
+    "inshell": "Currentstaging previewbuild,68focusedDocs tests,9generator tests,typecheck,ESLint,docs/PUB/upstreamchecks passed. Identical locked prior dependencies reused; cleanofflineinstall unqualified.",
+    "pulse": "26-asset build,13site tests and10-document smoke passed. Priorlockeddependencies reused; cleanofflineinstall lacks cachedzod. No liveRPC.",
+    "signatures": "Staging+productionpreview builds;229previewVitest+77packagingNode tests;3924ownerregressions passed/625opt-in skips; renderer locks/typecheck passed. Exact286installedversions matchmainlock; fullcleanofflineinstall unqualified."
+  },
+  "browser": {
+    "application": "/Applications/Google Chrome.app",
+    "bundleId": "com.google.Chrome",
+    "runner": "check-ui.mjs",
+    "runnerSha256": "b4eb54195670e125e57bb2deab409ed42ba85d3cd891d360994752e3c2cf126b",
+    "normalRuns": [
+      {
+        "case": "lab-1440-light",
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "passed": true,
+        "rowSize": [
+          322.84375,
+          40
+        ],
+        "minimumTargetPixels": 32,
+        "noHorizontalOverflow": true,
+        "noDiscoveryCalls": true,
+        "runtimeErrors": [],
+        "unexpectedHttpFailures": [],
+        "evidence": ".local/qa/dogfood-v011/lab-1440-light.json",
+        "evidenceSha256": "8e4409fa6c553c8ddea993a1001b55203c37509314ccc60782f09bbffac86719",
+        "screenshot": ".local/qa/dogfood-v011/lab-1440-light.png",
+        "screenshotSha256": "54ec9b2ad8a24cba4a827a390cabff59da067e2bb68c06af246dad328e865c53"
+      },
+      {
+        "case": "lab-390-dark",
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "passed": true,
+        "rowSize": [
+          271.984375,
+          52
+        ],
+        "minimumTargetPixels": 44,
+        "noHorizontalOverflow": true,
+        "noDiscoveryCalls": true,
+        "runtimeErrors": [],
+        "unexpectedHttpFailures": [],
+        "evidence": ".local/qa/dogfood-v011/lab-390-dark.json",
+        "evidenceSha256": "3a61b93410ead3149c46a12a8e9f9ab5fdc49a09e3433d1b754710403f5cc035",
+        "screenshot": ".local/qa/dogfood-v011/lab-390-dark.png",
+        "screenshotSha256": "1236cd81ef19fc7c93973caa38f1a4382146bd35b46c925c20323f560a7fd6a7"
+      },
+      {
+        "case": "inshell-1440-light",
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "passed": true,
+        "rowSize": [
+          320.8125,
+          40
+        ],
+        "minimumTargetPixels": 32,
+        "noHorizontalOverflow": true,
+        "noDiscoveryCalls": true,
+        "runtimeErrors": [],
+        "unexpectedHttpFailures": [],
+        "evidence": ".local/qa/dogfood-v011/inshell-1440-light.json",
+        "evidenceSha256": "c704c6b757a83baa9c4f7ebddec6c0688f99dcff649775b9f8423799567387e0",
+        "screenshot": ".local/qa/dogfood-v011/inshell-1440-light.png",
+        "screenshotSha256": "98eea8653c5281a6216f25ce872499334a4b11daba347ea9af779f8489c1d23f"
+      },
+      {
+        "case": "inshell-390-dark",
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "passed": true,
+        "rowSize": [
+          270.125,
+          52
+        ],
+        "minimumTargetPixels": 44,
+        "noHorizontalOverflow": true,
+        "noDiscoveryCalls": true,
+        "runtimeErrors": [],
+        "unexpectedHttpFailures": [],
+        "evidence": ".local/qa/dogfood-v011/inshell-390-dark.json",
+        "evidenceSha256": "41ccf460b6d1678b240909d9fbbda6bee95c9c56b9d4655e418baf463b0c9960",
+        "screenshot": ".local/qa/dogfood-v011/inshell-390-dark.png",
+        "screenshotSha256": "37d1cd8a47e179a4b54fe6af55969fce1ef15f84488012214169e14b298c42c3"
+      },
+      {
+        "case": "pulse-1440-light",
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "passed": true,
+        "rowSize": [
+          322.84375,
+          40
+        ],
+        "minimumTargetPixels": 32,
+        "noHorizontalOverflow": true,
+        "noDiscoveryCalls": true,
+        "runtimeErrors": [],
+        "unexpectedHttpFailures": [],
+        "evidence": ".local/qa/dogfood-v011/pulse-1440-light.json",
+        "evidenceSha256": "14f563c773d6dd9247a4287675bce2b0489b51f7d3805435dc914515964afded",
+        "screenshot": ".local/qa/dogfood-v011/pulse-1440-light.png",
+        "screenshotSha256": "38e6d8235a99cbff35023d634897f1985d090ad4ec1d960dc45dada969154f83"
+      },
+      {
+        "case": "pulse-projects-390-dark",
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "passed": true,
+        "rowSize": [
+          271.984375,
+          52
+        ],
+        "minimumTargetPixels": 44,
+        "noHorizontalOverflow": true,
+        "noDiscoveryCalls": true,
+        "runtimeErrors": [],
+        "unexpectedHttpFailures": [],
+        "evidence": ".local/qa/dogfood-v011/pulse-projects-390-dark.json",
+        "evidenceSha256": "c739098c772b13351698022f6d593a13f7f095c1ec7349a2311a568b40e2e90d",
+        "screenshot": ".local/qa/dogfood-v011/pulse-projects-390-dark.png",
+        "screenshotSha256": "71405b2f3d9556407b71efe1bdbe1c6136163eac3854c68fd35d1a5c8ebed338"
+      },
+      {
+        "case": "pulse-projects-320-light",
+        "viewport": [
+          320,
+          720
+        ],
+        "theme": "light",
+        "passed": true,
+        "rowSize": [
+          254.984375,
+          52
+        ],
+        "minimumTargetPixels": 44,
+        "noHorizontalOverflow": true,
+        "noDiscoveryCalls": true,
+        "runtimeErrors": [],
+        "unexpectedHttpFailures": [],
+        "evidence": ".local/qa/dogfood-v011/pulse-projects-320-light.json",
+        "evidenceSha256": "a6b721b9f128140bf9111335b57601eed4948297ba8458b044602aa5c063c6ad",
+        "screenshot": ".local/qa/dogfood-v011/pulse-projects-320-light.png",
+        "screenshotSha256": "cb6d5aa3b04cfdb06b9526362bfc9c0ac4cde5a23ee298f46e92de98b8862c52"
+      },
+      {
+        "case": "signatures-1440-light",
+        "viewport": [
+          1440,
+          1000
+        ],
+        "theme": "light",
+        "passed": true,
+        "rowSize": [
+          322.71875,
+          40
+        ],
+        "minimumTargetPixels": 32,
+        "noHorizontalOverflow": true,
+        "noDiscoveryCalls": true,
+        "runtimeErrors": [],
+        "unexpectedHttpFailures": [],
+        "evidence": ".local/qa/dogfood-v011/signatures-1440-light.json",
+        "evidenceSha256": "23c2c8beaa9b3c27840299c4eb17136d9bdff2f70f90670714869c7947f949a7",
+        "screenshot": ".local/qa/dogfood-v011/signatures-1440-light.png",
+        "screenshotSha256": "8acac8b05742f2f139a241e0982e4c1dd25ff9ca459a8f446ebc639c664b686e"
+      },
+      {
+        "case": "signatures-390-dark",
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "passed": true,
+        "rowSize": [
+          271.984375,
+          52
+        ],
+        "minimumTargetPixels": 44,
+        "noHorizontalOverflow": true,
+        "noDiscoveryCalls": true,
+        "runtimeErrors": [],
+        "unexpectedHttpFailures": [],
+        "evidence": ".local/qa/dogfood-v011/signatures-390-dark.json",
+        "evidenceSha256": "1fd27bdf428a257d2ba61466da7aafcddf8fef315f863fb37dda76cc85c1fba8",
+        "screenshot": ".local/qa/dogfood-v011/signatures-390-dark.png",
+        "screenshotSha256": "f58d26187439c9b87615f859cd0af478a7d3730e8710e6e654c08bc21a936e1f"
+      }
+    ],
+    "scriptsBlockedFallback": {
+      "consumer": "signatures",
+      "passed": true,
+      "evidence": ".local/qa/dogfood-v011/signatures-scripts-blocked.json",
+      "evidenceSha256": "1591568fecff2d794437818cf24ea0730d0ea0c52660bd54610729b1c4efedcf",
+      "scope": "SDK script requests blocked; original server-rendered readonly reading field and staging context retained. No model call."
+    },
+    "visualInspection": [
+      "Lab mobile dark",
+      "Inshell desktop light",
+      "Pulse Projects320px light",
+      "Signatures mobile dark and scripts-blocked fallback"
+    ],
+    "nativeActivation": "Canceled before navigation; no real Agent launched. Clipboard denial is synthetic.",
+    "cleanup": "Disposable Chrome processes/profiles removed. Temporary four-site QA servers stopped after checks; previous Lab reference dev remains available."
+  },
+  "publication": {
+    "currentRepoVisibility": "private",
+    "newLicenseSelected": false,
+    "sourceCommitOrPush": false,
+    "registryPublication": false,
+    "publicDeployment": false,
+    "historyPatternScan": "PUBLICATION-CHECK.json",
+    "recommendation": "Owner review and normal staging/live dogfooding, then choose reuse terms and publish a clearly scoped reading SDK preview. Preserve0.1.1; version new packaged bytes separately.",
+    "notAdopted": "Public visibility, license, npm publication and deployment are not selected by this record."
+  },
+  "limits": [
+    "Browser URL construction and canceled native links do not establish arrival, sending, reading, Agent execution or intentional participation.",
+    "Installed-app detection is intentionally absent from public adapters; links are offered with availability unverified.",
+    "Per-site dependency setup qualifications differ and remain stated in each consumer record.",
+    "Original owner checkouts and unrelated local edits remain untouched.",
+    "Generic Agent Art participation contract remains candidate; artwork/mint flows were not integrated or deployed."
+  ]
+}

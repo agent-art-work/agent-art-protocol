@@ -1,7 +1,8 @@
 # SDK 0.1 reading profile
 
-Selected 2026-10-19; compact component update selected 2026-10-20. This is the
-supported public-document reading scope of private `@agent-art/protocol@0.1.1`.
+Selected 2026-10-19; compact component update selected 2026-10-20; identity/About
+link selected 2026-10-21 for the private `@agent-art/protocol@0.1.2` candidate.
+This remains the public-document reading scope of the SDK.
 The wider Agent Art architecture and participation contract remain candidate.
 New THOUGHT/artwork participation is deferred to a later compatible release;
 earlier experimental APIs remain. Version 0.1.0 and its archive are preserved
@@ -15,8 +16,8 @@ later support richer participation; reading does not need an artwork ledger.
 
 | Owner | Responsibility |
 | --- | --- |
-| Publisher/application | Canonical invitation, source/index references, usage/answer policy, placement and disclosure, original manual fallback |
-| SDK | Compact browser interface/controller, prepared native draft routes, exact context carriage, copy fallback and optional bounded native-handoff receipts; explicit fresh/existing plans remain available headlessly |
+| Publisher/application | Canonical invitation, source/index references, usage/answer policy, component theme and placement, disclosure, original manual fallback |
+| SDK | Ask your Agent component's mark, structure and control behavior; browser controller, prepared native draft routes, exact context carriage, copy fallback and optional bounded native-handoff receipts; explicit fresh/existing plans remain available headlessly |
 | Visitor and Agent client | Choosing the conversation, reviewing/sending context, permissions, source retrieval, questions and answers |
 
 The SDK supplies no inference, source fetch, answer service, conversation
@@ -61,13 +62,15 @@ The reading entry points are:
 | --- | --- |
 | `@agent-art/protocol/reading` | `createReading({ work, context?, clients? })` returns the frozen public frame plus `prepare()` and `receipt()` |
 | `@agent-art/protocol/reading-ui` | `mountReading(element, options)` returns `{ reading, destroy() }`; destroy on framework unmount |
-| `@agent-art/protocol/reading.css` | Explicit stylesheet import or static asset, with host typography and configurable colors |
+| `@agent-art/protocol/reading.css` | Explicit stylesheet import or static asset, with supported theme hooks for colors, font family and radius |
 
 `prepare({ client, conversation })` returns a native URL plan or a manual-copy
 plan; it performs no navigation. The supplied UI binds a native URL to an
 explicit visitor click. Its compact, single-line presentation uses the small
 **Ask your Agent** label and Open bubble mark, followed by **ChatGPT**,
-**Claude** and always-visible **Copy**. The label is not a button or a title.
+**Claude** and always-visible **Copy**. In 0.1.2 the mark, label and ⓘ form one
+ordinary About link to `https://agentart.work/ask-your-agent/`; the client links
+and Copy remain separate. The identity is not an Agent-launch button or heading.
 A configured subset always retains manual fallback. Oversized native context
 also falls back to copying without truncation.
 
@@ -109,10 +112,31 @@ Work or Codex mode; the destination application decides. **Claude** uses its
 these native links. The component does not select an account, model or app
 preference and performs no Send action.
 
+For Claude, choosing the Chat endpoint is deliberate even if Code was active.
+The lower-level client builder also supports a separate Claude Code route; the
+reading controller/component does not expose that option. Its existing
+`surface: 'chat'` builder field is not sent as a ChatGPT mode parameter.
+[Native destination guidance](../../pilot/reading-sdk/NATIVE-HANDOFF.md) records
+current source checks and user-reported destinations without promising a
+universal active-surface rule.
+
+The publisher owns readable invitation paragraphs and intentional line breaks.
+Prepare the retained snapshot after editorial formatting; the SDK does not
+reflow it. Native payload and clipboard-call checks do not establish identical
+recipient rendering or byte-for-byte manual paste.
+
 The stylesheet retains the public `aap-reading` namespace and
 `--aap-ink`, `--aap-paper`, `--aap-muted`, `--aap-line`, `--aap-radius`
 properties, with the selected Seal/Open bubble presentation's customization
 aliases. It is imported explicitly and performs no remote asset requests.
+
+Call the whole interface the **Ask your Agent component**. The SDK owns the
+mark and structure; sites control theme and placement. The
+[component styling guide](COMPONENT.md) lists all supported CSS properties,
+fallbacks and compatibility aliases, separates private implementation tokens,
+and defines the selected 0.1.2 identity link. The historical 0.1.1 label remains
+noninteractive in its preserved archive. The About link carries no Work/prompt
+query or SDK handoff/receipt action.
 
 ## Optional evidence
 
@@ -158,8 +182,14 @@ silently require enrollment, storage, callbacks or contribution records for
 reading. This backward compatibility does not promise that older strict
 verifiers understand future fields, schemas or capability claims.
 
-The 0.1.1 candidate archive's SHA-256 is
-`2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18`. Its active local test consumer is **Lab**. Current
+The 0.1.2 candidate archive's SHA-256 is
+`0a535238ad9eaecd973fa8127b7d24f745ca502908ad1f7377654ecdd8bdcfa5`.
+Its new package and browser checks are recorded under
+[0.1.2 qualification](../../pilot/reading-sdk-012/). Lab remains the active
+site integration and owns its matching dependency lock and page release.
+
+The preserved 0.1.1 archive's SHA-256 is
+`2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18`. Its local test consumer was **Lab**. Its
 package, browser and Lab checks are recorded in
 [0.1.1 qualification](../../pilot/reading-sdk/QUALIFICATION.json). The compact
 component and the updated installed archive require their own checks; earlier

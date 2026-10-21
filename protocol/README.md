@@ -1,7 +1,7 @@
-# Reading SDK 0.1.1
+# Reading SDK 0.1.2
 
-`@agent-art/protocol@0.1.1` supplies a framework-neutral **Ask your Agent**
-interface, browser handoff controller and optional bounded receipts. The
+`@agent-art/protocol@0.1.2` supplies the framework-neutral **Ask your Agent
+component**, browser handoff controller and optional bounded receipts. The
 package is private. This is the reading release of one evolving Agent Art
 protocol; artwork participation remains experimental work for a later release.
 It does not operate a model or collect a visitor's questions and answers.
@@ -9,11 +9,11 @@ It does not operate a model or collect a visitor's questions and answers.
 ## Install
 
 From the protocol repository, run `npm run sdk:pack`. Copy the resulting
-`.local/sdk/agent-art-protocol-0.1.1.tgz` into the consuming application's
+`.local/sdk/agent-art-protocol-0.1.2.tgz` into the consuming application's
 `vendor/` folder, then install its relative file dependency:
 
 ```sh
-npm install ./vendor/agent-art-protocol-0.1.1.tgz --ignore-scripts
+npm install ./vendor/agent-art-protocol-0.1.2.tgz --ignore-scripts
 ```
 
 Use the application's existing package manager and commit its dependency lock.
@@ -69,15 +69,39 @@ No Node server, local helper, account, database, answer callback, Agent
 registration or model API is required at runtime. Bare npm imports require a
 bundler or explicit browser import mapping; they are not browser URLs.
 
-The compact interface puts a small **Ask your Agent** label and Open bubble
-mark beside **ChatGPT**, **Claude** and always-visible **Copy** on one line.
-The label is not an action. Configured native links appear immediately;
+The compact interface puts the Open bubble mark, **Ask your Agent** label and
+**ⓘ** in one identity link to
+[What is Ask your Agent?](https://agentart.work/ask-your-agent/). It is an ordinary
+same-tab link, separate from **ChatGPT**, **Claude** and always-visible **Copy**
+on the same line. It carries no prompt/Work query and invokes no handoff,
+clipboard operation or receipt. It does not select or open an Agent.
+Configured native links appear immediately;
 their presence does not mean the apps were detected or are installed.
 
-Styles use the `aap-reading` namespace and support `--aap-ink`, `--aap-paper`,
-`--aap-muted`, `--aap-line` and `--aap-radius` CSS properties. The selected Seal
-presentation also retains its `--aap-seal-*` and `--aap-gate-*` customization
-aliases. The SDK does not inject styles or contact an asset host. Keep a
+The SDK owns the mark, structure, control sizing and accessible behavior;
+sites own theme and placement. Set these CSS variables on the mount or an
+ancestor, and use a host wrapper for surrounding layout:
+
+| CSS variable | Purpose / fallback |
+| --- | --- |
+| `--aap-ink` | Main text/base ink; site `--ink`, then `CanvasText` |
+| `--aap-paper` | Base paper; site `--paper`, then `Canvas` |
+| `--aap-muted` | Copy icon/status; site `--muted`, then `currentColor` |
+| `--aap-line` | Underlines/panel borders; site `--line`, then 24% ink/paper mix |
+| `--aap-font-family` | Action row font; legacy `--aap-gate-font-family`, then system UI |
+| `--aap-radius` | Corner radius; legacy `--aap-gate-radius`, then `5px` |
+| `--aap-seal-paper` | Label background/outer border; effective ink |
+| `--aap-seal-ink` | Label/mark foreground; effective paper |
+| `--aap-seal-surface` | Action background; 5% ink/paper mix |
+| `--aap-gate-accent` | Focus outline; effective ink |
+
+Font family does not automatically match the host; use its named hook. Legacy
+font/radius aliases have lower precedence than the primary hooks. All
+`--_reading-*` tokens are private, including spacing, font/mark sizes and pointer
+targets. Keep those responsive proportions and the mark in the SDK.
+
+Styles use the `aap-reading` namespace. The SDK does not inject styles or
+contact an asset host. Keep a
 manual prompt available when scripts are disabled or a client/clipboard route
 is unavailable.
 
@@ -95,8 +119,9 @@ is unavailable.
 The **ChatGPT** label uses the existing `codex-app` identifier and
 `codex://new?prompt=…` URL. It does not force ordinary Chat, Work or Codex mode.
 The visitor's application handles the destination. **Claude** uses the
-`claude://claude.ai/new?q=…` Chat route. Both links prepare context; they do not
-send it. Copy works with either a new or an existing conversation and does
+`claude://claude.ai/new?q=…` Chat route. The SDK prepares the URLs and performs
+no Send action; review the destination's actual state before sending. Copy
+works with either a new or an existing conversation and does
 not declare which one the visitor chooses.
 
 The native route names describe prepared URLs, not universal compatibility or
@@ -203,6 +228,11 @@ native routes and receipt verification remain unchanged. Existing alpha-core/
 client exports remain available for experimental consumers; their participation
 APIs do not constitute a supported artwork-return service.
 
+Version 0.1.2 makes the identity a keyboard-focusable About link with the visible
+ⓘ cue. Existing options, client routes, Copy/manual fallback and receipt
+verification remain compatible. The historical 0.1.1 package and archive are
+not replaced; consumers upgrading use the fresh 0.1.2 archive and dependency lock.
+
 The SDK package version is separate from the experimental record schema
 `agent-art-protocol/0.1-experimental`. The exact encoding and named core checks
 are retained from the alpha: well-formed Unicode, unchanged strings/line
@@ -217,16 +247,19 @@ SDK 0.1 supplies no OAuth service, model execution, private chat control or
 independently rooted execution evidence.
 
 Run `npm run test:sdk` from the protocol repository for package/controller
-checks. Version 0.1.1 uses Lab as its single active local test consumer.
+checks. Lab remains the single active site integration; source-only standalone
+browser fixtures also check the 0.1.2 component without launching Agents.
 The four earlier 0.1.0 integrations and their archive pins remain historical;
 Inshell, Pulse and signatures.gallery need no continuing development servers
-or automatic upgrade for this SDK change. No public site is deployed.
+or automatic upgrade for this SDK change. Lab's owner separately released its
+0.1.1 integration; a 0.1.2 site upgrade has its own owner checks and release.
 
 Before this packaging change, the operator reported a prefilled Lab draft in
 Codex, then a Work destination after selecting ChatGPT → Chat. The operator
 submitted the latter. These are prior preview observations, not new native
 qualification of the 0.1.1 archive or a documented universal routing policy.
 They support keeping mode selection with the destination application.
-Current package, browser and Lab checks belong in the source repository's
+Current 0.1.2 package/browser checks belong in the source repository's
+`pilot/reading-sdk-012/`; the 0.1.1 record remains
 `pilot/reading-sdk/QUALIFICATION.json`. Earlier alpha and 0.1.0 evidence keeps
 its original scope; new observations must not upgrade those historical results.

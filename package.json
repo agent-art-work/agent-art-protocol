@@ -17,6 +17,8 @@
     "pretest:pilot": "node scripts/sdk.mjs install",
     "test:protocol": "node --test protocol/test/*.test.mjs",
     "test:sdk": "node --test protocol/test/*.test.mjs",
+    "pretest:reading-ui": "node scripts/sdk.mjs install",
+    "test:reading-ui": "node pilot/reading-sdk-012/check-ui.mjs",
     "sdk:pack": "node scripts/sdk.mjs pack",
     "sdk:prepare": "node scripts/sdk.mjs install",
     "pilot:thought": "node pilot/thought.mjs"

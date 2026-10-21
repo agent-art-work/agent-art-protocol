@@ -1,7 +1,10 @@
 # Agent Art protocol architecture
 
-Status: **candidate generic architecture**, revised 2026-10-20. The private
+Status: **candidate generic architecture**, revised 2026-10-21. The private
 SDK's first supported release scope is [0.1.1 reading](spec/0.1/READING.md).
+The private 0.1.2 candidate adds an identity/About link with ⓘ, retaining that
+reading scope and the immutable 0.1.1 release. See the
+[component contract](spec/0.1/COMPONENT.md).
 The broader participation contract, stronger execution evidence and production
 deployment remain open. A separately authorized [local MVP](mvp/README.md) exercises a
 bounded subset; it does not qualify the remote HTTP/OAuth path or independent
@@ -14,15 +17,17 @@ to refine through [project walkthroughs](examples/PROJECT-WALKTHROUGHS.md),
 not a frozen standard. MVP implementation choices do not ratify the generic
 contract or settle the execution-evidence threshold.
 
-**Current release sequence, 2026-10-20.** Develop one protocol through its
-public reading use cases first. Private SDK `@agent-art/protocol@0.1.1` supplies
+**Current release sequence, 2026-10-21.** Develop one protocol through its
+public reading use cases first. Private SDK `@agent-art/protocol@0.1.2` supplies
 the compact Open bubble **Ask your Agent** component, controller, desktop
 prefill routes and optional bounded receipts. ChatGPT, Claude and Copy are
-inline; destination app mode is not forced. Lab is the single active local
-test consumer. The earlier four 0.1.0 integrations remain historical.
+inline. Its mark, label and ⓘ form a separate About link to the Lab-owned page.
+Claude deliberately requests Chat; the ChatGPT desktop route supplies
+no Chat/Work/Codex selector. See [native destination guidance](pilot/reading-sdk/NATIVE-HANDOFF.md).
+Lab is the single active local test consumer. The earlier four 0.1.0 integrations remain historical.
 The SDK requires no local helper, participant enrollment, answer callback or
 evidence database. Optional host discovery reports availability; the SDK does
-no application probing. See the [current consumer guide](pilot/reading-sdk/README.md).
+no application probing. See the [current consumer guide](pilot/reading-sdk-012/README.md).
 
 The two infrastructure responsibilities remain connecting real Agent
 environments and preserving/checking evidence. A reading handoff can have zero
@@ -422,7 +427,8 @@ their original limits. MCP/OAuth remains a candidate carrier; exact versions,
 permissions, network access and media delivery must be checked on the chosen
 client before support is claimed.
 
-The current release step is to validate SDK 0.1.1 on the single active Lab
+The current release step is to validate the SDK 0.1.2 identity/About link and
+Lab-owned explanation page on the single active Lab
 consumer against [READING.md](spec/0.1/READING.md), retaining canonical owner
 context and lightweight, optional evidence. The four 0.1.0 integration records
 remain historical; maintaining four development apps is not required. The later compatible artwork release should

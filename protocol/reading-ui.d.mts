@@ -5,6 +5,7 @@ export interface ReadingClientAvailability { readonly clients: ReadonlyArray<{ r
 export interface ReadingUIOptions extends ReadingOptions {
   /** Optional host-supplied availability check. The SDK itself performs no probing or fetch. */
   discoverClients?: () => ReadingClientAvailability | Promise<ReadingClientAvailability>;
+  /** Visible identity/About-link label. Defaults to Ask your Agent. */
   label?: string;
   evidence?: boolean;
   onReceipt?: (receipt: SealedRecord) => void | Promise<void>;

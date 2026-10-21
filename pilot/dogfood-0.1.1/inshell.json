@@ -1,0 +1,223 @@
+{
+  "schema": "agent-art.reading-sdk-dogfood-consumer.v1",
+  "consumer": "inshell",
+  "status": "isolated-local-candidate-no-deployment",
+  "date": "2026-10-20",
+  "repository": "https://github.com/inshell-art/inshell.art",
+  "releaseBase": "origin/staging",
+  "branch": "codex/reading-sdk-0.1.1",
+  "baseCommit": "8645ead6d6f638de60709f4c9825667ace52d3b2",
+  "resultTree": "b7635f98021d25f222f416e04d89d9e67af77a00",
+  "patch": "inshell.patch",
+  "patchSha256": "6bddd5db91614bc1fee61116cd49050b041e45161c735ed514bfc4e2acd432dc",
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.1",
+    "archive": "vendor/agent-art-protocol-0.1.1.tgz",
+    "sha256": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18",
+    "lockIntegrity": "sha512-EQq8FmzAWS2jhSKjH9kT88lzXjk2TrAjAEsvqjTEEuENXu0EaObFWQMDXxgp8KsvuRBcJXk2x0KVfg4Cycd3cA==",
+    "installedPackageFilesChecked": 11,
+    "installedAndSourceMatchArchive": true,
+    "distribution": "Private immutable vendored archive; relative file dependency and frozen pnpm lock."
+  },
+  "entry": {
+    "route": "/docs",
+    "component": "apps/home/src/components/DocsAgentReading.tsx",
+    "sdkImport": "@agent-art/protocol/reading-ui",
+    "stylesheet": "@agent-art/protocol/reading.css",
+    "ownerPrompt": "agentDocsPrompt in apps/home/src/content/docs.ts, with canonical origin https://inshell.art",
+    "ownerPromptUnchanged": true,
+    "indexUrl": "https://inshell.art/docs/agent-index.json",
+    "evidence": false,
+    "discoverClients": false,
+    "localHelper": false,
+    "clients": [
+      "ChatGPT",
+      "Claude",
+      "Copy"
+    ],
+    "appMode": "Destination application decides; native ChatGPT prefill has no forced Chat mode.",
+    "manualFallback": "Original prompt/copy interface is retained, initially open without successful SDK mount; disclosure collapses only after successful mount and restores on cleanup.",
+    "standalonePresentationWrapper": false
+  },
+  "build": {
+    "command": "VITE_DEPLOY_ENV=preview pnpm --filter @inshell/home build",
+    "output": "dist/home",
+    "previewPort": 4186,
+    "result": "passed",
+    "warnings": [
+      "Existing Vite native-config compatibility and plugin deprecation warnings.",
+      "Existing large bundle warning."
+    ]
+  },
+  "checks": [
+    {
+      "command": "pnpm --filter @inshell/home exec jest --runInBand --coverage=false --runTestsByPath tests/DocsPage.test.tsx tests/DocsAgentReading.test.tsx",
+      "result": "passed",
+      "tests": 68,
+      "afterFinalTypeInferenceFix": "Four integration tests rerun and passed."
+    },
+    {
+      "command": "pnpm --filter @inshell/home run type-check:source",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm --filter @inshell/home exec eslint src/components/DocsAgentReading.tsx src/components/DocsPage.tsx src/content/docs.ts src/content/docs-source-registry.ts tests/DocsAgentReading.test.tsx --max-warnings 0",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm test:agent-docs-generator",
+      "result": "passed",
+      "tests": 9
+    },
+    {
+      "command": "pnpm docs:check",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm pub-boundary:check",
+      "result": "passed",
+      "owner": "retired",
+      "exactPaths": 9,
+      "prefixPaths": 3,
+      "externalFetches": 0
+    },
+    {
+      "command": "pnpm check:upstream-releases",
+      "result": "passed",
+      "scope": "Pinned PATH and THOUGHT release freshness only; no repinning."
+    },
+    {
+      "check": "All 11 installed SDK files byte-compared with immutable archive; archive SHA-256 and pnpm lock SHA-512 checked.",
+      "result": "passed"
+    },
+    {
+      "check": "Full binary-first zero-context patch applied to pinned base through a second isolated Git index; exact result tree reproduced.",
+      "result": "passed"
+    },
+    {
+      "command": "gitleaks dir pilot/dogfood-0.1.1/inshell.patch --redact --no-banner --no-color",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "dependencySetup": {
+    "nonSdkLockMatchesPriorConsumer": true,
+    "method": "Reused installed third-party dependencies from the earlier isolated consumer with byte-identical non-SDK pnpm lock; extracted the immutable 0.1.1 SDK into this clone and verified every package file.",
+    "lockUpdate": "Added only the dependency-free local archive importer/package/snapshot and archive-derived SHA-512. Frozen pnpm accepts the lock without resolution.",
+    "cleanOfflineInstall": {
+      "result": "unavailable",
+      "reason": "ERR_PNPM_NO_OFFLINE_TARBALL for @playwright/test 1.64.0; no lifecycle scripts or environment files copied.",
+      "limit": "Full clean installation is not qualified by these local checks."
+    }
+  },
+  "docsImpact": {
+    "decision": "Docs change required.",
+    "change": "Display subtitle changes to Read with your Agent; SDK component replaces manual-only entry while retaining the exact authored invitation and manual fallback. Added immutable SDK archive to the knowledge-bearing source registry.",
+    "reviewed": [
+      "apps/home/src/content/docs.ts subtitle and unchanged agentDocsPrompt",
+      "apps/home/public/docs/index.md matching subtitle",
+      "apps/home/public/docs/agent-index.json source binding",
+      "apps/home/public/docs/source-lock.json exact source fingerprints"
+    ],
+    "upstreamAndDeployment": "No contract facts, source policy, existing artwork behavior, deployed state or upstream pins changed."
+  },
+  "boundary": {
+    "originalCheckout": "Untouched, including its dirty AGENTS and unrelated work.",
+    "staticOutput": "Only existing /docs output and ordinary bundled assets change. No PUB/feed-reserved paths added, restored or claimed.",
+    "stagingPolicy": "Frontend candidate is based on current staging. Staging validation and explicit operator production promotion remain owner release gates."
+  },
+  "browserQualification": {
+    "status": "passed-local-browser-fixtures",
+    "browser": "Regular Google Chrome, verified bundle com.google.Chrome, disposable headless profiles.",
+    "route": "/docs",
+    "previewPort": 4186,
+    "rawResults": {
+      "desktop": ".local/qa/dogfood-v011/inshell-1440-light.json",
+      "mobile": ".local/qa/dogfood-v011/inshell-390-dark.json"
+    },
+    "cases": [
+      {
+        "viewport": "1440x1000",
+        "colorScheme": "light",
+        "result": "passed",
+        "minimumTargetPixels": 32
+      },
+      {
+        "viewport": "390x844",
+        "colorScheme": "dark",
+        "result": "passed",
+        "minimumTargetPixels": 44
+      }
+    ],
+    "checked": [
+      "Exact complete owner context in both native URL routes; no forced app mode.",
+      "Compact one-line Seal/Open bubble component with ChatGPT, Claude and always-visible Copy.",
+      "Clipboard denial reveals and selects the exact readonly context; no invented Copy receipt.",
+      "Canceled native clicks remain canceled and create no receipt.",
+      "No SDK discovery/loopback endpoint requests."
+    ],
+    "nativeAppsLaunched": false,
+    "agentExecutionEstablished": false,
+    "screenshotReview": "Desktop light and 390px dark screenshots inspected: compact single-line component, preserved Docs layout and preview watermark, no clipping or overlap."
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "e23398f4cd04581f47f38dd2d3917669521982015cfff7d645c172f8bfda1418"
+    },
+    {
+      "path": "apps/home/package.json",
+      "sha256": "9c26b4ad12924a88f26c650c1e7c21224c3c77a2b567f9d9a8a85bbdbed35099"
+    },
+    {
+      "path": "apps/home/public/docs/agent-index.json",
+      "sha256": "1fa9d9d5f0ae83b35ce3fea49a83271c0aa79b3d6a1029d778a94b876f03a927"
+    },
+    {
+      "path": "apps/home/public/docs/index.md",
+      "sha256": "cc536e5e90068b3f5db581607d1835cdaace8802ca141ec8a2362756efdd8c6b"
+    },
+    {
+      "path": "apps/home/public/docs/source-lock.json",
+      "sha256": "6a09f2a71906c1f3263fb60fdf91adb9a8214283b297beecff6e701c545f9e65"
+    },
+    {
+      "path": "apps/home/src/components/DocsAgentReading.tsx",
+      "sha256": "69b08453e25d5fface91ece577273b3bf2f1fa678577c4cd1b782cb0ec68115a"
+    },
+    {
+      "path": "apps/home/src/components/DocsPage.tsx",
+      "sha256": "1f18f3f3d7bd657381efd714155c9edb2e5794b92d07b75449fa35e49336e0d4"
+    },
+    {
+      "path": "apps/home/src/content/docs-source-registry.ts",
+      "sha256": "302f3c26bb11f8065e5910355c687fcade8e8a5e38fed8e6fab7ebc3738e962f"
+    },
+    {
+      "path": "apps/home/src/content/docs.ts",
+      "sha256": "462bf978c02a2beaf3167e784f343d129e96b87a69d08c15593c7efceea42a95"
+    },
+    {
+      "path": "apps/home/tests/DocsAgentReading.test.tsx",
+      "sha256": "6d29a9d240a83cbb05995ddcfa348588a89411031ac636a51165a56fc04cfb15"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "302a22ac66475a1c174c1a7e3c597b0791fbaf8468a684b670a6a78939bb47ca"
+    },
+    {
+      "path": "vendor/agent-art-protocol-0.1.1.tgz",
+      "sha256": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18"
+    }
+  ],
+  "limits": [
+    "Local candidate only; no deployment, commit, push, registry publication or Agent trial.",
+    "No discovery callback or automatic application probing on the public integration. Native links are offered routes, not installation findings.",
+    "No Agent arrival, Send, source acquisition, execution or intentional participation is established by URL construction or browser fixtures.",
+    "Vite preview checks built frontend behavior; they do not qualify real Cloudflare Pages middleware GET/HEAD 404s or production release readiness."
+  ]
+}

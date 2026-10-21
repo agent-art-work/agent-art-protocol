@@ -34,12 +34,15 @@
 }
 .aap-reading .aap-reading-title {
   display: inline-flex; align-items: center; flex: 0 0 auto; gap: var(--_reading-gap);
+  min-height: var(--_reading-target); text-decoration: none;
   padding: 3px var(--_reading-title-pad); background: var(--_reading-seal); color: var(--_reading-seal-ink);
   border-radius: calc(var(--_reading-radius) - var(--_reading-border)) 0 0 calc(var(--_reading-radius) - var(--_reading-border));
   font-family: var(--_reading-family); font-size: var(--_reading-label-font); font-weight: var(--_reading-weight);
   line-height: 1.4; letter-spacing: -.015em; white-space: nowrap;
 }
 .aap-reading .aap-reading-label { font: inherit; letter-spacing: inherit; }
+.aap-reading .aap-reading-info { flex: 0 0 auto; font-size: 12px; font-weight: 400; line-height: 1; }
+.aap-reading .aap-reading-title:hover .aap-reading-label { text-decoration: underline; text-underline-offset: 3px; }
 .aap-reading .aap-reading-mark { position: relative; display: inline-block; flex: 0 0 var(--_reading-mark-size); width: var(--_reading-mark-size); height: var(--_reading-mark-size); color: currentColor; }
 .aap-reading .aap-reading-mark::before, .aap-reading .aap-reading-mark::after { content: ''; position: absolute; }
 .aap-reading .aap-reading-mark::before { inset: 10% 14% 22% 2%; border: calc(var(--_reading-mark-size) * .125) solid currentColor; border-radius: calc(var(--_reading-mark-size) * .23); clip-path: polygon(0 0,100% 0,100% 100%,0 100%,0 72%,24% 72%,24% 34%,0 34%); }

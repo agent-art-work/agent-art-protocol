@@ -1,0 +1,76 @@
+{
+  "schema": "agent-art.reading-sdk-dogfood-consumer.v1",
+  "date": "2026-10-20",
+  "consumer": "lab",
+  "status": "isolated-local-candidate-no-deployment",
+  "repository": "https://github.com/agent-art-work/Agent-Art-Lab",
+  "baseCommit": "d658be2cc19307d113e64bd3fa0b2ad56a0a4bfc",
+  "releaseBase": "origin/main",
+  "branch": "codex/reading-sdk-0.1.1",
+  "patch": "lab.patch",
+  "patchSha256": "6e5fd379371aeab9e66613abe0f1403ee37ca51a0013e717e0d5bf1a2db00e20",
+  "resultTree": "981793b5d8103caad47247eaca2015bb02c57ff0",
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.1",
+    "archive": "vendor/agent-art-protocol-0.1.1.tgz",
+    "sha256": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18",
+    "lockIntegrity": "sha512-EQq8FmzAWS2jhSKjH9kT88lzXjk2TrAjAEsvqjTEEuENXu0EaObFWQMDXxgp8KsvuRBcJXk2x0KVfg4Cycd3cA==",
+    "all11InstalledFilesMatchArchive": true
+  },
+  "entry": {
+    "route": "/",
+    "adapter": "site/assets/agent-art-reading.mjs",
+    "ui": "SDK mountReading and packaged reading.css",
+    "ownerPrompt": "Canonical docs/AGENT_ACCESS.md prompt unchanged",
+    "indexUrl": "https://agentart.work/agent-index.json",
+    "evidence": false,
+    "discoverClients": false,
+    "appMode": "Destination application decides; no forced Chat mode.",
+    "manualFallback": "Original prompt remains available independently of SDK JavaScript."
+  },
+  "checks": {
+    "build": "24 pages passed",
+    "nodeTests": 21,
+    "pythonTests": 37,
+    "publicationCheck": {
+      "documents": 30,
+      "localLinks": 116,
+      "networkRequests": 0,
+      "result": "passed"
+    },
+    "siteCheck": {
+      "pages": 24,
+      "publicFiles": 61,
+      "localLinks": 588,
+      "networkRequests": 0,
+      "result": "passed"
+    },
+    "cleanInstall": "npm ci --ignore-scripts --no-audit --no-fund --registry https://registry.npmjs.org --fetch-retries=0 --fetch-timeout=15000 passed, 9 packages; original dependency lock unchanged except vendored SDK.",
+    "cleanPatchReplay": true,
+    "browser": {
+      "status": "passed",
+      "runs": [
+        ".local/qa/dogfood-v011/lab-1440-light.json",
+        ".local/qa/dogfood-v011/lab-390-dark.json"
+      ],
+      "boundary": "Disposable regular Chrome; native activation canceled, clipboard denial synthetic. No Agent execution."
+    }
+  },
+  "files": {
+    "HANDOFF.md": "97d93cb8a473d797af80f28e6d6f88c402c4213d761f598b033323bdd15297c9",
+    "package-lock.json": "fb893d2e42eaf7f0e33439fabcc4e248c75e6892f79e7e2a6270b866e620f4ab",
+    "package.json": "893332d88b9ec3ff0980352e685f8386c0034f4108835cd55c74acdecb45d8fa",
+    "scripts/build-site.mjs": "ffbbe4bbaaa169e2c1e59b16f0250c8fea5d59d689d21ccaece38800f9e64752",
+    "scripts/check_site.py": "a6d6b0d1f748604008cfcfff561667259939bf1d68e2ff7f6884742281b94bc5",
+    "site/assets/agent-art-reading.mjs": "9d7f43dc4e6e130673d1fe2792ea4691af76afb29a783ab7d3cc50809239cd22",
+    "site/assets/site.css": "f563fb2e1f5c5fb075a4e484fb2822a2c56d486a24555684ddbce4e1c9dd53bb",
+    "tests/test_blog_pages.mjs": "ce268212d32be27abb75231b5ee22fe5ec79771e168032915553f3e27f76ba6b",
+    "vendor/agent-art-protocol-0.1.1.tgz": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18"
+  },
+  "limits": [
+    "No source commit, push, deployment, visibility change, license selection or registry publication.",
+    "Native activation canceled in browser fixtures; no Agent launch or execution qualification.",
+    "Original owner checkout untouched; this isolated branch is a review candidate."
+  ]
+}

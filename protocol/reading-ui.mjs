@@ -1,6 +1,7 @@
 import { createReading } from './reading.mjs';
 
 const NAMES = { 'codex-app': 'ChatGPT', 'claude-app': 'Claude' };
+const ABOUT_URL = 'https://agentart.work/ask-your-agent/';
 const mounts = new WeakMap();
 let nextId = 0;
 
@@ -23,9 +24,12 @@ export function mountReading(element, options) {
   };
   const root = node('div', 'aap-reading'); root.dataset.presentation = 'seal';
   const row = node('div', 'aap-reading-row');
-  const title = node('span', 'aap-reading-title');
+  const title = node('a', 'aap-reading-title'); title.href = ABOUT_URL;
+  title.title = 'What is Ask your Agent?';
+  title.setAttribute('aria-label', `${label} — about this component`);
   const mark = node('span', 'aap-reading-mark'); mark.setAttribute('aria-hidden', 'true');
-  title.append(mark, node('span', 'aap-reading-label', label));
+  const info = node('span', 'aap-reading-info', 'ⓘ'); info.setAttribute('aria-hidden', 'true');
+  title.append(mark, node('span', 'aap-reading-label', label), info);
   const actions = node('div', 'aap-reading-actions'); actions.setAttribute('role', 'group'); actions.setAttribute('aria-label', label);
   const apps = node('span', 'aap-reading-apps');
   const copy = node('button', 'aap-reading-copy', 'Copy'); copy.type = 'button';

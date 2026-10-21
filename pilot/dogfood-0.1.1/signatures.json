@@ -1,0 +1,149 @@
+{
+  "schema": "agent-art.reading-sdk-dogfood.v1",
+  "consumer": "Signatures Gallery",
+  "status": "local-review-candidate-not-deployed",
+  "date": "2026-10-20",
+  "repository": "https://github.com/agent-art-work/Agent-Art-signatures.gallery",
+  "baseCommit": "37d2619eb2da48bc1e47144beae35ee4bb261ad9",
+  "baseBranch": "origin/main",
+  "candidateBranch": "codex/reading-sdk-0.1.1",
+  "sourceNote": "Current remote main, preserving its newer preview hardening. The owner checkout has two unique security/documentation commits not included in this baseline; no unrelated dependency version changes were selected.",
+  "patch": "signatures.patch",
+  "patchSha256": "b9698a72eab886bb2dae5fb0dd4499c31d864494f048c2bb780e9a18c168a98c",
+  "resultTree": "5bc98fcd3ad2d5e6638eace6f81f69b4d3467404",
+  "patchFormat": "Full git binary diff with zero context, archive first; git apply --binary --unidiff-zero. Exact clean index replay checked.",
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.1",
+    "archive": "vendor/agent-art-protocol-0.1.1.tgz",
+    "archiveSha256": "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18",
+    "lockSha256": "588755732e80dcb59ec231ff4ec52bb79c07e8252f4f32c60086bf8fb2c63da2",
+    "lockIntegrity": "sha512-EQq8FmzAWS2jhSKjH9kT88lzXjk2TrAjAEsvqjTEEuENXu0EaObFWQMDXxgp8KsvuRBcJXk2x0KVfg4Cycd3cA==",
+    "installedFilesChecked": 11,
+    "archiveInstalledAndSourceEqual": true
+  },
+  "integration": {
+    "routes": [
+      "/about"
+    ],
+    "sdkImport": "@agent-art/protocol/reading-ui",
+    "stylesheet": "@agent-art/protocol/reading.css",
+    "component": "src/preview/reading.ts",
+    "ownerPrompt": "src/openMint/aboutReadingPrompt.ts",
+    "ownerPromptUnchanged": true,
+    "ownerOrigins": [
+      "https://signatures.gallery",
+      "https://staging.signatures.gallery"
+    ],
+    "sourceIndex": "<owner-origin>/agent-index.json",
+    "publicAndStagingInvitationExact": true,
+    "evidence": true,
+    "receipts": "Optional caller-observed handoff-requested receipt only; no Copy receipt, persistent storage, Agent execution or participation claim.",
+    "clients": [
+      "ChatGPT",
+      "Claude",
+      "Copy"
+    ],
+    "chatgpt": "codex://new?prompt=… desktop prefill, no destination mode parameter",
+    "claude": "claude://claude.ai/new?q=… desktop prefill",
+    "copyAlwaysVisible": true,
+    "discovery": false,
+    "localHelper": false,
+    "copiedPresentationWrapper": false,
+    "progressiveFallback": "Original SSR disclosure, owner textarea/copy controls and resource links remain available until an exact owner invitation matches and SDK mount succeeds.",
+    "artworkPreviewPromptUnchanged": true,
+    "mintAssessmentPromptUnchanged": true
+  },
+  "dependencySetup": {
+    "result": "passed with exact main-lock versions",
+    "initialOfflineCi": "ENOTCACHED for baseline third-party tarballs; clean offline full reinstall remains unqualified.",
+    "network": "An isolated official-registry installer with scripts disabled was stopped after slow successful public downloads. One remaining exact public tarball was fetched with retries=0 and 15s timeout. No private registry or provider was used.",
+    "reuse": "Historical dependency tree reused, then npm install of SDK archive offline with scripts disabled changed exactly 4 packages: SDK plus the three main-lock replacements.",
+    "mainLockReplacements": {
+      "brace-expansion": "5.0.9",
+      "glob/node_modules/brace-expansion": "2.1.4",
+      "source-map-js": "1.2.1"
+    },
+    "installedVersionsMatchLock": 286,
+    "absentOptionalPlatformPackages": 124,
+    "unrelatedLockedDependenciesUnchanged": true
+  },
+  "checks": {
+    "typecheck": "passed",
+    "rendererLocks": "passed: 3 renderer/slogan locks",
+    "previewVitest": {
+      "passed": 229,
+      "failed": 0
+    },
+    "previewPackagingNodeTests": {
+      "passed": 77,
+      "failed": 0,
+      "includesRealLocalWorkerd": true
+    },
+    "ownerRegression": {
+      "passed": 3924,
+      "skipped": 625,
+      "failed": 0,
+      "skips": "Opt-in database/persistence configuration remains disabled."
+    },
+    "stagingBuild": "passed",
+    "productionBuild": "passed",
+    "cleanPatchReplay": true,
+    "gitDiffCheck": true,
+    "independentReadOnlyReview": "No code blockers. Script-blocked SSR fallback now checked in browser; altered-invitation DOM and mount-failure fixtures remain unqualified.",
+    "redactedSecretScan": {
+      "passed": true,
+      "findings": 0,
+      "scope": "Candidate changed files, patch and metadata; no credential-like token prefix, private key header or added machine path."
+    },
+    "utf8LFNoBOM": true,
+    "originalOwnerStatusPreserved": true
+  },
+  "build": {
+    "stagingOutput": ".local/dogfood-staging",
+    "productionOutput": ".local/dogfood-production",
+    "workerSha256": "121790f13e4bc1d7e62ff9f6a528f5273a20e7aacf7e2c1b22c7244fbfaf0d63",
+    "publicClientSha256": "8179444bb4b95b19ac7a80db059c32b7ecefafd3268325cfa091818a2985b439",
+    "publicCSSSha256": "80b21de6c5e2fc2204c04b4de36a3de4002f5c1ca3a8cb0c5033d8b7661d6b12",
+    "manifestSha256": "2a984beef84e67f326019a62395be712d85f8cab1eb1d3d9e309e036e6ebe8ae",
+    "mintingEnabled": false,
+    "walletConnectionEnabled": false,
+    "rpcEnabled": false,
+    "providerCallsEnabled": false
+  },
+  "preview": {
+    "port": 4188,
+    "path": "/about",
+    "publicOrigin": "https://staging.signatures.gallery",
+    "server": "scripts/preview-cloudflare-local.mjs"
+  },
+  "browserQualification": {
+    "status": "passed",
+    "browser": "Regular stable Chrome, verified com.google.Chrome; disposable profiles.",
+    "runs": [
+      ".local/qa/dogfood-v011/signatures-1440-light.json",
+      ".local/qa/dogfood-v011/signatures-390-dark.json"
+    ],
+    "manualFallbackWhenScriptsBlocked": ".local/qa/dogfood-v011/signatures-scripts-blocked.json",
+    "visualReview": "Mobile dark normal and script-blocked screenshots inspected: compact reading component in normal mode; original manual reading UI retained when scripts are blocked.",
+    "boundary": "Exact staging context verified in both native URLs; no mode forcing or discovery. Native activation canceled; no Agent execution."
+  },
+  "files": [
+    "README.md",
+    "package-lock.json",
+    "package.json",
+    "scripts/build-preview-cloudflare.mjs",
+    "src/openMint/pages.ts",
+    "src/preview/client.ts",
+    "src/preview/reading.test.ts",
+    "src/preview/reading.ts",
+    "vendor/README.md",
+    "vendor/agent-art-protocol-0.1.1.tgz"
+  ],
+  "limits": [
+    "Isolated local candidate only; original owner checkout and deployed sites unchanged.",
+    "No native Agent launch, model call, paid provider, public-chain action, commit, push or deployment.",
+    "A native URL or unsigned local handoff receipt does not establish app arrival, Send, source retrieval, Agent reading or intentional participation.",
+    "SDK remains private; publishing/reuse licensing and OPS rollout are separate decisions."
+  ]
+}

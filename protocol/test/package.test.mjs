@@ -31,7 +31,7 @@ test('the actual private SDK tarball installs offline and exposes only its inten
     const output = run('npm', ['pack', '--offline', '--ignore-scripts', '--json', '--pack-destination', packed], packageRoot);
     const [tarball] = JSON.parse(output);
     assert.equal(tarball.name, '@agent-art/protocol');
-    assert.equal(tarball.version, '0.1.1');
+    assert.equal(tarball.version, '0.1.2');
     assert.deepEqual(tarball.files.map(item => item.path).sort(), ['README.md', 'clients.d.mts', 'clients.mjs', 'index.d.mts', 'index.mjs', 'package.json', 'reading-ui.d.mts', 'reading-ui.mjs', 'reading.css', 'reading.d.mts', 'reading.mjs']);
     fs.writeFileSync(path.join(consumer, 'package.json'), JSON.stringify({ name: 'sdk-boundary-smoke', private: true, type: 'module' }));
     run('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', '--save-exact', path.join(packed, tarball.filename)], consumer);

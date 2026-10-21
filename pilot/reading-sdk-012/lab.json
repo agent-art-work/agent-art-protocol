@@ -1,0 +1,69 @@
+{
+  "schema": "agent-art.reading-consumer-reference.v1",
+  "date": "2026-10-21",
+  "status": "owner-reported-live-0.1.2-with-protocol-local-reproduction",
+  "baseCommit": "444a4dbd1c4eb9d5d3b6bde415e70f34eff21faa",
+  "resultTree": "5aaf89c5ef28dcc1636f783bc657c93e35fecf82",
+  "patch": "lab.patch",
+  "patchSha256": "324641196ec510c7c283718ce1feed18d79c2047885bb6d3a9f0b433c073bdc0",
+  "sdk": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.2",
+    "archive": "vendor/agent-art-protocol-0.1.2.tgz",
+    "sha256": "0a535238ad9eaecd973fa8127b7d24f745ca502908ad1f7377654ecdd8bdcfa5",
+    "integrity": "sha512-L6e+7SYZ8FrJ8JLgV2gBe0BAHGzzzaIL3J09Ui/ynvqNjhJ5wr5dBZr7dCCLFX8joU6t0Z/BbIv7rR6+iKfeJw=="
+  },
+  "consumer": {
+    "packageJsonSha256": "f5436bc2c37f47ece89ab03da21d950534192ee31038fa79a9de781648ced254",
+    "packageLockSha256": "87dcffdc81c44cdf777bd7d9126db274b83aecedee746b08538bbf54b95b3511"
+  },
+  "ownerReportedChecks": {
+    "pythonTests": 37,
+    "nodeTests": 22,
+    "pages": 25,
+    "publicFiles": 63,
+    "localLinks": 609,
+    "installedFilesMatch": 11,
+    "publicSdkCopiesMatch": 5,
+    "browser": "Regular Chrome desktop/light and390px/dark; native/About navigation canceled; syntheticCopy/fallback checks",
+    "invitationUtf8Bytes": 983,
+    "indexRevision": "sha256:ec70a18335e330b8160150d9951643253c4f6d55572d143161b00144502229df",
+    "additional320pxDarkBrowser": "Passed one-line fit/focus,44px Agent/Copy targets,50px About target; navigation canceled."
+  },
+  "limits": [
+    "Owner-reported checks are separate from protocol-side isolated reproduction and SDK fixture checks.",
+    "No new native Agent trial or inference.",
+    "This candidate record does not establish publication/deployment.",
+    "Historical0.1.1 release inputs and qualification remain unchanged."
+  ],
+  "protocolReproduction": {
+    "status": "passed",
+    "patchAndResultTreeMatch": true,
+    "cleanOfflineInstall": true,
+    "lifecycleScriptsDisabled": true,
+    "installedFilesMatchArchiveAndCurrentSources": 11,
+    "versionedPublicSdkCopiesMatchInstalled": 5,
+    "pythonTests": 37,
+    "nodeTests": 22,
+    "pages": 25,
+    "publicFiles": 63,
+    "localLinks": 609,
+    "indexRevisionMatchesOwner": true,
+    "liveSiteOrNativeTrial": false
+  },
+  "ownerRelease": {
+    "date": "2026-10-21",
+    "status": "reported-live-verified",
+    "page": "https://agentart.work/ask-your-agent/",
+    "pullRequest": "https://github.com/agent-art-work/Agent-Art-Lab/pull/10",
+    "candidateCommit": "1586c332262be621b44a2d49412d4106f07b7151",
+    "mergeCommit": "552e34cd26abf0266800f2ecaed8d3c3b8c5ff1e",
+    "pagesRun": "https://github.com/agent-art-work/Agent-Art-Lab/actions/runs/39572860723",
+    "servedFileByteMatches": 62,
+    "verifiedDocumentExports": 19,
+    "indexRevision": "sha256:ec70a18335e330b8160150d9951643253c4f6d55572d143161b00144502229df",
+    "actualAboutNavigation": "Owner reports desktop/light and390px/dark regularChrome clicks reached the explanation page.",
+    "nativeActivation": "Canceled; no new Agent trial.",
+    "scope": "Owner-reported live checks; protocol-side reproduction remains local. The site release made no protocol tag/npm/visibility/license/other-site release; subsequent SDK source commit/push is tracked separately."
+  }
+}

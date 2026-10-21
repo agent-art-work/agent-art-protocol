@@ -2,10 +2,11 @@
 
 Read README.md, ARCHITECTURE.md, examples/THOUGHT.md and SOURCE.md first.
 
-- The generic protocol remains candidate. SDK 0.1.1 supports public-document
+- The generic protocol remains candidate. SDK 0.1.2 supports public-document
   reading; read spec/0.1/READING.md and protocol/README.md for its boundary.
   Lab is the single active local test consumer; earlier four-consumer records
-  are historical isolated integrations, not deployments.
+  are historical isolated integrations, not deployments. Lab's owner separately
+  released its reading component and About page on agentart.work.
   Earlier THOUGHT/core paths remain experimental; new artwork participation
   is deferred to a later compatible release. Do not start new live Agent
   trials, registry publication or deployment without operator direction.

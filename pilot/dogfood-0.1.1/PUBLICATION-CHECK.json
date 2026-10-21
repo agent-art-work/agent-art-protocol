@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-20",
+  "scope": "All reachable committed source blobs across current local refs; retained SDK0.1.0 and0.1.1archives. Excludes ignored local runtime data and browser history.",
+  "commitsChecked": 5,
+  "commitIds": [
+    "d1e6c63549ebd1e8efff6fe2eb96000d8cef5bc4",
+    "9490a04cde7d3cfaf62d503109c3f151c0342061",
+    "aa293d6a24824566a9ba2f8304bf531e0c37a5ab",
+    "1d18ba2f8da839a2909fdc12d463adcfaebc9b4b",
+    "33fd2322a851e248e560617722469a27e398f60e"
+  ],
+  "uniqueBlobsChecked": 152,
+  "utf8BlobsChecked": 152,
+  "archivesChecked": [
+    "2c179f487aa71cd0b769c5c70cca8786275111e33f1936de11536531b4012c18",
+    "646b91e68a8ea175ca4a75f8d2af48fb7e41498798c1744726479e2b91a13af0"
+  ],
+  "archiveFilesChecked": 22,
+  "redactedFindings": [],
+  "limits": [
+    "Pattern scan identifies common credential markers and user-specific paths; it is not independent proof of full privacy or third-party rights clearance.",
+    "No license selected, visibility changed, release published, or public deployment performed.",
+    "Source/provenance content still needs owner disclosure and license decisions before public adoption."
+  ]
+}
