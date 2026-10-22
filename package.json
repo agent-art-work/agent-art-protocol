@@ -25,6 +25,8 @@
     "bench": "node test-bench/server.mjs",
     "bench:browser": "node test-bench/check-browser.mjs",
     "bench:report": "node test-bench/report.mjs",
+    "bench:desktop": "node test-bench/desktop-runner.mjs",
+    "bench:no-send": "node test-bench/no-send-runner.mjs",
     "test:bench": "node --test test-bench/*.test.mjs"
   }
 }

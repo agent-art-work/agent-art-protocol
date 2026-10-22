@@ -3,15 +3,17 @@
  * Validation checks declarations and their scope. It cannot authenticate an
  * observer, recover private conversations, or establish that a statement is true.
  */
+import { isPlainRecord } from './plain-record.mjs';
+import { LAB_AX_POLICY, LAB_AX_PRESENTATION_SHA256, validateDraftPolicy } from './draft-policy.mjs';
 export const SCHEMA = 'agent-art-reading-bench/run/1';
 export const CLIENTS = Object.freeze(['claude-app', 'codex-app']);
-export const CLAIMS = Object.freeze(['handoff-requested', 'draft-arrived', 'context-matches', 'sent', 'permission', 'source-access', 'completion']);
+export const CLAIMS = Object.freeze(['handoff-requested', 'draft-arrived', 'context-matches', 'presentation-matches', 'sent', 'permission', 'source-access', 'completion']);
 export const STATUSES = Object.freeze(['requested', 'observed', 'operator-reported', 'failed', 'not-observed', 'not-run']);
 export const SOURCES = Object.freeze(['browser-automation', 'operator', 'desktop-ui']);
 export const SURFACES = Object.freeze(['claude-chat', 'claude-code', 'chatgpt-chat', 'chatgpt-work', 'codex', 'unknown']);
 export const REASONS = Object.freeze(['canceled', 'unavailable', 'permission-denied', 'access-failed', 'context-differs', 'destination-differs', 'not-inspected', 'not-authorized', 'metadata-unavailable', 'other']);
 const LANES = ['browser', 'real-client'];
-const METHODS = ['prepared-payload-sha256', 'composer-utf8-sha256', 'operator-pasted-text-sha256', 'visual-inspection', 'visible-tool-result', 'operator-confirmation'];
+const METHODS = ['prepared-payload-sha256', 'composer-utf8-sha256', 'operator-pasted-text-sha256', 'visual-inspection', 'visible-tool-result', 'operator-confirmation', LAB_AX_POLICY];
 const KINDS = { 'browser-automation': 'browser-event', operator: 'operator-check', 'desktop-ui': 'desktop-ui-check' };
 const POSITIVE = new Set(['requested', 'observed', 'operator-reported']);
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/;
@@ -21,12 +23,13 @@ const LIMITS = Object.freeze([
   'Browser checks establish prepared context and requested navigation only; they do not establish native arrival, Send, source access or completion.',
   'Real-client observations remain attributed to a desktop UI observer or the operator; no observer identity or statement is independently authenticated.',
   'An exact-context comparison needs the retained public-context digest and an explicit comparison method; a visual impression alone does not establish byte equality.',
+  'A named Lab presentation comparison records only its specified exposed-text transformation; exact composer and transport bytes remain separate and unestablished.',
   'Operator-pasted text comparisons cover the text entered into the bench. Clipboard or textarea handling can normalize line endings; this is not proof of raw composer or transport bytes.',
   'A visible tool result or completion supports only the named observation. Model authorship, execution origin, private intention and unobserved intervention remain unestablished.',
   'This record contains public-context identifiers and bounded observations, not private transcripts. Optional notes must be reviewed for privacy by their author.',
 ]);
 
-const plain = value => value !== null && typeof value === 'object' && !Array.isArray(value) && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+const plain = isPlainRecord;
 const text = (value, max = 160) => typeof value === 'string' && value.length > 0 && value.length <= max && !/[\u0000-\u001f\u007f]/u.test(value);
 const version = value => text(value, 80) && !['unknown', 'unrecorded', 'not-recorded', 'unavailable'].includes(value.toLowerCase()) && !/[\\/]/u.test(value);
 const timestamp = value => typeof value === 'string' && DATE.test(value) && Number.isFinite(Date.parse(value)) && new Date(value).toISOString() === value;
@@ -84,11 +87,26 @@ function checkObservation(observation, run, index, errors) {
   if (observation.reason !== undefined && !REASONS.includes(observation.reason)) errors.push(`${path}.reason is unsupported`);
   if (observation.notes !== undefined && !text(observation.notes, 240)) errors.push(`${path}.notes must be one bounded public-only line`);
   const material = observation.material;
-  if (!shape(material, ['kind', 'ref', 'contextSha256', 'method'], ['kind'], `${path}.material`, errors)) return;
+  if (!shape(material, ['kind', 'ref', 'contextSha256', 'method', 'canonicalSha256', 'exposedSha256', 'basis', 'captureId', 'capturedAt', 'snapshotSha256'], ['kind'], `${path}.material`, errors)) return;
   if (material.kind !== KINDS[observation.source]) errors.push(`${path}.material.kind must match its observer source`);
   if (material.ref !== undefined && (typeof material.ref !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._/-]{0,159}$/u.test(material.ref) || material.ref.split('/').some(part => !part || part === '.' || part === '..'))) errors.push(`${path}.material.ref must be a relative public evidence reference without traversal`);
   if (material.contextSha256 !== undefined && (typeof material.contextSha256 !== 'string' || !DIGEST.test(material.contextSha256))) errors.push(`${path}.material.contextSha256 must be a lowercase SHA-256 digest`);
   if (material.method !== undefined && !METHODS.includes(material.method)) errors.push(`${path}.material.method is unsupported`);
+  for (const key of ['canonicalSha256', 'exposedSha256', 'snapshotSha256']) if (material[key] !== undefined && (typeof material[key] !== 'string' || !DIGEST.test(material[key]))) errors.push(`${path}.material.${key} must be a lowercase SHA-256 digest`);
+  if (material.captureId !== undefined && (typeof material.captureId !== 'string' || !ID.test(material.captureId))) errors.push(`${path}.material.captureId must be a bounded identifier`);
+  if (material.capturedAt !== undefined && !timestamp(material.capturedAt)) errors.push(`${path}.material.capturedAt must be an exact capture timestamp`);
+  if (material.basis !== undefined && !['exact', 'paragraph-blank-lines-collapsed', 'different'].includes(material.basis)) errors.push(`${path}.material.basis is unsupported`);
+  const presentation = material.method === LAB_AX_POLICY;
+  if (presentation || observation.claim === 'presentation-matches') {
+    if (!presentation || observation.lane !== 'real-client' || observation.source !== 'desktop-ui' || observation.requestedClient !== 'claude-app' || observation.actualSurface !== 'claude-chat' || !['presentation-matches', 'sent'].includes(observation.claim)) errors.push(`${path}: the named presentation method belongs only to direct Claude Chat presentation or sent observations`);
+    try { validateDraftPolicy(LAB_AX_POLICY, run.manifest); } catch { errors.push(`${path}: presentation policy requires its exact pinned Lab inputs`); }
+    if (material.canonicalSha256 !== run.manifest?.contextSha256 || typeof material.exposedSha256 !== 'string' || !DIGEST.test(material.exposedSha256) || !material.captureId || !material.capturedAt || !material.snapshotSha256) errors.push(`${path}: presentation evidence requires both text digests and a named capture`);
+    if (material.contextSha256 !== undefined && (material.basis !== 'exact' || material.contextSha256 !== material.canonicalSha256)) errors.push(`${path}: a transformed presentation cannot also assert an exact context digest`);
+    if (POSITIVE.has(observation.status)) {
+      const expected = material.basis === 'exact' ? run.manifest.contextSha256 : material.basis === 'paragraph-blank-lines-collapsed' ? LAB_AX_PRESENTATION_SHA256 : undefined;
+      if (!expected || material.exposedSha256 !== expected) errors.push(`${path}: positive presentation evidence must match the named transformation and its digest`);
+    }
+  } else if (['canonicalSha256', 'exposedSha256', 'basis'].some(key => material[key] !== undefined)) errors.push(`${path}: presentation fields require the named presentation method`);
   if (observation.status === 'operator-reported' && observation.source !== 'operator') errors.push(`${path}: operator-reported requires the operator source`);
   if (observation.status === 'requested' && observation.claim !== 'handoff-requested') errors.push(`${path}: requested describes only the native handoff request`);
   if (observation.claim === 'handoff-requested' && ['observed', 'operator-reported'].includes(observation.status)) errors.push(`${path}: a positive handoff-requested must retain requested status`);
@@ -105,7 +123,7 @@ function checkObservation(observation, run, index, errors) {
     if (POSITIVE.has(observation.status)) {
       if (!run.environment?.os || !run.environment?.apps?.[observation.requestedClient]) errors.push(`${path}: positive real-client observations require recorded OS and requested app versions`);
       if (!observation.actualSurface || observation.actualSurface === 'unknown') errors.push(`${path}: positive real-client observations require the actual desktop surface`);
-      if (observation.claim !== 'context-matches') {
+      if (observation.claim !== 'context-matches' && !presentation) {
         if (observation.source === 'operator' && material.method !== 'operator-confirmation') errors.push(`${path}: positive operator reports require the operator-confirmation method`);
         if (observation.source === 'desktop-ui' && !['visual-inspection', 'visible-tool-result'].includes(material.method)) errors.push(`${path}: positive desktop-ui observations require an explicit visual-inspection or visible-tool-result method`);
         if (observation.claim === 'source-access' && observation.source === 'desktop-ui' && material.method !== 'visible-tool-result') errors.push(`${path}: observed source-access requires a visible-tool-result, not a readiness statement or visual impression`);

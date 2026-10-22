@@ -53,6 +53,57 @@ capability protect the local observation endpoints; ordinary top-level page
 navigation remains possible. These are development safeguards under trust in
 the machine owner, not remote authentication or an independent witness.
 
+## Agent-operated desktop runner
+
+The [no-Send diagnostic and external authority guide](NO-SEND.md) describes
+the separate zero-handoff/zero-Send workflow, initial persistent-store binding,
+crash recovery and remaining VM qualification. New cases require external
+authority storage; workspace-local historical cases remain read-only.
+
+The [agreed MVP scope](MVP-SCOPE.md) is a reusable runner toolkit plus one
+dedicated maintainer environment, initially Lab → Claude desktop Chat. The
+immediate phase is a no-Send feasibility check of guest-local control and input
+independence while the human continues using host apps. A local macOS VM is a
+preferred candidate, not yet a qualified environment; controlling its viewer
+from the host does not meet that condition. This does not authorize another
+Lab submission. SDK 0.1.4 stays unchanged and the Codex draft remains unsent.
+
+Developers can later reuse browser checks and an optional reserved local
+desktop path without installing a VM. They bring their coding Agent,
+permitted Computer Use, clients and access. A thin app profile is planned;
+today's runner is Lab-specific. No hosted testing service, remote preview
+tunnel, queue or multi-tenant platform is supplied by this bench.
+
+The [Agent runner guide](AGENT-RUNNER.md) describes the coding-Agent flow for
+one fresh Claude Chat handoff, separate exact and opt-in pinned presentation
+comparisons, at most one
+authorized Send and separate source-access/completion findings. Its
+Agent-facing session combines fresh captures, the durable Send guard, the
+actual permitted CUA click and automatic records. The CLI retains case/journal
+state. The Agent supplies its permitted Claude handle and selects actual owned
+UI evidence; the operator does not fill in the observation form for this path.
+
+The [execution contract](EXECUTION-CONTRACT.md) requires declared owned targets,
+one controller, exclusive input, fresh Agent-reviewed AX/pixel agreement and
+current qualification before consequential actions. The code binds and checks
+controller attestations; it cannot independently prove visual agreement or
+input isolation. Interruptions require requalification, preserve consumed
+attempts and keep human assistance visible. This contract is implemented for
+local qualification, not yet qualified as a reliable live desktop environment.
+
+This requires a coding Agent and permitted app access; it is not an unattended
+shell command or a visitor-side helper. The runner excludes ChatGPT/Codex
+desktop control, preserves the SDK inputs and does not retry an uncertain
+Send. Its synthetic tests, actual browser checks and real-client observations
+remain distinct. A live trial needs its own attributed result and cleanup
+record; earlier qualification does not qualify this runner.
+
+The [2026-10-22 findings](AGENT-QUALIFICATION.md) include one completed
+Agent-operated interaction under the Lab presentation policy. Sending and a
+finished introduction were observed; exact submitted text and source access
+remain unestablished. This is a bounded local result, not qualification of an
+unattended runner or every desktop client.
+
 ## The two result lanes
 
 | Lane | What is checked or recorded | Boundary |

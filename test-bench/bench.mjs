@@ -1,10 +1,13 @@
 import { mountReading } from '/sdk/reading-ui.mjs';
+import { afterDispatch, formatHandoffTrace } from '/after-dispatch.mjs';
 
 const lane = new URL(location.href).searchParams.get('lane') === 'desktop' ? 'desktop' : 'browser';
+const agentOperated = lane === 'desktop' && new URL(location.href).searchParams.get('controller') === 'agent';
 const bench = window.bench = { ready: false, lane, requested: [], clipboardCapture: [] };
 const labels = { 'claude-app': 'Claude desktop', 'codex-app': 'Codex desktop handler' };
-const claimLabels = { 'handoff-requested': 'Native handoff requested', 'draft-arrived': 'Draft arrived', 'context-matches': 'Exact context matches', sent: 'Sent', permission: 'Permission', 'source-access': 'Public index access', completion: 'Visible orientation' };
+const claimLabels = { 'handoff-requested': 'Native handoff requested', 'draft-arrived': 'Draft arrived', 'context-matches': 'Exact context matches', 'presentation-matches': 'Named presentation comparison', sent: 'Sent', permission: 'Permission', 'source-access': 'Public index access', completion: 'Visible orientation' };
 const error = document.querySelector('#error');
+const handoffTrace = document.querySelector('#handoff-trace');
 const compareHashes = new Map();
 let config, mounted;
 
@@ -51,12 +54,18 @@ async function newRun() {
 }
 async function append(observation) { clearError(); render(await api(`/api/runs/${bench.run.id}/observations`, observation)); }
 
-document.querySelector('#lane-label').textContent = lane === 'desktop' ? 'Real desktop trial' : 'Browser-only lane';
-document.querySelector('#lane-boundary').textContent = lane === 'desktop'
+document.querySelector('#lane-label').textContent = agentOperated ? 'Agent-operated Claude desktop trial' : lane === 'desktop' ? 'Real desktop trial' : 'Browser-only lane';
+document.querySelector('#lane-boundary').textContent = agentOperated
+  ? 'The coding Agent operates one authorized fresh Claude conversation and records its observations automatically. This page is the live report; no manual Send or observation form is needed.' : lane === 'desktop'
   ? 'Client links are live. Click once, inspect the new draft, then review and send inside the app when testing continuation.'
   : 'Native launches are canceled here. These checks cannot establish desktop arrival, sending, source access or completion.';
 document.querySelector(`#${lane}-lane`).setAttribute('aria-current', 'page');
-document.querySelector('#observation-panel').hidden = lane !== 'desktop';
+document.querySelector('#observation-panel').hidden = lane !== 'desktop' || agentOperated;
+document.querySelector('#new-run').hidden = agentOperated;
+if (agentOperated) document.querySelector('#client-boundary').textContent = 'Only Claude desktop is in this trial. The Codex desktop path is excluded; its existing draft remains untouched.';
+document.querySelector('#record-boundary').textContent = agentOperated
+  ? 'Agent-attributed GUI observations are local test evidence, not an SDK receipt or independent execution proof. Browser requests, sending, visible orientation and source access retain separate results.'
+  : 'This is a local operator record, not an SDK receipt or independent execution proof. An empty stage means not run. Nothing is sent back by an Agent.';
 
 // A canceled browser check cannot accidentally reach the OS, create an SDK
 // handoff receipt, or establish that a desktop client received the context.
@@ -64,11 +73,14 @@ document.querySelector('#reading').addEventListener('click', event => {
   const anchor = event.target.closest('.aap-reading-agent');
   if (!anchor) return;
   if (lane === 'browser') event.preventDefault();
-  const entry = { client: anchor.dataset.client, cancelled: event.defaultPrevented, lane, at: new Date().toISOString() };
+  const entry = { client: anchor.dataset.client, cancelled: event.defaultPrevented, isTrusted: event.isTrusted === true, lane, at: new Date().toISOString() };
   bench.requested.push(entry);
-  if (lane === 'desktop') queueMicrotask(() => {
-    entry.cancelled = event.defaultPrevented;
-    if (!entry.cancelled) append({ lane: 'browser', requestedClient: entry.client, claim: 'handoff-requested', status: 'requested', source: 'browser-automation', material: { kind: 'browser-event', ref: 'component-native-click' } }).catch(reason => fail(reason.message));
+  handoffTrace.textContent = 'Client click event captured; waiting for dispatch to finish.';
+  afterDispatch(event, (cancelled, facts) => {
+    entry.cancelled = cancelled;
+    entry.isTrusted = facts.isTrusted;
+    handoffTrace.textContent = formatHandoffTrace(entry);
+    if (lane === 'desktop' && !entry.cancelled) append({ lane: 'browser', requestedClient: entry.client, claim: 'handoff-requested', status: 'requested', source: 'browser-automation', material: { kind: 'browser-event', ref: 'component-native-click' } }).catch(reason => fail(reason.message));
   });
 }, true);
 
@@ -107,7 +119,10 @@ try {
   document.querySelector('#sdk-version').textContent = config.manifest.sdkVersion;
   document.querySelector('#context').textContent = config.context;
   document.querySelector('#pins').textContent = JSON.stringify({ manifest: config.manifest, source: config.source, environment: config.environment }, null, 2);
-  mounted = mountReading(document.querySelector('#reading'), { work: config.work, evidence: false });
+  mounted = mountReading(document.querySelector('#reading'), {
+    work: config.work, evidence: false,
+    ...(agentOperated && { clients: ['claude-app', 'manual'] }),
+  });
   bench.reading = mounted.reading;
   const previous = location.hash.slice(1);
   if (/^reading-[a-zA-Z0-9_-]+$/.test(previous)) {
@@ -120,3 +135,14 @@ try {
   document.querySelector('#save-observation').disabled = false;
 } catch (reason) { fail(reason.message); document.querySelector('#new-run').disabled = !config; }
 window.addEventListener('pagehide', () => mounted?.destroy(), { once: true });
+// Agent writes the same canonical local run file as the viewer reads. This
+// polling never launches a client, invokes an Agent, or submits an invitation.
+let refreshPending = false;
+const refresh = agentOperated ? setInterval(async () => {
+  if (!bench.ready || refreshPending) return;
+  refreshPending = true;
+  try { render(await api(`/api/runs/${bench.run.id}`)); }
+  catch (reason) { fail(reason.message); }
+  finally { refreshPending = false; }
+}, 2000) : undefined;
+window.addEventListener('pagehide', () => clearInterval(refresh), { once: true });

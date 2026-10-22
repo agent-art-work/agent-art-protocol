@@ -2,9 +2,11 @@ import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import { randomBytes, randomUUID } from 'node:crypto';
+import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { createRun, addObservation, summarizeRun, validateRun } from './records.mjs';
 import { loadBenchInputs, ROOT } from './inputs.mjs';
+import { caseForRun, observeCase, pathsFor } from './desktop-runner.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ASSETS = new Set(['index.mjs', 'clients.mjs', 'reading.mjs', 'reading-ui.mjs', 'reading.css']);
@@ -17,8 +19,12 @@ const HEADERS = {
 };
 
 /** A local testing instrument, not a runtime service required by reading sites. */
-export function createBenchServer({ inputs, storeDir = path.join(ROOT, '.local/test-bench/runs') }) {
+export function createBenchServer({ inputs, storeDir = path.join(ROOT, '.local/test-bench/runs'), desktopRoot }) {
   const token = randomBytes(32).toString('hex');
+  // Custom standalone stores retain the historical operator-only bench path.
+  // A runner-aware store must name the same canonical run directory as its root.
+  const caseRoot = desktopRoot ?? (path.resolve(storeDir) === path.join(ROOT, '.local/test-bench/runs') ? ROOT : undefined);
+  if (caseRoot && path.resolve(storeDir) !== path.join(path.resolve(caseRoot), '.local/test-bench/runs')) throw Error('Desktop cases and bench observations must share one canonical run store.');
   fs.mkdirSync(storeDir, { recursive: true, mode: 0o700 });
   const runFile = id => {
     if (!ID.test(id)) throw Error('Invalid run ID.');
@@ -39,6 +45,22 @@ export function createBenchServer({ inputs, storeDir = path.join(ROOT, '.local/t
   const json = (response, status, value) => {
     response.writeHead(status, { ...HEADERS, 'Content-Type': 'application/json; charset=utf-8' });
     response.end(JSON.stringify(value));
+  };
+  const appendToCase = async (caseId, observation) => {
+    const mutex = pathsFor(caseId, caseRoot).mutex, deadline = Date.now() + 2000;
+    for (;;) {
+      try { return observeCase(caseId, observation, { root: caseRoot }); }
+      catch (error) {
+        // The lock is acquired before any mutation. Only this known pre-write
+        // contention is safe to retry; validation/lifecycle failures are final.
+        if (error.code !== 'EEXIST' || error.path !== mutex) throw error;
+        if (Date.now() >= deadline) {
+          const busy = Error('Desktop case is busy; this observation was not saved.');
+          busy.statusCode = 409; throw busy;
+        }
+        await delay(10);
+      }
+    }
   };
   const server = http.createServer(async (request, response) => {
     const origin = `http://127.0.0.1:${server.address().port}`;
@@ -70,10 +92,15 @@ export function createBenchServer({ inputs, storeDir = path.join(ROOT, '.local/t
         }
         const previous = readRun(match[1]);
         if (JSON.stringify(previous.manifest) !== JSON.stringify(inputs.manifest)) throw Error('This run belongs to different pinned inputs. Start a new run.');
+        const owner = caseRoot && caseForRun(match[1], { root: caseRoot });
+        if (owner) {
+          const result = await appendToCase(owner.id, value);
+          json(response, 201, result); return;
+        }
         const run = addObservation(previous, value);
         writeRun(run); json(response, 201, { run, summary: summarizeRun(run) }); return;
       }
-      const staticFiles = { '/': 'index.html', '/bench.mjs': 'bench.mjs', '/bench.css': 'bench.css', '/ui-candidate-fixtures.mjs': 'ui-candidate-fixtures.mjs', '/ui-fixtures-014.mjs': 'ui-fixtures-014.mjs', '/ui-feedback-fixtures-014.mjs': 'ui-feedback-fixtures-014.mjs' };
+      const staticFiles = { '/': 'index.html', '/bench.mjs': 'bench.mjs', '/after-dispatch.mjs': 'after-dispatch.mjs', '/bench.css': 'bench.css', '/ui-candidate-fixtures.mjs': 'ui-candidate-fixtures.mjs', '/ui-fixtures-014.mjs': 'ui-fixtures-014.mjs', '/ui-feedback-fixtures-014.mjs': 'ui-feedback-fixtures-014.mjs' };
       let file = staticFiles[url.pathname] && path.join(HERE, staticFiles[url.pathname]);
       if (url.pathname.startsWith('/sdk/') && ASSETS.has(url.pathname.slice(5))) file = path.join(inputs.packageDir, url.pathname.slice(5));
       // Reuse unchanged public synthetic UI fixtures against the current pinned
@@ -85,7 +112,7 @@ export function createBenchServer({ inputs, storeDir = path.join(ROOT, '.local/t
       if (request.method !== 'GET' || !file) { json(response, 404, { error: 'Not found.' }); return; }
       response.writeHead(200, { ...HEADERS, 'Content-Type': TYPES[path.extname(file)] }); response.end(fs.readFileSync(file));
     } catch (error) {
-      json(response, error.code === 'ENOENT' ? 404 : 400, { error: error.code === 'ENOENT' ? 'Run not found.' : error.message });
+      json(response, error.statusCode || (error.code === 'ENOENT' ? 404 : 400), { error: error.code === 'ENOENT' ? 'Run not found.' : error.message });
     }
   });
   return server;

@@ -25,6 +25,10 @@ Read README.md, ARCHITECTURE.md, examples/THOUGHT.md and SOURCE.md first.
   freedom from host/curator intervention. Do not use a blanket genuineness flag.
 - Qualify actual client/runtime paths before claiming support. A copied prompt,
   browser simulation or fixture is not a working curator-to-real-Agent path.
+- Start every Agent-runner development slice by reviewing the standing plan in
+  test-bench/AGENT-RUNNER.md and dated findings in test-bench/AGENT-QUALIFICATION.md.
+  Identify the target phase and acceptance condition; keep changes aligned and
+  report actual checks separately from remaining live qualification.
 - Reading may have zero Participants, Acts and Relations. Receipts are opt-in;
   no persistent evidence storage, enrollment or answer callback is required.
   A handoff request does not establish sending, reading or Agent execution.

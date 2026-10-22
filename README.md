@@ -113,8 +113,13 @@ A requested handoff does not prove arrival, reading or Agent execution.
 The [reading interoperability test bench](test-bench/README.md) adds a local
 developer surface and separate browser/real-client reports for the exact Lab
 invitation. Run `npm run bench`; `npm run bench:browser` checks the installed
-SDK without launching native clients. Desktop observations are operator-assisted
-and retain their source, versions and per-stage outcomes. The
+SDK without launching native clients. The manual desktop
+lane retains operator-assisted observations. The separate
+[Agent-operated runner](test-bench/AGENT-RUNNER.md) applies an
+[execution contract](test-bench/EXECUTION-CONTRACT.md) for qualified environment
+state, bounded authority and visible human assistance. Its guards and synthetic
+checks do not establish reliable live control; results retain their sources,
+versions and individual stage outcomes. The
 [initial findings](test-bench/QUALIFICATION.md) include a narrow default-font
 layout failure, Claude's visible orientation with raw-download failure, and an
 operator-reported Codex draft kept unsent. These extend test infrastructure;

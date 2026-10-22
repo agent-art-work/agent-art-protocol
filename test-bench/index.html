@@ -14,7 +14,8 @@
   <main>
     <section aria-labelledby="invitation-heading"><p class="eyebrow" id="lane-label"></p><h2 id="invitation-heading">Read Agent Art Lab</h2>
       <p id="lane-boundary"></p><div id="reading"></div>
-      <p class="muted">The ChatGPT action uses the Codex desktop URL handler. Record the actual destination mode below. Claude requests Chat.</p>
+      <p class="muted" id="handoff-trace" aria-live="polite">No client click event captured on this page.</p>
+      <p class="muted" id="client-boundary">The ChatGPT action uses the Codex desktop URL handler. Record the actual destination mode below. Claude requests Chat.</p>
       <details><summary>Exact offered public context</summary><pre id="context"></pre></details>
       <details><summary>Build, source and environment</summary><pre id="pins"></pre></details>
     </section>
@@ -22,7 +23,7 @@
       <p id="run-id" class="muted">Preparing pinned inputs…</p><p id="error" role="alert" hidden></p>
       <div class="actions"><a id="download" hidden>Download local run JSON</a><button id="new-run" type="button" disabled>New run</button></div>
       <div id="results" aria-live="polite"></div>
-      <p class="muted">This is a local operator record, not an SDK receipt or independent execution proof. An empty stage means not run. Nothing is sent back by an Agent.</p>
+      <p class="muted" id="record-boundary">This is a local operator record, not an SDK receipt or independent execution proof. An empty stage means not run. Nothing is sent back by an Agent.</p>
     </section>
     <section id="observation-panel" aria-labelledby="observe-heading" hidden><h2 id="observe-heading">Record a desktop observation</h2>
       <p>Use only this run’s new test conversation. Record each stage independently. Do not paste private history or answers.</p>
