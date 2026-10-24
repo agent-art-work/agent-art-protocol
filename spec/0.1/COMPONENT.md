@@ -277,3 +277,28 @@ focus and polite announcements. Both **Copy** and **Copied** must fit the
 recorded 257px container in a 320px viewport with system fonts, in addition
 to the unchanged About/native payload and public-context checks. These are
 browser checks; no new real-client trial or deployment is implied.
+
+## Flat reading alpha: 0.1.5-alpha.2
+
+This separately packaged reading prerelease uses the approved flat design as its
+default. It preserves the `mountReading`
+API and accessible About/native/Copy controls while intentionally removing the
+mark, ⓘ, frame, tail and decorative action icons. The identity link retains its
+accessible name and explanatory title. Historical appearances above describe
+their original immutable packages; they do not prescribe this new geometry.
+
+The SDK owns the flat structure and equal-gap layout. Sites still own placement
+and theme. New supported hooks include `--aap-font-size` (14px),
+`--aap-padding-block` (minimum 4px), `--aap-label-padding-inline` (minimum 12px),
+`--aap-action-gap` (minimum 12px), `--aap-field-tint` (15%),
+`--aap-label-tint` (30%), `--aap-surface` and `--aap-focus`. Complete surface
+colors take precedence over tint derivation. Independent transparent action and
+label fields preserve the background texture without double tinting the label.
+There are no mark/frame/radius effects in this presentation.
+
+Font and gaps do not shrink at mobile widths. Controls can wrap as a group
+when their container cannot fit the full row. The hidden noninteractive sizing
+row reserves Copied width; visible gaps rebalance equally on success, while
+total width stays stable. Sites must qualify their actual container. See the
+[alpha guide](../../releases/0.1.5-alpha.2/README.md) for all hooks, aliases,
+installation and evidence limits. No site deployment or native Send is implied.

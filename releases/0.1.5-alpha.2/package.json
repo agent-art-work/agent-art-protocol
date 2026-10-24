@@ -1,0 +1,61 @@
+{
+  "name": "@agent-art/protocol",
+  "version": "0.1.5-alpha.2",
+  "description": "Ask your Agent: public-document reading handoff with optional bounded evidence.",
+  "private": true,
+  "type": "module",
+  "main": "./index.mjs",
+  "types": "./index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./index.d.mts",
+      "import": "./index.mjs",
+      "default": "./index.mjs"
+    },
+    "./clients": {
+      "types": "./clients.d.mts",
+      "import": "./clients.mjs",
+      "default": "./clients.mjs"
+    },
+    "./reading": {
+      "types": "./reading.d.mts",
+      "import": "./reading.mjs",
+      "default": "./reading.mjs"
+    },
+    "./reading-ui": {
+      "types": "./reading-ui.d.mts",
+      "import": "./reading-ui.mjs",
+      "default": "./reading-ui.mjs"
+    },
+    "./reading.css": "./reading.css"
+  },
+  "files": [
+    "index.mjs",
+    "index.d.mts",
+    "clients.mjs",
+    "clients.d.mts",
+    "README.md",
+    "reading.mjs",
+    "reading.d.mts",
+    "reading-ui.mjs",
+    "reading-ui.d.mts",
+    "reading.css",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "sideEffects": [
+    "./reading.css"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agent-art-work/agent-art-protocol.git",
+    "directory": "protocol"
+  },
+  "homepage": "https://agentart.work/ask-your-agent/",
+  "bugs": {
+    "url": "https://github.com/agent-art-work/agent-art-protocol/issues"
+  }
+}

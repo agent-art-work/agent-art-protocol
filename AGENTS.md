@@ -10,6 +10,11 @@ Read README.md, ARCHITECTURE.md, examples/THOUGHT.md and SOURCE.md first.
   deployment, announcements and new live Agent trials. Runner development is
   on hold while the release is completed.
 
+- The operator also approved committing/pushing and publishing the compatible
+  MIT `v0.1.5-alpha.2` GitHub prerelease, plus messaging AgentArt.work to integrate
+  it. Previous releases remain immutable. No npm publication, site deployment
+  or new live Agent trial is authorized. See releases/0.1.5-alpha.2/RELEASE.md.
+
 - The generic protocol remains candidate. SDK 0.1.4 is a private local Quiet
   field candidate with refined action glyphs and inline Copy feedback for
   public-document reading. Released 0.1.2 and historical 0.1.3 candidate

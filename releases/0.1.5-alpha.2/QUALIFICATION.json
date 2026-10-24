@@ -1,0 +1,311 @@
+{
+  "schema": "agent-art.release-qualification.v1",
+  "version": "0.1.5-alpha.2",
+  "status": "package-and-browser-checks-passed",
+  "package": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.5-alpha.2",
+    "license": "MIT",
+    "private": true,
+    "archive": ".local/releases/0.1.5-alpha.2/archives/eadf80c14307b635bc69589b3a33ac747314b73fdef96cfb05f169337ffcc2b2.tgz",
+    "archiveSha256": "eadf80c14307b635bc69589b3a33ac747314b73fdef96cfb05f169337ffcc2b2",
+    "files": {
+      "LICENSE": "a24950dac6262fa80f4d5a31c50648331487f705cdf950b23c18b10cbf1bf123",
+      "README.md": "84416f7a2e24df1e403de27422d8e871f4cdf9f920c018ab6635d32a8813f9d2",
+      "clients.d.mts": "6230f68aed26c374048dbef7c3793a912413574bb38e1b313b290f2126ea1bee",
+      "clients.mjs": "30e1cc2966731431fec57c14f72f189d472825b8c9f7853dd1d6d55896cb3619",
+      "index.d.mts": "93fd2b703be6ba24092a2f88d396e3164892fed1948e4d4a07034e812ca4dfa7",
+      "index.mjs": "2a0875c38a71e2f034d6fad3a67171cca067e49f7b9feed136cf5aeec668646c",
+      "package.json": "d87cd292adc9d379162de91105bbd3c74a26ae5bcacecf4fad84756de30636cd",
+      "reading-ui.d.mts": "5b0f79bfc8de88a24e1ffd93d6c035f310b816fabdcc7a2e11b5871598cc196d",
+      "reading-ui.mjs": "0a21f85bd48df7d6fef1f2f17cd3caaaf21473cc526b65abf310b6dffea64f7c",
+      "reading.css": "15fee796e60548c1aadb78d1e961ab71ce6985383fb514fbf72e4fd6a0e1b1b3",
+      "reading.d.mts": "2ac5720d227d6bc79403e37fbff7549fb54daf6fd9eb46ec5ef7ea090845b4d2",
+      "reading.mjs": "b34bc62cca3c25a4cadc286adad0f49d4b744cdd4a040fe45f6936ac59db098e"
+    },
+    "installedFilesChecked": 12,
+    "consumer": ".local/releases/0.1.5-alpha.2/consumers/eadf80c14307b635bc69589b3a33ac747314b73fdef96cfb05f169337ffcc2b2",
+    "lockSha256": "cfb2ca71ccdfcd263ba261bb21d0c8e2eb6cb610b48e1afbf102c9c27d1f66ca",
+    "lockIntegrity": "sha512-4tH84yMJi0QaNZHMo9Xrd+RIG8lKg9Wn5HAYknyoVa8/rmayeW3B7Z8aVRROj9TbvqhADsrleFEzbLFk66bLig=="
+  },
+  "runtime": {
+    "base": "0.1.4",
+    "unchangedFiles": [
+      "clients.d.mts",
+      "clients.mjs",
+      "index.d.mts",
+      "index.mjs",
+      "reading-ui.d.mts",
+      "reading.d.mts",
+      "reading.mjs"
+    ],
+    "changedFiles": [
+      "reading-ui.mjs",
+      "reading.css"
+    ],
+    "filesChecked": 9,
+    "testsPassed": 26,
+    "installedExportsAndReceipts": "passed",
+    "types": "passed"
+  },
+  "retained014ArchiveUnchanged": true,
+  "browser": {
+    "status": "browser-checks-passed",
+    "bundleId": "com.google.Chrome",
+    "scenarios": 6,
+    "report": ".local/releases/0.1.5-alpha.2/browser/eadf80c14307b635bc69589b3a33ac747314b73fdef96cfb05f169337ffcc2b2/report.json",
+    "checks": [
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "theme": "light",
+        "passed": true,
+        "checks": {
+          "noDecorations": true,
+          "flat": true,
+          "density": true,
+          "canonicalContext": true,
+          "routes": true,
+          "about": true,
+          "tooltips": true,
+          "actionFieldRight": true,
+          "colors": true,
+          "visible": true,
+          "underline": true,
+          "hover": true,
+          "keyboard": true,
+          "hiddenSizer": true,
+          "noNativeLaunch": true,
+          "behavior": true,
+          "feedback": true,
+          "publicThemeHooks": true,
+          "equalBefore": true,
+          "equalCopied": true,
+          "stableOuter": true,
+          "stableBelow": true,
+          "copied": true,
+          "noVisibleSuccess": true
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "theme": "dark",
+        "passed": true,
+        "checks": {
+          "noDecorations": true,
+          "flat": true,
+          "density": true,
+          "canonicalContext": true,
+          "routes": true,
+          "about": true,
+          "tooltips": true,
+          "actionFieldRight": true,
+          "colors": true,
+          "visible": true,
+          "underline": true,
+          "hover": true,
+          "keyboard": true,
+          "hiddenSizer": true,
+          "noNativeLaunch": true,
+          "equalBefore": true,
+          "equalCopied": true,
+          "stableOuter": true,
+          "stableBelow": true,
+          "copied": true,
+          "noVisibleSuccess": true
+        }
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "light",
+        "passed": true,
+        "checks": {
+          "noDecorations": true,
+          "flat": true,
+          "density": true,
+          "canonicalContext": true,
+          "routes": true,
+          "about": true,
+          "tooltips": true,
+          "actionFieldRight": true,
+          "colors": true,
+          "visible": true,
+          "underline": true,
+          "hover": true,
+          "keyboard": true,
+          "hiddenSizer": true,
+          "noNativeLaunch": true,
+          "equalBefore": true,
+          "equalCopied": true,
+          "stableOuter": true,
+          "stableBelow": true,
+          "copied": true,
+          "noVisibleSuccess": true
+        }
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "passed": true,
+        "checks": {
+          "noDecorations": true,
+          "flat": true,
+          "density": true,
+          "canonicalContext": true,
+          "routes": true,
+          "about": true,
+          "tooltips": true,
+          "actionFieldRight": true,
+          "colors": true,
+          "visible": true,
+          "underline": true,
+          "hover": true,
+          "keyboard": true,
+          "hiddenSizer": true,
+          "noNativeLaunch": true,
+          "equalBefore": true,
+          "equalCopied": true,
+          "stableOuter": true,
+          "stableBelow": true,
+          "copied": true,
+          "noVisibleSuccess": true
+        }
+      },
+      {
+        "viewport": [
+          320,
+          720
+        ],
+        "theme": "light",
+        "passed": true,
+        "checks": {
+          "noDecorations": true,
+          "flat": true,
+          "density": true,
+          "canonicalContext": true,
+          "routes": true,
+          "about": true,
+          "tooltips": true,
+          "actionFieldRight": true,
+          "colors": true,
+          "visible": true,
+          "underline": true,
+          "hover": true,
+          "keyboard": true,
+          "hiddenSizer": true,
+          "noNativeLaunch": true,
+          "equalBefore": true,
+          "equalCopied": true,
+          "stableOuter": true,
+          "stableBelow": true,
+          "copied": true,
+          "noVisibleSuccess": true
+        }
+      },
+      {
+        "viewport": [
+          320,
+          720
+        ],
+        "theme": "dark",
+        "passed": true,
+        "checks": {
+          "noDecorations": true,
+          "flat": true,
+          "density": true,
+          "canonicalContext": true,
+          "routes": true,
+          "about": true,
+          "tooltips": true,
+          "actionFieldRight": true,
+          "colors": true,
+          "visible": true,
+          "underline": true,
+          "hover": true,
+          "keyboard": true,
+          "hiddenSizer": true,
+          "noNativeLaunch": true,
+          "equalBefore": true,
+          "equalCopied": true,
+          "stableOuter": true,
+          "stableBelow": true,
+          "copied": true,
+          "noVisibleSuccess": true
+        }
+      }
+    ],
+    "screenshotInspection": {
+      "status": "passed",
+      "files": [
+        "1440-light-copy.png",
+        "1440-dark-copied.png",
+        "390-light-copy.png",
+        "320-dark-copy.png",
+        "320-dark-copied.png"
+      ],
+      "scope": "Five representative screenshots inspected, not every capture. 288px fixture container wraps without overflow; full row fits 320px container."
+    },
+    "limits": [
+      "Browser-only installed-archive checks; native navigation canceled and nonlocal requests blocked.",
+      "Clipboard and discovery use synthetic fixtures; no real Agent launch, Send, source retrieval or model execution.",
+      "Narrow containers wrap the whole label/action group instead of reducing font/gaps.",
+      "Owned Chrome targets, profile and fixture server closed; user tabs untouched.",
+      "Existing SDK 0.1.4 source/archive/bench pin remain unchanged; no commit/push/publication/deployment."
+    ],
+    "version": "Google Chrome 156.0.8078.47",
+    "behaviorCases": 16,
+    "feedbackLayoutCases": 13,
+    "publicThemeHooks": "passed"
+  },
+  "realClients": {
+    "status": "not-run-for-this-archive"
+  },
+  "limits": [
+    "Local candidate only; no visibility, Git tag, release, registry publication or deployment.",
+    "Seven runtime/type files match 0.1.4; UI and CSS changed. Historical findings do not qualify this archive.",
+    "Package checks establish neither source reading nor Agent execution or intentional participation."
+  ],
+  "archiveBytes": 18235,
+  "qualificationStage": "Pre-publication checks of final archive; GitHub publication is separately operator-approved.",
+  "source": {
+    "ui": "releases/0.1.5-alpha.2/reading-ui.mjs",
+    "css": "releases/0.1.5-alpha.2/reading.css",
+    "origin": "Original local flat-label prototype, adapted for independently transparent fields and MIT alpha packaging. No private prototype dependency."
+  },
+  "knownLimits": [
+    "Default full row needs approximately 319.32 CSS px in qualified system font; narrower containers wrap label/action groups. Custom fonts must be qualified by consumers.",
+    "No alpha.2 site integration or production deployment has been performed here.",
+    "No new real-client arrival, Send, source retrieval, model execution or intention claim."
+  ],
+  "cleanSourceReproduction": {
+    "status": "passed",
+    "withoutHistoricalArchive": true,
+    "withoutPrototypeOrPriorInstalledSDK": true,
+    "sameArchiveSha256": true,
+    "runtimeTestsPassed": 26,
+    "strictTypes": "passed-with-explicit-existing-compiler"
+  },
+  "guideFinalization": {
+    "preApprovalCandidateSha256": "027c2d407414e84c6f0332b85413c632e5cd53777760e6de5dc7a80d3df30eb5",
+    "change": "Preparation-only guide wording finalized; runtime bytes unchanged; final archive rebuilt and independently checked."
+  },
+  "sourceReview": {
+    "newAndUpdatedFilesChecked": 21,
+    "localLinksChecked": 34,
+    "utf8LfNoBom": "passed",
+    "redactedSecretAndPersonalPathScan": "no-findings",
+    "retained014AndAlpha1Sources": "unchanged",
+    "history": "No history rewrite; new changes only."
+  }
+}

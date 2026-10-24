@@ -4,14 +4,16 @@ Connect a website to a visitor's own Agent, and preserve evidence with explicit
 claims and limits. The larger purpose is Agent Art: works in which human and
 Agent intention can both have consequential standing.
 
-**Reading alpha: 0.1.5-alpha.1.**
+**Reading alpha: 0.1.5-alpha.2.**
+The compact flat component preserves the approved AgentArt.work design;
+[alpha.1](releases/0.1.5-alpha.1/RELEASE.md) remains immutable.
 Original project code and documentation use the [MIT License](LICENSE), with
 the [source and third-party boundaries](LICENSING.md) described separately.
-The reading SDK is **`@agent-art/protocol@0.1.5-alpha.1`**; see its
-[integration guide](releases/0.1.5-alpha.1/README.md),
-[release notes](releases/0.1.5-alpha.1/RELEASE-NOTES.md) and
-[qualification](releases/0.1.5-alpha.1/QUALIFICATION.json).
-Get the [GitHub prerelease](https://github.com/agent-art-work/agent-art-protocol/releases/tag/v0.1.5-alpha.1).
+The reading SDK is **`@agent-art/protocol@0.1.5-alpha.2`**; see its
+[integration guide](releases/0.1.5-alpha.2/README.md),
+[release notes](releases/0.1.5-alpha.2/RELEASE-NOTES.md) and
+[qualification](releases/0.1.5-alpha.2/QUALIFICATION.json).
+Get the [GitHub prerelease](https://github.com/agent-art-work/agent-art-protocol/releases/tag/v0.1.5-alpha.2).
 The 0.1.4 source, archive and tag remain unchanged. The broader protocol remains
 candidate; this release qualifies the bounded reading SDK, not a finished standard.
 
@@ -24,7 +26,7 @@ the component, native link preparation, Copy and optional bounded receipts.
 
 | Part | Status and boundary |
 | --- | --- |
-| Reading SDK and component | MIT-licensed 0.1.5-alpha.1 archive; runtime/type bytes retained from 0.1.4; checks tied to the new archive |
+| Reading SDK and component | MIT-licensed 0.1.5-alpha.2 archive; flat UI/CSS with seven retained runtime/type files; checks tied to this archive |
 | Client handoff | ChatGPT desktop route, Claude desktop route and always-visible Copy; actual destination and behavior depend on the installed client |
 | Generic participation protocol | Candidate architecture and contract; wider alpha APIs are experimental |
 | Developer test bench | Browser checks plus experimental Agent-operated desktop testing; full runner qualification has not passed |
@@ -37,19 +39,19 @@ location; it does not establish that an Agent fetched or read it.
 
 ## Try the reading SDK
 
-Download the [versioned SDK archive](https://github.com/agent-art-work/agent-art-protocol/releases/download/v0.1.5-alpha.1/agent-art-protocol-0.1.5-alpha.1.tgz),
+Download the [versioned SDK archive](https://github.com/agent-art-work/agent-art-protocol/releases/download/v0.1.5-alpha.2/agent-art-protocol-0.1.5-alpha.2.tgz),
 place it in your application's `vendor/` directory, then install with that
 application's package manager. Package tooling requires Node.js 22 or later.
 
 ```sh
-npm install ./vendor/agent-art-protocol-0.1.5-alpha.1.tgz --ignore-scripts
+npm install ./vendor/agent-art-protocol-0.1.5-alpha.2.tgz --ignore-scripts
 ```
 
 Keep the dependency lock. Registry publication is not selected; install the
 release archive. It has no runtime dependencies or lifecycle scripts.
 Its retained SHA-256 is
-`5989cfb0eec3fd35df4a583df460696a35643c83a190708458e8b8b0796f7f55`.
-The [alpha qualification](releases/0.1.5-alpha.1/QUALIFICATION.json) records
+`eadf80c14307b635bc69589b3a33ac747314b73fdef96cfb05f169337ffcc2b2`.
+The [alpha qualification](releases/0.1.5-alpha.2/QUALIFICATION.json) records
 its exact inputs. The package retains `private: true` to prevent accidental
 npm publication; archive installs work normally. A changed package needs its
 own archive and qualification. Earlier
@@ -92,7 +94,7 @@ The reading profile requires an exact retained text snapshot and at least one
 public HTTPS DNS source reference. The SDK validates URL form without fetching
 sources or checking DNS reachability.
 
-The component has a separate identity/About link—mark, **Ask your Agent ⓘ**—and
+The flat component has a separate **Ask your Agent** identity/About link and
 three actions: **ChatGPT**, **Claude**, **Copy**. New-conversation links prepare
 an unsent draft; the user reviews and sends it. Existing conversations use
 Copy and manual paste. Links do not detect installed apps or bypass OS/client
@@ -100,10 +102,10 @@ permissions. The ChatGPT-labelled action retains the `codex://new` desktop
 route; it does not force Chat, Work or Codex mode. Native clients can change
 presentation or routing; qualification is specific to the observed versions.
 
-The SDK owns the mark, structure and accessible behavior. Sites control theme
+The SDK owns the component structure and accessible behavior. Sites control theme
 and placement through the [supported CSS variables](spec/0.1/COMPONENT.md).
 For static sites, headless integration, manual fallback and receipt verification,
-see the [alpha SDK guide](releases/0.1.5-alpha.1/README.md) and
+see the [alpha SDK guide](releases/0.1.5-alpha.2/README.md) and
 [reading contract](spec/0.1/READING.md).
 
 | Import | Use |
@@ -200,15 +202,15 @@ four-site patches are isolated integration records, not current deployments
 or support claims. The Lab owner separately released its site component;
 that does not establish a protocol package release.
 
-Release preparation is the current priority; runner development and new live
-trials are on hold. [Operations copy](releases/0.1.5-alpha.1/OPERATIONS.md)
-and the [release record](releases/0.1.5-alpha.1/RELEASE.md) support launch
+Reading adoption is the next step; runner development and new live trials
+remain on hold. [Operations copy](releases/0.1.5-alpha.2/OPERATIONS.md)
+and the [release record](releases/0.1.5-alpha.2/RELEASE.md) support launch
 coordination. Announcements and site deployment remain with their owners.
 
 Original project code and documentation use [MIT](LICENSE). See
 [licensing scope](LICENSING.md) for imported material, attribution and remaining
 rights review. Historical tags and archives remain immutable; the retained
 0.1.4 archive predates this adoption and contains no MIT license file. The
-prepared 0.1.5-alpha.1 package includes MIT and new metadata with its own
-archive and checks. Repository visibility, GitHub release, registry publication
-and site deployment are separate decisions.
+0.1.5-alpha.2 package includes MIT and its own guide, archive and checks.
+Repository visibility, GitHub release, registry publication and site deployment
+are separate decisions.
