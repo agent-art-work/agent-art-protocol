@@ -1,0 +1,83 @@
+{
+  "schema": "agent-art-bench/reading-profile-checks/1",
+  "benchTests": {
+    "passed": 376,
+    "failed": 0,
+    "scope": "Synthetic guards, loopback/subprocess fixtures; no native qualification."
+  },
+  "profiles": [
+    {
+      "profileId": "lab-reading-ebef0c1f9ce1",
+      "manifest": {
+        "id": "lab-reading-ebef0c1f9ce1",
+        "workId": "https://agentart.work/#reading",
+        "workVersion": "1",
+        "sdkVersion": "0.1.4",
+        "archiveSha256": "e035ac72091956dc3fa76acb0359876f6137ccca01a7551e4f675f1ca037d430",
+        "contextSha256": "ebef0c1f9ce1c03a6028f840086b9ff079cb3fc2df53d79e6053b9b4f6a8bde6",
+        "contextBytes": 983
+      },
+      "reportSha256": "801313e9862290810fdd06d1d5a106105a9c35862070db0c8743edbdc862f2e2",
+      "browser": {
+        "application": "Google Chrome stable",
+        "bundleId": "com.google.Chrome",
+        "identityVerifiedBeforeLaunch": true,
+        "disposableOwnedProfile": true,
+        "version": "Chrome/156.0.8078.47"
+      },
+      "scenarioCount": 11,
+      "passed": true,
+      "realClientResults": "not-run",
+      "cleanup": {
+        "ownedChromeClosed": true,
+        "ownServerClosed": true,
+        "disposableProfileRemoved": true,
+        "userTabsAccessed": false
+      },
+      "separateVisualInspection": {
+        "imageSha256": "3750b3775fc26be9e1e8706e4bed03a45ad70b7c555c2e90609d71a2045339b2",
+        "scene": "browser-320-light.png",
+        "finding": "Public reading heading and compact component rendered; native-client execution not established."
+      }
+    },
+    {
+      "profileId": "inshell-reading-07a52bd5bc67",
+      "manifest": {
+        "id": "inshell-reading-07a52bd5bc67",
+        "workId": "https://inshell.art/#reading",
+        "workVersion": "1",
+        "sdkVersion": "0.1.4",
+        "archiveSha256": "e035ac72091956dc3fa76acb0359876f6137ccca01a7551e4f675f1ca037d430",
+        "contextSha256": "07a52bd5bc67797b64612f961368c3872bf46235f99c215b4a1c9d39dd027ea9",
+        "contextBytes": 459
+      },
+      "reportSha256": "60e56e476e69d1183e420aaa62f8fde93db5d44d55ca306179b6884a315bdd22",
+      "browser": {
+        "application": "Google Chrome stable",
+        "bundleId": "com.google.Chrome",
+        "identityVerifiedBeforeLaunch": true,
+        "disposableOwnedProfile": true,
+        "version": "Chrome/156.0.8078.47"
+      },
+      "scenarioCount": 11,
+      "passed": true,
+      "realClientResults": "not-run",
+      "cleanup": {
+        "ownedChromeClosed": true,
+        "ownServerClosed": true,
+        "disposableProfileRemoved": true,
+        "userTabsAccessed": false
+      },
+      "separateVisualInspection": {
+        "imageSha256": "329048f06b46bfb2ab828fd130a9f7b2e8719c6cf6016aaaaa2596af8ee621f8",
+        "scene": "browser-1440-dark.png",
+        "finding": "Public reading heading and compact component rendered; native-client execution not established."
+      }
+    }
+  ],
+  "limits": [
+    "Developer-authored public reading fixtures; no production consumer deployment.",
+    "Browser native links canceled, OS clipboard isolated, real-client results not run in this lane.",
+    "Guest-native Lab results are recorded separately."
+  ]
+}

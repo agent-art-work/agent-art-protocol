@@ -283,8 +283,8 @@ export async function runBrowserChecks({ inputs, outputDir, firstScenarioOnly = 
   const profile = path.join(temporary, 'profile');
   const server = createBenchServer({ inputs, storeDir: path.join(temporary, 'runs') });
   const runs = [];
-  const quietCandidate = ['0.1.3', '0.1.4'].includes(inputs.manifest.sdkVersion);
-  const feedbackCandidate = inputs.manifest.sdkVersion === '0.1.4';
+  const quietCandidate = ['0.1.3', '0.1.4', '0.1.5-alpha.1'].includes(inputs.manifest.sdkVersion);
+  const feedbackCandidate = ['0.1.4', '0.1.5-alpha.1'].includes(inputs.manifest.sdkVersion);
   const scenarios = [
     { width: 1440, height: 1000, theme: 'light', coarse: false },
     { width: 1440, height: 1000, theme: 'dark', coarse: false },

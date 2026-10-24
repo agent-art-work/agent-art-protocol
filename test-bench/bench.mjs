@@ -73,6 +73,7 @@ document.querySelector('#reading').addEventListener('click', event => {
   const anchor = event.target.closest('.aap-reading-agent');
   if (!anchor) return;
   if (lane === 'browser') event.preventDefault();
+  const dispatchRunId = bench.run?.id;
   const entry = { client: anchor.dataset.client, cancelled: event.defaultPrevented, isTrusted: event.isTrusted === true, lane, at: new Date().toISOString() };
   bench.requested.push(entry);
   handoffTrace.textContent = 'Client click event captured; waiting for dispatch to finish.';
@@ -80,6 +81,14 @@ document.querySelector('#reading').addEventListener('click', event => {
     entry.cancelled = cancelled;
     entry.isTrusted = facts.isTrusted;
     handoffTrace.textContent = formatHandoffTrace(entry);
+    // Retain only this bounded settled event. A native launch dialog can hide
+    // the page; the runner reads this separate browser receipt through the
+    // owned loopback server. It is not a native-arrival or execution assertion.
+    if (!dispatchRunId) { fail('No prepared bench run was available for this captured click.'); return; }
+    api(`/api/runs/${dispatchRunId}/dispatches`, {
+      client: entry.client, lane: entry.lane, cancelled: entry.cancelled,
+      isTrusted: entry.isTrusted, at: entry.at,
+    }).catch(reason => fail(reason.message));
     if (lane === 'desktop' && !entry.cancelled) append({ lane: 'browser', requestedClient: entry.client, claim: 'handoff-requested', status: 'requested', source: 'browser-automation', material: { kind: 'browser-event', ref: 'component-native-click' } }).catch(reason => fail(reason.message));
   });
 }, true);
@@ -116,6 +125,8 @@ document.querySelector('#compare').addEventListener('click', async () => {
 try {
   config = await api('/api/config');
   bench.manifest = config.manifest; bench.context = config.context;
+  document.title = `${config.work.title} · Protocol test bench`;
+  document.querySelector('#invitation-heading').textContent = config.work.title;
   document.querySelector('#sdk-version').textContent = config.manifest.sdkVersion;
   document.querySelector('#context').textContent = config.context;
   document.querySelector('#pins').textContent = JSON.stringify({ manifest: config.manifest, source: config.source, environment: config.environment }, null, 2);

@@ -1,0 +1,33 @@
+{
+  "schema": "agent-art-bench/reading-profile/1",
+  "id": "inshell-reading",
+  "work": {
+    "id": "https://inshell.art/#reading",
+    "version": "1",
+    "title": "Read Inshell",
+    "purpose": "Discuss Inshell public documentation inside the visitor’s own Agent.",
+    "capabilities": [
+      "handoff"
+    ],
+    "conditions": {
+      "contributionReturn": false,
+      "questionsAndAnswers": "Remain inside the visitor’s Agent.",
+      "readingPolicy": "Read Inshell's public knowledge index and follow its usage and answer policy: https://inshell.art/docs/agent-index.json\n\nUse it as the discovery map for Inshell's public site. For each question, fetch only the relevant indexed documentation, product context, release, handoff, or live read-only source.\n\nIf you cannot fetch a required source, say so. Do not guess.\n\nWhen ready, reply:\nI've read Inshell's public knowledge index. Ask me anything about Inshell."
+    },
+    "context": [
+      {
+        "id": "reading-invitation",
+        "kind": "text",
+        "mode": "snapshot",
+        "text": "Read Inshell's public knowledge index and follow its usage and answer policy: https://inshell.art/docs/agent-index.json\n\nUse it as the discovery map for Inshell's public site. For each question, fetch only the relevant indexed documentation, product context, release, handoff, or live read-only source.\n\nIf you cannot fetch a required source, say so. Do not guess.\n\nWhen ready, reply:\nI've read Inshell's public knowledge index. Ask me anything about Inshell."
+      },
+      {
+        "id": "public-index",
+        "kind": "reference",
+        "mode": "live",
+        "url": "https://inshell.art/docs/agent-index.json"
+      }
+    ]
+  },
+  "contextSha256": "07a52bd5bc67797b64612f961368c3872bf46235f99c215b4a1c9d39dd027ea9"
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "agent-art-bench/three-case-qualification/1",
+  "recordedAt": "2026-10-24T06:16:56.320238+00:00",
+  "scope": "Three explicitly authorized public Lab submissions in the dedicated guest; one Send per case.",
+  "sdkVersion": "0.1.4",
+  "archiveSha256": "e035ac72091956dc3fa76acb0359876f6137ccca01a7551e4f675f1ca037d430",
+  "contextSha256": "ebef0c1f9ce1c03a6028f840086b9ff079cb3fc2df53d79e6053b9b4f6a8bde6",
+  "runnerInputPinsSha256": "20434a0a5703429b686c84b966d45edc9568da888e5b48799b71aa18bd883094",
+  "runnerInputsUnchanged": true,
+  "cases": [
+    {
+      "caseId": "reading-trial-c7e42e2f-3265-4002-8f8e-5896eedf5139",
+      "reportSha256": "de484d5f65927736fdda9be1840833d89ac41d0b528498893b0b70a81c57f6e4",
+      "contractSha256": "63bbbdde77d62d67197831114cc58135ab48b589c4e9229e3e926e637f3a1d42",
+      "passed": false,
+      "interactionPassed": true,
+      "outcome": "reading-interaction-completed-source-access-unobserved",
+      "browserPassed": true,
+      "sendAttempts": 1,
+      "submission": "invitation-observed-under-selected-policy",
+      "sourceAccess": "not-observed",
+      "reply": "observed",
+      "cleanup": {
+        "browserTabs": "closed",
+        "claudeDraft": "submitted-conversation-retained"
+      }
+    },
+    {
+      "caseId": "reading-trial-c7222de0-2ee6-41a3-a16a-f2a2d72fd0f5",
+      "reportSha256": "26960dd3c4731a9b792371d87605e84f8f57fc9657b526e2aa25de175474d5c4",
+      "contractSha256": "844879f37f4f24833f0e5a9745c0dbafaaeb00affb22326dcf872e8734190c6e",
+      "passed": true,
+      "interactionPassed": true,
+      "outcome": "reading-interaction-completed-source-access-failed",
+      "browserPassed": true,
+      "sendAttempts": 1,
+      "submission": "invitation-observed-under-selected-policy",
+      "sourceAccess": "failed",
+      "reply": "observed",
+      "cleanup": {
+        "browserTabs": "closed",
+        "claudeDraft": "submitted-conversation-retained"
+      }
+    },
+    {
+      "caseId": "reading-trial-7940c2ee-252a-4b18-8d8d-e61e6a3cd812",
+      "reportSha256": "949cb11f2cf157fe7371843157dcc6931afebbf9e0fd090bef4c70f87e8fbb0d",
+      "contractSha256": "2f76832b5ae918c1e8bcb6ccee498f4ea2eb9219b65e4e093d6c290416518f99",
+      "passed": false,
+      "interactionPassed": true,
+      "outcome": "reading-interaction-completed-source-access-unobserved",
+      "browserPassed": true,
+      "sendAttempts": 1,
+      "submission": "invitation-observed-under-selected-policy",
+      "sourceAccess": "not-observed",
+      "reply": "observed",
+      "cleanup": {
+        "browserTabs": "blocked",
+        "claudeDraft": "submitted-conversation-retained"
+      }
+    }
+  ],
+  "threeConsecutiveCasesPassed": false,
+  "limits": [
+    "Controller, CUA, guest OS, host authority and provider are trusted.",
+    "GUI evidence does not establish model-received bytes, model origin, comprehension or private intention.",
+    "Source access and completed orientation are separate; assistant prose does not establish acquisition.",
+    "No Codex input, SDK change or deployment."
+  ]
+}

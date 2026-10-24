@@ -7,11 +7,23 @@ import { fileURLToPath } from 'node:url';
 import { createRun, addObservation, summarizeRun, validateRun } from './records.mjs';
 import { loadBenchInputs, ROOT } from './inputs.mjs';
 import { caseForRun, observeCase, pathsFor } from './desktop-runner.mjs';
+import { writeAtomic } from './authority-store.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ASSETS = new Set(['index.mjs', 'clients.mjs', 'reading.mjs', 'reading-ui.mjs', 'reading.css']);
 const TYPES = { '.html': 'text/html; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8' };
 const ID = /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,99}$/;
+const ISO_DATE = /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/u;
+const timestamp = value => typeof value === 'string' && ISO_DATE.test(value)
+  && Number.isFinite(Date.parse(value)) && new Date(value).toISOString() === value;
+const exactFields = (value, fields) => value !== null && typeof value === 'object' && !Array.isArray(value)
+  && Object.keys(value).length === fields.length && fields.every(key => Object.hasOwn(value, key));
+const DISPATCH_FIELDS = ['client', 'lane', 'cancelled', 'isTrusted', 'at'];
+function validateDispatch(value) {
+  if (!exactFields(value, DISPATCH_FIELDS) || !['claude-app', 'codex-app'].includes(value.client)
+      || !['browser', 'desktop'].includes(value.lane) || typeof value.cancelled !== 'boolean'
+      || typeof value.isTrusted !== 'boolean' || !timestamp(value.at)) throw Error('Use only bounded dispatch event fields. No transcript, URL or target text.');
+}
 const HEADERS = {
   'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'no-referrer',
@@ -41,6 +53,36 @@ export function createBenchServer({ inputs, storeDir = path.join(ROOT, '.local/t
     const temporary = destination + `.${randomBytes(8).toString('hex')}.tmp`;
     try { fs.writeFileSync(temporary, JSON.stringify(run, null, 2) + '\n', { mode: 0o600, flag: 'wx' }); fs.renameSync(temporary, destination); }
     finally { fs.rmSync(temporary, { force: true }); }
+  };
+  const dispatchFile = id => path.join(storeDir, `${id}.dispatches.json`);
+  const readDispatches = run => {
+    if (JSON.stringify(run.manifest) !== JSON.stringify(inputs.manifest)) throw Error('This run belongs to different pinned inputs. Start a new run.');
+    const file = dispatchFile(run.id);
+    const value = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8'))
+      : { provenance: 'owned-bench-run-receipt', runId: run.id, manifest: run.manifest, dispatches: [] };
+    if (!exactFields(value, ['provenance', 'runId', 'manifest', 'dispatches'])
+      || value.provenance !== 'owned-bench-run-receipt' || value.runId !== run.id
+      || JSON.stringify(value.manifest) !== JSON.stringify(run.manifest)
+      || !Array.isArray(value.dispatches) || value.dispatches.length > 4) throw Error('Stored bounded dispatch receipt failed validation.');
+    value.dispatches.forEach((entry, index) => {
+      if (!exactFields(entry, [...DISPATCH_FIELDS, 'recordedAt', 'ordinal']) || !timestamp(entry.recordedAt)
+          || entry.ordinal !== index + 1) throw Error('Stored bounded dispatch receipt failed validation.');
+      validateDispatch(Object.fromEntries(DISPATCH_FIELDS.map(key => [key, entry[key]])));
+    });
+    return value;
+  };
+  const appendDispatch = (run, value) => {
+    validateDispatch(value);
+    const age = Date.now() - Date.parse(value.at);
+    if (age < -30000 || age > 120000 || Date.parse(value.at) < Date.parse(run.startedAt) - 30000) throw Error('Dispatch event timestamp is outside the bounded recording interval.');
+    const record = readDispatches(run);
+    if (record.dispatches.length >= 4) throw Error('This run has consumed its four dispatch receipt slots.');
+    const entry = { ...value, recordedAt: new Date().toISOString(), ordinal: record.dispatches.length + 1 };
+    const result = { ...record, dispatches: [...record.dispatches, entry] };
+    // This is page/server-attributed browser evidence, never an authority claim
+    // or independent proof that isTrusted, cancellation or native arrival is true.
+    writeAtomic(dispatchFile(run.id), result);
+    return result;
   };
   const json = (response, status, value) => {
     response.writeHead(status, { ...HEADERS, 'Content-Type': 'application/json; charset=utf-8' });
@@ -74,7 +116,10 @@ export function createBenchServer({ inputs, storeDir = path.join(ROOT, '.local/t
       if (request.method === 'GET' && url.pathname === '/api/config') {
         json(response, 200, { manifest: inputs.manifest, work: inputs.work, context: inputs.context, source: inputs.source, environment: inputs.environment, token }); return;
       }
-      const match = url.pathname.match(/^\/api\/runs\/([a-zA-Z0-9_-]+)(\/observations)?$/);
+      const match = url.pathname.match(/^\/api\/runs\/([a-zA-Z0-9_-]+)(\/observations|\/dispatches)?$/);
+      if (request.method === 'GET' && match?.[2] === '/dispatches') {
+        json(response, 200, readDispatches(readRun(match[1]))); return;
+      }
       if (request.method === 'GET' && match && !match[2]) {
         const run = readRun(match[1]); json(response, 200, { run, summary: summarizeRun(run) }); return;
       }
@@ -92,6 +137,9 @@ export function createBenchServer({ inputs, storeDir = path.join(ROOT, '.local/t
         }
         const previous = readRun(match[1]);
         if (JSON.stringify(previous.manifest) !== JSON.stringify(inputs.manifest)) throw Error('This run belongs to different pinned inputs. Start a new run.');
+        if (match[2] === '/dispatches') {
+          json(response, 201, appendDispatch(previous, value)); return;
+        }
         const owner = caseRoot && caseForRun(match[1], { root: caseRoot });
         if (owner) {
           const result = await appendToCase(owner.id, value);

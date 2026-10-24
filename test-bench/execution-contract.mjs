@@ -14,6 +14,13 @@ export const NO_SEND_LANE = 'claude-desktop-no-send';
 export const EXECUTION_QUALIFICATION_SCHEMA = 'agent-art-bench/execution-qualification/1';
 export const EXECUTION_INSPECTION_SCHEMA = 'agent-art-bench/execution-inspection/1';
 export const EXECUTION_MAX_CAPTURE_AGE_MS = 30000;
+// Explicit operator-selected exception for public, zero-Send diagnostics only.
+// Absence preserves the historical descriptor bytes and 30-second default.
+export const NO_SEND_REVIEWED_60S_PROFILE = 'no-send-reviewed-60s-v1';
+export function executionCaptureMaxAgeMs(contract) {
+  validateExecutionContract(contract);
+  return contract.captureProfile?.maximumAgeMs ?? EXECUTION_MAX_CAPTURE_AGE_MS;
+}
 export const CHROME_BUNDLE_ID = 'com.google.Chrome';
 
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/u;
@@ -113,14 +120,23 @@ export function createNoSendExecutionContract(input = {}) {
 }
 
 function createContract(input, noSend) {
-  shape(input, ['manifest', 'environment', 'timeoutMs']);
+  shape(input, ['manifest', 'environment', 'timeoutMs', 'captureProfile', 'cleanupOrigin', 'focusOnly'], ['manifest', 'environment', 'timeoutMs']);
   const { manifest, environment, timeoutMs } = input;
+  if (Object.hasOwn(input, 'captureProfile') && (!noSend || input.captureProfile !== NO_SEND_REVIEWED_60S_PROFILE)) fail('Only the explicit public no-Send 60-second capture profile is supported.');
+  if (Object.hasOwn(input, 'focusOnly') && (!noSend || input.focusOnly !== true || input.cleanupOrigin)) fail('Only a separate no-Send focus-only scope is supported.');
+  if (Object.hasOwn(input, 'cleanupOrigin')) {
+    shape(input.cleanupOrigin, ['caseId', 'contractSha256']);
+    if (!noSend || !safeId(input.cleanupOrigin.caseId) || !digest(input.cleanupOrigin.contractSha256)) fail('A bound no-Send cleanup origin is required.');
+  }
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs < 1000 || timeoutMs > 1800000) fail('A bounded execution duration is required.');
   const descriptor = { schema: EXECUTION_SCHEMA, lane: noSend ? NO_SEND_LANE : EXECUTION_LANE,
     configurationSha256: executionConfigurationSha256(environment), payload: payload(manifest),
     authority: { source: 'explicit-user-direction', publicContextOnly: true, freshConversation: true,
       maximumHandoffs: noSend ? 0 : 1, maximumSends: noSend ? 0 : 1, maximumDurationMs: timeoutMs },
-    ...(noSend && { diagnostic: { maximumFocuses: 1, maximumTypes: 1, maximumClears: 1, markerSha256: manifest.contextSha256 } }),
+    ...(noSend && { diagnostic: { maximumFocuses: input.cleanupOrigin ? 0 : 1, maximumTypes: input.cleanupOrigin || input.focusOnly ? 0 : 1, maximumClears: input.focusOnly ? 0 : 1, markerSha256: manifest.contextSha256,
+      ...(input.focusOnly && { purpose: 'focus-recovery' }),
+      ...(input.cleanupOrigin && { cleanupOrigin: { ...input.cleanupOrigin } }) } }),
+    ...(input.captureProfile && { captureProfile: { id: NO_SEND_REVIEWED_60S_PROFILE, maximumAgeMs: 60000 } }),
     boundaries: { codexDesktop: 'excluded', sdkChanges: 'excluded', deployment: 'excluded',
       permissionExpansion: 'human-required', authentication: 'human-required' } };
   return freeze({ ...descriptor, contractSha256: hash(descriptor) });
@@ -128,7 +144,12 @@ function createContract(input, noSend) {
 
 export function validateExecutionContract(contract) {
   const noSend = contract?.lane === NO_SEND_LANE;
-  shape(contract, ['schema', 'lane', 'configurationSha256', 'payload', 'authority', 'boundaries', 'contractSha256', ...(noSend ? ['diagnostic'] : [])]);
+  const fields = ['schema', 'lane', 'configurationSha256', 'payload', 'authority', 'boundaries', 'contractSha256', ...(noSend ? ['diagnostic'] : [])];
+  shape(contract, [...fields, 'captureProfile'], fields);
+  if (Object.hasOwn(contract, 'captureProfile')) {
+    shape(contract.captureProfile, ['id', 'maximumAgeMs']);
+    if (!noSend || contract.captureProfile.id !== NO_SEND_REVIEWED_60S_PROFILE || contract.captureProfile.maximumAgeMs !== 60000) fail('Only the explicit public no-Send 60-second capture profile is supported.');
+  }
   if (contract.schema !== EXECUTION_SCHEMA || ![EXECUTION_LANE, NO_SEND_LANE].includes(contract.lane) || !digest(contract.configurationSha256)
       || !digest(contract.contractSha256)) fail('Unsupported execution contract.');
   payload(contract.payload);
@@ -141,8 +162,15 @@ export function validateExecutionContract(contract) {
       || ['codexDesktop', 'sdkChanges', 'deployment'].some(key => b[key] !== 'excluded')
       || b.permissionExpansion !== 'human-required' || b.authentication !== 'human-required') fail('The bounded execution authority has changed.');
   if (noSend) {
-    shape(contract.diagnostic, ['maximumFocuses', 'maximumTypes', 'maximumClears', 'markerSha256']);
-    if (['maximumFocuses', 'maximumTypes', 'maximumClears'].some(key => contract.diagnostic[key] !== 1)
+    shape(contract.diagnostic, ['maximumFocuses', 'maximumTypes', 'maximumClears', 'markerSha256', 'cleanupOrigin', 'purpose'], ['maximumFocuses', 'maximumTypes', 'maximumClears', 'markerSha256']);
+    const origin = contract.diagnostic.cleanupOrigin;
+    const focusOnly = Object.hasOwn(contract.diagnostic, 'purpose');
+    if (focusOnly && (contract.diagnostic.purpose !== 'focus-recovery' || origin)) fail('Invalid focus-only diagnostic scope.');
+    if (Object.hasOwn(contract.diagnostic, 'cleanupOrigin')) {
+      shape(origin, ['caseId', 'contractSha256']);
+      if (!safeId(origin.caseId) || !digest(origin.contractSha256)) fail('Invalid cleanup origin.');
+    }
+    if (contract.diagnostic.maximumFocuses !== (origin ? 0 : 1) || contract.diagnostic.maximumTypes !== (origin || focusOnly ? 0 : 1) || contract.diagnostic.maximumClears !== (focusOnly ? 0 : 1)
       || contract.diagnostic.markerSha256 !== contract.payload.contextSha256) fail('The bounded diagnostic authority has changed.');
   }
   const { contractSha256, ...descriptor } = contract;
@@ -216,9 +244,10 @@ export function inspectExecution(contract, qualification, snapshot, assessment, 
   try { validateExecutionQualification(contract, qualification); } catch { qualificationValid = false; }
   const q = qualificationValid ? qualification.evidence : undefined;
   let captureValid = true;
-  try { validateClaudeSnapshot(snapshot, { now: now.value, maxAgeMs: EXECUTION_MAX_CAPTURE_AGE_MS }); } catch { captureValid = false; }
+  const maxAgeMs = executionCaptureMaxAgeMs(contract);
+  try { validateClaudeSnapshot(snapshot, { now: now.value, maxAgeMs }); } catch { captureValid = false; }
   const captureTime = isPlainRecord(snapshot) && timestamp(snapshot.capturedAt) ? Date.parse(snapshot.capturedAt) : NaN;
-  const stale = Number.isFinite(captureTime) && (captureTime > now.value || now.value - captureTime > EXECUTION_MAX_CAPTURE_AGE_MS);
+  const stale = Number.isFinite(captureTime) && (captureTime > now.value || now.value - captureTime > maxAgeMs);
   const reason = !qualificationValid ? 'qualification-not-established'
     : settings.generation !== q.generation || assessment.generation !== settings.generation ? 'generation-differs'
     : assessment.controllerId !== q.controllerId ? 'controller-differs'
@@ -263,7 +292,7 @@ export function validateExecutionInspection(contract, qualification, inspection,
       || e.inputOwnership !== 'exclusive' || e.visualAgreement !== 'agrees'
       || e.attribution !== 'controller' || e.windowBinding !== 'controller-attributed'
       || Date.parse(e.capturedAt) < Date.parse(e.qualifiedAt) || Date.parse(e.assessedAt) < Date.parse(e.capturedAt)
-      || now.value < Date.parse(e.assessedAt) || now.value - Date.parse(e.capturedAt) > EXECUTION_MAX_CAPTURE_AGE_MS
+      || now.value < Date.parse(e.assessedAt) || now.value - Date.parse(e.capturedAt) > executionCaptureMaxAgeMs(contract)
       || now.value - Date.parse(e.qualifiedAt) > contract.authority.maximumDurationMs) fail('A fresh successful bound execution inspection is required.');
   return true;
 }

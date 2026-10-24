@@ -4,6 +4,9 @@ import { validateClaudeSnapshot } from './desktop-ui.mjs';
 import { isPlainRecord } from './plain-record.mjs';
 
 const SCHEMA = 'agent-art-bench/claude-readiness/1';
+// This opt-in identifies the observed merged conversation surface for no-Send
+// diagnostics only. It does not establish legacy Chat or restrict Claude's tools.
+export const CLAUDE_UNIFIED_NO_SEND_PROFILE = 'claude-unified-no-send-v1';
 const sha256 = value => createHash('sha256').update(value, 'utf8').digest('hex');
 const role = value => String(value || '').replace(/^AX/u, '').replace(/[\s_-]/gu, '').toLowerCase();
 const fail = message => { throw new TypeError(message); };
@@ -44,7 +47,24 @@ function newChatUrl(value) {
   } catch { return false; }
 }
 
-function assess(snapshot, { scopeIndex, composerIndex, claudeModeIndex, codeModeIndex, freshChat }) {
+/** Select positive public controls from one actual owned main region. */
+export function selectUnifiedNoSendControls(snapshot, scopeIndex) {
+  const scope = selected(snapshot, scopeIndex);
+  const byIndex = new Map(snapshot.nodes.map(node => [node.index, node]));
+  const one = predicate => {
+    const matches = snapshot.nodes.filter(node => node.visible && node.enabled && under(node, scope, byIndex) && predicate(node));
+    if (matches.length !== 1) fail('Unique scoped unified no-Send controls required.');
+    return matches[0].index;
+  };
+  return { modeProfile: CLAUDE_UNIFIED_NO_SEND_PROFILE,
+    unifiedHeadingIndex: one(node => role(node.role) === 'heading' && node.label === 'New session'),
+    projectControlIndex: one(node => role(node.role) === 'popupbutton' && node.label === 'Project or folder'),
+    permissionControlIndex: one(node => role(node.role) === 'popupbutton' && node.label === 'Manual'),
+    browserControlIndex: one(node => role(node.role) === 'togglebutton' && node.label === 'Browser' && node.value === '0') };
+}
+
+function assess(snapshot, { scopeIndex, composerIndex, claudeModeIndex, codeModeIndex, freshChat,
+  modeProfile, chatTabIndex, coworkTabIndex, unifiedHeadingIndex, projectControlIndex, permissionControlIndex, browserControlIndex }) {
   const scope = selected(snapshot, scopeIndex), composer = selected(snapshot, composerIndex);
   const claude = selected(snapshot, claudeModeIndex), code = selected(snapshot, codeModeIndex);
   if (!['group', 'section', 'article', 'container'].includes(role(scope.role))) fail('Select the owned main Chat region.');
@@ -59,11 +79,39 @@ function assess(snapshot, { scopeIndex, composerIndex, claudeModeIndex, codeMode
     || /^(?:you|claude) said:/iu.test(node.label));
   const streaming = scoped.some(node => (role(node.role) === 'button' && /^(?:stop|stop response|stop generating)$/iu.test(node.label))
     || /^(?:currently streaming message|claude is responding)$/iu.test(node.label));
-  const modes = role(claude.role) === 'radiobutton' && claude.label === 'Claude' && claude.enabled && claude.value === '1'
+  // The default/legacy profiles still refuse this different surface. Only a
+  // separately named no-Send profile may positively identify the merged UI.
+  const sessionSurface = scoped.some(node => role(node.role) === 'heading' && node.label === 'New session'
+    || role(node.role) === 'popupbutton' && node.label === 'Project or folder');
+  if (modeProfile !== undefined && !['claude-chat-cowork-v1', CLAUDE_UNIFIED_NO_SEND_PROFILE].includes(modeProfile)) fail('Select a supported named mode profile.');
+  const named = modeProfile === 'claude-chat-cowork-v1';
+  const unified = modeProfile === CLAUDE_UNIFIED_NO_SEND_PROFILE;
+  let unifiedSelected = false;
+  if (unified) {
+    const actual = selectUnifiedNoSendControls(snapshot, scopeIndex);
+    unifiedSelected = actual.unifiedHeadingIndex === unifiedHeadingIndex && actual.projectControlIndex === projectControlIndex
+      && actual.permissionControlIndex === permissionControlIndex && actual.browserControlIndex === browserControlIndex
+      && role(scope.role) === 'container' && scope.label === 'Primary pane'
+      && composer.label === 'Write your prompt to Claude'
+      && snapshot.nodes.filter(node => node.visible && role(node.role) === 'container' && node.label === 'Primary pane').length === 1
+      && snapshot.nodes.filter(node => node.visible && ['textarea', 'textentryarea', 'textfield'].includes(role(node.role))).length === 1
+      && snapshot.nodes.filter(node => node.visible && role(node.role) === 'radiobutton' && node.label === 'Claude').length === 1
+      && snapshot.nodes.filter(node => node.visible && role(node.role) === 'radiobutton' && /^Code(?:,|$)/u.test(node.label)).length === 1
+      && !scoped.some(node => role(node.role) === 'radiobutton' && ['Chat', 'Cowork'].includes(node.label));
+  }
+  let chatSelected = true;
+  if (named) {
+    const chat = selected(snapshot, chatTabIndex), cowork = selected(snapshot, coworkTabIndex);
+    chatSelected = chat.index !== cowork.index && under(chat, scope, byIndex) && under(cowork, scope, byIndex)
+      && role(chat.role) === 'radiobutton' && chat.label === 'Chat' && chat.enabled && chat.value === '1'
+      && role(cowork.role) === 'radiobutton' && cowork.label === 'Cowork' && cowork.enabled && cowork.value === '0';
+  }
+  const modes = role(claude.role) === 'radiobutton' && claude.label === (named ? 'Chat and Cowork' : 'Claude') && claude.enabled && claude.value === '1'
     && role(code.role) === 'radiobutton' && ['Code', 'Code, unread activity', 'Code, awaiting your input'].includes(code.label) && code.enabled && code.value === '0';
   return { composer, reason: freshChat !== true ? 'ownership-not-established'
     : !newChatUrl(snapshot.documentUrl) ? 'new-chat-not-established'
-    : !modes ? 'chat-mode-not-established'
+    : sessionSurface && !unified ? 'chat-surface-ambiguous'
+    : !modes || !chatSelected || unified && !unifiedSelected ? 'chat-mode-not-established'
     : streaming ? 'response-in-progress'
     : messagePresent ? 'existing-message-present' : undefined };
 }
@@ -71,7 +119,12 @@ function assess(snapshot, { scopeIndex, composerIndex, claudeModeIndex, codeMode
 function evidence(snapshot, options, phase, reason, composerState) {
   return { schema: SCHEMA, phase, captureId: snapshot.captureId, capturedAt: snapshot.capturedAt,
     windowId: snapshot.windowId, snapshotSha256: captureDigest(snapshot),
-    indices: [options.scopeIndex, options.composerIndex, options.claudeModeIndex, options.codeModeIndex],
+    indices: [options.scopeIndex, options.composerIndex, options.claudeModeIndex, options.codeModeIndex,
+      ...(options.modeProfile === 'claude-chat-cowork-v1' ? [options.chatTabIndex, options.coworkTabIndex] : []),
+      ...(options.modeProfile === CLAUDE_UNIFIED_NO_SEND_PROFILE ? [options.unifiedHeadingIndex, options.projectControlIndex,
+        options.permissionControlIndex, options.browserControlIndex] : [])],
+    ...(options.modeProfile && { modeProfile: options.modeProfile }),
+    ...(options.modeProfile === CLAUDE_UNIFIED_NO_SEND_PROFILE && { surfaceClaim: 'merged-conversation-observed-no-send-only', legacyChatMode: 'not-established' }),
     freshChatOwned: options.freshChat === true, newChatObserved: newChatUrl(snapshot.documentUrl),
     composerState, ...(reason ? { reason } : {}) };
 }
@@ -102,6 +155,7 @@ export function inspectDiagnosticComposer(snapshot, options = {}) {
 
 /** Establish actual post-launch arrival; the submit path still compares text. */
 export function inspectClaudeArrival(snapshot, options = {}) {
+  if (options.modeProfile === CLAUDE_UNIFIED_NO_SEND_PROFILE) fail('The unified no-Send profile cannot qualify handoff arrival or submission.');
   validateClaudeSnapshot(snapshot, { now: options.now, ...(options.maxAgeMs === undefined ? {} : { maxAgeMs: options.maxAgeMs }) });
   const preflight = options.readiness?.evidence ?? options.readiness;
   const handoff = options.handoff;

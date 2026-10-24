@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { createExecutionContract, executionConfiguration, executionConfigurationSha256,
-  qualifyExecution, inspectExecution, validateExecutionContract, validateExecutionQualification,
+  createNoSendExecutionContract, executionCaptureMaxAgeMs, qualifyExecution, inspectExecution, validateExecutionContract, validateExecutionQualification,
   validateExecutionInspection, executionSnapshotSha256 } from './execution-contract.mjs';
 
 const at = '2026-10-22T01:00:00.000Z';
@@ -201,4 +201,23 @@ test('plain cross-realm JSON remains compatible with the controller runtime', ()
   const { descriptor, qualification } = fixture();
   const cloned = vm.runInNewContext(`(${JSON.stringify({ descriptor, qualification, snapshot: snapshot(), active: active(), settings: settings() })})`);
   assert.equal(inspectExecution(cloned.descriptor, cloned.qualification, cloned.snapshot, cloned.active, cloned.settings).ready, true);
+});
+
+test('60-second profile is explicit, hash-bound and impossible on the Send lane', () => {
+  const input = { manifest: manifest(), environment: config(), timeoutMs: 900000 };
+  const standard = createNoSendExecutionContract(input);
+  const extended = createNoSendExecutionContract({ ...input, captureProfile: 'no-send-reviewed-60s-v1' });
+  assert.equal(executionCaptureMaxAgeMs(standard), 30000);
+  assert.equal(Object.hasOwn(standard, 'captureProfile'), false);
+  assert.equal(executionCaptureMaxAgeMs(extended), 60000);
+  assert.notEqual(standard.contractSha256, extended.contractSha256);
+  assert.throws(() => contract({ captureProfile: 'no-send-reviewed-60s-v1' }), /no-Send/);
+  assert.throws(() => createNoSendExecutionContract({ ...input, captureProfile: 'arbitrary' }), /no-Send/);
+  assert.throws(() => validateExecutionContract({ ...extended, captureProfile: { ...extended.captureProfile, maximumAgeMs: 60001 } }), /no-Send/);
+  const q = qualifyExecution(extended, assessment(), { generation: 1, now: at });
+  const checked = inspectExecution(extended, q, snapshot(), active(), { generation: 1, now: Date.parse(capturedAt) + 59000 });
+  assert.equal(checked.ready, true);
+  assert.equal(validateExecutionInspection(extended, q, checked, { generation: 1, now: Date.parse(capturedAt) + 60000 }), true);
+  assert.equal(inspectExecution(extended, q, snapshot(), active(), { generation: 1, now: Date.parse(capturedAt) + 60001 }).reason, 'snapshot-stale');
+  assert.throws(() => validateExecutionInspection(extended, q, checked, { generation: 1, now: Date.parse(capturedAt) + 60001 }), /fresh/);
 });

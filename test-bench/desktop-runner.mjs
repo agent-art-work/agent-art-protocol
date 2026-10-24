@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { loadBenchInputs, ROOT } from './inputs.mjs';
 import { createRun, addObservation, summarizeRun, validateRun } from './records.mjs';
 import { validatePublicDesktopNote } from './desktop-ui.mjs';
+import { CLAUDE_UNIFIED_NO_SEND_PROFILE } from './readiness.mjs';
 import { EXACT_POLICY, LAB_AX_POLICY, validateDraftPolicy, compareDraftText } from './draft-policy.mjs';
 import { createExecutionContract, qualifyExecution, validateExecutionQualification, validateExecutionInspection, executionConfigurationSha256 } from './execution-contract.mjs';
 import { isPlainRecord } from './plain-record.mjs';
@@ -422,6 +423,7 @@ export function claimHandoff(id, { root = ROOT, readiness, executionProof } = {}
     let preflight;
     if (readiness !== undefined) {
       const e = readiness.evidence, age = Date.now() - Date.parse(e?.capturedAt);
+      ensure(e?.modeProfile !== CLAUDE_UNIFIED_NO_SEND_PROFILE, 'The unified no-Send profile cannot qualify a handoff.');
       ensure(readiness.ready === true && e?.schema === 'agent-art-bench/claude-readiness/1'
         && e.phase === 'before-handoff' && e.reason === undefined && e.freshChatOwned === true
         && e.newChatObserved === true && e.composerState === 'empty'

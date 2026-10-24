@@ -6,7 +6,22 @@ regular stable Chrome → the pinned public Lab reading component using SDK
 0.1.4 → one fresh Claude desktop Chat. It is separate from the SDK, the public
 reading flow and a future hosted testing service.
 
-The operator has authorized documenting this scope and starting the dedicated
+**Current bounded status, 2026-10-24:** Three explicitly authorized fresh Lab → Claude desktop cases have finished.
+Each used exactly one Send and recorded matching submitted rendering plus a
+completed collection introduction, without human window rescue, manual Send
+or result relaying. The same 15 pinned runner/input files remained unchanged.
+Case 2 inspected the actual raw-index HTTP403/CONNECT403 denial and passed the
+runner with source failure recorded. Cases 1 and 3 could not inspect source
+activity because their native summary titles were unsupported; source access
+remains unobserved. The three-consecutive-pass gate and full MVP have **not
+passed**. All three submission permissions are consumed; no further live test
+is authorized. SDK 0.1.4 and the Codex draft remain unchanged; no deployment.
+See [three-case findings](AGENT-QUALIFICATION.md#three-authorized-fixed-code-lab-cases-2026-10-24).
+The original completion criteria below are unchanged. The next code target is
+the remaining activity-inspection gap after the repeat gate and local fixture
+checks; further environment expansion is not a new MVP deliverable.
+
+The initial operator direction authorized documenting this scope and starting the dedicated
 environment's **no-Send feasibility check**. This does not authorize another
 Lab handoff, Send or inference in Claude under test. The coding Agent may
 operate the permitted controller within this no-Send scope. SDK 0.1.4 stays unchanged, the existing
@@ -19,11 +34,14 @@ and the initial operator/controller boundary.
 ## Maintainer environment
 
 A local macOS VM is the preferred candidate, subject to resource and controller
-qualification. The coding Agent and its permitted Computer Use controller must
-run **inside the guest**, with guest-local regular Chrome, Claude and the local
-Lab preview. Host-side commands or a host Agent clicking the VM viewer do not
-establish an independently controlled desktop. A shell/SSH connection alone
-does not establish guest GUI, accessibility or screenshot access.
+qualification. **Placement clarification, 2026-10-23:** native Computer Use
+must execute inside the guest, with guest-local regular Chrome, Claude and the
+local Lab preview. The coding Agent and canonical authority may run on the
+host through the published guest tool connection. This replaces the initial
+requirement that the coding Agent itself also run in the guest. Host commands,
+clicking the VM viewer or SSH alone do not qualify native targeting/capture.
+The [host-authority bridge](HOST-AUTHORITY.md) is the current narrow candidate;
+it uses the installed guest CUA, not a substitute desktop-control engine.
 
 The maintainer supplies and qualifies one environment, one controller and one
 job at a time. Initial installation, account login, protected authentication
@@ -45,8 +63,16 @@ journal. Restoring a guest baseline must never silently restore a Send budget
 or reopen a finished case. The [external-store candidate](NO-SEND.md) now
 implements this separation and explicit recovery, with filesystem/crash
 fixtures. Path checks cannot prove host placement outside a VM baseline;
-actual mounted storage, VM restore and guest control remain MVP qualification
-work.
+actual orderly active-case restore was checked later under a separate bounded
+contract. That does not qualify arbitrary crashes or Send recovery. The later
+guest marker/input result is recorded separately below.
+The stale shared authority mount is excluded. The current bridge instead
+persists claims on the host's native external store before guest dispatch;
+that bounded setup/readiness path has been exercised. The separate
+[remote marker lane](REMOTE-MARKER.md) now connects marker typing/cleanup and
+owned-surface input checks. A remote Lab trial has now used one Send and
+recorded its reply and raw-request denial; full application qualification is
+still incomplete as summarized above.
 
 ## Toolkit and local developer reuse
 
@@ -55,8 +81,11 @@ guards, draft/source/reply inspection helpers, interruption/recovery accounting
 and structured reports. It uses the coding Agent's permitted Computer Use;
 building another desktop-control engine is outside this MVP.
 
-Current code is Lab-specific. A small application test profile is planned,
-after the dedicated Lab lane is qualified:
+The guest-native automation remains Lab-specific. A declarative local
+[profile adapter](READING-PROFILES.md) now reuses the server, checker, case
+preparation and report schema for Lab and Inshell. Both browser matrices passed;
+Inshell native interaction is unqualified. The intended broader ownership split
+remains:
 
 | Developer supplies | Shared toolkit supplies |
 | --- | --- |
@@ -80,12 +109,21 @@ normalization.
 
 ## First gate: dedicated no-Send feasibility
 
-This gate is **not yet passed**. The earlier no-Send pass under a temporary
+At this gate's initial assessment it was **not yet passed**; the later bounded
+results are summarized above and do not establish the full MVP. The earlier no-Send pass under a temporary
 host app-wide reservation is historical evidence, not guest qualification.
+Guest-native observation, host-owned setup claims and two reviewed empty-Chat
+readiness captures are now observed. A later host-authorized guest case also
+passed focus, exact marker delivery/cleanup and sequential non-interference
+between the owned host browser field and guest-native Claude. Earlier expiry
+results remain unchanged. The subsequent orderly active-case restore/reconnect
+result is separate from the marker gate; arbitrary crash and Send recovery
+remain unqualified. This bounded marker result is not the full MVP.
 
-1. Check host capacity, a supported guest/runtime and the permitted route for
-   an Agent/controller inside the guest. Report missing installation, login or
-   permission prerequisites rather than assuming them.
+1. Check host capacity, a supported guest/runtime and the permitted native
+   controller inside the guest. The reviewing Agent/authority may run on the
+   host through the published guest tool connection. Report missing
+   installation, login or permission prerequisites rather than assuming them.
 2. Establish a guest-owned fresh empty Claude Chat, actual target identities,
    controller availability and complete fresh AX/pixels whose contents agree.
 3. With host personal apps remaining usable, focus the guest composer, type
@@ -112,7 +150,8 @@ After the no-Send gate, separately authorized application trials must:
 
 - Complete **three consecutive fresh Lab cases** without human window rescue,
   manual submission or report entry. Each case needs its own bounded scope and
-  authorization; these future Sends are not authorized by the current request.
+  authorization; a standing plan grants no future Sends. The later explicit three-case
+  commission is now consumed, as recorded above.
 - Exercise the actual installed component and retain separate outcomes for
   browser behavior, launch permission, draft arrival/fidelity, attempted Send,
   observed submission, source access, reply completion and cleanup. Inspected

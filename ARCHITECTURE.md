@@ -1,5 +1,13 @@
 # Agent Art protocol architecture
 
+Release update, 2026-10-24: the MIT-licensed
+[0.1.5-alpha.1 reading SDK](releases/0.1.5-alpha.1/README.md) retains the
+0.1.4 runtime/type bytes and adds release metadata, the license and a standalone
+guide. Its [qualification](releases/0.1.5-alpha.1/QUALIFICATION.json) is separate
+from the historical candidates described below. The broader architecture
+remains candidate; the release does not qualify artwork participation or a
+finished Agent-operated runner. See the [release record](releases/0.1.5-alpha.1/RELEASE.md).
+
 Status: **candidate generic architecture**, revised 2026-10-21. The private
 SDK's first supported release scope is [0.1.1 reading](spec/0.1/READING.md).
 The private 0.1.2 candidate adds an identity/About link with ⓘ, retaining that

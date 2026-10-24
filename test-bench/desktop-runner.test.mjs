@@ -9,7 +9,7 @@ import { spawnSync } from 'node:child_process';
 import * as runner from './desktop-runner.mjs';
 import { createRun } from './records.mjs';
 import { publicDesktopNote } from './desktop-ui.mjs';
-import { inspectClaudeArrival } from './readiness.mjs';
+import { inspectClaudeArrival, inspectFreshClaudeReadiness, selectUnifiedNoSendControls } from './readiness.mjs';
 import { controlledFixture, qualifyTestCase, TEST_CONTROLLER, testExecutionProof } from './execution-fixture.mjs';
 
 const clocks = new WeakSet();
@@ -87,6 +87,21 @@ test('handoff requires current inspection and actual fresh readiness and is clai
   assert.throws(() => runner.claimHandoff(state.id, { root: f.root, executionProof: proof }), /capture|readiness/i);
   const claim = c.handoff(); assert.equal(claim.executionProof.controllerId, TEST_CONTROLLER);
   assert.throws(() => c.handoff(), /EEXIST|already|claimed/i);
+});
+
+test('merged no-Send readiness cannot consume a desktop handoff even with current execution proof', async t => {
+  const f = fixture(t), state = await f.prepare(), c = f.control(state), snapshot = c.snapshot('');
+  snapshot.nodes[1].label = 'Primary pane';
+  for (const [index, role, label, value] of [[6, 'heading', 'New session'], [7, 'pop up button', 'Project or folder'],
+    [8, 'pop up button', 'Manual'], [9, 'toggle button', 'Browser', '0']]) {
+    snapshot.nodes.push({ index, role, label, ...(value === undefined ? {} : { value }), parentIndex: 1, visible: true, enabled: true });
+  }
+  const readiness = inspectFreshClaudeReadiness(snapshot, { scopeIndex: 1, composerIndex: 2, claudeModeIndex: 4,
+    codeModeIndex: 5, freshChat: true, now: Date.now(), ...selectUnifiedNoSendControls(snapshot, 1) });
+  assert.equal(readiness.ready, true);
+  const executionProof = testExecutionProof(state, f.root, snapshot);
+  assert.throws(() => runner.claimHandoff(state.id, { root: f.root, readiness, executionProof }), /no-Send profile cannot qualify/);
+  assert.equal(fs.existsSync(runner.pathsFor(state.id, f.root).handoff), false);
 });
 
 test('Send requires fresh arrival and current generation and never reopens its durable claim', async t => {

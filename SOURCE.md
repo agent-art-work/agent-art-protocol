@@ -45,9 +45,15 @@ The Lab sources above were fetched on 2026-10-17 through their complete JSON dow
 
 ## Reuse
 
-No reuse license has been selected. Research references identify their sources;
-they do not grant rights to third-party texts, artwork or private records.
-No raw private transcripts, credentials or artwork are imported here.
+On 2026-10-24 the operator selected the [MIT License](LICENSE) for original
+project code and documentation. The operator subsequently approved disclosure
+of this repository's existing history, Git identity and WILL-derived/site-patch
+material and confirmed authority to publish it. [Licensing scope](LICENSING.md)
+preserves the boundary around third-party rights and notices. Research
+references identify sources; they do not grant rights to third-party texts,
+artwork, private records or linked repositories. Existing attributions and
+pinned source identities remain unchanged. No raw private transcripts,
+credentials or artwork are imported here.
 
 ## v0.1 draft continuation, 2026-10-17
 

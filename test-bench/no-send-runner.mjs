@@ -9,7 +9,7 @@ import { ROOT, loadBenchInputs } from './inputs.mjs';
 import { SDK_SHA256 } from './desktop-runner.mjs';
 import { bindAuthorityStore, authorityCasePaths, registerAuthorityCase, assertAuthorityCase,
   withAuthorityLock, writeExclusive, writeAtomic, abandonStoppedControllerLock, syncDirectory } from './authority-store.mjs';
-import { createNoSendExecutionContract, qualifyExecution, inspectExecution, validateExecutionContract, NO_SEND_LANE } from './execution-contract.mjs';
+import { createNoSendExecutionContract, qualifyExecution, inspectExecution, validateExecutionContract, executionCaptureMaxAgeMs, NO_SEND_LANE } from './execution-contract.mjs';
 import { inspectDiagnosticComposer } from './readiness.mjs';
 import { inspectClaudeComposerFocus } from './composer-focus.mjs';
 
@@ -36,14 +36,26 @@ function stateFor(p, { deadline = true } = {}) {
 }
 const claimPath = (p, step) => path.join(p.dir, 'diagnostic-' + step + '-claimed.json');
 
-export async function prepareDiagnostic({ root = ROOT, authorityRoot, inputs, authorizeProbe = false, timeoutMs = 180000 } = {}) {
+export async function prepareDiagnostic({ root = ROOT, authorityRoot, inputs, authorizeProbe = false, timeoutMs = 180000, captureProfile, cleanupCaseId, focusOnly = false } = {}) {
   ensure(authorizeProbe === true, 'Explicit authorization for the public no-Send probe is required.');
+  ensure(typeof focusOnly === 'boolean', 'Explicit Boolean focus-only scope required.');
   inputs ||= await loadBenchInputs();
   ensure(inputs.manifest.sdkVersion === '0.1.4' && inputs.manifest.archiveSha256 === SDK_SHA256, 'The SDK 0.1.4 pin must remain unchanged.');
-  const marker = 'agent-art-no-send-' + randomUUID();
+  let origin, originPaths;
+  if (cleanupCaseId) {
+    originPaths = authorityCasePaths(cleanupCaseId, root); origin = read(originPaths.state);
+    assertAuthorityCase(originPaths, origin); validateExecutionContract(origin.executionContract);
+    ensure(origin.schema === 'agent-art-bench/no-send-case/1' && origin.status === 'finished'
+      && origin.executionContract.lane === NO_SEND_LANE && !origin.cleanupOrigin && origin.actions?.type?.dispatch === 'returned'
+      && !fs.existsSync(claimPath(originPaths, 'clear')), 'Cleanup requires a finished original marker case with returned type and unused clear.');
+    ensure(origin.executionContract.configurationSha256 === createNoSendExecutionContract({ manifest: origin.executionContract.payload, environment: inputs.environment, timeoutMs }).configurationSha256, 'Cleanup environment differs.');
+  }
+  const marker = origin?.marker ?? 'agent-art-no-send-' + randomUUID();
   const manifest = { id: 'public-environment-marker', workId: 'https://agentart.work/#environment-check', workVersion: '1',
     sdkVersion: '0.1.4', archiveSha256: SDK_SHA256, contextSha256: createHash('sha256').update(marker).digest('hex'), contextBytes: Buffer.byteLength(marker) };
-  const contract = createNoSendExecutionContract({ manifest, environment: inputs.environment, timeoutMs });
+  const cleanupOrigin = origin && { caseId: origin.id, contractSha256: origin.executionContract.contractSha256 };
+  const contract = createNoSendExecutionContract({ manifest, environment: inputs.environment, timeoutMs,
+    ...(captureProfile !== undefined && { captureProfile }), ...(cleanupOrigin && { cleanupOrigin }), ...(focusOnly && { focusOnly: true }) });
   bindAuthorityStore({ root, authorityRoot });
   const id = 'diagnostic-' + randomUUID(), p = authorityCasePaths(id, root);
   writeExclusive(p.active, { id, createdAt: new Date().toISOString() });
@@ -54,6 +66,14 @@ export async function prepareDiagnostic({ root = ROOT, authorityRoot, inputs, au
     const state = { schema: 'agent-art-bench/no-send-case/1', id, status: 'active', authority, marker,
       startedAt: new Date().toISOString(), deadlineAt: new Date(Date.now() + timeoutMs).toISOString(), executionContract: contract,
       execution: { status: 'unqualified', generation: 1, qualificationCount: 0, recoveryCount: 0 }, checks: {}, interruptions: [] };
+    if (origin) {
+      state.cleanupOrigin = { ...cleanupOrigin, type: origin.actions.type };
+      state.windowId = origin.windowId;
+      withAuthorityLock(originPaths, () => {
+        ensure(read(originPaths.state).status === 'finished', 'The origin must remain finished.');
+        writeExclusive(claimPath(originPaths, 'clear'), { step: 'clear', dispatch: 'delegated-to-cleanup-only-case', caseId: id, claimedAt: new Date().toISOString(), contractSha256: contract.contractSha256 });
+      });
+    }
     writeAtomic(p.state, state); event(p, 'prepared-zero-handoff-zero-send'); return state;
   } catch (error) {
     if (fs.existsSync(p.active) && read(p.active).id === id) fs.unlinkSync(p.active);
@@ -128,7 +148,7 @@ function inspectOwned(p, state, snapshot, selection, controllerId, expected, foc
     { generation: state.execution.generation, now: Date.now() });
   ensure(checked.ready, 'Diagnostic execution inspection failed: ' + checked.reason + '.');
   if (state.windowId !== undefined) ensure(snapshot.windowId === state.windowId, 'Diagnostic target window differs.');
-  const options = { ...selection, expected, marker: state.marker, now: Date.now() };
+  const options = { ...selection, expected, marker: state.marker, now: Date.now(), maxAgeMs: executionCaptureMaxAgeMs(state.executionContract) };
   const composer = inspectDiagnosticComposer(snapshot, options);
   ensure(composer.ready, 'Diagnostic composer check failed: ' + composer.reason + '.');
   const focus = focused ? inspectClaudeComposerFocus(snapshot, options) : undefined;
@@ -137,7 +157,7 @@ function inspectOwned(p, state, snapshot, selection, controllerId, expected, foc
 }
 
 function afterAction(state, snapshot, action) {
-  const claim = state.actions?.[action];
+  const claim = action === 'type' && state.cleanupOrigin ? state.cleanupOrigin.type : state.actions?.[action];
   ensure(claim && ['entered', 'returned'].includes(claim.dispatch), 'A consumed diagnostic action is required before effect inspection.');
   ensure(snapshot.captureId !== claim.captureId && Date.parse(snapshot.capturedAt) >= Date.parse(claim.returnedAt ?? claim.claimedAt), 'Inspect a distinct post-action capture.');
 }
@@ -154,6 +174,7 @@ export function createDiagnosticSession({ caseId, app, controllerId, root = ROOT
     try {
       withAuthorityLock(p, () => {
         const state = stateFor(p);
+        ensure(state.executionContract.diagnostic[{ focus: 'maximumFocuses', type: 'maximumTypes', clear: 'maximumClears' }[step]] === 1, 'This diagnostic scope has no authority for that action.');
         proof = inspectOwned(p, state, snapshot, selection, controllerId, step === 'clear' ? 'marker' : 'empty', step === 'type');
         if (step === 'type') ensure(state.checks.focus?.generation === state.execution.generation, 'Observe focus before typing.');
         if (step === 'clear') ensure(state.checks.marker?.generation === state.execution.generation, 'Observe the exact marker before clearing.');
@@ -235,7 +256,8 @@ export function finishDiagnostic(id, { root = ROOT } = {}) {
     const current = stage => state.checks[stage]?.generation === state.execution.generation;
     const interactionObserved = ['focus', 'marker', 'empty'].every(current);
     const deadlineValid = Date.now() <= Date.parse(state.deadlineAt);
-    const passed = interactionObserved && deadlineValid && state.execution.status === 'qualified'
+    const cleanupOnly = Boolean(state.cleanupOrigin);
+    const passed = !cleanupOnly && interactionObserved && deadlineValid && state.execution.status === 'qualified'
       && state.independence?.status === 'observed' && state.independence.source === 'controller' && state.interruptions.length === 0
       && state.execution.recoveryCount === 0;
     const consumedInputs = STEPS.filter(step => fs.existsSync(claimPath(p, step)));
@@ -243,7 +265,12 @@ export function finishDiagnostic(id, { root = ROOT } = {}) {
     const report = { schema: 'agent-art-bench/no-send-result/1', caseId: id, finishedAt: new Date().toISOString(),
       maximumHandoffs: 0, maximumSends: 0, sdkVersion: '0.1.4', outcome: passed ? 'bounded-no-send-gate-observed'
         : uncertain.length ? 'indeterminate' : state.execution.status === 'blocked' || !deadlineValid ? 'blocked' : 'incomplete',
-      passed, interactionObserved, checks: state.checks, consumedInputs, uncertainInputs: uncertain,
+      passed, interactionObserved, ...(cleanupOnly && { cleanupOnly: true, originCaseId: state.cleanupOrigin.caseId }), checks: state.checks, consumedInputs, uncertainInputs: uncertain,
+      // Accepted past observations survive a later interruption. They neither
+      // restore present readiness nor override the case deadline/pass result.
+      observedEffects: Object.fromEntries(Object.entries(state.checks).map(([stage, check]) => [stage, {
+        generation: check.generation, capturedAt: check.proof.capturedAt, assessedAt: check.proof.assessedAt,
+        captureId: check.proof.captureId, currentGeneration: current(stage) }])),
       markerCleanup: current('empty') ? 'observed-empty' : fs.existsSync(claimPath(p, 'type')) ? 'unconfirmed-public-marker-may-remain' : 'marker-not-typed',
       independence: state.independence ?? { status: 'not-observed' }, interruptions: state.interruptions, recoveries: state.recoveries ?? [],
       authority: state.authority, limits: ['Controller-attributed captures and input ownership, not an independent witness.',

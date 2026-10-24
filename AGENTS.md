@@ -2,6 +2,14 @@
 
 Read README.md, ARCHITECTURE.md, examples/THOUGHT.md and SOURCE.md first.
 
+- The operator approved public repository/history disclosure and the MIT-licensed
+  0.1.5-alpha.1 GitHub reading prerelease on 2026-10-24. See
+  releases/0.1.5-alpha.1/RELEASE.md for exact artifacts and limits. The retained
+  0.1.4 source/package below remains immutable; the alpha stages its own metadata,
+  license and guide separately. This approval excludes npm publication, site
+  deployment, announcements and new live Agent trials. Runner development is
+  on hold while the release is completed.
+
 - The generic protocol remains candidate. SDK 0.1.4 is a private local Quiet
   field candidate with refined action glyphs and inline Copy feedback for
   public-document reading. Released 0.1.2 and historical 0.1.3 candidate

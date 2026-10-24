@@ -1,0 +1,92 @@
+{
+  "schema": "agent-art.release-qualification.v1",
+  "version": "0.1.5-alpha.1",
+  "status": "package-and-browser-checks-passed",
+  "package": {
+    "name": "@agent-art/protocol",
+    "version": "0.1.5-alpha.1",
+    "license": "MIT",
+    "private": true,
+    "archive": ".local/releases/0.1.5-alpha.1/archives/5989cfb0eec3fd35df4a583df460696a35643c83a190708458e8b8b0796f7f55.tgz",
+    "archiveSha256": "5989cfb0eec3fd35df4a583df460696a35643c83a190708458e8b8b0796f7f55",
+    "files": {
+      "LICENSE": "a24950dac6262fa80f4d5a31c50648331487f705cdf950b23c18b10cbf1bf123",
+      "README.md": "8ab872688722ec07d6e255ceffb8368589127bea4e4fb88802e2519dd5e171a1",
+      "clients.d.mts": "6230f68aed26c374048dbef7c3793a912413574bb38e1b313b290f2126ea1bee",
+      "clients.mjs": "30e1cc2966731431fec57c14f72f189d472825b8c9f7853dd1d6d55896cb3619",
+      "index.d.mts": "93fd2b703be6ba24092a2f88d396e3164892fed1948e4d4a07034e812ca4dfa7",
+      "index.mjs": "2a0875c38a71e2f034d6fad3a67171cca067e49f7b9feed136cf5aeec668646c",
+      "package.json": "66480f0a4c39ca584440f9772a47e525542a211bc037467ca289ed25b355edcc",
+      "reading-ui.d.mts": "5b0f79bfc8de88a24e1ffd93d6c035f310b816fabdcc7a2e11b5871598cc196d",
+      "reading-ui.mjs": "1af36fadf6d3a151b3aee98a276023f37a81727df555163e90b327bc641401f5",
+      "reading.css": "6d1af7a264cea0df7c0f38567030f64d6b6ed50b1fe8fb7873a02cef7a664289",
+      "reading.d.mts": "2ac5720d227d6bc79403e37fbff7549fb54daf6fd9eb46ec5ef7ea090845b4d2",
+      "reading.mjs": "b34bc62cca3c25a4cadc286adad0f49d4b744cdd4a040fe45f6936ac59db098e"
+    },
+    "installedFilesChecked": 12,
+    "consumer": ".local/releases/0.1.5-alpha.1/consumers/5989cfb0eec3fd35df4a583df460696a35643c83a190708458e8b8b0796f7f55",
+    "lockSha256": "5b0e0f98fd4125b901d8acb89d8a4552a941e3e1d481a28465ecb7eb6e6b4c26",
+    "lockIntegrity": "sha512-ujCC47TofbHq9BFBsAbuPek5LcbZLInNjFh/8+Z9SCIxBX5G1+MAFCph1ucHRGhQ8FCwEDMsuDpU7DjW5jIX3A=="
+  },
+  "runtime": {
+    "unchangedFrom": "0.1.4",
+    "filesChecked": 9,
+    "testsPassed": 26,
+    "installedExportsAndReceipts": "passed",
+    "types": "passed"
+  },
+  "retained014ArchiveUnchanged": true,
+  "browser": {
+    "status": "passed",
+    "report": ".local/releases/0.1.5-alpha.1/browser/report.json",
+    "reportSha256": "9f1c96e885ad04f1dbe51ff8236a98829e8339a7eeb2cc1de83a6522d929b20c",
+    "scenarios": 11,
+    "passedScenarios": 11,
+    "cleanup": {
+      "ownedChromeClosed": true,
+      "ownServerClosed": true,
+      "disposableProfileRemoved": true,
+      "userTabsAccessed": false
+    },
+    "screenshotInspection": {
+      "status": "six-representative-captures-inspected",
+      "files": {
+        "browser-1440-light.png": "2766bad5e74e59d08f37cf2ac3817b8cd1a741dd5478b1896473990f761a1ac3",
+        "browser-1440-dark.png": "d76fa992b8e9725831b4ec6698a2cbde58bc7259847038a6fbb19197ba97a743",
+        "browser-320-light.png": "3750b3775fc26be9e1e8706e4bed03a45ad70b7c555c2e90609d71a2045339b2",
+        "browser-320-light-copied.png": "b68c6e2ad7c9bd8977a138a6fa5da163f1be6a25451727c902394b61661ff59c",
+        "browser-320-dark.png": "576c7459a57fd87e1a13a247a2d8645d8e84010f03f66fc669540ed7000dd184",
+        "browser-320-dark-copied.png": "3b98c38f2bcc8389ccf0d50ecffda690c13e4ac98102d4347c5f1da79a58ba00"
+      },
+      "scope": "Desktop light/dark and 320px light/dark ready/Copied states; not every generated capture was inspected."
+    },
+    "fixtures": {
+      "pilot/reading-sdk-012/ui-fixtures.mjs": "62a39754bebe9e17962a16e94522bf2cd59bad479ac5026fb36c44196d8773f9",
+      "pilot/reading-sdk-012/work.mjs": "7df05e00f92d3a44af3430e40e0a55338da41a2834517d142f0576c34695d512",
+      "test-bench/ui-candidate-fixtures.mjs": "21b31d40b9f403ea489509869d47a5ec459140ec52c61a925aa18a0be2e040f0",
+      "test-bench/ui-fixtures-014.mjs": "42b0495201d57a6767506fe76fe61982eaa900be27eb40ec233548fc3e19ff8a",
+      "test-bench/ui-feedback-fixtures-014.mjs": "8363b895b3bc3e2f38a44023cdcad7aab910fd4981c4ffc3c29e3b580638cf90"
+    }
+  },
+  "realClients": {
+    "status": "not-run-for-this-archive"
+  },
+  "limits": [
+    "Local candidate only; no visibility, Git tag, release, registry publication or deployment.",
+    "Runtime/type files match 0.1.4; historical native findings are not new alpha qualification.",
+    "Package checks establish neither source reading nor Agent execution or intentional participation."
+  ],
+  "sourceValidation": {
+    "benchFixtureTestsPassed": 376,
+    "scope": "Offline fixture suite with permitted local sockets; no live Agent trial.",
+    "cleanSourceReproduction": {
+      "archiveSha256": "5989cfb0eec3fd35df4a583df460696a35643c83a190708458e8b8b0796f7f55",
+      "matchesApprovedArchive": true,
+      "oldSdkCachePresent": false,
+      "runtimeTestsPassed": 26,
+      "types": "passed",
+      "browserBootstrapScenariosPassed": 1,
+      "scope": "Separate focused browser bootstrap from a source-only checkout; the main 11-scenario qualification remains separate."
+    }
+  }
+}

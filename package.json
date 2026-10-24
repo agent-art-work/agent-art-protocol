@@ -2,6 +2,7 @@
   "name": "agent-art-protocol-local-mvp",
   "version": "0.0.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "engines": {
     "node": ">=22"
@@ -21,12 +22,15 @@
     "test:reading-ui": "node pilot/reading-sdk-012/check-ui.mjs",
     "sdk:pack": "node scripts/sdk.mjs pack",
     "sdk:prepare": "node scripts/sdk.mjs install",
+    "release:prepare": "node releases/0.1.5-alpha.1/prepare.mjs",
+    "release:browser": "node releases/0.1.5-alpha.1/check-browser.mjs",
     "pilot:thought": "node pilot/thought.mjs",
     "bench": "node test-bench/server.mjs",
     "bench:browser": "node test-bench/check-browser.mjs",
     "bench:report": "node test-bench/report.mjs",
     "bench:desktop": "node test-bench/desktop-runner.mjs",
     "bench:no-send": "node test-bench/no-send-runner.mjs",
+    "bench:controller": "node test-bench/controller-link.mjs",
     "test:bench": "node --test test-bench/*.test.mjs"
   }
 }

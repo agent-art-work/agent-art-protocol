@@ -30,6 +30,31 @@ that candidate. An older running bench keeps the inputs loaded at startup;
 use a fresh run on a newly started candidate bench instead of reusing an old
 run fragment.
 
+## Declarative local reading profiles
+
+The candidate [profile adapter](READING-PROFILES.md) runs Lab and a second
+public Inshell reading fixture through the existing installed SDK, server,
+browser checker and report schema. Both browser matrices passed 11 scenarios;
+native launches were canceled. This checks local reuse, not an Inshell site
+integration or real-client qualification. A developer does not need a VM for
+these checks. The dedicated guest-native automation remains Lab-specific.
+
+## Current real-client result
+
+Three explicitly authorized fresh Lab → Claude desktop cases have finished.
+Each used exactly one Send and recorded matching submitted rendering plus a
+completed collection introduction, without human window rescue, manual Send
+or result relaying. The same 15 pinned runner/input files remained unchanged.
+Case 2 inspected the actual raw-index HTTP403/CONNECT403 denial and passed the
+runner with source failure recorded. Cases 1 and 3 could not inspect source
+activity because their native summary titles were unsupported; source access
+remains unobserved. The three-consecutive-pass gate and full MVP have **not
+passed**. All three submission permissions are consumed; no further live test
+is authorized. SDK 0.1.4 and the Codex draft remain unchanged; no deployment.
+See [three-case findings](AGENT-QUALIFICATION.md#three-authorized-fixed-code-lab-cases-2026-10-24) and the
+[bounded report](results/2026-10-24-lab-three-case.json). Browser matrices and
+synthetic guards remain separate from those real-client findings.
+
 ## Start
 
 ```sh
@@ -55,6 +80,38 @@ the machine owner, not remote authentication or an independent witness.
 
 ## Agent-operated desktop runner
 
+The [guest controller connection](CONTROLLER-CONNECTION.md) reads the selected
+guest task's stored status, final replies and report paths over SSH and the
+documented app-server API. It removes manual result relaying; it does not
+start a model turn, operate the controller UI or qualify native Computer Use.
+Use `npm run bench:controller -- status` or `read` with the prepared ignored
+connection profile. This maintainer helper is separate from the SDK.
+
+The separate [host-authority/native-CUA bridge](HOST-AUTHORITY.md) now keeps
+canonical setup claims on the host and operates the published native tool
+inside the guest. One actual bounded setup reached empty Claude Chat with two
+fresh reviewed readiness pairs. A later parameterized-script recheck finished
+incomplete after its second capture expired; it performed no setup input.
+Neither setup result qualifies marker input or a Lab submission. The separate
+[remote marker adapter](REMOTE-MARKER.md) now has an actual bounded guest pass
+for focus, exact public typing/cleanup and sequential owned-surface input
+non-interference. The stored-task reader remains read-only.
+
+The later [restore follow-up](RESTORE-QUALIFICATION.md#merged-conversation-and-active-case-follow-up-2026-10-23)
+passed explicit merged-conversation no-Send readiness and a bounded active-case
+pause/cold-restore/reconciliation audit. The consumed focus could not replay;
+its original deadline was retained. This is separate from the full marker and
+application gates. A later separate
+[draft-only case](DRAFT-HANDOFF.md) passed on 2026-10-24: native regular Chrome
+156.0.8078.47 control, one actual Lab component handoff, one covered launch
+confirmation and an unsent public draft in merged Claude 3.6556.2. Its named
+paragraph presentation matched; exact exposed text did not. Two owned browser
+tabs were closed and the draft was retained unsent. The extension-backed
+browser adapter independently failed for missing `session_id`/`turn_id`
+metadata; native success does not qualify that adapter. See the
+[actual staged result](AGENT-QUALIFICATION.md#guest-chrome-and-lab-draft-only-handoff-2026-10-24).
+No Claude Send follows from any of these results.
+
 The [no-Send diagnostic and external authority guide](NO-SEND.md) describes
 the separate zero-handoff/zero-Send workflow, initial persistent-store binding,
 crash recovery and remaining VM qualification. New cases require external
@@ -62,17 +119,29 @@ authority storage; workspace-local historical cases remain read-only.
 
 The [agreed MVP scope](MVP-SCOPE.md) is a reusable runner toolkit plus one
 dedicated maintainer environment, initially Lab → Claude desktop Chat. The
-immediate phase is a no-Send feasibility check of guest-local control and input
-independence while the human continues using host apps. A local macOS VM is a
-preferred candidate, not yet a qualified environment; controlling its viewer
-from the host does not meet that condition. This does not authorize another
-Lab submission. SDK 0.1.4 stays unchanged and the Codex draft remains unsent.
+completed phase is no-Send feasibility through native guest control, bounded
+marker/cleanup, orderly active-case cold restore and the later draft-only Lab
+handoff. These are distinct bounded results, not general environment
+reliability. A separately authorized
+[one-Send application trial](AGENT-QUALIFICATION.md#guest-lab-one-send-application-trial-2026-10-24)
+then recorded a visible submitted-message transition, completed reply and an
+actual curl access denial. Split text/link presentation left the exact submitted
+invitation unconfirmed, and a successful WebFetch body was not exposed; source
+success remains assistant-reported. Its strict result is incomplete. The next
+target is offline submitted-message extraction and source-adapter inspectability
+before a separately authorized retest. No further live trial is authorized;
+the three-case MVP remains unqualified.
+Controlling the VM viewer from the host cannot substitute for guest CUA.
+SDK 0.1.4 stays unchanged and the Codex draft remains untouched and unsent.
 
 Developers can later reuse browser checks and an optional reserved local
 desktop path without installing a VM. They bring their coding Agent,
 permitted Computer Use, clients and access. A thin app profile is planned;
 today's runner is Lab-specific. No hosted testing service, remote preview
-tunnel, queue or multi-tenant platform is supplied by this bench.
+tunnel, queue or multi-tenant platform is supplied by this bench. The
+draft-only check temporarily forwarded only the public host-loopback fixture
+to guest loopback; that forward has been removed. Canonical authority stayed
+on the host, with no guest authority replica or mount.
 
 The [Agent runner guide](AGENT-RUNNER.md) describes the coding-Agent flow for
 one fresh Claude Chat handoff, separate exact and opt-in pinned presentation
@@ -212,3 +281,19 @@ public local bench. Review any additional evidence before sharing it.
 The server has no Agent callback, model API, document-fetch service, enrollment
 or persistent browser storage. Local files remain until the machine owner
 deletes them; no background retention service is added to public reading sites.
+
+## Later restore/reconnect check
+
+The [actual restore qualification](RESTORE-QUALIFICATION.md) observed a cold
+baseline rollback, byte-identical selected host authority files, rejection of a
+finished consumed case and a fresh pinned SSH connection. The restored Claude
+surface differed and ordinary Chat readiness was rejected as ambiguous. The
+initial attempt did not qualify active in-flight recovery. The configured
+source guest is preserved, and the ignored default connection now selects the
+verified restored test clone. Historical findings above remain unchanged.
+
+The [subsequent bounded follow-up](RESTORE-QUALIFICATION.md#merged-conversation-and-active-case-follow-up-2026-10-23)
+qualified orderly active-case pause/cold-restore/reconciliation and consumed
+focus refusal. It did not qualify arbitrary crashes or Send recovery. The
+later [draft-only handoff result](DRAFT-HANDOFF.md) is another separate case;
+neither result rewrites the initial ambiguous-target rejection.

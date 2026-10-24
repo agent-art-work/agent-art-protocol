@@ -1,7 +1,9 @@
 # Desktop runner execution contract
 
-Status: **candidate local bench contract, 2026-10-22**. This governs the
-Agent-operated Lab → Claude desktop Chat test. It does not change SDK 0.1.4,
+Status: **candidate local bench contract, revised 2026-10-24**. This governs the
+Agent-operated Lab → Claude desktop test, including the separately scoped
+merged-conversation draft-only and one-trial contracts below. It does not change
+SDK 0.1.4,
 public reading requirements or the generic Agent Art protocol. Implementing
 guards and passing synthetic checks do not qualify a live desktop path. See
 [standing plan](AGENT-RUNNER.md), [agreed MVP scope](MVP-SCOPE.md) and
@@ -9,30 +11,46 @@ guards and passing synthetic checks do not qualify a live desktop path. See
 
 ## Dedicated environment feasibility scope
 
-The current authorized phase is the dedicated environment's **no-Send**
-feasibility check. Installation and VM boot establish prerequisites only. The
-permitted controller must operate inside the guest and inspect guest-local
-Claude; a host controller clicking a VM viewer or running a guest shell does
-not establish that route. Guest login, protected authentication and OS/tool
-permission grants remain explicit setup boundaries.
+The dedicated environment's **no-Send Lab handoff and draft check** completed
+in one bounded case. The operator then authorized one fresh Lab → Claude
+desktop trial: submit the unchanged public invitation once, inspect source
+access and the reply, and record the result. Its distinct contract is scoped
+below; the completed no-Send case granted no submission authority. The later
+one-Send trial is now finished with a visible transition, completed reply and
+inspected curl denial, but unconfirmed submitted invitation. Strict application
+qualification and the three-case MVP remain incomplete; no further live action
+is authorized. Installation and VM boot establish prerequisites only. The
+native Computer Use must execute inside the guest and inspect guest-local
+Claude. The coding Agent and guard may run on the host through the published
+guest CUA interface; clicking a VM viewer or running SSH alone does not
+establish that route. This placement clarification does not widen permitted
+input. Guest login, protected authentication and OS/tool permission grants
+remain explicit setup boundaries.
 
-After the guest controller and owned fresh empty Chat are established, this
-phase permits a public diagnostic marker to be typed, observed and cleared,
+The earlier marker diagnostic, after the guest controller and owned fresh
+empty Chat are established, permits its public marker to be typed, observed and cleared,
 with fresh agreement between accessibility and pixels and a separately
 assessed host/guest input boundary. It permits no Lab activation, Send or
 inference in Claude under test. The coding Agent may operate its permitted
 controller within this scope. The normal Send-authorized case builder below
 must not be used to expand this narrower scope.
 The [dedicated diagnostic](NO-SEND.md) implements that separate zero-handoff,
-zero-Send authority; its CUA session exposes bounded composer input and effect
-inspection, with no launch or submit method.
+zero-Send authority; its local CUA session exposes bounded composer input and
+effect inspection, with no launch or submit method. The remote
+[setup bridge](HOST-AUTHORITY.md) retains its fixed Chat setup/readiness scope.
+The separately authorized [remote marker lane](REMOTE-MARKER.md) now reuses the
+no-Send session on host-owned authority. It permits one focus/type/exact clear,
+plus a separately claimed public host probe; it has no keypress or Send API.
 
 Readiness and interruption rules still apply. Durable case authority and
 consumed attempts must survive guest restart and baseline restoration outside
 disposable guest state; a restored image cannot renew an attempt. The external
 store candidate and filesystem/crash fixtures now implement that separation
-for their tested arrangement. Actual VM restore and host-mounted placement
-remain unqualified, not an OS guarantee.
+for their tested arrangement. The selected remote setup path now keeps claims
+on the host-native external store; the incoherent guest mount is excluded.
+The later [restore finding](RESTORE-QUALIFICATION.md) qualified only an orderly
+active-case pause, cold clone, fresh reconciliation and consumed-focus refusal.
+Arbitrary crashes and Send recovery remain unqualified; this is no OS guarantee.
 Developer-local reuse may reserve the whole Claude app instead of requiring
 a VM, but cannot claim simultaneous personal use of that same instance.
 
@@ -49,12 +67,14 @@ result; uncertain execution remains uncertain.
 | Controlled surfaces | One named controller; no competing human or software input across the target scope; the current bundle-targeted Claude interface requires app-wide reservation | The controller's observation of input isolation; the runner cannot lock other software out |
 | Dependable observation | A complete fresh capture of the intended target; Agent-reviewed agreement between AX and pixels | OS/control-interface observations and the Agent's visual review; a Boolean does not independently prove pixel agreement |
 | Accounted actions | Current readiness, exact scope and durable attempt reservation before dispatch; effect checked separately afterward | A control API return does not establish input delivery, application acceptance or model execution |
-| Bounded recovery | Fixed deadline and one launch/one Send budget; interruptions invalidate current qualification | The local clock, journal and machine owner; uncertain Send consumes its attempt |
+| Bounded recovery | Fixed deadline and the selected lane's immutable action budget; interruptions invalidate current qualification | The local clock, journal and machine owner; an uncertain action consumes its attempt |
 | Reviewable results | Separate bounded findings, trust limits, assistance, interruptions and cleanup | Local records can be fabricated by their owner; hashes provide bindings, not an independent witness |
 
 The only lane selected here is the unchanged pinned public Lab invitation,
 regular stable Chrome (`com.google.Chrome`) and Claude desktop
-(`com.anthropic.claudefordesktop`) in Chat. Chrome Beta and ChatGPT/Codex desktop
+(`com.anthropic.claudefordesktop`). The new draft-only lane identifies the
+actual merged conversation; legacy Chat requirements remain unchanged for
+their historical contracts. Chrome Beta and ChatGPT/Codex desktop
 control are excluded. Other clients, a different payload, private data,
 configuration changes, THOUGHT and deployment need separate scope decisions.
 
@@ -78,7 +98,7 @@ the next run needs a new reserved interval and current owned observations.
 
 ## Authority and human participation
 
-One run authorization covers the expected steps of one fresh conversation:
+Only a separately Send-authorized run covers all the following expected steps:
 inspect owned surfaces, activate the actual Lab component once, resolve a
 covered external-app launch confirmation, compare the public draft, attempt
 Send at most once, inspect source/reply results and perform bounded cleanup.
@@ -234,3 +254,153 @@ AX captures out of persisted records. The OS, control interface, exposed app
 state, controller interpretation and local record owner remain trust
 boundaries. At most one runner dispatch is enforceable here; exactly-once
 application delivery, model authorship and private intention are not.
+
+## Explicit public no-Send capture profile, 2026-10-23
+
+The operator selected `no-send-reviewed-60s-v1`. New public no-Send contracts
+may include the hash-bound `captureProfile: { id, maximumAgeMs: 60000 }`.
+No profile means the existing 30,000 ms default and unchanged historical
+contract bytes. Send-capable contracts reject the profile. Execution,
+composer/focus and new host-probe observations use the selected bound age;
+callers cannot choose an arbitrary override. Reviewed agreement, ownership,
+mode, exact payload, generation and consumed-attempt checks remain mandatory.
+
+The capture-age profile does not extend a case deadline. The existing total
+case-duration ceiling remains 1,800,000 ms, selected before a new case starts.
+The successful reviewed marker case declared that 30-minute budget. Earlier
+30-second and 15-minute failures retain their original contracts and results;
+recovery cannot upgrade either. Accepted past effects may be aggregated
+separately but cannot restore present readiness or qualify a late overall pass.
+
+A finished original case's unused clear can be durably delegated once to a
+separate cleanup-only no-Send contract, bound to the original case/contract,
+marker, configuration and target. That reduced scope has zero focus/types,
+one exact clear and no independence input. It records its own result without
+rewriting the failed origin or claiming the full gate. See the
+[remote workflow and actual limits](REMOTE-MARKER.md).
+
+## Focus-only restore diagnostic
+
+A new no-Send contract may explicitly select `focusOnly: true`, recording
+`diagnostic.purpose: focus-recovery`, one focus, zero types and zero clears.
+It cannot be combined with cleanup-origin authority or a Send lane. The
+checkpoint/pause/reconciliation and no-native-dispatch replay audit are
+specified in [restore qualification](RESTORE-QUALIFICATION.md). Historical
+contracts keep their original bytes. The initial restore attempt failed its
+Chat target gate. A later explicit merged no-Send profile qualified an actual
+orderly active-case pause, cold baseline clone, fresh reconciliation/readiness
+and consumed-focus refusal. The general marker report remains indeterminate;
+see the separate bounded recovery result. Arbitrary crashes and Send recovery
+remain unqualified.
+
+The explicit `claude-unified-no-send-v1` **surface profile** is separate from
+the capture-age profile. It selects positive current merged-conversation UI
+controls; it does not change scope, input budgets, deadline, generation or
+permissions. Manual and Browser controls are observed, not changed or treated
+as guarantees of restricted model tools. Default/legacy profiles still refuse
+the different session surface. The handoff and arrival paths reject this
+no-Send-only profile; it does not qualify the application lane. The distinct
+draft-only contract below does not amend that restriction.
+
+## Separate Lab draft-only contract, 2026-10-24
+
+The explicit `lab-unified-draft-nosend-v1` contract in
+[`remote-reading.mjs`](remote-reading.mjs) covers one canceled browser probe,
+one actual SDK component handoff and at most one expected native launch
+confirmation. Claude types, keys, clearing and Sends are all zero. This does
+not widen the setup, marker, focus-recovery or historical Send contracts.
+The bridge's separately claimed fixed Chrome lifecycle input prepares and
+closes owned tabs; those browser actions supply no Claude input authority.
+
+The contract binds unchanged SDK 0.1.4/archive and Lab context pins, one
+controller/runtime, observed guest configuration, owned logical surfaces,
+comparison policy and original 30-minute deadline. It requires reviewed paired
+captures no older than 30 seconds, including normal app-approval time; the
+marker lane's optional 60-second profile does not apply. Each activation is
+durably claimed before dispatch and cannot replay after an uncertain result,
+new capture or restored guest. Receipt polling is read-only.
+
+Canonical authority stays on the external host store. The actual slice used a
+temporary forward of the public host-loopback fixture to guest loopback,
+now removed; no guest authority replica or mount was supplied. Current native
+page/link checks and bounded post-dispatch receipts establish distinct browser
+facts. Explicit SSH-bracketed clock correlation preserves guest event time
+and records its host uncertainty interval under stated clock trust. Neither a
+receipt nor a native API return establishes draft arrival. The latter requires
+a separate fresh Claude AX/pixel pair and named comparison.
+
+The [2026-10-24 result](AGENT-QUALIFICATION.md#guest-chrome-and-lab-draft-only-handoff-2026-10-24)
+passed this bounded path through native regular Chrome 156.0.8078.47 into
+merged Claude 3.6556.2, including the persistent-permission-unchecked launch
+confirmation and observed owned-tab cleanup. The exposed unsent draft matched
+the pinned paragraph presentation policy, not exact text. It establishes no
+submission, source acquisition or Agent execution. The separate extension
+browser adapter failed for missing turn metadata and remains unqualified.
+SDK 0.1.4 and the host Codex draft were untouched; the Claude draft was retained
+unsent. See [operating guide and limits](DRAFT-HANDOFF.md).
+
+The later one-trial scope below recorded its own submission transition,
+source/reply findings and cleanup; strict submitted-message qualification
+remains incomplete. Full MVP qualification also requires three consecutive
+fresh cases without human rescue. This completed draft-only case grants no
+future native input or Claude Send authority.
+
+## Separate fresh Lab reading trial, 2026-10-24
+
+The operator explicitly authorized **one fresh** Lab → Claude desktop test,
+one submission of the pinned public invitation, source-access/reply inspection
+and result recording. The distinct fixed profiles
+`lab-unified-reading-trial-v1`, `-v2` and `-v3` did not amend or reopen the
+draft-only or marker contracts. Initial v1/v2 preparation failed empty readiness
+with zero Send. v2 added one setup Raise; v3 separately added one reset of the
+exact known public Lab draft after setup Raise and New, followed by distinct
+fresh observed empty readiness. Only v3 allows that one bounded reset; prior
+budgets remain immutable. SDK 0.1.4 and its archive/context pins, the host Codex
+draft and deployment remain unchanged.
+
+Each trial contract retains current reviewed merged-surface targeting, the
+Lab-only paragraph presentation policy, the 30-second capture bound and the
+fixed 30-minute case deadline. It adds at most **one durably claimed Send**
+for that case. A stale observation, target conflict, security/authority barrier
+or uncertain Send stops dependent action; a new capture or interruption cannot
+restore a consumed attempt. Normal owned source-result disclosure controls may
+be inspected within the authorized trial; they do not permit settings changes,
+another message, tool-permission bypass or broader account access.
+
+Record browser dispatch, draft arrival/comparison, observed submission, source
+access and reply separately. Inspect an actual owned tool result and its public
+source identity before claiming access; assistant prose alone is insufficient.
+Denial or unavailable evidence remains explicit, even if the reply completes.
+The draft presentation policy does not establish exact submitted bytes. Retain
+the public submitted test conversation for review and close only known-owned
+browser surfaces no longer needed.
+
+The v3 case used its one Send and finished on 2026-10-24. Its actual user-message
+boundary/empty composer qualified a visible transition only; split text/link
+nodes and flattened whitespace left submitted-invitation confirmation absent.
+A completed reply and the exact public-index curl CONNECT403/HTTP000/zero-byte
+denial were recorded separately. The denial uses a current selected immediately
+adjacent tool-content boundary, not a broad assistant region; an unexposed
+successful WebFetch body remains assistant-reported. The canonical outcome is
+`reading-interaction-incomplete`, with `passed=false` and
+`interactionPassed=false`. See [the trial guide and report pins](READING-TRIAL.md).
+
+The two current owned tabs were closed; the submitted public test conversation
+is retained. One older v1 tab remains retained after its consumed cleanup
+capture expired. The bridge, fixture server and reverse fixture forward are
+closed; the guest console remains open. No further live action is authorized.
+Next work is offline submitted-message extraction and source-adapter
+inspectability, preserving the original policies and finished findings before
+a separately authorized retest. This is no independent execution witness or
+completed MVP qualification.
+
+## Rendered-message and read-only inspection boundary
+
+New Lab trial contracts may explicitly select `claude-inline-static-v1` for
+the complete ordered submitted text/link body. This preserves a distinct
+rendered-message finding; exact bytes, transport identity and model origin
+remain unestablished. No old contract or report adopts the policy. Source
+activity disclosure is an inspection action, with its own durable claim;
+a completed reply may bind expected-source inspection before the source is
+visible, but cannot establish acquisition. An expanded named-source denial
+remains a failure outcome. See [trial policies](READING-TRIAL.md#new-case-observation-policies-and-continuation).

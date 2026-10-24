@@ -200,3 +200,84 @@ test('a case finishing after HTTP ownership lookup still prevents the append ins
   assert.equal(fs.readFileSync(path.join(f.directory, state.runId + '.json'), 'utf8'), before);
   assert.equal(JSON.parse(fs.readFileSync(p.state, 'utf8')).status, 'finished');
 });
+
+const dispatch = (overrides = {}) => ({ client: 'claude-app', lane: 'browser', cancelled: true,
+  isTrusted: true, at: new Date().toISOString(), ...overrides });
+
+test('bounded post-dispatch receipts persist independently of native-arrival observations', async t => {
+  const f = await fixture(t);
+  const { run } = await (await f.post('/api/runs', {})).json();
+  const route = `/api/runs/${run.id}/dispatches`;
+  assert.deepEqual((await (await fetch(f.origin + route)).json()).dispatches, []);
+  const response = await f.post(route, dispatch()); assert.equal(response.status, 201);
+  const receipt = await response.json();
+  assert.equal(receipt.provenance, 'owned-bench-run-receipt'); assert.equal(receipt.runId, run.id);
+  assert.deepEqual(receipt.manifest, f.inputs.manifest);
+  assert.deepEqual(receipt.dispatches[0], { ...dispatch(), recordedAt: new Date().toISOString(), ordinal: 1 });
+  assert.equal(Object.hasOwn(receipt, 'token'), false); assert.equal(Object.hasOwn(receipt, 'context'), false);
+  assert.equal((await (await fetch(f.origin + `/api/runs/${run.id}`)).json()).run.observations.length, 0,
+    'a dispatch receipt must not silently append native arrival, execution or handoff assertions');
+  const stored = fs.readFileSync(path.join(f.directory, run.id + '.dispatches.json'), 'utf8');
+  assert.equal(stored.includes(f.inputs.context), false); assert.equal(stored.includes(f.config.token), false);
+  const second = createBenchServer({ inputs: f.inputs, storeDir: f.directory });
+  await new Promise(resolve => second.listen(0, '127.0.0.1', resolve));
+  try {
+    const freshOrigin = `http://127.0.0.1:${second.address().port}`;
+    assert.deepEqual(await (await fetch(freshOrigin + route)).json(), receipt, 'fresh server reads the same persisted bounded receipt');
+  } finally { second.closeAllConnections(); await new Promise(resolve => second.close(resolve)); }
+});
+
+test('dispatch receipt API retains token, same-origin and body-size restrictions', async t => {
+  const f = await fixture(t), { run } = await (await f.post('/api/runs', {})).json();
+  const route = `/api/runs/${run.id}/dispatches`;
+  assert.equal((await f.post(route, dispatch(), { 'X-Bench-Token': '' })).status, 403);
+  assert.equal((await f.post(route, dispatch(), { Origin: 'https://unrelated.invalid' })).status, 403);
+  assert.equal((await f.post(route, dispatch(), { 'Sec-Fetch-Site': 'cross-site' })).status, 403);
+  assert.equal(await httpStatus(f.origin + route, { Origin: 'https://unrelated.invalid' }), 403);
+  assert.equal(await httpStatus(f.origin + route, { Host: 'unrelated.invalid' }), 403);
+  assert.equal((await f.post(route, { ...dispatch(), transcript: 'x'.repeat(13000) })).status, 400);
+  assert.equal((await f.post(route, dispatch(), { 'Content-Type': 'text/plain' })).status, 403);
+  assert.equal((await (await fetch(f.origin + route)).json()).dispatches.length, 0);
+});
+
+test('dispatch receipts accept exact bounded event fields only and never retain arbitrary text', async t => {
+  const f = await fixture(t), { run } = await (await f.post('/api/runs', {})).json();
+  const route = `/api/runs/${run.id}/dispatches`, sentinel = 'SYNTHETIC_PRIVATE_DISPATCH_SENTINEL';
+  const bad = [null, [], {}, dispatch({ client: sentinel }), dispatch({ lane: 'real-client' }),
+    dispatch({ cancelled: 'true' }), dispatch({ isTrusted: 1 }), dispatch({ at: sentinel }),
+    dispatch({ at: new Date(Date.now() - 120001).toISOString() }), dispatch({ at: new Date(Date.now() + 30001).toISOString() }),
+    { ...dispatch(), transcript: sentinel }, { ...dispatch(), href: 'https://unrelated.invalid/' + sentinel },
+    { ...dispatch(), recordedAt: new Date().toISOString() }, { ...dispatch(), ordinal: 1 }];
+  for (const value of bad) assert.equal((await f.post(route, value)).status, 400);
+  const file = path.join(f.directory, run.id + '.dispatches.json'); assert.equal(fs.existsSync(file), false);
+  assert.equal((await f.post(route, dispatch({ isTrusted: false }))).status, 201,
+    'false trust is an observed event fact; the authority guard separately refuses it as a real activation');
+  assert.equal(fs.readFileSync(file, 'utf8').includes(sentinel), false);
+});
+
+test('dispatch receipts require an existing current-pinned run and reject corrupt stored extra text', async t => {
+  const f = await fixture(t), missing = '/api/runs/reading-missing/dispatches';
+  assert.equal((await fetch(f.origin + missing)).status, 404); assert.equal((await f.post(missing, dispatch())).status, 404);
+  const { run } = await (await f.post('/api/runs', {})).json(), route = `/api/runs/${run.id}/dispatches`;
+  assert.equal((await f.post(route, dispatch())).status, 201);
+  const file = path.join(f.directory, run.id + '.dispatches.json'), original = fs.readFileSync(file);
+  const corrupt = JSON.parse(original); corrupt.dispatches[0].transcript = 'SYNTHETIC_PRIVATE'; fs.writeFileSync(file, JSON.stringify(corrupt));
+  const blocked = await fetch(f.origin + route); assert.equal(blocked.status, 400); assert.equal((await blocked.text()).includes('SYNTHETIC_PRIVATE'), false);
+  fs.writeFileSync(file, original);
+  const runFile = path.join(f.directory, run.id + '.json'), changed = JSON.parse(fs.readFileSync(runFile));
+  changed.manifest.archiveSha256 = '0'.repeat(64); fs.writeFileSync(runFile, JSON.stringify(changed));
+  assert.equal((await fetch(f.origin + route)).status, 400); assert.equal((await f.post(route, dispatch())).status, 400);
+});
+
+test('four event slots retain ordered facts; a fifth cannot overwrite the earlier receipts', async t => {
+  const f = await fixture(t), { run } = await (await f.post('/api/runs', {})).json();
+  const route = `/api/runs/${run.id}/dispatches`;
+  for (let index = 0; index < 4; index++) {
+    const response = await f.post(route, dispatch({ lane: index % 2 ? 'desktop' : 'browser', cancelled: index % 2 === 0 }));
+    assert.equal(response.status, 201); assert.equal((await response.json()).dispatches.at(-1).ordinal, index + 1);
+  }
+  const before = fs.readFileSync(path.join(f.directory, run.id + '.dispatches.json'));
+  assert.equal((await f.post(route, dispatch())).status, 400);
+  assert.deepEqual(fs.readFileSync(path.join(f.directory, run.id + '.dispatches.json')), before);
+  assert.deepEqual((await (await fetch(f.origin + route)).json()).dispatches.map(item => item.ordinal), [1, 2, 3, 4]);
+});

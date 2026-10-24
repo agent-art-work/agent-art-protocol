@@ -3,8 +3,19 @@
 This runner lets a coding Agent exercise the real reading handoff and append
 bounded results without asking an operator to fill in the bench's observation
 form. It is a local development instrument, separate from the SDK and public
-reading component. The current target is a fresh **Claude desktop
-Chat** conversation with the exact pinned public Lab invitation.
+reading component.
+
+Three explicitly authorized fresh Lab → Claude desktop cases have finished.
+Each used exactly one Send and recorded matching submitted rendering plus a
+completed collection introduction, without human window rescue, manual Send
+or result relaying. The same 15 pinned runner/input files remained unchanged.
+Case 2 inspected the actual raw-index HTTP403/CONNECT403 denial and passed the
+runner with source failure recorded. Cases 1 and 3 could not inspect source
+activity because their native summary titles were unsupported; source access
+remains unobserved. The three-consecutive-pass gate and full MVP have **not
+passed**. All three submission permissions are consumed; no further live test
+is authorized. SDK 0.1.4 and the Codex draft remain unchanged; no deployment.
+See [three-case findings](AGENT-QUALIFICATION.md#three-authorized-fixed-code-lab-cases-2026-10-24).
 
 It requires a coding Agent with permitted **Computer Use through CUA**, regular
 stable Chrome and access to Claude desktop. The CLI manages pinned inputs,
@@ -41,41 +52,167 @@ launch or tool permissions remain normal
 environment boundaries. The runner is separate from the production SDK and
 component; site visitors do not install or invoke it.
 
-The immediate phase is **dedicated environment no-Send feasibility**. A local
-macOS VM is the preferred candidate, not a qualified environment. Guest-local
-permitted Computer Use is mandatory: host control of a VM viewer and shell/SSH
-access alone cannot pass this gate. The operator has authorized starting these
-no-Send checks, not another Lab handoff or inference in Claude under test. SDK 0.1.4 remains
-unchanged; the existing Codex draft remains untouched and unsent; no deployment.
+The earlier completed phase is **dedicated environment no-Send handoff and
+draft qualification**. One case on 2026-10-24 passed native regular Chrome
+control, the actual Lab component handoff, launch confirmation and an unsent
+public draft under the explicit Lab presentation policy. Exact exposed text
+did not match. The later one-Send trial below does not amend that completed
+no-Send case. The full MVP has not passed.
+Host-owned setup, marker/cleanup/input checks, merged-surface readiness and
+active-case cold-restore findings remain separate earlier results. See
+[draft-only procedure](DRAFT-HANDOFF.md),
+[draft-only dated result](AGENT-QUALIFICATION.md#guest-chrome-and-lab-draft-only-handoff-2026-10-24),
+[host authority and guest-native readiness](HOST-AUTHORITY.md) for the reusable
+entry point and [dated results](AGENT-QUALIFICATION.md#host-authority-and-guest-chat-readiness-2026-10-23)
+for evidence and limits.
 
-The [dedicated no-Send workflow](NO-SEND.md) now has its own zero-handoff,
-zero-Send contract, bounded marker session and report. New diagnostic and Lab
-cases require an external authority store. Case state, claims, dispatch entry,
-canonical reading records and reports stay outside the disposable workspace;
-reconciliation invalidates old qualification without renewing attempts.
-Filesystem/crash fixtures qualify these guards only. Guest-local control,
-actual mount placement and VM-restore behavior remain live checks.
-The active direct image download must remain running without further restarts
-while these implementation tasks are completed.
+Canonical state/claims now stay on the host-native external store. The approved
+SSH/app-server connection carries documented guest CUA; the guest never reads
+or writes an authority replica. Native UI execution remains inside the guest.
+This supersedes the initial coding-Agent-inside-guest placement requirement;
+host viewer automation and SSH alone still cannot qualify native control.
+The stale shared authority mount remains unavailable and unqualified. The
+draft-only slice forwarded the public host-loopback fixture only to guest
+loopback; that forward is now removed. It exposed no authority replica or
+mount. No reverse authority service, public listener or new desktop driver
+was added.
 
-The earlier bounded no-Send check passed only under a temporary host app-wide
-reservation. That reservation ended. It neither qualifies guest control nor
-establishes simultaneous personal and runner use of the same Claude instance.
-The normal-use target is independent guest input while the human uses host apps.
-Setup pins and operator steps are in the
-[dedicated environment runbook](DEDICATED-ENVIRONMENT.md). Provisioning status
-is recorded separately from guest-control qualification in the dated findings.
+The actual setup used two host-claimed mode actions and then two distinct fresh
+reviewed native pairs to establish an empty Chat composer. Claude's shared
+Chat/Cowork umbrella initially restored Cowork, so the explicit named profile
+requires inner Chat selected and Cowork unselected. `/new` alone is insufficient.
+A later recheck of the parameterized entry point accepted one readiness capture,
+then rejected an expired second capture and finished incomplete with no setup
+input. Preserve both results; no stale observation or historical pass authorizes
+future input. The setup lane retains zero typing, keypress, clearing, handoff and Send
+operations. The separately authorized marker lane below supplies its own
+limited focus/type/clear contract.
+
+**Marker slice acceptance (now observed):** connect the existing bounded no-Send marker guards to the
+host-owned authority arrangement, then qualify guest composer focus, exact
+public-marker delivery, bounded cleanup and input independence while host apps
+remain usable. Use fresh current ownership/readiness and separate observed
+effects after each action. No such input was performed in the setup slice.
+At that marker milestone, actual guest restore/reconnect was still unqualified;
+the follow-up below supplies a separate bounded live result. Filesystem/crash
+fixtures are not a VM restore test. No Lab trial or inference follows without
+its own later scope. SDK 0.1.4 stays unchanged, the host Codex draft remains
+untouched and unsent, and no deployment/publication follows.
+
+The operator has now authorized that marker/independence slice. The new
+`remote-marker.mjs` adapter reuses the existing no-Send session on the host;
+`vm-cua-bridge.py --authorize-probe` carries only its claimed focus/type/clear
+calls to guest-native CUA. A disposable owned host Chrome textarea and a
+separate single-use public host typing claim support a bounded check in both
+directions. Acceptance requires fresh reviewed focus, exact guest marker,
+unchanged host input after guest typing, unchanged guest marker after host
+typing, exact-marker-only cleanup and unchanged host input after cleanup.
+The [remote marker guide](REMOTE-MARKER.md) records the actual passing bounded
+case, explicit 60-second no-Send profile and declared 30-minute case budget.
+Earlier capture-expiry failures and the expired 15-minute case remain failed.
+Code/fixture checks alone cannot pass that live gate. Preserve any incomplete
+case without repeating its consumed action; no setup or Send budget is added.
+
+**Initial restore slice result:** actual cold baseline rollback preserved selected host
+files and a consumed finished-case claim. Fresh SSH reconnect was checked.
+The restored Claude surface differed and was rejected as ambiguous, so that
+attempt did not qualify active in-flight recovery. See [restore findings](RESTORE-QUALIFICATION.md).
+
+**Follow-up restore result, 2026-10-23:** Anthropic documents a gradual merger of
+Chat and Cowork with no separate mode selector. This is consistent with the
+observed restored UI; account rollout state is not independently attested.
+The opt-in `claude-unified-no-send-v1` profile positively identifies that surface
+for no-Send checks only. Two fresh reviewed native pairs passed before restore;
+a separate one-focus case then paused, underwent an actual cold baseline clone,
+and reconnected. Old qualification was rejected; fresh restored empty readiness
+passed. The host refused replay of the consumed focus claim before its native
+callback, retaining the original contract and deadline. One native focus click
+occurred before restore; zero input followed restore. The general marker report
+remains indeterminate, separate from the bounded recovery safety finding.
+
+**Draft-only result, 2026-10-24:** case
+`reading-draft-afe8a5ce-53e0-4135-8c13-a5176e1b4d9f` passed the separate
+`lab-unified-draft-nosend-v1` contract. Native CUA observed regular Chrome
+156.0.8078.47, a trusted canceled browser probe, one trusted uncanceled desktop
+component activation and one `Open Claude?` confirmation with persistent
+permission unchecked. Claude 3.6556.2 changed from an empty owned merged
+conversation to the unsent public Lab draft. Exact comparison failed;
+`lab-claude-ax-paragraphs-v1` matched (983 to 979 bytes, eight to four newlines).
+No Claude typing, keys, clearing, Send or model turn occurred. Both owned tabs
+were closed with a post-close view showing only the original New Tab; the
+Claude draft was retained unsent and the host Codex draft was untouched.
+SDK 0.1.4 remained unchanged. The extension-backed browser adapter separately
+failed for missing `session_id`/`turn_id` metadata; native Chrome success does
+not qualify that adapter.
+
+**Completed application trial, 2026-10-24:** the operator's single submission
+was used in case `reading-trial-3007e7a6-f30b-4864-b6b1-791889e4708c` under
+the explicit `lab-unified-reading-trial-v3` contract. Its one known-public draft
+reset produced observed empty readiness; browser probe, actual handoff, launch
+confirmation and named-policy draft arrival passed. One durable Send returned.
+The fresh post-Send user-message boundary and empty composer established a
+visible transition, but split text/link nodes and flattened whitespace left
+the submitted invitation unconfirmed. No comparison policy was relaxed.
+
+A completed collection introduction, access limits and follow-up were observed.
+The expanded raw-index request showed CONNECT403/HTTP000/zero bytes/exit56;
+that specific denial was recorded under the narrow adjacent tool-content
+boundary. An unexposed successful WebFetch body remains assistant-reported.
+The canonical report is `reading-interaction-incomplete`, `passed=false` and
+`interactionPassed=false`. Source denial and reply completion do not repair
+missing submitted-message confirmation. The current case's two owned tabs
+were closed and the submitted public conversation retained; an older v1 tab
+remains retained after its cleanup capture expired. The bridge/server/fixture
+forward are closed; the guest console remains open. See the
+[trial guide and report pins](READING-TRIAL.md).
+
+**Current phase: evaluate the recorded repeat gate; no further live actions.**
+Three authorized submissions are complete, but two source inspections remain
+unobserved because activity-summary matching is too narrow. The next code
+slice should model the actual owned activity boundary and rejection cases,
+then separately qualify a new frozen candidate if authorized. Do not add
+another prose-title exception and claim these old reports passed. Preserve
+the fixed 30-second capture age; the controller needed repeated fresh reads
+when its own round trips made preflight stale. Environment expansion, new
+clients and provider policy changes are outside this target. See [three-case findings](AGENT-QUALIFICATION.md#three-authorized-fixed-code-lab-cases-2026-10-24).
+
+**Continuation commissioned, 2026-10-24:** the operator approved completing the
+recommendation: finish the read-only observation adapter, qualify three
+consecutive fresh Lab cases, then exercise a second reading fixture through
+the same small app profile. Each live case retains its own one-Send claim,
+current environment/input bindings and fixed limits. A new opt-in submitted
+rendering policy may identify complete ordered static text/link parts without
+claiming model-received bytes or changing old comparisons/reports. Preparing
+the next conversation may refer to a finished public trial, but must inspect
+its complete known public user message and empty composer before New. Freeze
+the environment; no provider-internal work, new client, SDK change or deployment.
+Success requires separate stage evidence, no human rescue and unchanged runner
+inputs across the three-case streak. Source denial stays a tested failure
+outcome; unavailable successful-source evidence must remain unverified.
+The marker result covers sequential non-interference between
+owned host browser-tab input and guest-native Claude; it is not a universal
+physical-keyboard or arbitrary-concurrency guarantee. The operator-selected restore slice used disposable clones and preserved
+the configured source guest. No further environment expansion is selected.
+
+Earlier boot/provisioning, shared-storage failure, blocked CUA selections,
+protected permission repair, welcome-screen partial capture and complete Code
+observations retain their original dated findings. One-time human OS grants
+and Claude sign-in remain recorded assistance. The current Agent can inspect
+and prepare the guest through the connection without per-test Ready, manual
+submission or result relaying; protected setup and unexpected new authority
+remain human exceptions. The existing stored-task reader is still read-only.
 
 The standing sequence is:
 
 | Phase | Acceptance for this phase | Current boundary |
 | --- | --- | --- |
-| Environment prerequisites | Host capacity and guest/runtime suitability checked; an Agent with permitted guest-local browser/native controls can run; access/login/permissions identified | Host/runtime and staged-app metadata checked. The incomplete pinned image is downloading through a direct-only local transport; a bounded live segmented-transfer probe passed after earlier truncations. Full image completion and guest boot/controller setup remain pending. Installation or published capabilities alone cannot qualify GUI control |
-| Guest controller and targets | Guest-local stable Chrome and owned fresh Claude Chat have declared versions, complete fresh reviewed AX/pixels and one available controller | Not qualified; the historical reserved-host pass is separate |
-| No-Send independence and cleanup | Guest composer focus, exact public marker delivery, bounded clear and empty readiness have observed effects while host apps remain usable; interruption blocks input | Immediate acceptance gate; no handoff, Send or Claude inference. Do not use another human Ready response as a substitute for controller capability |
-| Lab application qualification | After separate authorization, actual component activation, launch permission, draft arrival/fidelity, one Send attempt, observed submission, source/reply and cleanup produce separate findings; three consecutive fresh cases complete without human rescue | Future work, not currently authorized. Existing host results remain historical; uncertain Send cases must not be retried |
-| Durable reporting and recovery | Stage/provenance/assistance remain explicit; stale/conflicting targets stop actions; consumed attempts survive controller restart and guest baseline restoration | External authority storage, durable claims and explicit reconciliation are implemented candidates with filesystem/crash fixtures. Actual guest mount placement, VM restore and independent input are not qualified |
-| Thin profile and local reuse | A second local reading fixture uses the same small app profile, guards and report format without core changes; browser and real-client results remain distinct | Proposed after the dedicated Lab lane. Current runner is Lab-specific; local real-client use needs the developer's Agent/CUA/clients/access and app-wide Claude reservation, not a mandatory VM |
+| Environment prerequisites | Host capacity and guest/runtime suitability checked; native tools execute in the guest; access/login/permissions identified | Clone, boot, bundle integrity, runtime and offline inputs checked. One-time protected permission/onboarding setup followed by actual native capture. Security-baseline choice remains separate. Host authority replaces the excluded stale mount; installed browser metadata does not qualify browser control |
+| Guest controller and targets | Guest-local stable Chrome and owned fresh Claude conversation have declared versions, complete fresh reviewed AX/pixels and one available controller | Earlier Chat/Cowork and merged readiness results remain separate. The 2026-10-24 draft-only case observed regular Chrome 156.0.8078.47 native CUA and Claude 3.6556.2. The extension-backed browser adapter remains unqualified for missing turn metadata |
+| No-Send independence and cleanup | Guest composer focus, exact public marker delivery, bounded clear and empty readiness have observed effects while host apps remain usable; interruption blocks input | One host-authorized guest-native case passed focus, exact type/clear and two-direction owned-surface non-interference under the explicit 60-second profile. Historical failures remain unchanged. No handoff, Send or Claude inference |
+| Lab draft-only qualification | Actual canceled browser probe, one component handoff, covered native launch confirmation, fresh draft/policy comparison and owned-tab cleanup; zero Claude input or Send | One 2026-10-24 case passed the distinct draft-only contract. Presentation matched; exact exposed bytes did not. Draft retained unsent, SDK and Codex draft unchanged |
+| Full Lab application qualification | One Send attempt, confirmed submitted invitation, source/reply and cleanup produce separate findings; three consecutive fresh cases complete without human rescue | The separate three-case repeat recorded three submitted rendering matches and completed replies. One case inspected a request denial; two source inspections were blocked by unsupported activity titles. Three-pass gate not met; all three Sends consumed. Historical v3 report unchanged |
+| Durable reporting and recovery | Stage/provenance/assistance remain explicit; stale/conflicting targets stop actions; consumed attempts survive controller restart and guest baseline restoration | Initial finished-claim retention and ambiguous-target rejection remain unchanged. Follow-up active focus-only case observed cold rollback, retained claim/deadline, old-generation rejection, fresh merged-surface readiness and host replay refusal before native dispatch. Orderly pause was checked; arbitrary crashes, Send and malicious rollback remain unqualified |
+| Thin profile and local reuse | A second local reading fixture uses the same small app profile, guards and report format without core changes; browser and real-client results remain distinct | Lab and Inshell declarative fixtures passed the same 11-scenario browser matrix and reuse case/report preparation. Inshell native interaction is not qualified; guest automation remains Lab-specific. Developer-local reuse needs no mandatory VM |
 
 The first qualified lane retains the pinned SDK and public Lab invitation.
 Browser checks must pass independently before a later live case; they never
@@ -115,8 +252,8 @@ remain historical. The later controlled-repeat slice passed 302 repository
 tests, as recorded below; synthetic checks do not qualify the live recovery
 path. Only separately authorized live work can assess reliable control and
 observation. An inspected source-access failure can be a completed application
-outcome; it cannot be presented as successful reading. No new Lab trial follows
-from this plan.
+outcome; it cannot be presented as successful reading. The one-trial commission
+above is consumed and supplies no future live authority.
 SDK 0.1.4 stays unchanged. Other clients, THOUGHT, deployment and a published
 runner product remain later scope decisions.
 
@@ -738,9 +875,10 @@ completed introduction produces an overall genuine/read/participated verdict.
 
 This section preserves the execution-contract slice's status and relative
 terms such as "current", "latest" and "immediate" below. It predates the
-controlled no-Send repeat and dedicated-environment decision. The current
-target is the dedicated no-Send feasibility gate in the standing sequence
-above; newer dated findings do not retroactively qualify these cases.
+controlled no-Send repeat and dedicated-environment decision. That historical
+target was offline submitted-message extraction and source-adapter inspectability;
+the standing sequence above carries the latest result; newer dated findings do not retroactively
+qualify these cases.
 
 Helper/unit tests and journal recovery checks are synthetic. Browser checks
 cancel native launches. A real desktop trial requires its own dated record,
