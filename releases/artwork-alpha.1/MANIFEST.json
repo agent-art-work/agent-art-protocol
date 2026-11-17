@@ -1,0 +1,121 @@
+{
+  "schema": "aap.artwork-alpha.manifest.v1",
+  "release": "artwork-alpha.1",
+  "files": [
+    {
+      "path": "ACCOUNT-CONTRACT.md",
+      "bytes": 4670,
+      "sha256": "3174a3578282a319448b9b9405106777d6e44ede8abcb7050ef88524afa27f21"
+    },
+    {
+      "path": "ARTIFACTS.json",
+      "bytes": 5166,
+      "sha256": "6b516b31e8fee1a47bef6bec36b028512f8b33ab937d8ab30b86f406753ce34c"
+    },
+    {
+      "path": "ARTIST-AGENT.md",
+      "bytes": 2677,
+      "sha256": "d653a0dd2116d0f565de53686c7e66ae58e8fc75077156b979b10d9705fd7a6f"
+    },
+    {
+      "path": "CORE-CONTRACT.md",
+      "bytes": 10410,
+      "sha256": "b2c60c866aaf0f88b9253963060bce71e0e69dfa02f7020799a4282ce0f28a24"
+    },
+    {
+      "path": "INSTALL.md",
+      "bytes": 5913,
+      "sha256": "60fa5ec441a6d8ccc7c1a6ebdb6c089a5664224b8b52a2ffb3641032dc016dc9"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1088,
+      "sha256": "a24950dac6262fa80f4d5a31c50648331487f705cdf950b23c18b10cbf1bf123"
+    },
+    {
+      "path": "QUALIFICATION.json",
+      "bytes": 2665,
+      "sha256": "a59388365e576fd42bf34d34e79391c4c648a44cf3e51bc30236c8be9258444e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3567,
+      "sha256": "5865467eb87402a630fe23c9ff85a551a8df78ef1a930aa0f327a254e0e98cb6"
+    },
+    {
+      "path": "RELEASE.md",
+      "bytes": 3575,
+      "sha256": "8b418b5aec1217eabe8d1c7928635aede0d60c1e9c84251ef5571a3673cc5a85"
+    },
+    {
+      "path": "SUPPORT.md",
+      "bytes": 6005,
+      "sha256": "32038a0fad63bee1e8a2274c59345ec57787ff550097a8b72640ff9a993a4fe5"
+    },
+    {
+      "path": "consumer/package-lock.json",
+      "bytes": 4782,
+      "sha256": "6efb589e24838a75683aa9ee139c55a22b38f8380ca187bcada99e0b03542aef"
+    },
+    {
+      "path": "consumer/package.json",
+      "bytes": 350,
+      "sha256": "50eeae332a36aa458b71884c4b3250029c83ac8086369d730f1e60f32e1445e7"
+    },
+    {
+      "path": "consumer/vendor/artwork-sdk-0.0.0-mcp.1.tgz",
+      "bytes": 510287,
+      "sha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1"
+    },
+    {
+      "path": "consumer/vendor/participation-account-0.0.0-account.1.tgz",
+      "bytes": 77912,
+      "sha256": "e3e8751b48de68a509d986ffb294569f40ad9dba452b41e1a7124a0525aa7fa2"
+    },
+    {
+      "path": "evidence/SDK-RECOVERY-GAP.md",
+      "bytes": 4228,
+      "sha256": "d80abc562d97523bb03d09d8127fc61beb171a209e8052e6ed564d638cb2b8a9"
+    },
+    {
+      "path": "evidence/SIGNATURES-ACCOUNT-RESULT.md",
+      "bytes": 6905,
+      "sha256": "05be8cc2df946c274c0ba7dabf8c69b7db15de24ff5c353e3de7575ff054f72a"
+    },
+    {
+      "path": "evidence/account-archive.json",
+      "bytes": 688,
+      "sha256": "447c5bd1bba8513526e01e384df37733f15046ec67b89ba648444d0d711204b6"
+    },
+    {
+      "path": "evidence/account-p3-result.json",
+      "bytes": 4973,
+      "sha256": "3c9b8a32ecb600344c552a4da4e1417ea2d2e98cbee8605fde048808fefe5961"
+    },
+    {
+      "path": "evidence/core-archive.json",
+      "bytes": 555,
+      "sha256": "765cd35fdd2da01452b16dab955d07c58ef26aac1618e6cfa1bacd08edcc0120"
+    },
+    {
+      "path": "evidence/core-qualification.json",
+      "bytes": 7026,
+      "sha256": "896cb6fe5cf9c50f5a11416725bc49717cc10c3cd79dfe06aaae11bdae815bab"
+    },
+    {
+      "path": "package_verify.py",
+      "bytes": 5033,
+      "sha256": "a51e8ceba3a88f7f258185008910c2da6d79d056d9e1a99ab10c647f905ffaea"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 7516,
+      "sha256": "8fc670f453ffe87a248a1124aff181964be183bca92239120d787eb6d31d9e48"
+    },
+    {
+      "path": "verify_test.py",
+      "bytes": 3553,
+      "sha256": "8bcada319ef3e716c79b33b02dec92aa5a6cdedd175a09e33c7585c671be59fc"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "aap.artwork-alpha.qualification.v1",
+  "release": "artwork-alpha.1",
+  "preparedOn": "2026-11-17",
+  "state": "prepared-unpublished",
+  "profile": {
+    "os": "darwin",
+    "arch": "arm64",
+    "node": "22.23.4",
+    "sqlite": "3.53.4",
+    "npm": "10.9.9"
+  },
+  "packages": [
+    {
+      "name": "@agent-art/artwork-sdk",
+      "version": "0.0.0-mcp.1",
+      "sha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1"
+    },
+    {
+      "name": "@agent-art/participation-account",
+      "version": "0.0.0-account.1",
+      "sha256": "e3e8751b48de68a509d986ffb294569f40ad9dba452b41e1a7124a0525aa7fa2"
+    }
+  ],
+  "evidence": [
+    {
+      "case": "core-installed-consumers",
+      "source": "evidence/core-qualification.json",
+      "basis": "retained-producer-result",
+      "status": "passed-for-offline-internal-fixture-use",
+      "runs": 2,
+      "checksPerRun": 17,
+      "synthetic": true,
+      "rerunInReleasePreparation": false
+    },
+    {
+      "case": "account-consumer-p3-v1",
+      "source": "evidence/account-p3-result.json",
+      "basis": "retained-producer-result",
+      "status": "passed",
+      "offlineInstallations": 1,
+      "cases": 17,
+      "groups": 8,
+      "collections": 18,
+      "nativeReads": 117,
+      "synthetic": true,
+      "rerunInReleasePreparation": false
+    },
+    {
+      "case": "account-app-20261117-a",
+      "source": "evidence/SIGNATURES-ACCOUNT-RESULT.md",
+      "basis": "artist-owner-reported-source-reviewed",
+      "status": "passed",
+      "consolidatedTests": 67,
+      "focusedAccountCases": 8,
+      "preparationChecks": 1,
+      "freshWorksAcrossFocusedAndConsolidated": 14,
+      "collectionsAcrossFocusedAndConsolidated": 26,
+      "nativeReadsAcrossFocusedAndConsolidated": 122,
+      "synthetic": true,
+      "rerunInReleasePreparation": false
+    }
+  ],
+  "releasePreparation": {
+    "mode": "file-only",
+    "packageArchivesRebuilt": false,
+    "sdkRuntimeExecuted": false,
+    "installerExecuted": false,
+    "listeners": 0,
+    "agentCalls": 0,
+    "modelRequests": 0,
+    "accountAccess": false,
+    "publication": false,
+    "deployment": false
+  },
+  "unqualified": [
+    "production-authentication-consent",
+    "general-real-client-or-plugin-support",
+    "independent-model-origin",
+    "complete-process-context",
+    "report-truth",
+    "observed-audience-display",
+    "atomic-source-copy-release",
+    "safe-svg-rendering",
+    "backup-restore-relocation-rollback",
+    "durable-production-availability"
+  ],
+  "protocol": "candidate-not-a-released-standard",
+  "readingSdk014": "unchanged",
+  "publicReleaseApproval": "not-granted-by-preparation"
+}

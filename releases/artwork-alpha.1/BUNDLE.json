@@ -1,0 +1,11 @@
+{
+  "schema": "aap.artwork-alpha.bundle.v1",
+  "release": "artwork-alpha.1",
+  "state": "prepared-unpublished",
+  "archive": "agent-art-artwork-alpha.1.tar.gz",
+  "bytes": 622892,
+  "sha256": "567092e6fe0b740910b66a66748ba4f00c8b90c4829c65d2ff16f041630ac1a3",
+  "members": 25,
+  "twoFileBuildsIdentical": true,
+  "sdkArchivesRebuilt": false
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "aap.account.archive.p1",
+  "name": "@agent-art/participation-account",
+  "version": "0.0.0-account.1",
+  "archive": "participation-account-0.0.0-account.1.tgz",
+  "bytes": 77912,
+  "files": 46,
+  "sha256": "e3e8751b48de68a509d986ffb294569f40ad9dba452b41e1a7124a0525aa7fa2",
+  "sha512Integrity": "sha512-1/8PUjlMgfesPZWxRchn4FLchRACvW1dk84NVNMtd/yWXGdlsv3ExNXphpLfiDtAuBJhxx0ym9kimZ71XUKq6g==",
+  "manifestSha256": "bb6d2d2e612e684847c29bbaa0203406600de8c7a0c82d6609a7507af6a017ca",
+  "peerArchiveSha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1",
+  "published": false,
+  "installed": false,
+  "runtimeImported": false,
+  "ownerActivated": false
+}

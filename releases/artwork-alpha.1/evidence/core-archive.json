@@ -1,0 +1,14 @@
+{
+  "schema": "aap.artwork-sdk.archive.mcp1",
+  "name": "@agent-art/artwork-sdk",
+  "version": "0.0.0-mcp.1",
+  "archive": "artwork-sdk-0.0.0-mcp.1.tgz",
+  "bytes": 510287,
+  "files": 616,
+  "sha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1",
+  "sha512Integrity": "sha512-VT4dw20UBzUK+YYpu3tXPUSVvleuG9JhDWF26+hyzePLWRvgirEGGP5/oyoYzA70is7ZUDJCwMWyNVJHtAT+Iw==",
+  "manifestSha256": "cffb6bbef903cfd46707c4c8446a9693fbe7aebe89c5ddbe1f3ca3c5a943b273",
+  "bundledDependencies": 8,
+  "published": false,
+  "clientLaunched": false
+}

@@ -1,0 +1,210 @@
+{
+  "schema": "aap.artwork-sdk.internal-qualification.mcp1",
+  "date": "2026-11-13",
+  "status": "passed-for-offline-internal-fixture-use",
+  "candidate": {
+    "schema": "aap.artwork-sdk.archive.mcp1",
+    "name": "@agent-art/artwork-sdk",
+    "version": "0.0.0-mcp.1",
+    "archive": "artwork-sdk-0.0.0-mcp.1.tgz",
+    "bytes": 510287,
+    "files": 616,
+    "sha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1",
+    "sha512Integrity": "sha512-VT4dw20UBzUK+YYpu3tXPUSVvleuG9JhDWF26+hyzePLWRvgirEGGP5/oyoYzA70is7ZUDJCwMWyNVJHtAT+Iw==",
+    "manifestSha256": "cffb6bbef903cfd46707c4c8446a9693fbe7aebe89c5ddbe1f3ca3c5a943b273",
+    "bundledDependencies": 8,
+    "published": false,
+    "clientLaunched": false
+  },
+  "runtime": {
+    "os": "macOS",
+    "arch": "arm64",
+    "node": "22.23.4",
+    "sqlite": "3.53.4",
+    "npm": "10.9.9"
+  },
+  "checks": {
+    "newPackagingAndProofTests": 11,
+    "retainedVerifierTests": 14,
+    "retainedSourceQualification": {
+      "passed": 457,
+      "rerunThisSlice": false,
+      "selectedRuntimeAndDependencyBytesUnchanged": true
+    },
+    "byteIdenticalRebuild": true,
+    "archiveFiles": 616,
+    "pinnedInputs": 620,
+    "publicImports": 4,
+    "workConfigurations": 2,
+    "installedChecksPerPhase": 17,
+    "installationPhases": [
+      {
+        "mode": "install",
+        "exit": 0,
+        "outsideRepository": true,
+        "freshEmptyCache": true,
+        "emptyUserAndGlobalConfig": true,
+        "offline": true,
+        "ignoreScripts": true,
+        "binLinks": false,
+        "installedVerified": true,
+        "entireLockPackageSetExact": true,
+        "postRunInstalledAndLockUnchanged": true,
+        "installedChecks": 17,
+        "sqliteExperimentalWarningObserved": true
+      },
+      {
+        "mode": "ci",
+        "exit": 0,
+        "outsideRepository": true,
+        "freshEmptyCache": true,
+        "emptyUserAndGlobalConfig": true,
+        "offline": true,
+        "ignoreScripts": true,
+        "binLinks": false,
+        "installedVerified": true,
+        "entireLockPackageSetExact": true,
+        "postRunInstalledAndLockUnchanged": true,
+        "installedChecks": 17,
+        "sqliteExperimentalWarningObserved": true
+      }
+    ],
+    "exactSdkAndBundleLock": true,
+    "entireLockPackageSetExact": true,
+    "temporaryInstallationsRemoved": true
+  },
+  "archiveReview": {
+    "regularDeterministicMembers": true,
+    "noticeFiles": 11,
+    "boundedSecretPathScanHits": [],
+    "privateStateOrNativeBinaryIncluded": false,
+    "productionGraphImportsTestIdentity": false
+  },
+  "artifacts": [
+    {
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/ARCHIVE.json",
+      "bytes": 555,
+      "sha256": "765cd35fdd2da01452b16dab955d07c58ef26aac1618e6cfa1bacd08edcc0120"
+    },
+    {
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/CONSUMER-LOCK.json",
+      "bytes": 3504,
+      "sha256": "58c6833d18b0e1f7a0115118fe03431ae07eff92df8b8f418a887ee4242ea709"
+    },
+    {
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/CONSUMER-PROOF.json",
+      "bytes": 1383,
+      "sha256": "b9100b6ae6bec2b69ba980ec7d5b6cb30819d044203be810185b601257f4a2f6"
+    },
+    {
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/CONSUMER-RESULT.json",
+      "bytes": 2010,
+      "sha256": "15a8fcb24cbc1896d7479ea512a577711884f2eff7ace715c6090e95a0eba7e6"
+    },
+    {
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/README.md",
+      "bytes": 2870,
+      "sha256": "6ffc2e8058e5fa3bad1c78c555d75e13de099f9df3cbd462be47fa0f405f4685"
+    },
+    {
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/artwork-sdk-0.0.0-mcp.1.tgz",
+      "bytes": 510287,
+      "sha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1"
+    },
+    {
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/consumer-package.json",
+      "bytes": 241,
+      "sha256": "b7cbb9ba97260cf06572261f7688682728531afc604f54ce71927d3c42aaec8d"
+    }
+  ],
+  "sources": [
+    {
+      "path": "artwork-sdk/mcp/SOURCE-PINS.json",
+      "bytes": 124576,
+      "sha256": "8e02652b932e14bb2d3e7284010372714cd852631b7c07bf58e8712f61e0a6fa"
+    },
+    {
+      "path": "artwork-sdk/mcp/package.template.json",
+      "bytes": 877,
+      "sha256": "8c925c99b8564e9b3ddecb315d24f141f8e95b5dd7577c5c691fd25906e2cbfe"
+    },
+    {
+      "path": "artwork-sdk/mcp/CONSUMER-CONTRACT.md",
+      "bytes": 10410,
+      "sha256": "b2c60c866aaf0f88b9253963060bce71e0e69dfa02f7020799a4282ce0f28a24"
+    },
+    {
+      "path": "artwork-sdk/mcp/PACKAGE-README.md",
+      "bytes": 2704,
+      "sha256": "4d1a65ce1fb437523b67b69c65dfe050faf59dbbe469f8cbd0ce6ea13e6d8162"
+    },
+    {
+      "path": "artwork-sdk/mcp/pack.py",
+      "bytes": 10970,
+      "sha256": "a8051a422adc05cbc415d94c6027edb86dfa309b9854761aa52f7bde9a4f382e"
+    },
+    {
+      "path": "artwork-sdk/mcp/prove.py",
+      "bytes": 9332,
+      "sha256": "407661152a987bdfe1149045c19a7e04d4b2aee7456dc8bf2b823d3989b61cd7"
+    },
+    {
+      "path": "artwork-sdk/mcp/pack_test.py",
+      "bytes": 4326,
+      "sha256": "2cdd372119356509ceee3fb0403c01d1c7180f3eeed3b4ef219d95af83307cec"
+    },
+    {
+      "path": "artwork-sdk/mcp/prove_test.py",
+      "bytes": 2901,
+      "sha256": "54c8ad22c66e03c61de30679d7cdcbf4f34f2e2241f986a40f011668c41eae3f"
+    },
+    {
+      "path": "artwork-sdk/mcp/consumer/app.mjs",
+      "bytes": 6938,
+      "sha256": "2372f8b256bdee055a2589c17c95b93f596a4d2e611d5487a63c5c5199ce7872"
+    },
+    {
+      "path": "artwork-sdk/mcp/consumer/smoke.mjs",
+      "bytes": 10859,
+      "sha256": "982023b3880d52cc5a6d944da4da4e51a70083869127d520da08c4062af457dd"
+    },
+    {
+      "path": "artwork-sdk/mcp/consumer/works.json",
+      "bytes": 1370,
+      "sha256": "67bc3792fe417724ddc09a9980875f626a6cfd147b5a6d54dc19b5813d48ac0e"
+    },
+    {
+      "path": "artwork-sdk/mcp/consumer/package.template.json",
+      "bytes": 241,
+      "sha256": "b7cbb9ba97260cf06572261f7688682728531afc604f54ce71927d3c42aaec8d"
+    },
+    {
+      "path": "artwork-sdk/pack.py",
+      "bytes": 14929,
+      "sha256": "2b760cafafda1cf848a9db739c6865b6864e8a9f608624321494b49b3a345345"
+    },
+    {
+      "path": "artwork-sdk/verify.py",
+      "bytes": 5033,
+      "sha256": "a51e8ceba3a88f7f258185008910c2da6d79d056d9e1a99ab10c647f905ffaea"
+    },
+    {
+      "path": "spec/artwork/MCP-PARTICIPATION-ADAPTER.md",
+      "bytes": 8336,
+      "sha256": "5d14d5c518e6e980d900ca3c4d09882c1c94d7961fb3f877f5c94340df76de4c"
+    }
+  ],
+  "actualMcpServiceInitialized": false,
+  "realAuthenticationQualified": false,
+  "clientLaunched": false,
+  "modelRequests": 0,
+  "listenerOpened": false,
+  "published": false,
+  "deployed": false,
+  "limits": [
+    "All creative responses/identity observations are invented fixtures.",
+    "No initialized MCP transport/authentication/host or actual Agent participation is qualified.",
+    "Version is a private API-transition candidate, not a drop-in M7.2 update or a reading release.",
+    "No source/package inventory establishes independent origin, private intention or rendering."
+  ]
+}

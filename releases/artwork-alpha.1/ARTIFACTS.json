@@ -1,0 +1,134 @@
+{
+  "schema": "aap.artwork-alpha.artifacts.v1",
+  "release": "artwork-alpha.1",
+  "state": "prepared-unpublished",
+  "packages": [
+    {
+      "name": "@agent-art/artwork-sdk",
+      "version": "0.0.0-mcp.1",
+      "path": "consumer/vendor/artwork-sdk-0.0.0-mcp.1.tgz",
+      "identity": "evidence/core-archive.json",
+      "sha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1",
+      "bytes": 510287,
+      "members": 616
+    },
+    {
+      "name": "@agent-art/participation-account",
+      "version": "0.0.0-account.1",
+      "path": "consumer/vendor/participation-account-0.0.0-account.1.tgz",
+      "identity": "evidence/account-archive.json",
+      "sha256": "e3e8751b48de68a509d986ffb294569f40ad9dba452b41e1a7124a0525aa7fa2",
+      "bytes": 77912,
+      "members": 46
+    }
+  ],
+  "consumer": {
+    "manifest": "consumer/package.json",
+    "manifestSha256": "50eeae332a36aa458b71884c4b3250029c83ac8086369d730f1e60f32e1445e7",
+    "lock": "consumer/package-lock.json",
+    "lockSha256": "6efb589e24838a75683aa9ee139c55a22b38f8380ca187bcada99e0b03542aef",
+    "lockEntries": 13,
+    "unchangedFromTestedConsumer": true
+  },
+  "sourceFiles": [
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "LICENSE",
+      "target": "LICENSE",
+      "bytes": 1088,
+      "sha256": "a24950dac6262fa80f4d5a31c50648331487f705cdf950b23c18b10cbf1bf123",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "artwork-sdk/verify.py",
+      "target": "package_verify.py",
+      "bytes": 5033,
+      "sha256": "a51e8ceba3a88f7f258185008910c2da6d79d056d9e1a99ab10c647f905ffaea",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "artwork-sdk/account/proof/package.template.json",
+      "target": "consumer/package.json",
+      "bytes": 350,
+      "sha256": "50eeae332a36aa458b71884c4b3250029c83ac8086369d730f1e60f32e1445e7",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "artwork-sdk/account/proof/LOCK-CANDIDATE.json",
+      "target": "consumer/package-lock.json",
+      "bytes": 4782,
+      "sha256": "6efb589e24838a75683aa9ee139c55a22b38f8380ca187bcada99e0b03542aef",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/artwork-sdk-0.0.0-mcp.1.tgz",
+      "target": "consumer/vendor/artwork-sdk-0.0.0-mcp.1.tgz",
+      "bytes": 510287,
+      "sha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/ARCHIVE.json",
+      "target": "evidence/core-archive.json",
+      "bytes": 555,
+      "sha256": "765cd35fdd2da01452b16dab955d07c58ef26aac1618e6cfa1bacd08edcc0120",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "artwork-sdk/account/candidates/0.0.0-account.1/participation-account-0.0.0-account.1.tgz",
+      "target": "consumer/vendor/participation-account-0.0.0-account.1.tgz",
+      "bytes": 77912,
+      "sha256": "e3e8751b48de68a509d986ffb294569f40ad9dba452b41e1a7124a0525aa7fa2",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "artwork-sdk/account/candidates/0.0.0-account.1/ARCHIVE.json",
+      "target": "evidence/account-archive.json",
+      "bytes": 688,
+      "sha256": "447c5bd1bba8513526e01e384df37733f15046ec67b89ba648444d0d711204b6",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "artwork-sdk/candidates/0.0.0-mcp.1/QUALIFICATION.json",
+      "target": "evidence/core-qualification.json",
+      "bytes": 7026,
+      "sha256": "896cb6fe5cf9c50f5a11416725bc49717cc10c3cd79dfe06aaae11bdae815bab",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/agent-art-protocol",
+      "path": "artwork-sdk/account/proof/P3-RESULT.json",
+      "target": "evidence/account-p3-result.json",
+      "bytes": 4973,
+      "sha256": "3c9b8a32ecb600344c552a4da4e1417ea2d2e98cbee8605fde048808fefe5961",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/Agent-Art-signatures.gallery",
+      "path": "services/signatures/ACCOUNT-RESULT.md",
+      "target": "evidence/SIGNATURES-ACCOUNT-RESULT.md",
+      "bytes": 6905,
+      "sha256": "05be8cc2df946c274c0ba7dabf8c69b7db15de24ff5c353e3de7575ff054f72a",
+      "transformation": "verbatim"
+    },
+    {
+      "repository": "agent-art-work/Agent-Art-signatures.gallery",
+      "path": "services/signatures/SDK-RECOVERY-GAP.md",
+      "target": "evidence/SDK-RECOVERY-GAP.md",
+      "bytes": 4228,
+      "sha256": "d80abc562d97523bb03d09d8127fc61beb171a209e8052e6ed564d638cb2b8a9",
+      "transformation": "verbatim"
+    }
+  ],
+  "packageVersionsChanged": false,
+  "npmPublicationSelected": false,
+  "sdk014Changed": false
+}

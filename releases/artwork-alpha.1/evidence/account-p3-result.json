@@ -1,0 +1,239 @@
+{
+  "schema": "aap.account.p3-result.v1",
+  "case": "account-consumer-p3-v1",
+  "state": "passed",
+  "phase": "complete",
+  "artifacts": {
+    "sdk": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1",
+    "account": "e3e8751b48de68a509d986ffb294569f40ad9dba452b41e1a7124a0525aa7fa2"
+  },
+  "phases": [
+    {
+      "phase": "install",
+      "exit": 0,
+      "stdoutBytes": 27,
+      "stderrBytes": 0
+    },
+    {
+      "phase": "proof",
+      "exit": 0,
+      "stdoutBytes": 2450,
+      "stderrBytes": 169
+    }
+  ],
+  "report": {
+    "schema": "aap.account.consumer-proof.v1",
+    "state": "passed",
+    "groups": [
+      "imports",
+      "pure",
+      "local-join",
+      "data-selection",
+      "access",
+      "copy-boundary",
+      "refusal",
+      "lifecycle"
+    ],
+    "failedCase": null,
+    "cases": [
+      {
+        "name": "normal",
+        "group": "local-join",
+        "collectorReads": [
+          10
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "unicode",
+        "group": "data-selection",
+        "collectorReads": [
+          10
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "svg",
+        "group": "data-selection",
+        "collectorReads": [
+          10
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "omitted",
+        "group": "data-selection",
+        "collectorReads": [
+          9
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "empty",
+        "group": "data-selection",
+        "collectorReads": [
+          2
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "wrong-query",
+        "group": "data-selection",
+        "collectorReads": [],
+        "directReads": 2,
+        "state": "passed"
+      },
+      {
+        "name": "deny-enrollment",
+        "group": "access",
+        "collectorReads": [
+          2
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "deny-principal",
+        "group": "access",
+        "collectorReads": [
+          2
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "deny-selection",
+        "group": "access",
+        "collectorReads": [
+          2
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "deny-grant",
+        "group": "access",
+        "collectorReads": [
+          2
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "deny-authentication",
+        "group": "access",
+        "collectorReads": [
+          2
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "expired",
+        "group": "access",
+        "collectorReads": [
+          2
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "closed",
+        "group": "access",
+        "collectorReads": [
+          10
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "copy-denied",
+        "group": "copy-boundary",
+        "collectorReads": [
+          10
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "late-withdrawal",
+        "group": "copy-boundary",
+        "collectorReads": [
+          10
+        ],
+        "directReads": 1,
+        "state": "passed"
+      },
+      {
+        "name": "refusal",
+        "group": "refusal",
+        "collectorReads": [
+          10
+        ],
+        "directReads": 0,
+        "state": "passed"
+      },
+      {
+        "name": "reopen",
+        "group": "lifecycle",
+        "collectorReads": [
+          10,
+          1,
+          10
+        ],
+        "directReads": 0,
+        "state": "passed"
+      }
+    ],
+    "counters": {
+      "setup": {
+        "initialize": 17,
+        "describe": 17,
+        "enroll": 17,
+        "publishContext": 17,
+        "bind": 17,
+        "prepare": 17,
+        "submit": 17,
+        "inspectRecord": 17,
+        "appendAppReport": 17,
+        "publishInspection": 17
+      },
+      "lifecycle": {
+        "close": 19,
+        "open": 1,
+        "bind": 1
+      },
+      "mutations": {
+        "setActive": 1,
+        "authPrincipal": 1,
+        "withdrawInspection": 2,
+        "revokeGrant": 1,
+        "authExpiry": 1,
+        "clockAdvance": 1
+      },
+      "verification": {
+        "inspectRecord": 1,
+        "inspectData": 1
+      },
+      "nativeReads": 117,
+      "collectorReads": 114,
+      "collectorInvocations": 18
+    },
+    "storesRemoved": 17,
+    "workRootRemoved": true,
+    "fixtureOnly": true,
+    "realAuthentication": false,
+    "modelRequests": 0,
+    "rendererUsed": false,
+    "listenerOpened": false
+  },
+  "workspaceRemoved": true,
+  "rawOutputRetained": false,
+  "agentCalls": 0,
+  "deployment": false
+}

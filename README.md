@@ -4,6 +4,17 @@ Connect a website to a visitor's own Agent, and preserve evidence with explicit
 claims and limits. The larger purpose is Agent Art: works in which human and
 Agent intention can both have consequential standing.
 
+**Artwork SDK: prepared artwork-alpha.1.** For an artist working with a coding
+Agent, the [offline SDK snapshot](releases/artwork-alpha.1/README.md) combines the
+unchanged participation runtime and optional selected-account companion.
+Read [installation](releases/artwork-alpha.1/INSTALL.md),
+[support limits](releases/artwork-alpha.1/SUPPORT.md) and
+[qualification](releases/artwork-alpha.1/QUALIFICATION.json).
+The named installed fixtures and owner-reported Signatures synthetic integration
+passed. This is a prepared SDK alpha, not a released protocol standard, a universal
+Agent connector or production authentication/backup support. Publication remains
+subject to the approved release record. The reading SDK below is unchanged.
+
 **Reading alpha: 0.1.5-alpha.2.**
 The compact flat component preserves the approved AgentArt.work design;
 [alpha.1](releases/0.1.5-alpha.1/RELEASE.md) remains immutable.
@@ -30,7 +41,7 @@ the component, native link preparation, Copy and optional bounded receipts.
 | Client handoff | ChatGPT desktop route, Claude desktop route and always-visible Copy; actual destination and behavior depend on the installed client |
 | Generic participation protocol | Candidate architecture and contract; wider alpha APIs are experimental |
 | Developer test bench | Browser checks plus experimental Agent-operated desktop testing; full runner qualification has not passed |
-| THOUGHT and other artworks | Design examples and earlier isolated experiments; new artwork support is deferred |
+| THOUGHT and other artworks | Historical design examples and isolated experiments; the prepared SDK alpha does not qualify their production apps |
 
 Reading requires no additional server, local helper, Agent registration, model
 API, answer callback or evidence database. The SDK performs no inference,
