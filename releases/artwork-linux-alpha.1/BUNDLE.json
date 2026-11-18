@@ -1,0 +1,11 @@
+{
+  "schema": "aap.artwork-sdk.linux-release-bundle.v1",
+  "release": "artwork-linux-alpha.1",
+  "archive": "agent-art-artwork-linux-alpha.1.tar.gz",
+  "sha256": "177e895a977d817efa986946e474e75bf3c2180bec09575fea2ddcd61837831e",
+  "bytes": 560073,
+  "files": 10,
+  "root": "artwork-sdk-linux-candidate",
+  "packageManifestSha256": "33a72bb133e7e4e374fb7bcae76ce4d786f278d00cd7373cb2a27932271606ff",
+  "qualificationSha256": "b11007e35be8c167204817ef734cb4c7feff30bd7793e3fd655ca3142f7a7a1d"
+}

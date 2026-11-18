@@ -15,6 +15,15 @@ passed. This is a prepared SDK alpha, not a released protocol standard, a univer
 Agent connector or production authentication/backup support. Publication remains
 subject to the approved release record. The reading SDK below is unchanged.
 
+**Artwork SDK for Linux (`artwork-linux-alpha.1`).** The
+[Linux prerelease guide](releases/artwork-linux-alpha.1/README.md) covers the
+matched core and evidence-account packages on the tested Ubuntu arm64 and ext4
+setup. The [offline bundle](releases/artwork-linux-alpha.1/agent-art-artwork-linux-alpha.1.tar.gz),
+[checksum metadata](releases/artwork-linux-alpha.1/BUNDLE.json) and
+[qualification](releases/artwork-linux-alpha.1/QUALIFICATION.json) cover clean
+remount, one planned same-volume transfer and permitted evidence-account
+collection. Recovery after unexpected host loss remains a separate scope.
+
 **Reading alpha: 0.1.5-alpha.2.**
 The compact flat component preserves the approved AgentArt.work design;
 [alpha.1](releases/0.1.5-alpha.1/RELEASE.md) remains immutable.
