@@ -1,0 +1,76 @@
+{
+  "schema": "aap.artwork-sdk.single-work-qualification.v1",
+  "date": "2026-11-19",
+  "release": "artwork-linux-alpha.2",
+  "state": "passed-offline-synthetic",
+  "archiveSha256": "2fba0eca82ca3290af73133ad5a78c8686ae15a2a9a72ee9533142717bee9e73",
+  "lockSha256": "03af07c3669194a9bc591735b340c799695ecbba907111917a2abd8171d43fb8",
+  "lockEntries": 13,
+  "exampleSha256": "3c72c05ec222c24a0e05df17b2288914f8a83d62377af690333280be4084be63",
+  "proofPinsSha256": "955e5beba0a174fa0f6343e47af60ceb590fc3edc6336d529c55c0e9eb388ba0",
+  "controllerSha256": "d3d044b7c3011a65bf8aa12e0a6d36a6d01d03abab711ce51e1350642c80282d",
+  "runtime": {
+    "platform": "linux",
+    "os": "Ubuntu 24.04.5 LTS",
+    "arch": "arm64",
+    "node": "22.23.4",
+    "sqlite": "3.53.4",
+    "npm": "10.9.9"
+  },
+  "filesystem": "private guest-local ext4",
+  "verifiedBundleMembers": 13,
+  "checksummedPayloadFiles": 12,
+  "install": "fresh offline npm ci; empty cache and configs; scripts disabled; loopback-only namespace",
+  "installedBeforeAndAfter": {
+    "core": {
+      "status": "verified",
+      "name": "@agent-art/artwork-sdk",
+      "version": "0.0.0-planned-transfer.2",
+      "archiveSha256": "2121d146e19132c0e452b939b01010cd46925a7bcd58b919c243a2854bcaf9c1",
+      "manifestSha256": "9fbc4ef1fb11c5a13ebe104ba142b58941175b89ffd85a248f7286d892246749",
+      "files": 619,
+      "installedChecked": true,
+      "consumerLockChecked": true
+    },
+    "account": {
+      "status": "verified",
+      "name": "@agent-art/participation-account",
+      "version": "0.0.0-account-linux.1",
+      "archiveSha256": "6f44098aa06dae928ab4903387adc47c81cdec03b5add39041316a9e8697bd54",
+      "manifestSha256": "ce5cd978a52bd826d3e1eb93aea1b5930af83386976284fb8ab537daef23024e",
+      "files": 46,
+      "installedChecked": true,
+      "consumerLockChecked": true
+    }
+  },
+  "tests": {
+    "passed": 1,
+    "failed": 0,
+    "syntheticWorks": 1
+  },
+  "checks": [
+    "exact offered SVG and original return bytes",
+    "attributed Acts and Receipts",
+    "contribution without a statement",
+    "separate later reflection and app-declared Relation",
+    "source and derived SVG linkage",
+    "authorized inspection and unselected-material denial"
+  ],
+  "cleanup": {
+    "syntheticWorkRemoved": true,
+    "guestShutdownVerified": true,
+    "scratchUnmountedDetachedAndRemoved": true,
+    "cloneRemoved": true,
+    "retainedBaseUnchanged": true
+  },
+  "evidenceManifest": {
+    "files": 50,
+    "sha256": "b832096b7b1f52fb435f577f71526592b7b18fd78f9b2c4b5c45c2a87fef6b3b"
+  },
+  "separateQualification": [
+    "two-Work reuse",
+    "Signatures app adoption",
+    "recovery",
+    "live clients"
+  ]
+}

@@ -24,6 +24,13 @@ setup. The [offline bundle](releases/artwork-linux-alpha.1/agent-art-artwork-lin
 remount, one planned same-volume transfer and permitted evidence-account
 collection. Recovery after unexpected host loss remains a separate scope.
 
+**Artwork SDK Linux alpha.2.** The [artist guide](releases/artwork-linux-alpha.2/GUIDE.md)
+and [single-Work example](releases/artwork-linux-alpha.2/INSTALL.md) show how
+to preserve an offered SVG, an optional stated intention, a later reflection
+and the app's derived result with scoped inspection. The
+[Ubuntu arm64 proof](releases/artwork-linux-alpha.2/QUALIFICATION.json) passed
+with the existing Linux alpha.1 package pair and lock.
+
 **Reading alpha: 0.1.5-alpha.2.**
 The compact flat component preserves the approved AgentArt.work design;
 [alpha.1](releases/0.1.5-alpha.1/RELEASE.md) remains immutable.
