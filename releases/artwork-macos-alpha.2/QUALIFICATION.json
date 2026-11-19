@@ -1,0 +1,65 @@
+{
+  "schema": "aap.artwork-sdk.single-work-qualification.v1",
+  "date": "2026-11-19",
+  "release": "artwork-macos-alpha.2",
+  "state": "passed-offline-synthetic",
+  "archiveSha256": "80ff6783b9b44649c30ddf21f30618a5fd1d8f25999cbac5e5611f71565f7949",
+  "lockSha256": "6efb589e24838a75683aa9ee139c55a22b38f8380ca187bcada99e0b03542aef",
+  "lockEntries": 13,
+  "exampleSha256": "3c72c05ec222c24a0e05df17b2288914f8a83d62377af690333280be4084be63",
+  "runtime": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "node": "22.23.4",
+    "sqlite": "3.53.4",
+    "npm": "10.9.9"
+  },
+  "verifiedBundleMembers": 13,
+  "checksummedPayloadFiles": 12,
+  "install": "fresh offline npm ci; empty cache and configs; scripts disabled",
+  "installedBeforeAndAfter": {
+    "core": {
+      "status": "verified",
+      "name": "@agent-art/artwork-sdk",
+      "version": "0.0.0-mcp.1",
+      "archiveSha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1",
+      "manifestSha256": "cffb6bbef903cfd46707c4c8446a9693fbe7aebe89c5ddbe1f3ca3c5a943b273",
+      "files": 616,
+      "installedChecked": true,
+      "consumerLockChecked": true
+    },
+    "account": {
+      "status": "verified",
+      "name": "@agent-art/participation-account",
+      "version": "0.0.0-account.1",
+      "archiveSha256": "e3e8751b48de68a509d986ffb294569f40ad9dba452b41e1a7124a0525aa7fa2",
+      "manifestSha256": "bb6d2d2e612e684847c29bbaa0203406600de8c7a0c82d6609a7507af6a017ca",
+      "files": 46,
+      "installedChecked": true,
+      "consumerLockChecked": true
+    }
+  },
+  "tests": {
+    "passed": 1,
+    "failed": 0,
+    "syntheticWorks": 1
+  },
+  "checks": [
+    "exact offered SVG and original return bytes",
+    "attributed Acts and Receipts",
+    "contribution without a statement",
+    "separate later reflection and app-declared Relation",
+    "source and derived SVG linkage",
+    "authorized inspection and unselected-material denial"
+  ],
+  "cleanup": {
+    "syntheticWorkRemoved": true,
+    "proofWorkspaceRemoved": true
+  },
+  "separateQualification": [
+    "two-Work reuse",
+    "Linux workflow",
+    "Signatures app adoption",
+    "live clients"
+  ]
+}

@@ -4,6 +4,13 @@ Connect a website to a visitor's own Agent, and preserve evidence with explicit
 claims and limits. The larger purpose is Agent Art: works in which human and
 Agent intention can both have consequential standing.
 
+**Artwork SDK macOS alpha.2.** The [artist guide](releases/artwork-macos-alpha.2/GUIDE.md)
+and [single-Work example](releases/artwork-macos-alpha.2/INSTALL.md) cover an
+offered SVG, optional stated intention, later reflection, app derivation and
+permission-scoped inspection. The [candidate proof](releases/artwork-macos-alpha.2/QUALIFICATION.json)
+passed offline on macOS arm64 using the same SDK packages and lock as
+`artwork-alpha.1`.
+
 **Artwork SDK: prepared artwork-alpha.1.** For an artist working with a coding
 Agent, the [offline SDK snapshot](releases/artwork-alpha.1/README.md) combines the
 unchanged participation runtime and optional selected-account companion.
