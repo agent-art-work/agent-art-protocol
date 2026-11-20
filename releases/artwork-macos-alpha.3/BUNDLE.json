@@ -1,0 +1,40 @@
+{
+  "schema": "aap.artwork-alpha.bundle.v1",
+  "release": "artwork-macos-alpha.3",
+  "state": "prepared-unpublished",
+  "archive": "agent-art-artwork-macos-alpha.3.tar.gz",
+  "bytes": 605490,
+  "sha256": "18b526fbfb9ec2f4e1b492ce6169765c12f256c63bae0176e7b2a993e65d3f5c",
+  "members": 15,
+  "twoFileBuildsIdentical": true,
+  "sdkArchivesRebuilt": false,
+  "baseRelease": "artwork-macos-alpha.2",
+  "baseBundleSha256": "80ff6783b9b44649c30ddf21f30618a5fd1d8f25999cbac5e5611f71565f7949",
+  "lockSha256": "6efb589e24838a75683aa9ee139c55a22b38f8380ca187bcada99e0b03542aef",
+  "packages": {
+    "core": {
+      "name": "@agent-art/artwork-sdk",
+      "version": "0.0.0-mcp.1",
+      "sha256": "be028bbfcbc46959e38b862e5c44d3a084a756deaaeda8c6df3e8d19c6caa0a1",
+      "archive": "vendor/artwork-sdk-0.0.0-mcp.1.tgz"
+    },
+    "account": {
+      "name": "@agent-art/participation-account",
+      "version": "0.0.0-account.1",
+      "sha256": "e3e8751b48de68a509d986ffb294569f40ad9dba452b41e1a7124a0525aa7fa2",
+      "archive": "vendor/participation-account-0.0.0-account.1.tgz"
+    }
+  },
+  "example": {
+    "path": "consumer/examples/stated-intention/proof.mjs",
+    "sha256": "3c72c05ec222c24a0e05df17b2288914f8a83d62377af690333280be4084be63"
+  },
+  "followOnExample": {
+    "path": "consumer/examples/two-work/proof.mjs",
+    "sha256": "e3acd0f25fbfa6bc07b1a0149912d5f6f552c5a8b5775cddf351cb91a3d36cd3",
+    "walkthrough": {
+      "path": "TWO-WORK.md",
+      "sha256": "881951a1a7e87d9d5655f6b3db79888e370638f91b445b7023a600b0eed0e8ad"
+    }
+  }
+}

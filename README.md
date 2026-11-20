@@ -22,6 +22,14 @@ passed. This is a prepared SDK alpha, not a released protocol standard, a univer
 Agent connector or production authentication/backup support. Publication remains
 subject to the approved release record. The reading SDK below is unchanged.
 
+**Artwork SDK macOS alpha.3.** The [artist guide](releases/artwork-macos-alpha.3/GUIDE.md)
+and [original example](releases/artwork-macos-alpha.3/INSTALL.md) carry forward. The
+[two-Work walkthrough](releases/artwork-macos-alpha.3/TWO-WORK.md) shows how to offer a prior
+Agent's stated intention as optional Context and inspect two outcomes.
+Both examples passed offline on macOS arm64 with the published
+macOS alpha.2 package pair and lock. See the
+[qualification record](releases/artwork-macos-alpha.3/QUALIFICATION.json).
+
 **Reading alpha: 0.1.5-alpha.2.**
 The compact flat component preserves the approved AgentArt.work design;
 [alpha.1](releases/0.1.5-alpha.1/RELEASE.md) remains immutable.
