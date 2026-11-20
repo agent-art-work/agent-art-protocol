@@ -1,0 +1,40 @@
+{
+  "schema": "aap.artwork-alpha.bundle.v1",
+  "release": "artwork-linux-alpha.3",
+  "state": "prepared-unpublished",
+  "archive": "agent-art-artwork-linux-alpha.3.tar.gz",
+  "bytes": 572285,
+  "sha256": "7c1c43d864bf50c394a999d9d774b578714fecd631e08dab99541afb5c4b68cf",
+  "members": 15,
+  "twoFileBuildsIdentical": true,
+  "sdkArchivesRebuilt": false,
+  "baseRelease": "artwork-linux-alpha.2",
+  "baseBundleSha256": "2fba0eca82ca3290af73133ad5a78c8686ae15a2a9a72ee9533142717bee9e73",
+  "lockSha256": "03af07c3669194a9bc591735b340c799695ecbba907111917a2abd8171d43fb8",
+  "packages": {
+    "core": {
+      "name": "@agent-art/artwork-sdk",
+      "version": "0.0.0-planned-transfer.2",
+      "sha256": "2121d146e19132c0e452b939b01010cd46925a7bcd58b919c243a2854bcaf9c1",
+      "archive": "vendor/artwork-sdk-0.0.0-planned-transfer.2.tgz"
+    },
+    "account": {
+      "name": "@agent-art/participation-account",
+      "version": "0.0.0-account-linux.1",
+      "sha256": "6f44098aa06dae928ab4903387adc47c81cdec03b5add39041316a9e8697bd54",
+      "archive": "vendor/participation-account-0.0.0-account-linux.1.tgz"
+    }
+  },
+  "example": {
+    "path": "consumer/examples/stated-intention/proof.mjs",
+    "sha256": "3c72c05ec222c24a0e05df17b2288914f8a83d62377af690333280be4084be63"
+  },
+  "followOnExample": {
+    "path": "consumer/examples/two-work/proof.mjs",
+    "sha256": "e3acd0f25fbfa6bc07b1a0149912d5f6f552c5a8b5775cddf351cb91a3d36cd3",
+    "walkthrough": {
+      "path": "TWO-WORK.md",
+      "sha256": "881951a1a7e87d9d5655f6b3db79888e370638f91b445b7023a600b0eed0e8ad"
+    }
+  }
+}

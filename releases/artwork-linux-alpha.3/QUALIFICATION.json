@@ -1,0 +1,99 @@
+{
+  "schema": "aap.artwork-sdk.follow-on-qualification.v1",
+  "date": "2026-11-19",
+  "release": "artwork-linux-alpha.3",
+  "archiveSha256": "7c1c43d864bf50c394a999d9d774b578714fecd631e08dab99541afb5c4b68cf",
+  "lockSha256": "03af07c3669194a9bc591735b340c799695ecbba907111917a2abd8171d43fb8",
+  "lockEntries": 13,
+  "verifiedBundleMembers": 15,
+  "checksummedPayloadFiles": 14,
+  "packageArchivesVerified": {
+    "core": {
+      "status": "verified",
+      "name": "@agent-art/artwork-sdk",
+      "version": "0.0.0-planned-transfer.2",
+      "archiveSha256": "2121d146e19132c0e452b939b01010cd46925a7bcd58b919c243a2854bcaf9c1",
+      "manifestSha256": "9fbc4ef1fb11c5a13ebe104ba142b58941175b89ffd85a248f7286d892246749",
+      "files": 619,
+      "installedChecked": false,
+      "consumerLockChecked": true
+    },
+    "account": {
+      "status": "verified",
+      "name": "@agent-art/participation-account",
+      "version": "0.0.0-account-linux.1",
+      "archiveSha256": "6f44098aa06dae928ab4903387adc47c81cdec03b5add39041316a9e8697bd54",
+      "manifestSha256": "ce5cd978a52bd826d3e1eb93aea1b5930af83386976284fb8ab537daef23024e",
+      "files": 46,
+      "installedChecked": false,
+      "consumerLockChecked": true
+    }
+  },
+  "examples": [
+    {
+      "path": "consumer/examples/stated-intention/proof.mjs",
+      "sha256": "3c72c05ec222c24a0e05df17b2288914f8a83d62377af690333280be4084be63"
+    },
+    {
+      "path": "consumer/examples/two-work/proof.mjs",
+      "sha256": "e3acd0f25fbfa6bc07b1a0149912d5f6f552c5a8b5775cddf351cb91a3d36cd3"
+    }
+  ],
+  "walkthroughSha256": "881951a1a7e87d9d5655f6b3db79888e370638f91b445b7023a600b0eed0e8ad",
+  "state": "passed-offline-synthetic",
+  "proofPinsSha256": "3670b92976673f97312f7150ed013f4f1e81637e0ccf630be4db1feea0525d37",
+  "runtime": {
+    "platform": "linux",
+    "os": "Ubuntu 24.04.5 LTS",
+    "arch": "arm64",
+    "node": "22.23.4",
+    "sqlite": "3.53.4",
+    "npm": "10.9.9"
+  },
+  "filesystem": "private guest-local ext4",
+  "install": "one fresh offline npm ci; empty cache and configs; scripts disabled; loopback-only namespace",
+  "installedBeforeAndAfter": {
+    "core": {
+      "status": "verified",
+      "name": "@agent-art/artwork-sdk",
+      "version": "0.0.0-planned-transfer.2",
+      "archiveSha256": "2121d146e19132c0e452b939b01010cd46925a7bcd58b919c243a2854bcaf9c1",
+      "manifestSha256": "9fbc4ef1fb11c5a13ebe104ba142b58941175b89ffd85a248f7286d892246749",
+      "files": 619,
+      "installedChecked": true,
+      "consumerLockChecked": true
+    },
+    "account": {
+      "status": "verified",
+      "name": "@agent-art/participation-account",
+      "version": "0.0.0-account-linux.1",
+      "archiveSha256": "6f44098aa06dae928ab4903387adc47c81cdec03b5add39041316a9e8697bd54",
+      "manifestSha256": "ce5cd978a52bd826d3e1eb93aea1b5930af83386976284fb8ab537daef23024e",
+      "files": 46,
+      "installedChecked": true,
+      "consumerLockChecked": true
+    }
+  },
+  "tests": {
+    "passed": 2,
+    "failed": 0,
+    "syntheticWorks": 3
+  },
+  "svgSha256": {
+    "adapt-effect": "33f42cc38b455717eff9edd733206cb31d0bc1b32236c1a1effba0eae1ee5ca7",
+    "keep-effect": "202d807188fe6d8f4a6f9ca0f88f57586923e4d123505e48a82ec840b78c7bb2"
+  },
+  "cleanup": {
+    "syntheticWorksRemoved": true,
+    "syntheticAccountRemoved": true,
+    "consumerRemoved": true,
+    "guestShutdownVerified": true,
+    "scratchUnmountedDetachedAndRemoved": true,
+    "cloneRemoved": true,
+    "retainedBaseUnchanged": true
+  },
+  "evidenceManifest": {
+    "files": 48,
+    "sha256": "eba2953302d510bf48cc35c8f211c4bc7518f0d402468ae513dcc5cf2f823e7c"
+  }
+}

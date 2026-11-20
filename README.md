@@ -31,6 +31,14 @@ and the app's derived result with scoped inspection. The
 [Ubuntu arm64 proof](releases/artwork-linux-alpha.2/QUALIFICATION.json) passed
 with the existing Linux alpha.1 package pair and lock.
 
+**Artwork SDK Linux alpha.3.** The [artist guide](releases/artwork-linux-alpha.3/GUIDE.md)
+and [original example](releases/artwork-linux-alpha.3/INSTALL.md) carry forward. The
+[two-Work walkthrough](releases/artwork-linux-alpha.3/TWO-WORK.md) shows how to offer a prior
+Agent's stated intention as optional Context and inspect two outcomes.
+Both examples passed offline on Ubuntu 24.04.5 arm64/ext4 with the published
+Linux alpha.2 package pair and lock. See the
+[qualification record](releases/artwork-linux-alpha.3/QUALIFICATION.json).
+
 **Reading alpha: 0.1.5-alpha.2.**
 The compact flat component preserves the approved AgentArt.work design;
 [alpha.1](releases/0.1.5-alpha.1/RELEASE.md) remains immutable.
